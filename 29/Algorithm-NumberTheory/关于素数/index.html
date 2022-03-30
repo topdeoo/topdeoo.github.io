@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Nothing You Could Do:300,300italic,400,400italic,700,700italic|lato:300,300italic,400,400italic,700,700italic|Courier New:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"topdeoo.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="这里介绍一些关于找素数的方法，可能是素数筛，也可能是快速判断一个数是不是素数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于素数">
+<meta property="og:url" content="https://topdeoo.github.io/29/Algorithm-NumberTheory/%E5%85%B3%E4%BA%8E%E7%B4%A0%E6%95%B0/index.html">
+<meta property="og:site_name" content="随便扯扯">
+<meta property="og:description" content="这里介绍一些关于找素数的方法，可能是素数筛，也可能是快速判断一个数是不是素数">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-29T13:05:02.000Z">
+<meta property="article:modified_time" content="2022-03-30T05:19:33.029Z">
+<meta property="article:author" content="Virgil">
+<meta property="article:tag" content="Algorithm">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://topdeoo.github.io/29/Algorithm-NumberTheory/%E5%85%B3%E4%BA%8E%E7%B4%A0%E6%95%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>关于素数 | 随便扯扯</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">随便扯扯</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/topdeoo" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://topdeoo.github.io/29/Algorithm-NumberTheory/%E5%85%B3%E4%BA%8E%E7%B4%A0%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Virgil">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="随便扯扯">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          关于素数<a href="https://github.com/topdeoo/topdeoo.github.io_posts/Prime.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil-alt"></i></a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-03-29 21:05:02" itemprop="dateCreated datePublished" datetime="2022-03-29T21:05:02+08:00">2022-03-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-30 13:19:33" itemprop="dateModified" datetime="2022-03-30T13:19:33+08:00">2022-03-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-NumberTheory/" itemprop="url" rel="index"><span itemprop="name">Algorithm NumberTheory</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>这里介绍一些关于找素数的方法，可能是素数筛，也可能是快速判断一个数是不是素数</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="一些素数筛"><a href="#一些素数筛" class="headerlink" title="一些素数筛"></a>一些素数筛</h1><p>素数筛，就是在一个给定的范围内，把素数与非素数区分出来。</p>
+<p>我们知道，判断一个素数最简单的方法就是使用定义来判断：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">is_prime</span><span class="params">(<span class="type">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">2</span>; i &lt; n; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(n % i == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>显然这种算法是 $O(n)$ 的，检查一个素数就需要 $O(n)$ 的时间，那么检查 $n$ 个素数的复杂度就是 $O(n^2)$，这显然是无法接受的（在OI中）。</p>
+<p>于是有一种稍微快一些的方法，可以把判断一个数是不是素数的时间降低到 $O(\sqrt{n})$ ，这种算法的正确性是基于一个显然的事实：若 $t &#x3D; ab$ 则显然 $t &#x3D; ba$，因此我们只需要检查到 $\sqrt{n}$ ，若 $\sqrt{n}$ 之前的所有数（ $1$ 除外）都不是 $n$ 的因子，那么 $n$ 一定是素数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">is_prime</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">2</span>; i &lt;= <span class="built_in">sqrt</span>(n); i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(n % i == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然而，我们有两种经典的素数筛算法，所以你可以当做我上面在扯淡😏</p>
+<h2 id="埃氏筛"><a href="#埃氏筛" class="headerlink" title="埃氏筛"></a>埃氏筛</h2><p>埃氏筛基于一个简单的事实：要得到自然数n以内的全部素数，必须把不大于根号n的所有素数的倍数剔除，剩下的就是素数。</p>
+<p>也就是从 $1$ ~ $n$ 中依次删除 $2$ 的倍数， $3$ 的倍数…..从而得到所有的素数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> N 500</span></span><br><span class="line"></span><br><span class="line"><span class="function">vector&lt;<span class="type">bool</span>&gt; <span class="title">is_prime</span><span class="params">(N + <span class="number">5</span>, <span class="literal">true</span>)</span></span>;</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; prime;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Eratosthenes</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (is_prime[i]) &#123;</span><br><span class="line">			prime.<span class="built_in">push_back</span>(i);</span><br><span class="line">			<span class="keyword">if</span> ((<span class="type">long</span> <span class="type">long</span>)i * i &lt;= n)</span><br><span class="line">				<span class="keyword">for</span> (<span class="type">int</span> j = i * i; j &lt;= n; j += i)</span><br><span class="line">					is_prime[j] = <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="算法分析"><a href="#算法分析" class="headerlink" title="算法分析"></a>算法分析</h3><p>假设每次对数字的操作都花费 $1$ 个单位时间，显然，时间复杂度为<br>$$<br>T(n) &#x3D; \sum_{p\le n}\frac{n}{p} &#x3D; n \sum^{\pi(n)}_{k&#x3D;1}\frac{1}{p_k}<br>$$</p>
+<p>其中， $p_k$ 表示第 $k$ 小的素数，$\pi(n)$ 表示小于等于 $n$ 的素数的个数</p>
+<p>又根据 <code>Mertens&#39; theorems</code> ：<br>$$<br>\exist B_1 \in \mathbf{R}\<br>s.t.\quad n \sum^{\pi(n)}_{k&#x3D;1}\frac{1}{p_k} &#x3D; \log\log{n} + B_1 + O(\frac{1}{\log n})<br>$$</p>
+<p>因此，埃氏筛的时间复杂度是 $O(n\log\log{n})$ 。接下来证明 <code>Mertens&#39; theorems</code> 的弱化版本 $\sum_{k\le \pi(n)}\frac{1}{p_k} &#x3D; O(\log\log{n})$:<br>$$<br>由于 \pi(n) &#x3D; \Theta(\frac{n}{\log{n}}),那么第n个素数的大小为\Theta(n\log{n})\<br>于是\<br>\begin{aligned}<br>\sum^{\pi(n)}<em>{k&#x3D;1}\frac{1}{p_k} &amp;&#x3D;O(\sum^{\pi(n)}</em>{k&#x3D;2}\frac{1}{k\log{k}})\<br>&amp;&#x3D;O(\int^{\pi(n)}_2\frac{dx}{x\log{x}})\<br>&amp;&#x3D;O(\log\log{\pi(n)})<br>&#x3D;O(\log\log n)<br>\end{aligned}<br>$$<br>事实上，可以将渐进复杂度“降”到 $O(n\log\log{\sqrt{n}})$（因为这个复杂度渐进时间和上面是一样的，所以降字用双引号引起来了），实际做法是：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="function">vector&lt;<span class="type">bool</span>&gt; <span class="title">is_prime</span><span class="params">(n + <span class="number">1</span>, <span class="literal">true</span>)</span></span>;</span><br><span class="line">is_prime[<span class="number">0</span>] = is_prime[<span class="number">1</span>] = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i * i &lt;= n; i++) &#123;</span><br><span class="line">  <span class="keyword">if</span> (is_prime[i]) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = i * i; j &lt;= n; j += i) </span><br><span class="line">        is_prime[j] = <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="欧拉筛"><a href="#欧拉筛" class="headerlink" title="欧拉筛"></a>欧拉筛</h2><p>欧拉筛又叫做线性筛，也就是运行时间为 $O(n)$ 的筛法。</p>
+<p>回顾埃氏筛我们可以发现，对一个相同的合数，事实上我们划去了不止 $1$ 次，每次遇到它的质因子时，我们都将其划去了，重复的删去是没有意义的，如果能让每个合数都只被删去一次，那么就可以将时间复杂度降到 $O(n)$ 了。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> N 1e5 + 10;</span></span><br><span class="line"></span><br><span class="line"><span class="type">bool</span> vis[N];</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; primes;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">(<span class="type">int</span> n)</span></span>&#123;</span><br><span class="line">    vis[<span class="number">0</span>] = vis[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">2</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!vis[i])&#123;</span><br><span class="line">            vis[i] = <span class="number">1</span>;</span><br><span class="line">            primes.<span class="built_in">push_back</span>(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;j : primes)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i * j &gt; n)<span class="keyword">break</span>;</span><br><span class="line">            vis[i * j] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(i % j == <span class="number">0</span>)<span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>线性筛可以做的事远不止筛出素数，我们可以用线性筛来求欧拉函数，莫比乌斯函数，因子的个数，约数和等等。</p>
+<p>这些内容会慢慢补充（大概）</p>
+<h1 id="一些素性测试"><a href="#一些素性测试" class="headerlink" title="一些素性测试"></a>一些素性测试</h1><p><strong>素性测试</strong>这种方法不需要对数字进行素数分解，可以直接测试一个数是否为素数。</p>
+<p>素性测试有两种：</p>
+<ol>
+<li>确定性测试：绝对确定一个数是否为素数。常见示例包括 Lucas-Lehmer 测试和椭圆曲线素性证明。</li>
+<li>概率性测试：通常比确定性测试快很多，但有可能（尽管概率很小）错误地将合数识别为质数（尽管反之则不会）。因此，通过概率素性测试的数字被称为 <strong>可能素数</strong>，直到它们的素数可以被确定性地证明。而通过测试但实际上是合数的数字则被称为 <strong>伪素数</strong>。有许多特定类型的伪素数，最常见的是费马伪素数，它们是满足费马小定理的合数。</li>
+</ol>
+<p>这里只介绍一种我常用的方法。</p>
+<h2 id="Miller-Rabin-素性测试"><a href="#Miller-Rabin-素性测试" class="headerlink" title="Miller-Rabin 素性测试"></a>Miller-Rabin 素性测试</h2><h3 id="数学原理"><a href="#数学原理" class="headerlink" title="数学原理"></a>数学原理</h3><p>首先介绍<strong>费马小定理</strong>：<br>$$<br>a^{p-1} \equiv 1(mod;p)<br>$$<br>其中$(a, p) &#x3D; 1$，因此素数对任意不等于它本身的数都满足上述同余式。</p>
+<p>那么是不是一个数 $p$ 对任意 $a$  都满足这个同余式，$p$ 就是一个素数呢？当然是存在反例的，这个反例就是 <strong>卡迈尔数</strong>，这里不去介绍卡迈尔数，可以自行百度😏</p>
+<p>但是用费马小定理去判断一个数是不是素数，在大部分情况下是正确的，也就是说，可以大概率相信一个数是素数。</p>
+<p>这就是 <code>Miller-Rabin</code> 算法的立足点。</p>
+<p>但我们仍需要一样定理：<strong>二次探测定理</strong><br>$$<br>若 p 奇素数，则 x^2 \equiv 1 (mod\ p)的解为\<br>x\equiv 1(mod\ p)或x\equiv p-1(mod\ p)<br>$$<br>不妨将费马小定理和二次探测定理结合起来使用：</p>
+<p>将 $a^{n-1}\equiv 1(mod\ n)$ 中的指数 $n-1$ 分解为 $n-1&#x3D;2^t*u$ ，在每轮测试中对随机出来的 $a$ 先求出 $a^u \mod n$ ，之后对这个值执行最多 $t$ 次平方操作，若发现非平凡平方根时即可判断出其不是素数，否则通过此轮测试。</p>
+<p>时间复杂度为 $O(T\log^3 n)$ 级别, 其中 $T$ 为测试的次数。若使用 <code>FFT</code> 优化，复杂度可以降到 $O(T\log^2{n}\log\log{n}\log\log\log{n})$</p>
+<p>由于此算法为概率算法，因此是存在误判的，误判的概率为 $\frac{1}{4^T}$，因此当T较大时可视为完备算法，但 $T$ 不能选太大，否则会影响判断的效率，建议大于等于 $8$ 即可。</p>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> ll MOD = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line"><span class="function">ll <span class="title">qpow</span><span class="params">(ll a, ll n, ll mod)</span> </span>&#123;</span><br><span class="line">  ll res = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">while</span> (n) &#123;</span><br><span class="line">    <span class="keyword">if</span> (n &amp; <span class="number">1</span>) res = res * a % mod;</span><br><span class="line">    a = a * a % mod;</span><br><span class="line">    n &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">qmul</span><span class="params">(ll a, ll b, ll mod)</span> </span>&#123;</span><br><span class="line">  ll res = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span> (b) &#123;</span><br><span class="line">    <span class="keyword">if</span> (b &amp; <span class="number">1</span>) res = (a + res) % mod;</span><br><span class="line">    a = a * <span class="number">2</span> % mod;</span><br><span class="line">    b &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">Miller_Rabin</span><span class="params">(ll n)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n == <span class="number">2</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  <span class="keyword">if</span> (!(n &amp; <span class="number">1</span>) || n &lt; <span class="number">2</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  ll s = <span class="number">0</span>, t = n - <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">while</span> (!(t &amp; <span class="number">1</span>)) &#123;</span><br><span class="line">    s++;</span><br><span class="line">    t &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">20</span>; i++) &#123;</span><br><span class="line">    ll a = <span class="built_in">rand</span>() % (n - <span class="number">1</span>) + <span class="number">1</span>;</span><br><span class="line">    ll x = <span class="built_in">qpow</span>(a, t, n);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= s; j++) &#123;</span><br><span class="line">      ll test = <span class="built_in">qmul</span>(x, x, n);</span><br><span class="line">      <span class="keyword">if</span> (test == <span class="number">1</span> &amp;&amp; x != <span class="number">1</span> &amp;&amp; x != n - <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">      x = test;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (x != <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/29/%E5%85%B3%E4%BA%8ECSAPP%E7%9A%84%E4%B8%80%E4%BA%9B%E9%9B%B6%E9%9B%B6%E7%A2%8E%E7%A2%8E/cs-app-bomblab/" rel="prev" title="CS:APP bomblab">
+      <i class="fa fa-chevron-left"></i> CS:APP bomblab
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E7%B4%A0%E6%95%B0%E7%AD%9B"><span class="nav-number">1.</span> <span class="nav-text">一些素数筛</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%83%E6%B0%8F%E7%AD%9B"><span class="nav-number">1.1.</span> <span class="nav-text">埃氏筛</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90"><span class="nav-number">1.1.1.</span> <span class="nav-text">算法分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AC%A7%E6%8B%89%E7%AD%9B"><span class="nav-number">1.2.</span> <span class="nav-text">欧拉筛</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E7%B4%A0%E6%80%A7%E6%B5%8B%E8%AF%95"><span class="nav-number">2.</span> <span class="nav-text">一些素性测试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Miller-Rabin-%E7%B4%A0%E6%80%A7%E6%B5%8B%E8%AF%95"><span class="nav-number">2.1.</span> <span class="nav-text">Miller-Rabin 素性测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E5%8E%9F%E7%90%86"><span class="nav-number">2.1.1.</span> <span class="nav-text">数学原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.1.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Virgil"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Virgil</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="sidebar-button motion-element"><i class="fa fa-comment"></i>
+    摆烂！
+  </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/topdeoo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;topdeoo" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-atom"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Virgil</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
