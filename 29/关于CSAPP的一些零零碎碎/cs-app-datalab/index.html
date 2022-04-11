@@ -24,7 +24,7 @@
 <meta property="og:description" content="一个做了很久，做完之后其实还挺有收获的实验（我愿称之为最难🥺） 前置条件：阅读完第二章">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-29T11:46:40.000Z">
-<meta property="article:modified_time" content="2022-04-10T02:11:55.055Z">
+<meta property="article:modified_time" content="2022-04-10T14:54:19.214Z">
 <meta property="article:author" content="Virgil">
 <meta property="article:tag" content="CSAPP">
 <meta name="twitter:card" content="summary_large_image">
@@ -292,7 +292,7 @@
                 
                   
                     <!-- compatible with older versions-->
-                    本文最后更新于：2022年4月10日 上午
+                    本文最后更新于：2022年4月10日 晚上
                   
                 
               </p>
@@ -308,7 +308,7 @@
 <p>实验材料 <code>handout</code> 下载地址<a target="_blank" rel="noopener" href="http://csapp.cs.cmu.edu/3e/labs.html">CS:APP3e, Bryant and O’Hallaron (cmu.edu)</a>。</p>
 <p>只需要下载每个实验中的 <code>Self-Study Handout</code> 即可，下载下来后放到与 <code>docker</code> 共享文件夹中（文件后缀名为 <code>.tar</code>），阅读 <code>Writeup</code> 文件，使用 <code>tar xvf datalab-handout.tar.</code>命令解压即可。</p>
 <p>阅读 <code>README</code> 文件，完成需要的测试:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ make clean<br>$ make<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">make clean<br>make<br></code></pre></td></tr></table></figure>
 <p>输入<code>./btest</code> 可以看见一堆错误信息和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 分提示，输入<code>./btest -g</code> 可以发现错误信息消失了。</p>
 <p>这样就可以开始实验了。</p>
 <p>我们需要完成的文件是 <code>bits.c</code>，完成一个函数后，使用 <code>make</code> 编译，并用 <code>./btest</code> 来查看得分，当然，在 <code>bits.c</code> 中还有格式要求，需要使用 <code>./dlc bits.c</code> 来检查格式问题。</p>

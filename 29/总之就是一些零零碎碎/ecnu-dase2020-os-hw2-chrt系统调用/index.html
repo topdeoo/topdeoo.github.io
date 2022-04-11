@@ -16,18 +16,45 @@
   <meta name="author" content="Virgil">
   <meta name="keywords" content="">
   
-    <meta name="description" content=".markdown-body {     font-family: &#39;Lato&#39;;     font-size: 16px;   }">
+    <meta name="description" content="实现chrt系统调用（简易版">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ECNU DaSE2020 OS_HW2 chrt系统调用">
 <meta property="og:url" content="https://topdeoo.github.io/29/%E6%80%BB%E4%B9%8B%E5%B0%B1%E6%98%AF%E4%B8%80%E4%BA%9B%E9%9B%B6%E9%9B%B6%E7%A2%8E%E7%A2%8E/ecnu-dase2020-os-hw2-chrt%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8/index.html">
 <meta property="og:site_name" content="随便扯扯">
-<meta property="og:description" content=".markdown-body {     font-family: &#39;Lato&#39;;     font-size: 16px;   }">
+<meta property="og:description" content="实现chrt系统调用（简易版">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/5vWOTcFPtBrfJoi.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/blOQIroEgpNH68d.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/FEmPAvZ56eDHxnQ.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/YLUeRJoZQ6XubIy.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/2jOqWMKywusCrde.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/1pSPdIA2Uz9EGrm.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/tpmowZjIbSg2CQX.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/uCoFbOEq4ryAd5J.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/eO2z9KibAh4CNop.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/pixYSU95OwlI68D.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/mYCBRjvkV42wDHz.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/Y4UybjVAO2ZLR9E.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/5QcHYAStosyVXvn.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/WVaUdsQ9GqMlu1z.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/MpDboQ8ZAJsqxrB.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/2RokhUZ7jO8t9az.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/14V8sIjwnGQqFat.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/N5JIPGQgD4h26ER.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/ilDScPsnyMUzRFG.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/vhtl6S7ZgBEGoKm.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/FBs52xzgkJ1umNS.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/49vAGqTu2BQFe5k.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/PqSzWjmtsEXHv3Z.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/Ldocre6POKY9Bnt.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/M8C1LIx9aNVrlbS.png">
 <meta property="article:published_time" content="2022-03-29T10:35:16.000Z">
-<meta property="article:modified_time" content="2022-04-01T15:14:08.298Z">
+<meta property="article:modified_time" content="2022-04-11T14:05:42.087Z">
 <meta property="article:author" content="Virgil">
 <meta property="article:tag" content="OS">
+<meta property="article:tag" content="ECNU">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2022/04/11/5vWOTcFPtBrfJoi.png">
   
   
   <title>ECNU DaSE2020 OS_HW2 chrt系统调用 - 随便扯扯</title>
@@ -228,7 +255,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          50 字
+          8.3k 字
         
       </span>
     
@@ -240,7 +267,7 @@
         
         
           <!-- compatible with older versions-->
-          1 分钟
+          70 分钟
         
       </span>
     
@@ -292,14 +319,184 @@
                 
                   
                     <!-- compatible with older versions-->
-                    本文最后更新于：2022年4月1日 晚上
+                    本文最后更新于：2022年4月11日 晚上
                   
                 
               </p>
             
             <div class="markdown-body">
               
-              <span id="more"></span>
+              <blockquote>
+<p>实现chrt系统调用（简易版</p>
+</blockquote>
+<span id="more"></span>
+<h1 id="chrt系统调用的实现"><a class="markdownIt-Anchor" href="#chrt系统调用的实现"></a> Chrt系统调用的实现</h1>
+<h2 id="需要修改的文件"><a class="markdownIt-Anchor" href="#需要修改的文件"></a> 需要修改的文件</h2>
+<p>M 代表修改，C代表新建，D代表删除</p>
+<ul>
+<li>
+<p><code>/src/include/unistd.h</code> (M)</p>
+</li>
+<li>
+<p><code>/src/minix/lib/libc/sys/chrt.c</code> ©</p>
+</li>
+<li>
+<p><code>/usr/src/minix/lib/libc/sys/Makefile.inc</code> (M)</p>
+</li>
+<li>
+<p><code>/src/minix/servers/pm/proto.h</code> (M)</p>
+</li>
+<li>
+<p><code>/src/minix/servers/pm/chrt.c</code> ©</p>
+</li>
+<li>
+<p><code>/src/minix/include/minix/callnr.h</code> (M)</p>
+</li>
+<li>
+<p><code>/src/minix/servers/pm/Makefile</code> (M)</p>
+</li>
+<li>
+<p><code>/src/minix/servers/pm/table.c</code> (M)</p>
+</li>
+<li>
+<p><code>/src/minix/include/minix/syslib.h</code> (M)</p>
+</li>
+<li>
+<p><code>/src/minix/lib/libsys/sys_chrt.c</code> ©</p>
+</li>
+<li>
+<p><code>/src/minix/lib/libsys/Makefile</code> (M)</p>
+</li>
+<li>
+<p><code>/src/minix/kernel/system.h</code> (M)</p>
+</li>
+<li>
+<p><code>/src/minix/kernel/system/do_chrt.c</code> ©</p>
+</li>
+<li>
+<p><code>/src/minix/kernel/system/Makefile</code> (M)</p>
+</li>
+<li>
+<p><code>/src/minix/include/minix/com.h</code> (M)</p>
+</li>
+<li>
+<p><code>/src/minix/kernel/config.h</code>(M)</p>
+</li>
+<li>
+<p><code>/src/minix/kernel/system.c</code> (M)</p>
+</li>
+<li>
+<p><code>/src/minix/commands/service/parse.c</code> (M)</p>
+</li>
+<li>
+<p><code>/src/minix/kernel/proc.h</code>(M)</p>
+</li>
+<li>
+<p><code>/src/minix/kernel/proc.c</code>(M)</p>
+</li>
+</ul>
+<h1 id="应用层"><a class="markdownIt-Anchor" href="#应用层"></a> 应用层</h1>
+<p>首先，根据文档要求：</p>
+<p><img src="https://s2.loli.net/2022/04/11/5vWOTcFPtBrfJoi.png" srcset="/img/loading.gif" lazyload alt="说明文档" /></p>
+<p>准备工作：先在 <code>/src/include/unistd.h</code> 与 <code>/src/minix/lib/libc/sys/Makefiles.inc</code> 中添加 <code>int chrt(long)</code> 与 <code>chrt.c</code>，并在 <code>/src/minix/lib/libc/sys</code> 中新增文件 <code>chrt.c</code></p>
+<p><img src="https://s2.loli.net/2022/04/11/blOQIroEgpNH68d.png" srcset="/img/loading.gif" lazyload alt="添加声明" /></p>
+<p><img src="https://s2.loli.net/2022/04/11/FEmPAvZ56eDHxnQ.png" srcset="/img/loading.gif" lazyload alt="添加到Makefile" /></p>
+<p>随后，根据文档中对函数的说明与要求：</p>
+<p><img src="https://s2.loli.net/2022/04/11/YLUeRJoZQ6XubIy.png" srcset="/img/loading.gif" lazyload alt="说明文档" /></p>
+<p>我们知道，函数 <code>int chrt(long)</code> 输入的参数 <code>deadline</code> 是指进程运行的时长，在此函数值，我们需要做的事情有三件：</p>
+<ol>
+<li>设置 <code>alarm</code></li>
+<li>将 <code>deadline</code> 设置为进程的终止时间</li>
+<li>通过 <code>MINIX</code> 的 <code>IPC</code> 通信机制（通过<code>message</code>结构体来传输信息），将 <code>deadline</code> 传到服务层</li>
+</ol>
+<p>按照这个步骤来写 <code>chrt</code> 函数，我们首先需要知道 <code>alarm</code> 的工作原理与调用方法（<em>见《UNIX环境高级编程》10.10</em>）：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span><br><br><span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> <span class="hljs-title function_">alarm</span><span class="hljs-params">(<span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> seconds)</span>;<br></code></pre></td></tr></table></figure>
+<p>当调用这个函数开始，可以设置一个定时器，持续 <code>seconds</code> 秒，当超过这个时间时，产生一个 <code>SIGALRM</code> 信号，若忽略或不捕捉这个信号，则默认动作是终止调用  <code>alarm</code> 函数的进程。</p>
+<p>而这里 <code>seconds</code> 的类型是 <code>unsigned int</code> ，<code>deadline</code> 类型却是 <code>long</code>，为防止一些类型不匹配而可能带来的错误，我们在一开始就应当对 <code>deadline</code> 的大小进行判断，于是得到代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* int chrt(long); */</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">chrt</span><span class="hljs-params">(<span class="hljs-type">long</span> deadline)</span>&#123;<br>    <span class="hljs-keyword">if</span>(deadline &lt;= <span class="hljs-number">0</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>; <span class="hljs-comment">/* syscall error */</span><br>    alarm((<span class="hljs-type">unsigned</span> <span class="hljs-type">int</span>)deadline);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>接下来进行第二步，若想知道进程的实际终止时间，显然，我们必须要得到当前时间，这里用 <code>t</code> 来表示。</p>
+<p>我们可以通过系统调用 <code>clock_getttime</code> （ 同目录下的<code>\src\minix\lib\libc\sys\clock_gettime.c</code>）来获得系统的当前时间，并将其加上 <code>deadline</code> 即可得到进程实际的终止时间。</p>
+<p>阅读 <code>\src\minix\lib\libc\sys\clock_gettime.c</code> 的源码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">clock_gettime</span><span class="hljs-params">(<span class="hljs-type">clockid_t</span> clock_id, <span class="hljs-keyword">struct</span> timespec *res)</span><br>&#123;<br>  message m;<br><br>  <span class="hljs-built_in">memset</span>(&amp;m, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(m));<br>  m.m_lc_pm_time.clk_id = clock_id;<br><br>  <span class="hljs-keyword">if</span> (_syscall(PM_PROC_NR, PM_CLOCK_GETTIME, &amp;m) &lt; <span class="hljs-number">0</span>)<br>  	<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br><br>  res-&gt;tv_sec = m.m_pm_lc_time.sec;<br>  res-&gt;tv_nsec = m.m_pm_lc_time.nsec;<br><br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>显然，我们需要找到 <code>timespec</code> 的定义，经过一番查找，发现他在<code>\src\sys\sys\time.h</code> 中，定义描述为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * Structure defined by POSIX.1b to be like a timeval.</span><br><span class="hljs-comment"> */</span><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">timespec</span> &#123;</span><br>	<span class="hljs-type">time_t</span>	tv_sec;		<span class="hljs-comment">/* seconds */</span><br>	<span class="hljs-type">long</span>	tv_nsec;	<span class="hljs-comment">/* and nanoseconds */</span><br>&#125;;<br></code></pre></td></tr></table></figure>
+<p>那么回去看 <code>clock_gettime</code> 就能大概明白一些内容，当然还是会有一些不太明白，比如参数 <code>clock_id</code> 的含义，在《UNIX环境高级编程》 P687可以找到定义：</p>
+<ul>
+<li>CLOCK_REALTIME：系统实时时间，随系统实时时间改变而改变，即从UTC 1970-1-1 0:0:0开始计时，中间时刻如果系统时间被用户改成其他，则对应的时间相应改变。</li>
+<li>CLOCK_MONOTONIC：从系统启动这一刻起开始计时，不受系统时间被用户改变的影响。</li>
+<li>CLOCK_PROCESS_CPUTIME_ID：本进程到当前代码系统CPU花费的时间。</li>
+<li>CLOCK_THREAD_CPUTIME_ID：本线程到当前代码系统CPU花费的时间</li>
+</ul>
+<p>可以看看 wiki 来了解这些参数的意义。</p>
+<p>由于参数 <code>deadline</code> 表示的是秒，于是我们只需要这里的成员变量 <code>tv_sec</code>，那么可得到代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* int chrt(long); */</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">chrt</span><span class="hljs-params">(<span class="hljs-type">long</span> deadline)</span>&#123;<br>    <span class="hljs-comment">/* other code omitted */</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">timespec</span> <span class="hljs-title">t</span>;</span><br>    clock_gettime(CLOCK_MONOTONIC, &amp;t);<br>    deadline = t.tv_sec + deadline;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>最后，我们只需要将 <code>deadline</code> 通过信息传递到服务层即可，源码可以发现都使用了 <code>message</code> 这一数据类型，寻找 <code>message</code> 类型的定义：</p>
+<p><code>\src\minix\include\minix\ipc.h</code></p>
+<p>由于定义太长，就不贴出来了。我们知道，现在的 <code>deadline</code> 已经变为表示进程实际结束的时间了，于是我们只需要使 <code>message</code> 中的某个成员等于 <code>deadline</code>，再通过 <code>_syscall()</code> 传递信息即可。</p>
+<p>可以在MINIX的wiki上找到关于Message结构体的一些描述，也可以自己硬看(wiki上也有message定义的文件的地址）。这里选择联合体中的一个成员来传递<code>deadline</code> ，为了防止由于类型转换带来的一些可能的问题（一直在说的），最好找类型也是 <code>long</code> 的成员，并且必须在 <code>mess_1</code> ~<code>mess_10</code>中寻找（后续带有名字的可能有其他作用）。</p>
+<p>可以选<code>mess_2</code>,<code>mess_4</code>,<code>mess_10</code>，综合后续还需要传递 <code>endpoint</code> 类型的数据，这里选择<code>mess_2</code>中的<code>m2l1/m2l2</code>。通过2263行开始的宏定义，我们可以简写为<code>m2_l1/m2_l2</code>，于是，代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* int chrt(long); */</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">chrt</span><span class="hljs-params">(<span class="hljs-type">long</span> deadline)</span>&#123;<br>    <span class="hljs-comment">/* other code omitted */</span><br>    message m;<br>    <span class="hljs-built_in">memset</span>(m, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(m));<br>    m.m2_l1 = deadline;<br>    <span class="hljs-keyword">return</span> _syscall(PM_PROC_NR, PM_CHRT, &amp;m);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>自此，应用层的 <code>chrt</code> 函数就已经结束，仿照源码的代码风格，我们修改后如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/cdefs.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;namespace.h&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;lib.h&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/time.h&gt;</span></span><br><br><span class="hljs-comment">// #ifdef __weak_alias</span><br><span class="hljs-comment">// __weak_alias(chrt, _chrt)</span><br><span class="hljs-comment">// #endif</span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">chrt</span><span class="hljs-params">(<span class="hljs-type">long</span> deadline)</span> &#123;<br>    message m;<br>    <br>    <span class="hljs-built_in">memset</span>(&amp;m, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(m));<br>    <span class="hljs-keyword">if</span> (deadline &lt;= <span class="hljs-number">0</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br><br>    alarm((<span class="hljs-type">unsigned</span> <span class="hljs-type">int</span>)deadline);<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">timespec</span> <span class="hljs-title">t</span>;</span><br>    clock_gettime(CLOCK_MONOTONIC, &amp;t);<br>    deadline = t.tv_sec + deadline;<br>    <br>    m.m2_l1 = deadline;<br>    <span class="hljs-keyword">return</span> _syscall(PM_PROC_NR, PM_CHRT, &amp;m);<br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="服务层"><a class="markdownIt-Anchor" href="#服务层"></a> 服务层</h1>
+<p>首先根据文档，修改文件：</p>
+<p><img src="https://s2.loli.net/2022/04/11/2jOqWMKywusCrde.png" srcset="/img/loading.gif" lazyload alt="说明文档" /></p>
+<p>添加定义 <code>int do_chrt(void);</code>、 <code>#define PM_CHRT		(PM_BASE + 48)</code> 、<code>chrt.c</code></p>
+<p><img src="https://s2.loli.net/2022/04/11/1pSPdIA2Uz9EGrm.png" srcset="/img/loading.gif" lazyload alt="添加声明" /></p>
+<p><img src="https://s2.loli.net/2022/04/11/tpmowZjIbSg2CQX.png" srcset="/img/loading.gif" lazyload alt="添加宏定义" /></p>
+<p><img src="https://s2.loli.net/2022/04/11/uCoFbOEq4ryAd5J.png" srcset="/img/loading.gif" lazyload alt="添加到Makefile" /></p>
+<p>根据文档说明，添加函数实现：</p>
+<p><img src="https://s2.loli.net/2022/04/11/eO2z9KibAh4CNop.png" srcset="/img/loading.gif" lazyload alt="说明文档" /></p>
+<p>我们可以在同目录下的 <code>glo.h</code> 文件中找到关于 <code>who_p</code>等类型的定义：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* The parameters of the call are kept here. */</span><br>EXTERN message m_in;		<span class="hljs-comment">/* the incoming message itself is kept here. */</span><br>EXTERN <span class="hljs-type">int</span> who_p, who_e;	<span class="hljs-comment">/* caller&#x27;s proc number, endpoint */</span><br>EXTERN <span class="hljs-type">int</span> call_nr;		<span class="hljs-comment">/* system call number */</span><br></code></pre></td></tr></table></figure>
+<p>由于<code>sys_chrt</code>需要参数<code>deadline</code>，而我们在应用层中将 <code>deadline</code> 放进了 <code>m2_l1</code>中，于是：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;pm.h&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;signal.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/time.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;minix/com.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;minix/callnr.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;mproc.h&quot;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">do_chrt</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span>&#123;<br>    sys_chrt(who_p, m_in.m2_l1);<br>    <br>    <span class="hljs-keyword">return</span> OK;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>(用OK的原因是因为此目录下其他的.c文件都是这样return的…)</p>
+<p>然后开始对着步骤改文件</p>
+<p><img src="https://s2.loli.net/2022/04/11/pixYSU95OwlI68D.png" srcset="/img/loading.gif" lazyload alt="说明文档" /></p>
+<p><img src="https://s2.loli.net/2022/04/11/mYCBRjvkV42wDHz.png" srcset="/img/loading.gif" lazyload alt="添加映射" /></p>
+<p><img src="https://s2.loli.net/2022/04/11/Y4UybjVAO2ZLR9E.png" srcset="/img/loading.gif" lazyload alt="添加声明" /></p>
+<p><img src="https://s2.loli.net/2022/04/11/5QcHYAStosyVXvn.png" srcset="/img/loading.gif" lazyload alt="添加到Makefile" /></p>
+<p><code>sys_chrt.c</code>代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;syslib.h&quot;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">sys_chrt</span><span class="hljs-params">(proc_ep, deadline)</span><br><span class="hljs-type">endpoint_t</span> proc_ep;<br><span class="hljs-type">long</span> deadline;<br>&#123;<br>    message m;<br>    <span class="hljs-type">int</span> r;<br><br>    m.m2_i1 = proc_ep;<br>    m.m2_l1 = deadline;<br>    r = _kernel_call(SYS_CHRT, &amp;m);<br>    <span class="hljs-keyword">return</span> r;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>这里使用 <code>m2_i1</code> 是因为 <code>endpoint_t</code> 类型是4字节的数，这在 [Message Wiki](<a target="_blank" rel="noopener" href="https://wiki.minix3.org/doku.php?id=developersguide:messagepassing#:~:text=Message">https://wiki.minix3.org/doku.php?id=developersguide:messagepassing#:~:text=Message</a> passing is Minix’s native form of IPC.,of them at a higher level of abstraction.)中详细介绍了，因此这里可以使用int类型的m2_i1来记录此变量</p>
+<p>事实上我认为，应该选用unsigned int类型来记录，可惜没有这样的成员…</p>
+<h1 id="内核层"><a class="markdownIt-Anchor" href="#内核层"></a> 内核层</h1>
+<p>先把要改要加的东西弄完</p>
+<p><img src="https://s2.loli.net/2022/04/11/WVaUdsQ9GqMlu1z.png" srcset="/img/loading.gif" lazyload alt="说明文档" /></p>
+<p><img src="https://s2.loli.net/2022/04/11/MpDboQ8ZAJsqxrB.png" srcset="/img/loading.gif" lazyload alt="说明文档" /></p>
+<p><img src="https://s2.loli.net/2022/04/11/2RokhUZ7jO8t9az.png" srcset="/img/loading.gif" lazyload alt="添加声明" /></p>
+<p><img src="https://s2.loli.net/2022/04/11/14V8sIjwnGQqFat.png" srcset="/img/loading.gif" lazyload alt="添加到Makefile" /></p>
+<p><img src="https://s2.loli.net/2022/04/11/N5JIPGQgD4h26ER.png" srcset="/img/loading.gif" lazyload alt="添加宏定义" /></p>
+<p><img src="https://s2.loli.net/2022/04/11/ilDScPsnyMUzRFG.png" srcset="/img/loading.gif" lazyload alt="添加映射" /></p>
+<p>需要注意的是，由<code>system.h</code>和<code>do_fork.c</code>中的<code>IF USE_CHRT</code>和<code>IF USE_FORK</code>知，应在某一.h文件中定义该条目，在同目录下找寻发现，我们还需要在 <code>config.h</code> 文件中定义 <code>USE_CHRT</code> 为1</p>
+<p><img src="https://s2.loli.net/2022/04/11/vhtl6S7ZgBEGoKm.png" srcset="/img/loading.gif" lazyload alt="添加宏定义" /></p>
+<p>修改完后，根据文档说明编写<code>do_chrt</code>函数：</p>
+<p><img src="https://s2.loli.net/2022/04/11/FBs52xzgkJ1umNS.png" srcset="/img/loading.gif" lazyload alt="说明文档" /></p>
+<p>由于我们的参数中含有<code>struct proc</code>，因此我们还需要去阅读 <code>proc.h</code> 中关于 <code>proc</code> 的定义，可以在 <code>proc.h</code> 中找到 <code>proc_addr</code>的的定义，根据文档说明，<code>do_chrt.c</code>文件如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;kernel/system.h&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;kernel/vm.h&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;signal.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;assert.h&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;minix/endpoint.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;minix/u64.h&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">if</span> USE_CHRT</span><br><br><span class="hljs-comment">/*===========================================================================*</span><br><span class="hljs-comment"> *				do_chrt				     *</span><br><span class="hljs-comment"> *===========================================================================*/</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">do_chrt</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> proc* caller, message* m_ptr)</span> &#123;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">proc</span>* <span class="hljs-title">p</span>;</span><br><br>    p = proc_addr(m_ptr-&gt;m2_i1);<br>    p-&gt;deadline = m_ptr-&gt;m2_l1;<br><br>    <span class="hljs-keyword">return</span> OK;<br>&#125;<br><br><br><span class="hljs-meta">#<span class="hljs-keyword">endif</span> <span class="hljs-comment">/* USE_CHRT */</span></span><br></code></pre></td></tr></table></figure>
+<h1 id="进程调度"><a class="markdownIt-Anchor" href="#进程调度"></a> 进程调度</h1>
+<p>根据文档，我们需要修改几个函数，进而修改判断进程优先级的判定法则：</p>
+<p><img src="https://s2.loli.net/2022/04/11/49vAGqTu2BQFe5k.png" srcset="/img/loading.gif" lazyload alt="说明文档" /></p>
+<p><img src="https://s2.loli.net/2022/04/11/PqSzWjmtsEXHv3Z.png" srcset="/img/loading.gif" lazyload alt="添加成员变量" /></p>
+<p>优先级的判定为：最早deadline的用户进程相对于其它用户进程具有更高的优先级，从而被优先调度运行。</p>
+<p>可以发现在 <code>proc.h</code> 中可以找到成员 <code>char p_priority;</code> 用于记录优先级，在 <code>\src\minix\include\minix\config.h</code>中可以找到最高优先级为0，于是，我们便可以开始修改一些函数</p>
+<p>首先，进入函数 <code>switch_to_user()</code>，阅读注释可以很好的理解代码</p>
+<p>先更改 <code>enqueue_head()</code> 中关于优先级的定义，阅读注释，可知<code>rp</code>为正在运行的进程，需将其按照优先级加入队列</p>
+<p><img src="https://s2.loli.net/2022/04/11/Ldocre6POKY9Bnt.png" srcset="/img/loading.gif" lazyload alt="需要更改的函数" /></p>
+<p>于是我们将所有<code>deadline &gt; 0</code>的进程优先级全部设为5（经尝试，优先级为01234时无法正确实现进程调度，推测应为属于内核层的进程的优先级）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span> (rp-&gt;deadline &gt; <span class="hljs-number">0</span>)<br>    rp-&gt;p_priority = <span class="hljs-number">5</span>;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> q = rp-&gt;p_priority;	 		<span class="hljs-comment">/* scheduling queue to use */</span><br></code></pre></td></tr></table></figure>
+<p>随后更改 <code>enqueue()</code> 中关于优先级的定义，与上面的做法相同</p>
+<p>最后更改<code>pick_proc()</code>中对于相同优先级下进程的选择，由于设置了deadline的进程优先级都为5，这些进程组成了一个列表，这里通过<code>proc.h</code>中可以看出来：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">proc</span>* <span class="hljs-title">p_nextready</span>;</span>  <span class="hljs-comment">/* pointer to next ready process */</span><br></code></pre></td></tr></table></figure>
+<p>于是我们通过遍历优先级为5的进程组成的列表，选择出设置了deadline并且deadline的值最小的进程，过程中需要对这些进程进行判断是否可运行（<code>proc_is_runnable()</code>)，最后返回这个选择的进程</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">for</span> (q=<span class="hljs-number">0</span>; q &lt; NR_SCHED_QUEUES; q++) &#123;	<br>	<span class="hljs-keyword">if</span>(!(rp = rdy_head[q])) &#123;<br>		TRACE(VF_PICKPROC, <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;cpu %d queue %d empty\n&quot;</span>, cpuid, q););<br>		<span class="hljs-keyword">continue</span>;<br>	&#125;<br>	assert(proc_is_runnable(rp));<br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">proc</span>* <span class="hljs-title">t</span>;</span><br>	<span class="hljs-keyword">if</span> (q == <span class="hljs-number">5</span>) &#123;<br>    	t = rp-&gt;p_nextready;<br>		<span class="hljs-keyword">while</span>(t)&#123;<br>			<span class="hljs-keyword">if</span> (t-&gt;p_deadline &gt; <span class="hljs-number">0</span> &amp;&amp;<br>                (!rp-&gt;p_deadline || t-&gt;p_deadline &lt; rp-&gt;p_deadline))<br>                <span class="hljs-keyword">if</span> (proc_is_runnable(t))<br>        			rp = t;<br>    		t = t-&gt;p_nextready;<br>		&#125;<br>  	&#125;<br>	<span class="hljs-keyword">if</span> (priv(rp)-&gt;s_flags &amp; BILLABLE)	 	<br>		get_cpulocal_var(bill_ptr) = rp; <span class="hljs-comment">/* bill for system time */</span><br>	<span class="hljs-keyword">return</span> rp;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="编译并运行-test-2"><a class="markdownIt-Anchor" href="#编译并运行-test-2"></a> 编译并运行 test-2</h1>
+<p><code>test-2</code> 如下所示：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;signal.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/wait.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/types.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;lib.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;time.h&gt;</span></span><br><br><span class="hljs-type">void</span> <span class="hljs-title function_">proc</span><span class="hljs-params">(<span class="hljs-type">int</span> id)</span>;<br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span><br>&#123;<br>  <span class="hljs-comment">//创建三个子进程，并赋予子进程id</span><br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; <span class="hljs-number">4</span>; i++)<br>  &#123;<br>    <span class="hljs-keyword">if</span> (fork() == <span class="hljs-number">0</span>)<br>    &#123;<br>      proc(i);<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-type">void</span> <span class="hljs-title function_">proc</span><span class="hljs-params">(<span class="hljs-type">int</span> id)</span><br>&#123;<br>  <span class="hljs-type">int</span> loop;<br>  <span class="hljs-keyword">switch</span> (id)<br>  &#123;<br>  <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>: <span class="hljs-comment">//子进程1，设置deadline=25</span><br>    chrt(<span class="hljs-number">25</span>);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;proc1 set success\n&quot;</span>);<br>    sleep(<span class="hljs-number">1</span>);<br>    <span class="hljs-keyword">break</span>;<br>  <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>: <span class="hljs-comment">//子进程2，设置deadline=15</span><br>    chrt(<span class="hljs-number">15</span>);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;proc2 set success\n&quot;</span>);<br>    sleep(<span class="hljs-number">1</span>);<br>    <span class="hljs-keyword">break</span>;<br>  <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>: <span class="hljs-comment">//子进程3，普通进程</span><br>    chrt(<span class="hljs-number">0</span>);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;proc3 set success\n&quot;</span>);<br>    sleep(<span class="hljs-number">1</span>);<br>    <span class="hljs-keyword">break</span>;<br>  &#125;<br>  <span class="hljs-keyword">for</span> (loop = <span class="hljs-number">1</span>; loop &lt; <span class="hljs-number">40</span>; loop++)<br>  &#123;<br>    <span class="hljs-comment">//子进程1在5s后设置deadline=5</span><br>    <span class="hljs-keyword">if</span> (id == <span class="hljs-number">1</span> &amp;&amp; loop == <span class="hljs-number">5</span>)<br>    &#123;<br>      chrt(<span class="hljs-number">5</span>);<br>      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Change proc1 deadline to 5s\n&quot;</span>);<br>    &#125;<br>    <span class="hljs-comment">//子进程3在10s后设置deadline=3</span><br>    <span class="hljs-keyword">if</span> (id == <span class="hljs-number">3</span> &amp;&amp; loop == <span class="hljs-number">10</span>)<br>    &#123;<br>      chrt(<span class="hljs-number">3</span>);<br>      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Change proc3 deadline to 3s\n&quot;</span>);<br>    &#125;<br>    sleep(<span class="hljs-number">1</span>); <span class="hljs-comment">//睡眠，否则会打印很多信息</span><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;prc%d heart beat %d\n&quot;</span>, id, loop);<br>  &#125;<br>  <span class="hljs-built_in">exit</span>(<span class="hljs-number">0</span>);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>需要注意的是，我们需要在 <code>case 3</code>的 <code>printf</code> 后添加一行 <code>sleep(1)</code> 来让测试正常，否则，3号进程永远会先于1,2号进程 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 秒运行。</p>
+<p>更改后，测试的结果如下图所示，优先级是正确的。</p>
+<p><img src="https://s2.loli.net/2022/04/11/M8C1LIx9aNVrlbS.png" srcset="/img/loading.gif" lazyload alt="运行结果" /></p>
 <style>
     .markdown-body {
     font-family: 'Lato';
@@ -339,6 +536,8 @@
       <i class="iconfont icon-tags"></i>
       
         <a href="/tags/OS/">#OS</a>
+      
+        <a href="/tags/ECNU/">#ECNU</a>
       
     </div>
   
