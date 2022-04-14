@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s2.loli.net/2022/04/13/GtDPix4v76mKX8W.png">
 <meta property="article:published_time" content="2022-04-01T12:09:38.000Z">
-<meta property="article:modified_time" content="2022-04-14T03:02:25.680Z">
+<meta property="article:modified_time" content="2022-04-14T03:05:20.784Z">
 <meta property="article:author" content="Virgil">
 <meta property="article:tag" content="OS">
 <meta property="article:tag" content="MIT">
@@ -345,7 +345,7 @@
 <h2 id="sysinfo"><a class="markdownIt-Anchor" href="#sysinfo"></a> Sysinfo</h2>
 <p>实现一个 <code>sysinfo</code> 的系统调用，测试的代码已经写好放在 <code>sysinfotest</code> 中。<code>sysinfo</code> 需要打印出可用的内存空间与当前状态不是 <code>UNUSED</code> 的进程数量。</p>
 <p>跟随 <code>Hint</code> 一步一步完成。在用户层注册的部分与 <code>trace</code> 部分相同，在此略过。</p>
-<p>我们需要在 <code>kernel/sysproc.c</code>  中实现 <code>sys_sysinfo</code> 函数，要求是需要使用 <code>copyout</code> 函数将 <code>struct sysinfo</code> 从内核层传递到用户层。函数的用法可以参照``filestat()<code>(</code>kernel/file.c<code>)</code>。</p>
+<p>我们需要在 <code>kernel/sysproc.c</code>  中实现 <code>sys_sysinfo</code> 函数，要求是需要使用 <code>copyout</code> 函数将 <code>struct sysinfo</code> 从内核层传递到用户层。函数的用法可以参照<code>filestat()</code> (<code>kernel/file.c</code>)。</p>
 <p>需要注意的是，我们还需要添加一行 <code>#include &quot;sysinfo.h&quot;</code> 把 <code>struct sysinfo</code> 链接进来。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c">uint64<br><span class="hljs-title function_">sys_sysinfo</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> &#123;<br>  uint64 addr;<br>  <span class="hljs-keyword">if</span> (argaddr(<span class="hljs-number">0</span>, &amp;addr) &lt; <span class="hljs-number">0</span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>  &#125;<br>  <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">sysinfo</span> <span class="hljs-title">si</span>;</span><br>  si.freemem = freemem();<br>  si.nproc = nproc();<br>  <span class="hljs-keyword">if</span> (copyout(myproc()-&gt;pagetable, addr, (<span class="hljs-type">char</span>*)&amp;si, <span class="hljs-keyword">sizeof</span>(si)) &lt; <span class="hljs-number">0</span>)<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
 <p>然后，我们在 <code>kernel/kalloc.c</code> 中添加 <code>freemem()</code> 以计算空闲空间，在 <code>kernel/proc.c</code> 中添加 <code>nproc()</code> 以计算状态不为 <code>UNUSED</code> 的进程数量。</p>
