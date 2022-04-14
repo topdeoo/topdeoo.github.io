@@ -23,12 +23,14 @@
 <meta property="og:site_name" content="随便扯扯">
 <meta property="og:description" content="MIT 6.S081 Lab2 熟悉一些系统调用">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/04/13/GtDPix4v76mKX8W.png">
 <meta property="article:published_time" content="2022-04-01T12:09:38.000Z">
-<meta property="article:modified_time" content="2022-04-06T02:28:24.526Z">
+<meta property="article:modified_time" content="2022-04-14T03:02:25.680Z">
 <meta property="article:author" content="Virgil">
 <meta property="article:tag" content="OS">
 <meta property="article:tag" content="MIT">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2022/04/13/GtDPix4v76mKX8W.png">
   
   
   <title>MIT 6.S081 lab2 System Call - 随便扯扯</title>
@@ -231,7 +233,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          86 字
+          3.5k 字
         
       </span>
     
@@ -243,7 +245,7 @@
         
         
           <!-- compatible with older versions-->
-          1 分钟
+          30 分钟
         
       </span>
     
@@ -295,7 +297,7 @@
                 
                   
                     <!-- compatible with older versions-->
-                    本文最后更新于：2022年4月6日 上午
+                    本文最后更新于：2022年4月14日 上午
                   
                 
               </p>
@@ -308,6 +310,55 @@
 </blockquote>
 <span id="more"></span>
 <h1 id="lab-02-system-call"><a class="markdownIt-Anchor" href="#lab-02-system-call"></a> Lab 02 System Call</h1>
+<p>这个实验有一些小坑😤</p>
+<h2 id="实验准备"><a class="markdownIt-Anchor" href="#实验准备"></a> 实验准备</h2>
+<p>运行[官网](<a target="_blank" rel="noopener" href="https://pdos.csail.mit.edu/6.828/2021/labs/syscall.html">Lab: System calls (mit.edu)</a>)上的命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">git fetch<br>git checkout syscall<br>make clean<br></code></pre></td></tr></table></figure>
+<p>即可得到该实验的实验环境了。</p>
+<p>我们所需要做的就是跟着题目与 <code>Hint</code> 一步一步完成即可。</p>
+<p>但在这之前，需要检查你有没有把官网上橙色的部分做完。</p>
+<h2 id="system-call-tracing"><a class="markdownIt-Anchor" href="#system-call-tracing"></a> System call tracing</h2>
+<p>要求实现一个跟踪命令的系统调用，在之后或许可以使用这个系统调用来debug（bushi。</p>
+<p>官方的文档已经把要求说的很清楚了，接下来我们跟着 <code>Hint</code> 一步一步做。</p>
+<ol>
+<li>在 <code>Makefile</code> 中添加 <code>$U/_trace$</code> 。</li>
+<li>运行 <code>make qemu</code> 会发现编译错误，这是因为 <code>trace.c</code> 的很多定义都不存在，我们需要去添加定义。
+<ol>
+<li>在 <code>user/user.h</code> 中添加 <code>int trace(int);</code></li>
+<li>在 <code>usys.pl</code> 中添加 <code>entry(&quot;trace&quot;)</code></li>
+<li>在 <code>kernel/syscall.h</code> 中添加 <code>#define SYS_trace 22</code></li>
+<li>在 <code>kernel/syscall.c</code> 中 <code>syscalls</code> 映射表中添加 <code>[SYS_trace] sys_trace</code>，并且添加函数声明 <code>extern uint64 sys_trace(void);</code></li>
+</ol>
+</li>
+<li>在 <code>kernel/proc.h</code> 的 <code>proc</code> 中添加成员变量 <code>mask</code></li>
+<li>在 <code>kernel/sysproc.c</code> 中添加 <code>sys_trace</code> 函数的实现</li>
+<li>修改 <code>kernel/proc.c</code> 中的 <code>fork</code> 函数</li>
+<li>修改 <code>kernel/syscall.c</code>  中的 <code>syscall</code> 函数</li>
+</ol>
+<p>当我们完成1,2步后，我们运行 <code>make qemu</code> 可以发现已经能通过编译了，这是因为我们已经在用户层注册了系统调用 <code>trace</code> ，但当我们运行 <code>trace 32 grep hello README</code>时会发现调用失败。</p>
+<p>因为我们没有在内核层实现 <code>trace</code> 的具体实现，使得用户层无法传递到内核层。</p>
+<p>于是，我们在 <code>kernel/sysproc.c</code> 中添加 <code>sys_trace</code>：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c">uint64<br><span class="hljs-title function_">sys_trace</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> &#123;<br>  uint64 p;<br>  <span class="hljs-keyword">if</span> (argaddr(<span class="hljs-number">0</span>, &amp;p) &lt; <span class="hljs-number">0</span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>  &#125;<br>  myproc()-&gt;mask = p;<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>然后根据文档说明，修改 <code>fork</code> 函数与 <code>syscall</code> 函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// Create a new process, copying the parent.</span><br><span class="hljs-comment">// Sets up child kernel stack to return as if from fork() system call.</span><br><span class="hljs-type">int</span><br><span class="hljs-title function_">fork</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> &#123;<br>  <span class="hljs-type">int</span> i, pid;<br>  <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">proc</span>* <span class="hljs-title">np</span>;</span><br>  <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">proc</span>* <span class="hljs-title">p</span> =</span> myproc();<br><br>  <span class="hljs-comment">// ....</span><br><br>  <span class="hljs-comment">/* add */</span><br>  <span class="hljs-comment">// copy trace mask</span><br>  np-&gt;mask = p-&gt;mask;<br><br>  <span class="hljs-comment">// .....</span><br><br>  <span class="hljs-keyword">return</span> pid;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// add</span><br><span class="hljs-type">static</span> <span class="hljs-type">char</span> sysnames[][<span class="hljs-number">10</span>] = &#123;<br>  <span class="hljs-string">&quot;failed&quot;</span>, <span class="hljs-comment">// 索引从 0 开始，但宏定义是从 1 开始的</span><br>  <span class="hljs-string">&quot;fork&quot;</span>, <span class="hljs-string">&quot;exit&quot;</span>, <span class="hljs-string">&quot;wait&quot;</span>, <span class="hljs-string">&quot;pipe&quot;</span>, <span class="hljs-string">&quot;read&quot;</span>,<br>  <span class="hljs-string">&quot;kill&quot;</span>, <span class="hljs-string">&quot;exec&quot;</span>, <span class="hljs-string">&quot;fstat&quot;</span>, <span class="hljs-string">&quot;chdir&quot;</span>, <span class="hljs-string">&quot;dup&quot;</span>,<br>  <span class="hljs-string">&quot;getpid&quot;</span>, <span class="hljs-string">&quot;sbrk&quot;</span>, <span class="hljs-string">&quot;sleep&quot;</span>, <span class="hljs-string">&quot;uptime&quot;</span>, <span class="hljs-string">&quot;open&quot;</span>,<br>  <span class="hljs-string">&quot;write&quot;</span>, <span class="hljs-string">&quot;mknod&quot;</span>, <span class="hljs-string">&quot;unlink&quot;</span>, <span class="hljs-string">&quot;link&quot;</span>, <span class="hljs-string">&quot;mkdir&quot;</span>,<br>  <span class="hljs-string">&quot;close&quot;</span>, <span class="hljs-string">&quot;trace&quot;</span>, <span class="hljs-string">&quot;sysinfo&quot;</span>, <span class="hljs-comment">// 这里多添加了下一题的 &quot;sysinfo&quot;</span><br>&#125;;<br><br><span class="hljs-type">void</span><br><span class="hljs-title function_">syscall</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> &#123;<br>  <span class="hljs-type">int</span> num;<br>  <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">proc</span>* <span class="hljs-title">p</span> =</span> myproc();<br><br>  num = p-&gt;trapframe-&gt;a7;<br>  <span class="hljs-keyword">if</span> (num &gt; <span class="hljs-number">0</span> &amp;&amp; num &lt; NELEM(syscalls) &amp;&amp; syscalls[num]) &#123;<br>    p-&gt;trapframe-&gt;a0 = syscalls[num]();<br>    <span class="hljs-comment">// 掩码与实际相等（这里需要去看一下官网上掩码的定义）</span><br>    <span class="hljs-keyword">if</span> ((<span class="hljs-number">1</span> &lt;&lt; num) &amp; (p-&gt;mask)) &#123;<br>      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d: syscall %s -&gt; %d\n&quot;</span>,<br>        p-&gt;pid, sysnames[num], p-&gt;trapframe-&gt;a0);<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d %s: unknown sys call %d\n&quot;</span>,<br>      p-&gt;pid, p-&gt;name, num);<br>    p-&gt;trapframe-&gt;a0 = <span class="hljs-number">-1</span>;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="sysinfo"><a class="markdownIt-Anchor" href="#sysinfo"></a> Sysinfo</h2>
+<p>实现一个 <code>sysinfo</code> 的系统调用，测试的代码已经写好放在 <code>sysinfotest</code> 中。<code>sysinfo</code> 需要打印出可用的内存空间与当前状态不是 <code>UNUSED</code> 的进程数量。</p>
+<p>跟随 <code>Hint</code> 一步一步完成。在用户层注册的部分与 <code>trace</code> 部分相同，在此略过。</p>
+<p>我们需要在 <code>kernel/sysproc.c</code>  中实现 <code>sys_sysinfo</code> 函数，要求是需要使用 <code>copyout</code> 函数将 <code>struct sysinfo</code> 从内核层传递到用户层。函数的用法可以参照``filestat()<code>(</code>kernel/file.c<code>)</code>。</p>
+<p>需要注意的是，我们还需要添加一行 <code>#include &quot;sysinfo.h&quot;</code> 把 <code>struct sysinfo</code> 链接进来。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c">uint64<br><span class="hljs-title function_">sys_sysinfo</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> &#123;<br>  uint64 addr;<br>  <span class="hljs-keyword">if</span> (argaddr(<span class="hljs-number">0</span>, &amp;addr) &lt; <span class="hljs-number">0</span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>  &#125;<br>  <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">sysinfo</span> <span class="hljs-title">si</span>;</span><br>  si.freemem = freemem();<br>  si.nproc = nproc();<br>  <span class="hljs-keyword">if</span> (copyout(myproc()-&gt;pagetable, addr, (<span class="hljs-type">char</span>*)&amp;si, <span class="hljs-keyword">sizeof</span>(si)) &lt; <span class="hljs-number">0</span>)<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>然后，我们在 <code>kernel/kalloc.c</code> 中添加 <code>freemem()</code> 以计算空闲空间，在 <code>kernel/proc.c</code> 中添加 <code>nproc()</code> 以计算状态不为 <code>UNUSED</code> 的进程数量。</p>
+<p>函数的写法都可以参照同文件下其他函数的写法。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c">uint64<br><span class="hljs-title function_">freemem</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> &#123;<br>  <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">run</span>* <span class="hljs-title">r</span>;</span><br>  acquire(&amp;kmem.lock);<br>  r = kmem.freelist;<br>  uint64 ret = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">while</span> (r) &#123;<br>    ret++;<br>    r = r-&gt;next;<br>  &#125;<br>  release(&amp;kmem.lock);<br>  <span class="hljs-keyword">return</span> ret * PGSIZE;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c">uint64<br><span class="hljs-title function_">nproc</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> &#123;<br>  <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">proc</span>* <span class="hljs-title">p</span>;</span><br>  uint64 ret = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">for</span> (p = proc; p &lt; &amp;proc[NPROC]; p++) &#123;<br>    <span class="hljs-keyword">if</span> (p-&gt;state != UNUSED)<br>      ret++;<br>  &#125;<br>  <span class="hljs-keyword">return</span> ret;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>以为这样就可以了吗?</p>
+</blockquote>
+<p>不，现在<code>make qemu</code> 的话，会报错，意思是 <code>freemem()</code> 与 <code>nproc()</code> 函数都未声明。大冤种对比头文件对比了半天发现，我们除了在 <code>sysproc.c</code> 里添加函数外，其他新添加的函数都应该在 <code>defs.h</code> 里面声明（能不能再<code>Hint</code>里面写一下啊😒）</p>
+<p>添加完后，就会发现编译可以通过了。</p>
+<h2 id="最终成绩"><a class="markdownIt-Anchor" href="#最终成绩"></a> 最终成绩</h2>
+<p><img src="https://s2.loli.net/2022/04/13/GtDPix4v76mKX8W.png" srcset="/img/loading.gif" lazyload alt="Final Grade" /></p>
 <style>
     .markdown-body {
     font-family: 'Lato';
