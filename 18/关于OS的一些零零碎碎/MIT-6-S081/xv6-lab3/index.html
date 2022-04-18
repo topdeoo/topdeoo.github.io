@@ -1,0 +1,851 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple_touch_icon.png">
+  <link rel="icon" href="/img/favicon-32x32.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Virgil">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="​	你说的 easy 不是 easy，我说的 hard 是什么 hard😭">
+<meta property="og:type" content="article">
+<meta property="og:title" content="xv6-lab3">
+<meta property="og:url" content="https://topdeoo.github.io/18/%E5%85%B3%E4%BA%8EOS%E7%9A%84%E4%B8%80%E4%BA%9B%E9%9B%B6%E9%9B%B6%E7%A2%8E%E7%A2%8E/MIT-6-S081/xv6-lab3/index.html">
+<meta property="og:site_name" content="随便扯扯">
+<meta property="og:description" content="​	你说的 easy 不是 easy，我说的 hard 是什么 hard😭">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/04/18/JWmSdoN6cHr57La.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/18/4YIAfNbZHo6Kldg.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/18/qJWuE1htn3lKvZ4.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/18/3GJpcCudH6L42Yy.png">
+<meta property="article:published_time" content="2022-04-18T04:41:24.000Z">
+<meta property="article:modified_time" content="2022-04-18T10:55:49.439Z">
+<meta property="article:author" content="Virgil">
+<meta property="article:tag" content="OS">
+<meta property="article:tag" content="MIT">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2022/04/18/JWmSdoN6cHr57La.png">
+  
+  
+  <title>xv6-lab3 - 随便扯扯</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/macpanel.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"topdeoo.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"JLbyr6KGShKMhXpPmEJ5btlV-gzGzoHsz","app_key":"GkvMLGND2FI86aJ0HOBBVxN1","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>随便扯扯</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-book"></i>
+                文章
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/">
+                    <i class="iconfont icon-archive-fill"></i>
+                    归档
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/">
+                    <i class="iconfont icon-category-fill"></i>
+                    分类
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/">
+                    <i class="iconfont icon-tags-fill"></i>
+                    标签
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="xv6-lab3"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Virgil
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-04-18 12:41" pubdate>
+          2022年4月18日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          5.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          45 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">xv6-lab3</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    <!-- compatible with older versions-->
+                    本文最后更新于：2022年4月18日 晚上
+                  
+                
+              </p>
+            
+            <div class="markdown-body">
+              
+              <blockquote>
+<p>​	你说的 easy 不是 easy，我说的 hard 是什么 hard😭</p>
+</blockquote>
+<span id="more"></span>
+<h1 id="lab03-page-tables"><a class="markdownIt-Anchor" href="#lab03-page-tables"></a> Lab03 Page Tables</h1>
+<p>实验难度 <code>easy</code>, <code>easy</code>, <code>hard</code>。</p>
+<p>结果第一题差点把我送走了……MIT，你坏事做尽😭</p>
+<h2 id="实验准备"><a class="markdownIt-Anchor" href="#实验准备"></a> 实验准备</h2>
+<p>把第三章看懂（条件很简单，也很tm难，第三章应该是我目前为止没有把英文原本读完的一章了，实在是看不下去啊😭），可以读中文版，也可以阅读*《现代操作系统：原理与实现》*（处理器架构有所不同但无伤大雅）。</p>
+<p>其实把网站上橙色部分都做完就行。</p>
+<p>不如给网站：<a target="_blank" rel="noopener" href="https://pdos.csail.mit.edu/6.828/2021/labs/pgtbl.html">Lab: page tables (mit.edu)</a></p>
+<p>请务必完成前置要求，否则你根本不知道应该修改什么（或者是不知道为什么要修改）</p>
+<p>还有要记住的就是：<code>fllow the hints</code></p>
+<h2 id="speed-up-your-system-calls"><a class="markdownIt-Anchor" href="#speed-up-your-system-calls"></a> Speed up your system calls</h2>
+<p>在进程被创建的同时创建一个只读页面，以便内核与用户程序的交互，这样就可以不需要每次系统调用的时候都去请求读写了，典型的一种空间换时间的提高速度的方法。这里只要求优化<code>getpid()</code>这个系统调用。</p>
+<blockquote>
+<p>官方能不能把函数在那个文件都说一下啊！一个一个去找真的很累啊焯</p>
+</blockquote>
+<p>首先，我们可以《很轻易》的在 <code>user/ulib.c</code> 中找到 <code>ugetpid()</code> 的定义：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">ifdef</span> LAB_PGTBL</span><br><span class="hljs-type">int</span><br><span class="hljs-title function_">ugetpid</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span><br>&#123;<br>  <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">usyscall</span> *<span class="hljs-title">u</span> =</span> (<span class="hljs-keyword">struct</span> usyscall *)USYSCALL;<br>  <span class="hljs-keyword">return</span> u-&gt;pid;<br>&#125;<br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br></code></pre></td></tr></table></figure>
+<p>会发现这是灰的，但是没事！注意到第一行有一个 <code>LIB_PGTBL</code>，也就是当你在做 <code>PGTBL</code>这个实验的时候，这个函数是可以被使用的，否则就不行。</p>
+<p>分析这个函数，可以发现用了一个 <code>struct usyscall</code> ，还好MIT告诉我们在哪里可以找到这个： <code>kernel/memlayout.h</code>，我们可以在里面找到一起出现的一个常量 <code>USYSCALL</code>。</p>
+<p>我们可以发现，这个 <code>u</code> 指向的位置就是 <code>USYSCALL</code> 的地址，也就是说 <code>USYSCALL</code> 处应当存储一个 <code>struct usyscall</code> 才可以，根据对 <code>ugetpid()</code> 的描述，我们知道 <code>USYSCALL</code> 就存在需要我们创建的只读页表之中。</p>
+<p>我们查看 <code>USYSCALL</code> 的定义：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//   USYSCALL (shared with kernel)</span><br><span class="hljs-comment">//   TRAPFRAME (p-&gt;trapframe, used by the trampoline)</span><br><span class="hljs-comment">//   TRAMPOLINE (the same page as in the kernel)</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> TRAMPOLINE (MAXVA - PGSIZE)</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> TRAPFRAME (TRAMPOLINE - PGSIZE)</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> USYSCALL (TRAPFRAME - PGSIZE)</span><br></code></pre></td></tr></table></figure>
+<p>可以发现 <code>USYSCALL</code> 在跳板下两个 <code>PGSIZE</code> 的位置（可以看教材中的图来确定位置，虽然这对实验没什么作用）</p>
+<p>接下来跟着提示来：</p>
+<ul>
+<li>可以在 <code>kernel/proc.c</code> 中的 <code>proc_pagetable()</code> 中执行映射</li>
+<li>页面必须是只读的（且用户可操作）</li>
+<li>在 <code>allocproc()</code> 初始化进程时，开辟这个页面（初始化）</li>
+<li>需要在 <code>freeproc()</code> 中释放这个页面（当进程被 <code>kill</code> 时）</li>
+</ul>
+<p>那不妨从开辟页面开始：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">static</span> <span class="hljs-keyword">struct</span> proc*<br><span class="hljs-title function_">allocproc</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> &#123;<br><span class="hljs-comment">// ...</span><br>found:<br>  <span class="hljs-comment">// Allocate a trapframe page.</span><br>  <span class="hljs-keyword">if</span> ((p-&gt;trapframe = (<span class="hljs-keyword">struct</span> trapframe*)kalloc()) == <span class="hljs-number">0</span>) &#123;<br>    freeproc(p);<br>    release(&amp;p-&gt;lock);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>  &#125;<br><br>  <span class="hljs-comment">// Add</span><br>  <span class="hljs-keyword">if</span> ((p-&gt;usyscall = (<span class="hljs-keyword">struct</span> usyscall*)kalloc()) == <span class="hljs-number">0</span>) &#123;<br>    freeproc(p);<br>    release(&amp;p-&gt;lock);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>  &#125;<br>  p-&gt;usyscall-&gt;pid = p-&gt;pid;<br>  <span class="hljs-comment">// ...</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>  &#125;<br></code></pre></td></tr></table></figure>
+<p>这里的代码是仿照开辟 <code>trapframe</code> 页面的代码写的，当然，我们在这之前，还需要在 <code>kernel/proc.h</code> 中为 <code>struct proc</code> 添加一个成员变量 <code>stryct usyscall* usyscall</code>，以储存这个页面的地址。</p>
+<p>在开辟完页面后，我们还需要将 <code>pid</code> 存进这个页面中，也就是 <code>struct usyscall</code> 的 <code>pid</code> 中。</p>
+<p>然后，我们需要将新开辟的页面映射到物理内存上（开辟页面一律指在虚拟内存中开辟），在<code>proc_pagetable()</code> 中添加：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">pagetable_t</span><br><span class="hljs-title function_">proc_pagetable</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> proc* p)</span> &#123;<br>  <span class="hljs-type">pagetable_t</span> pagetable;<br>  <span class="hljs-comment">//...</span><br><br>  <span class="hljs-comment">// map the trampoline code (for system call return)</span><br>  <span class="hljs-comment">// at the highest user virtual address.</span><br>  <span class="hljs-comment">// only the supervisor uses it, on the way</span><br>  <span class="hljs-comment">// to/from user space, so not PTE_U.</span><br>  <span class="hljs-keyword">if</span> (mappages(pagetable, TRAMPOLINE, PGSIZE,<br>    (uint64)trampoline, PTE_R | PTE_X) &lt; <span class="hljs-number">0</span>) &#123;<br>    uvmfree(pagetable, <span class="hljs-number">0</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>  &#125;<br>  <span class="hljs-comment">// ...</span><br><br>  <span class="hljs-keyword">if</span> (mappages(pagetable, USYSCALL, PGSIZE,<br>    (uint64)(p-&gt;usyscall), PTE_R | PTE_U) &lt; <span class="hljs-number">0</span>) &#123;<br>    uvmunmap(pagetable, TRAPFRAME, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>);<br>    uvmunmap(pagetable, TRAMPOLINE, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>);<br>    uvmfree(pagetable, <span class="hljs-number">0</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>  &#125;<br><br>  <span class="hljs-keyword">return</span> pagetable;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这里需要注意两点：</p>
+<ol>
+<li>由于是只读的，我们需要添加 <code>PTE_R</code> ，但注意到注释中有解释，若想在用户空间中调用，需要添加 <code>PTE_U</code></li>
+<li>在映射失败时，需要取消映射，但我们需要把前两个都取消了，为什么能想到，不妨看看上面两个 <code>if</code> 后面都跟着什么（顺序需要从后往前取消，因为后一个是依赖于前一个的）</li>
+</ol>
+<p>最后就是删除这个页面：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">static</span> <span class="hljs-type">void</span><br><span class="hljs-title function_">freeproc</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> proc* p)</span> &#123;<br>  <span class="hljs-keyword">if</span> (p-&gt;trapframe)<br>    kfree((<span class="hljs-type">void</span>*)p-&gt;trapframe);<br>  p-&gt;trapframe = <span class="hljs-number">0</span>;<br>  <br>  <span class="hljs-comment">//Add</span><br>  <span class="hljs-keyword">if</span> (p-&gt;usyscall)<br>    kfree((<span class="hljs-type">void</span>*)p-&gt;usyscall);<br>  p-&gt;usyscall = <span class="hljs-number">0</span>;<br>  <span class="hljs-comment">// ...</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>同样是仿照如何删除 <code>trapframe</code> 页面。但这里我们还需要在 <code>proc_freepagetable</code> 中释放页面映射的物理地址：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span><br><span class="hljs-title function_">proc_freepagetable</span><span class="hljs-params">(<span class="hljs-type">pagetable_t</span> pagetable, uint64 sz)</span> &#123;<br>  <span class="hljs-comment">// ...</span><br>  <span class="hljs-comment">// Add</span><br>  uvmunmap(pagetable, USYSCALL, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>);<br>  <span class="hljs-comment">// ...</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>取消虚拟内存到物理内存的映射即可。</p>
+<blockquote>
+<p>回答一下网页上的问题：还有哪些系统调用是可以通过这种方式加速的？</p>
+<p>这个问题很简单，这种方法本质上只是内核为用户共享了一个只读页面，因此那些需要读取内核信息的系统调用都可以使用这种方式来加速。</p>
+</blockquote>
+<h2 id="print-a-page-table"><a class="markdownIt-Anchor" href="#print-a-page-table"></a> Print a page table</h2>
+<p>在 <code>kernel/vm.c</code> 中实现一个遍历进程的页表的函数 <code>vmprint(pagetable_t pagetable)</code>，当进程的<code>pid == 1</code> 时执行。</p>
+<p>实现的方式可以参照同文件下的函数 <code>freewalk()</code>。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span><br><span class="hljs-title function_">vmprint</span><span class="hljs-params">(<span class="hljs-type">pagetable_t</span> pagetable, <span class="hljs-type">int</span> level)</span> &#123;<br>  <span class="hljs-keyword">if</span> (!level)<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;page table %p\n&quot;</span>, pagetable);<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; <span class="hljs-number">512</span>;i++) &#123;<br>    <span class="hljs-type">pte_t</span> pte = pagetable[i];<br>    <span class="hljs-keyword">if</span> ((pte &amp; PTE_V) &amp;&amp; (pte &amp; (PTE_R | PTE_W | PTE_X)) == <span class="hljs-number">0</span>) &#123;<br>      <span class="hljs-comment">// this PTE points to a lower-level page table.</span><br>      uint64 child = PTE2PA(pte);<br>      <span class="hljs-keyword">if</span> (level == <span class="hljs-number">0</span>)<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;..%d: pte %p pa %p\n&quot;</span>, i, pte, child);<br>      <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (level == <span class="hljs-number">1</span>)<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;.. ..%d: pte %p pa %p\n&quot;</span>, i, pte, child);<br>      vmprint((<span class="hljs-type">pagetable_t</span>)child, level + <span class="hljs-number">1</span>);<br>    &#125;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ((pte &amp; PTE_V)) &#123;<br>      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;.. .. ..%d: pte %p pa %p\n&quot;</span>, i, pte, PTE2PA(pte));<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>显然，我们还需要在 <code>kernel/defs.h</code> 中注册这个函数。</p>
+<p>最后，在 <code>kernel/exec.c</code> 中 <code>return argc</code> 之前调用即可。(这个难度确实是easy，没骗人)</p>
+<blockquote>
+<p>Explain the output of <code>vmprint</code> in terms of Fig 3-4 from the text. What does page 0 contain? What is in page 2? When running in user mode, could the process read/write the memory mapped by page 1? What does the third to last page contain?</p>
+<p>或许可以画个图来描述？</p>
+</blockquote>
+<p><img src="https://s2.loli.net/2022/04/18/JWmSdoN6cHr57La.png" srcset="/img/loading.gif" lazyload alt="Flow Chart" /></p>
+<p>方框中数字表示索引，长方形的解释可以参见教材中的插图：</p>
+<p><img src="https://s2.loli.net/2022/04/18/4YIAfNbZHo6Kldg.png" srcset="/img/loading.gif" lazyload alt="Flow Chart" /></p>
+<p>参照教材中对<code>PTE</code>的解释，我们来分析后面的问题：</p>
+<p><img src="https://s2.loli.net/2022/04/18/qJWuE1htn3lKvZ4.png" srcset="/img/loading.gif" lazyload alt="Explanation" /></p>
+<p><code>0x0000000021fda00f</code> 分析后十位：<code>0000001111</code>，可以发现是可读可写，且可被用户访问的。</p>
+<h2 id="detecting-which-pages-have-been-accessed"><a class="markdownIt-Anchor" href="#detecting-which-pages-have-been-accessed"></a> Detecting which pages have been accessed</h2>
+<p>这个题一点也不 <code>hard</code> 。。</p>
+<p>从一个用户页表地址开始，搜索所有被访问过的页表并返回一个<code>bitmap</code> 来显示这些页是否被访问过（一个比特串，从右往左数，第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 位若为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 则代表第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 个页面被访问过）。</p>
+<p>需要在 <code>kernel/sysproc.c</code> 中实现这个函数。</p>
+<p>当然，我们可以继续跟着提示做（这个题因为有提示所以一点都不难了）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span><br><span class="hljs-title function_">sys_pgaccess</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> &#123;<br>  <span class="hljs-comment">// lab pgtbl: your code here.</span><br>  uint64 buf, abits, ret = <span class="hljs-number">0</span>;<br>  <span class="hljs-type">int</span> size;<br>  <span class="hljs-type">pte_t</span>* pte_addr;<br>  <span class="hljs-type">pte_t</span> pte;<br>  <span class="hljs-keyword">if</span> (argaddr(<span class="hljs-number">0</span>, &amp;buf) &lt; <span class="hljs-number">0</span> || argaddr(<span class="hljs-number">2</span>, &amp;abits))<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>  <span class="hljs-keyword">if</span> (argint(<span class="hljs-number">1</span>, &amp;size) &lt; <span class="hljs-number">0</span>)<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>  <span class="hljs-type">pagetable_t</span> pagetable = myproc()-&gt;pagetable;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; size;i++) &#123;<br>    pte_addr = walk(pagetable, buf, <span class="hljs-number">0</span>);<br>    pte = *pte_addr;<br>    <span class="hljs-keyword">if</span> (pte &amp; PTE_A) &#123;<br>      *pte_addr = pte &amp; (~PTE_A);<br>      ret |= (<span class="hljs-number">1</span> &lt;&lt; i);<br>    &#125;<br>    buf += PGSIZE;<br>  &#125;<br>  <span class="hljs-keyword">if</span> (copyout(pagetable, abits, (<span class="hljs-type">char</span>*)&amp;ret, <span class="hljs-keyword">sizeof</span>(ret)) &lt; <span class="hljs-number">0</span>)<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>主要注意四点：</p>
+<ol>
+<li>我们需要在 <code>kernel/defs.h</code> 中注册 <code>walk()</code> 函数才可以使用（不知道为什么这个函数是存在的但是没被注册）</li>
+<li><code>PTE_A</code> 这个值是需要在 <code>kernel/riscv.h</code> 中定义的，具体是第几位可以看上面关于 <code>PTE</code> 中 <code>FLAGS</code> 的图。</li>
+<li>计数后需要把页面设置为未访问，也就是把那一位设为 <code>0</code> ，与上掩码的反码就可以了。</li>
+<li>为什么 <code>ret</code> 不是自加而是要这么运算呢，请注意要求返回的结果是 <code>bitmap</code>。</li>
+</ol>
+<p>如果你中途出错的话，或许可以使用<code>vmprint()</code>来 <code>debug</code>。</p>
+<h2 id="最终成绩"><a class="markdownIt-Anchor" href="#最终成绩"></a> 最终成绩</h2>
+<p><img src="https://s2.loli.net/2022/04/18/3GJpcCudH6L42Yy.png" srcset="/img/loading.gif" lazyload alt="Final Grade" /></p>
+<p>最后记得 <code>git add . &amp;&amp; git commit -m &quot;finish&quot;</code></p>
+<p>其实我觉得这部分 <code>xv6</code>的教材讲的比较简略，可以看 *《现代操作系统：原理与实现》*做进一步了解（不知道<code>CSAPP</code>行不行，我还没看到那）</p>
+<style>
+    .markdown-body {
+    font-family: 'Lato';
+    font-size: 16px;
+  }
+</style>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%85%B3%E4%BA%8EOS%E7%9A%84%E4%B8%80%E4%BA%9B%E9%9B%B6%E9%9B%B6%E7%A2%8E%E7%A2%8E/" class="category-chain-item">关于OS的一些零零碎碎</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E5%85%B3%E4%BA%8EOS%E7%9A%84%E4%B8%80%E4%BA%9B%E9%9B%B6%E9%9B%B6%E7%A2%8E%E7%A2%8E/MIT-6-S081/" class="category-chain-item">MIT 6.S081</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/OS/">#OS</a>
+      
+        <a href="/tags/MIT/">#MIT</a>
+      
+    </div>
+  
+</div>
+
+
+             
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/6/%E5%85%B3%E4%BA%8ECSAPP%E7%9A%84%E4%B8%80%E4%BA%9B%E9%9B%B6%E9%9B%B6%E7%A2%8E%E7%A2%8E/cs-app-attacklab/" title="CS:APP attacklab">
+                        <span class="hidden-mobile">CS:APP attacklab</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'topdeoo/topdeoo.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', '💬');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <link href="https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
+        </div>
+      </div>
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
