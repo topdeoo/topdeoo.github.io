@@ -1,0 +1,1185 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple_touch_icon.png">
+  <link rel="icon" href="/img/favicon-32x32.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Virgil">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="​	计网项目作业">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HttpServer">
+<meta property="og:url" content="https://topdeoo.github.io/23/%E6%80%BB%E4%B9%8B%E5%B0%B1%E6%98%AF%E4%B8%80%E4%BA%9B%E9%9B%B6%E9%9B%B6%E7%A2%8E%E7%A2%8E/httpserver/index.html">
+<meta property="og:site_name" content="随便扯扯">
+<meta property="og:description" content="​	计网项目作业">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/06/23/P5Yy3X9SMweNxD2.webp">
+<meta property="og:image" content="https://s2.loli.net/2022/06/23/DwSEoUhzpGrPq4V.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/23/BkFOzWKl93PvwDQ.webp">
+<meta property="og:image" content="https://s2.loli.net/2022/06/23/F79y52gIpdbA18M.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/23/PNbY7otmnrjC46H.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/23/GJAwHyvu5mP4LSD.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/23/O5RqWcjuVCyYd6x.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/23/o6PXW8EpCylwOcL.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/23/XeOHGmIKa13JVAb.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/21/bNkTiWIvSjn9fUP.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/23/vT57HfEhyqViLWR.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/23/ve8YHjcBKEawQkA.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/23/syaYcAdZvn5URCk.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/23/cdZRnybI8XH2vgC.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/23/Naq38DdRGIJytHo.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/23/o6PXW8EpCylwOcL.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/23/iDJK9CO7dtXTqYI.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/23/549XQ6FjWEpVNdS.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/23/UogqiDlNvACuRSV.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/23/uTVlFMEqcJwBRAn.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/23/lxqAQgCrwNPM6oe.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/30/ELisekZnKlPoI9u.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/23/cLoVXFdCf5xbIeE.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/20/XaLknIyts5U2NKJ.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/23/iDJK9CO7dtXTqYI.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/23/eRwgz2M4riVotsX.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/21/YiSfDKOyaTkbHoq.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/21/Q2fK8h1EtcIubxA.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/23/VM6pw9ktYWU7rNh.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/01/JKFrfQDoTjMkdcY.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/01/a12X3f5lD6LeSbm.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/01/tWnlLqbuSX3ROKI.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/01/lKHCTN8YIsrSteM.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/01/yQY4wKC5xt7h2AG.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/01/nVMgXLfQOB6C7ts.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/20/wZi5nhpNeV4Dtf8.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/20/cWVyagru76mDiPx.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/20/DSXmPVMRKnT7eYa.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/23/iDJK9CO7dtXTqYI.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/23/Lyizavp8BTo2eXW.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/23/UogqiDlNvACuRSV.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/23/S8AqoMaHQmsPFiO.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/21/FlKnq8fycdbW2eH.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/21/5obBe3ZMF2LWVzp.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/23/gP1iOYurbIZQWhJ.png">
+<meta property="article:published_time" content="2022-06-23T15:13:21.000Z">
+<meta property="article:modified_time" content="2022-06-23T15:21:32.761Z">
+<meta property="article:author" content="Virgil">
+<meta property="article:tag" content="ECNU">
+<meta property="article:tag" content="Computer Net">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2022/06/23/P5Yy3X9SMweNxD2.webp">
+  
+  
+    <meta name="msvalidate.01" content="2AAE2FAE478A113F14EC4F000EC4A180" />
+  
+  <title>HttpServer - 随便扯扯</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/macpanel.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"topdeoo.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"JLbyr6KGShKMhXpPmEJ5btlV-gzGzoHsz","app_key":"GkvMLGND2FI86aJ0HOBBVxN1","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>随便扯扯</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-book"></i>
+                文章
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/">
+                    <i class="iconfont icon-archive-fill"></i>
+                    归档
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/">
+                    <i class="iconfont icon-category-fill"></i>
+                    分类
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/">
+                    <i class="iconfont icon-tags-fill"></i>
+                    标签
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="HttpServer"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Virgil
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-06-23 23:13" pubdate>
+          2022年6月23日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          32k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          266 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">HttpServer</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    <!-- compatible with older versions-->
+                    本文最后更新于：2022年6月23日 晚上
+                  
+                
+              </p>
+            
+            <div class="markdown-body">
+              
+              <blockquote>
+<p>​	计网项目作业</p>
+</blockquote>
+<span id="more"></span>
+<h1 id="计算机网络项目实验"><a class="markdownIt-Anchor" href="#计算机网络项目实验"></a> 计算机网络项目实验</h1>
+<blockquote>
+<p>本项目源代码已上传至Github: <a target="_blank" rel="noopener" href="https://github.com/topdeoo/Computer-Net-Project">topdeoo/Computer-Net-Project (github.com)</a></p>
+</blockquote>
+<h2 id="题目一-实现一个简易的web服务器"><a class="markdownIt-Anchor" href="#题目一-实现一个简易的web服务器"></a> 题目一： 实现一个简易的Web服务器</h2>
+<blockquote>
+<p>要求为：</p>
+<ol>
+<li>请使用<code>ServerSocket</code>和<code>Socket</code>进行代码实现</li>
+<li>请使用多线程接管连接</li>
+<li>在浏览器中输入<code>localhost:8081/index.html</code>能显示自己的学号信息（请自行编写<code>index.html</code>)</li>
+<li>在浏览器中输入<code>localhost:8081</code>下其他无效路径，浏览器显示<code>404 not found</code></li>
+<li>在浏览器中输入<code>localhost:8081/shutdown</code>能使服务器关闭</li>
+</ol>
+</blockquote>
+<p>首先我们需要明确，一个多线程服务器应该完成什么工作：</p>
+<ol>
+<li>
+<p>我们有一个主线程，不妨命名为 <code>main</code> （与 <code>main</code> 函数同名），这个线程负责运行一个<code>ServerSocket</code>，来监听是否有客户端连接</p>
+</li>
+<li>
+<p>当有一个连接时，也就是 <code>ServerSocket</code> 能够 <code>accept</code> 时，我们新建一个线程来完成</p>
+<ol>
+<li>解析报文</li>
+<li>处理请求</li>
+<li>回复报文</li>
+</ol>
+<p>这三件事后，这个线程即可销毁。</p>
+</li>
+</ol>
+<h3 id="监听端口确定连接"><a class="markdownIt-Anchor" href="#监听端口确定连接"></a> 监听端口，确定连接</h3>
+<p>受到第二题的启发，多线程，并不意味需要频繁的创建与销毁线程，我们也可以通过线程池，来提高服务器的效率。</p>
+<blockquote>
+<p>使用线程池的原因是，在最初的版本中我们都是新建一个线程来处理这个连接，处理完后线程就会销毁，但这样显然是浪费的，通过线程池，我们可以回收这部分被销毁的线程，在需要使用的时候继续使用，这样就能够解决频繁创建线程与销毁线程所浪费的大量时间。</p>
+</blockquote>
+<p>于是，我们就可以直接写出函数的主体：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Server</span> &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">PORT</span> <span class="hljs-operator">=</span> <span class="hljs-number">8081</span>;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">( String[] args )</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-type">ExecutorService</span> <span class="hljs-variable">ThreadPool</span> <span class="hljs-operator">=</span> Executors.newFixedThreadPool(<span class="hljs-number">200</span>); <span class="hljs-comment">//开辟一个固定大小的线程池</span><br>        <span class="hljs-type">ServerSocket</span> <span class="hljs-variable">serverSocket</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ServerSocket</span>(PORT);<br>        <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>)&#123;<br>            <span class="hljs-type">Socket</span> <span class="hljs-variable">socket</span> <span class="hljs-operator">=</span> serverSocket.accept(); <span class="hljs-comment">//监听固定端口是否有客户端连接</span><br>            System.out.println(<span class="hljs-string">&quot;Success&quot;</span>); <span class="hljs-comment">//检测到连接则print成功</span><br>            ThreadPool.execute(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Handler</span>(socket)); <span class="hljs-comment">//使用线程池调用一个线程处理连接</span><br>        &#125;<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这里，我们可以简单的写出 <code>Handler</code> 的大体框架如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Handler</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Runnable</span>&#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Socket socket;<br><br>    Handler(Socket socket)&#123;<br><br>        <span class="hljs-built_in">this</span>.socket = socket;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">try</span>&#123;<br>            <span class="hljs-comment">// 解析，处理，回复报文</span><br>        &#125;<br>        <span class="hljs-keyword">catch</span> (IOException e)&#123;<br>            e.printStackTrace();<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这样，我们就完成了第一件事。</p>
+<p>下面，我们集中精力来完成第二件事：解析，处理，回复报文</p>
+<h3 id="解析请求报文作出响应"><a class="markdownIt-Anchor" href="#解析请求报文作出响应"></a> 解析请求报文，作出响应</h3>
+<p>首先我们知道，<code>http</code> 的请求报文分为三个部分：</p>
+<ol>
+<li>请求行</li>
+<li>请求头</li>
+<li>请求体</li>
+</ol>
+<p>如下图所示</p>
+<p><img src="https://s2.loli.net/2022/06/23/P5Yy3X9SMweNxD2.webp" srcset="/img/loading.gif" lazyload alt="请求报文" /></p>
+<p>这里，我们基于 <code>Java</code> 面向对象的想法，将 <code>Http</code> 报文封装为一个类，如下<code>UML</code>图所示：</p>
+<p><img src="https://s2.loli.net/2022/06/23/DwSEoUhzpGrPq4V.png" srcset="/img/loading.gif" lazyload alt="HTTPHeader" /></p>
+<p>在 <code>RequestHeader</code> 中，我们分隔出了：</p>
+<ul>
+<li>请求行中的 <code>method</code> , <code>url</code> , <code>version</code> 三条字段</li>
+<li>请求头中的各类信息 <code>headMap</code> ， 并着重提取了 <code>Host</code> , <code>Content-Type</code> 与 <code>Content-Length</code> 三条字段</li>
+<li>请求体中的信息 <code>data</code></li>
+</ul>
+<p><code>ResponseHeader</code> 继承了 <code>RequestHeader</code> 的大多数字段，并可根据 <code>RequestHeader</code> 来创建对象，在 <code>ResponseHeader</code> 中，我们增加了：</p>
+<ul>
+<li>状态码与状态码含义 <code>code</code>, <code>code_meaning</code></li>
+<li>服务器名称 <code>server</code></li>
+</ul>
+<p>这样，通过这两个类，我们便可以很好的解析并构造出一份 <code>HTTP</code> 报文。</p>
+<h4 id="解析报文"><a class="markdownIt-Anchor" href="#解析报文"></a> 解析报文</h4>
+<p>首先，我们需要从客户端接收报文，于是，通过 <code>Handler</code> 中的 <code>String getMsg(BufferedReader)</code> 方法来完成：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-meta">@NotNull</span> String <span class="hljs-title function_">getMsg</span><span class="hljs-params">( <span class="hljs-meta">@NotNull</span> BufferedReader br)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-type">StringBuilder</span> <span class="hljs-variable">ret</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>(); <span class="hljs-comment">//创建一个可变的字符序列</span><br>        <span class="hljs-type">char</span>[] chars = <span class="hljs-keyword">new</span> <span class="hljs-title class_">char</span>[Utils.SIZE];<br>        <span class="hljs-keyword">do</span>&#123;<br>            br.read(chars);<br>            ret.append(chars);<br>            Arrays.fill(chars, <span class="hljs-string">&#x27;\0&#x27;</span>); <span class="hljs-comment">//clear chars</span><br>        &#125; <span class="hljs-keyword">while</span> (br.ready());<br>        <span class="hljs-keyword">return</span> ret.toString();<br>    &#125;<br></code></pre></td></tr></table></figure>
+<p>于是，我们便能得到请求报文的字符串版本，从而进行下一步的处理。</p>
+<p>我们通过 <code>Utils</code> 中的 <code>RequestHeader requestParseString(String)</code> 函数来完成解析请求报文的任务。</p>
+<p>算法步骤如下：</p>
+<ol>
+<li>实例化一个 <code>RequestHeader</code> 对象 <code>requestHeader</code>，并将其返回</li>
+<li>通过 <code>CRLF</code> 定位请求行，并将其分割为 <code>method</code>, <code>url</code>, <code>version</code> 三部分，将其值赋给 <code>requestHeader</code> 中的这三个成员</li>
+<li>通过 <code>CRLF</code> 将报文字符串分割，并将其循环存入哈希表中；在循环时，通过正则表达式匹配，获得特定字段的值并赋给 <code>requestHeader</code> 中相对应的成员</li>
+<li>在循环时，维护一个变量 <code>split</code> 作为报文头与报文体的分割位置，由于报文头与报文体之间存在空行，于是当循环读到空行时便可跳出循环</li>
+<li>将 <code>split</code> 之后的所有字符视为报文体，并将其存入 <code>requestHeader</code> 中的 <code>data</code> 中</li>
+</ol>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-meta">@NotNull</span> RequestHeader <span class="hljs-title function_">requestParseString</span><span class="hljs-params">( <span class="hljs-meta">@NotNull</span> String temp)</span>&#123;<br><br>        <span class="hljs-keyword">assert</span> temp.contains(CRLF);<br><br>        <span class="hljs-type">RequestHeader</span> <span class="hljs-variable">requestHeader</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RequestHeader</span>();<br><br>        <span class="hljs-type">String</span> <span class="hljs-variable">firstLine</span> <span class="hljs-operator">=</span> temp.substring(<span class="hljs-number">0</span>, temp.indexOf(CRLF)); <span class="hljs-comment">//提取出请求行</span><br>        String[] parts = firstLine.split(<span class="hljs-string">&quot; &quot;</span>);<br><br>        <span class="hljs-keyword">assert</span> parts.length == <span class="hljs-number">3</span>;<br><br>        requestHeader.setMethod(parts[<span class="hljs-number">0</span>]);<br>        requestHeader.setUrl(parts[<span class="hljs-number">1</span>]);<br>        requestHeader.setVersion(parts[<span class="hljs-number">2</span>]); <span class="hljs-comment">//分隔出请求方法，请求url，版本号</span><br><br>        parts = temp.split(CRLF); <span class="hljs-comment">//分隔请求报文的每一行</span><br><br>        <span class="hljs-type">int</span> <span class="hljs-variable">split</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; <span class="hljs-comment">//为标志报文体开始位置</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; parts.length; i++)&#123; <span class="hljs-comment">//分隔每一请求报文首部行</span><br>            <span class="hljs-keyword">if</span>(parts[i].equals(<span class="hljs-string">&quot;&quot;</span>))&#123; <span class="hljs-comment">//为空则读至报文头和报文体的分界</span><br>                split += <span class="hljs-number">2</span>; <span class="hljs-comment">//跳过\r\n</span><br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>            split += (<span class="hljs-number">2</span> + parts[i].length()); <span class="hljs-comment">//增加\r\n与首部行长度</span><br>            <span class="hljs-type">int</span> <span class="hljs-variable">idx</span> <span class="hljs-operator">=</span> parts[i].indexOf(<span class="hljs-string">&quot;:&quot;</span>);<br>            <span class="hljs-keyword">if</span>(idx == -<span class="hljs-number">1</span>)<br>                <span class="hljs-keyword">continue</span>; <span class="hljs-comment">//去除第一行</span><br>            <span class="hljs-keyword">if</span>(Utils.HOST.matcher(parts[i]).matches())<br>                requestHeader.setHost(parts[i].substring(idx + <span class="hljs-number">2</span>)); <span class="hljs-comment">//匹配首部名为host的值</span><br><br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(Utils.CONTENT_LENGTH.matcher(parts[i]).matches())<br>                requestHeader.setContent_length(Integer.parseInt(parts[i].substring(idx + <span class="hljs-number">2</span>)));<br><br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(Utils.CONTENT_TYPE.matcher(parts[i]).matches())<br>                requestHeader.setContent_type(parts[i].substring(idx + <span class="hljs-number">2</span>));<br>            <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-type">String</span> <span class="hljs-variable">K</span> <span class="hljs-operator">=</span> parts[i].substring(<span class="hljs-number">0</span> ,idx); <span class="hljs-comment">//key 为首部名</span><br>                <span class="hljs-type">String</span> <span class="hljs-variable">V</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;&quot;</span>;<br>                <span class="hljs-keyword">if</span> (idx + <span class="hljs-number">1</span> &lt; parts[i].length())<br>                    V = parts[i].substring(idx + <span class="hljs-number">1</span>); <span class="hljs-comment">//value为首部值</span><br>                requestHeader.putHeadMap(K ,V);<br>            &#125;<br>        &#125;<br>        requestHeader.setData(temp.substring(split)); <span class="hljs-comment">//读取请求报文体内容</span><br><br>        <span class="hljs-keyword">return</span> requestHeader;<br>    &#125;<br></code></pre></td></tr></table></figure>
+<p>这样，我们便可以拿到一个通过报文构造的 <code>RequestHeader</code> 对象。</p>
+<h4 id="对请求作出响应"><a class="markdownIt-Anchor" href="#对请求作出响应"></a> 对请求作出响应</h4>
+<p>首先我们需要知道，响应报文的结构是怎样的</p>
+<p><img src="https://s2.loli.net/2022/06/23/BkFOzWKl93PvwDQ.webp" srcset="/img/loading.gif" lazyload alt="回复报文" /></p>
+<p>于是我们需要确定这个服务器应当返回多少种状态，每个状态的含义是什么</p>
+<p>我们假定，服务器只会返回 4 种状态，分别为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">STATUS_CODE_200(<span class="hljs-string">&quot;OK&quot;</span>, <span class="hljs-number">200</span>),<br>STATUS_CODE_404(<span class="hljs-string">&quot;Not Found&quot;</span>, <span class="hljs-number">404</span>),<br>STATUS_CODE_501(<span class="hljs-string">&quot;Not Implemented&quot;</span>, <span class="hljs-number">501</span>),<br>STATUS_CODE_500 (<span class="hljs-string">&quot;Internal Server Error&quot;</span>,<span class="hljs-number">500</span>);<br></code></pre></td></tr></table></figure>
+<p>这里的处理，我们可以运用 <code>Java</code> 中的异常信息来进行编写：</p>
+<ol>
+<li>通过请求报文，生成对应的响应报文</li>
+<li>首先处理 <code>200</code> 的情况</li>
+<li>当出现文件不存在时，那么我们处理 <code>404</code> 的情况</li>
+<li>当捕捉到其他异常时，那么我们处理 <code>500</code> 的情况</li>
+</ol>
+<p>但对于异常处理，这里做的处理是，返回对应状态码的报文头，并返回对应的页面，如<code>404.html</code></p>
+<p>那么我们显然不需要在每一个异常状态中都写一遍重复的代码，所以这里可以统一使用 <code>handleError(int)</code> 来处理异常状态。</p>
+<p>于是，<code>Handler</code> 便可以这样编写：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Handler</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Runnable</span>&#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Socket socket;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> RequestHeader requestHeader;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> ResponseHeader responseHeader;<br><br>    Handler(Socket socket)&#123;<br><br>        <span class="hljs-built_in">this</span>.socket = socket;<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">handle501</span><span class="hljs-params">( Socket socket )</span>&#123;<br>        <span class="hljs-keyword">try</span>&#123;<br>            handleError(socket, <span class="hljs-number">501</span>);<br>        &#125;<br>        <span class="hljs-keyword">catch</span> (Exception e)&#123;<br>            e.printStackTrace();<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">handle500</span><span class="hljs-params">( Socket socket )</span> &#123;<br>        <span class="hljs-keyword">try</span>&#123;<br>            handleError(socket, <span class="hljs-number">500</span>);<br>        &#125;<br>        <span class="hljs-keyword">catch</span> (Exception e)&#123;<br>            e.printStackTrace();<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">handle404</span><span class="hljs-params">( Socket socket )</span> &#123;<br>        <span class="hljs-keyword">try</span>&#123;<br>            handleError(socket, <span class="hljs-number">404</span>);<br>        &#125;<br>        <span class="hljs-keyword">catch</span> (Exception e)&#123;<br>            e.printStackTrace();<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">handleError</span><span class="hljs-params">( <span class="hljs-meta">@NotNull</span> Socket socket ,<span class="hljs-type">int</span> code )</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-comment">// 具体处理</span><br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">handle200</span><span class="hljs-params">( Socket socket )</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-comment">// 具体实现</span><br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-meta">@NotNull</span> String <span class="hljs-title function_">getMsg</span><span class="hljs-params">( <span class="hljs-meta">@NotNull</span> BufferedReader br)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-type">StringBuilder</span> <span class="hljs-variable">ret</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>(); <br>        <span class="hljs-type">char</span>[] chars = <span class="hljs-keyword">new</span> <span class="hljs-title class_">char</span>[Utils.SIZE];<br>        <span class="hljs-keyword">do</span>&#123;<br>            br.read(chars);<br>            ret.append(chars);<br>            Arrays.fill(chars, <span class="hljs-string">&#x27;\0&#x27;</span>); <br>        &#125; <span class="hljs-keyword">while</span> (br.ready());<br>        <span class="hljs-keyword">return</span> ret.toString();<br>    &#125;<br><br><br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">try</span>&#123;<br><br>            <span class="hljs-type">InputStream</span> <span class="hljs-variable">is</span> <span class="hljs-operator">=</span> socket.getInputStream();<br>            <span class="hljs-type">BufferedReader</span> <span class="hljs-variable">br</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InputStreamReader</span>(is));<br>            <span class="hljs-type">String</span> <span class="hljs-variable">temp</span> <span class="hljs-operator">=</span> getMsg(br); <span class="hljs-comment">//将报文转为字符串</span><br><br>            requestHeader = Utils.requestParseString(temp); <span class="hljs-comment">//解析报文</span><br>            responseHeader = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ResponseHeader</span>(requestHeader); <span class="hljs-comment">//创建报文头</span><br><br>            <span class="hljs-keyword">try</span> &#123;<br>                Handler.handle200(socket); <span class="hljs-comment">//请求成功</span><br>            &#125;<br>            <span class="hljs-keyword">catch</span> (FileNotFoundException e)&#123;<br>                Handler.handle404(socket); <span class="hljs-comment">//not found</span><br>            &#125;<br>            <span class="hljs-keyword">catch</span> (Exception e)&#123;<br>                Handler.handle500(socket); <span class="hljs-comment">//服务器错误</span><br>            &#125;<br>            <span class="hljs-keyword">finally</span> &#123;<br>                socket.close();<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">catch</span> (IOException e)&#123;<br>            e.printStackTrace();<br>        &#125;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>随后，我们进入 <code>handle200</code> 做进一步处理：</p>
+<p>​	获取请求方法 <code>method</code>， 对请求方法做 <code>swicth</code>， 将其引导到对应的方法中去</p>
+<ul>
+<li>若为 <code>GET</code>
+<ol>
+<li>获取请求的 <code>url</code></li>
+<li>若 <code>url</code> 为 <code>shutdown</code>， 则直接关闭服务器，否则继续运行</li>
+<li>在文件系统中查询文件名与 <code>url</code> 相同的文件，并读取存储到 <code>byte[]</code> 之中</li>
+<li>通过 <code>Utils</code> 中的 <code>writeResponse(ResponseHeader, int, int, String)</code> 方法，写出对应的响应头</li>
+<li>通过 <code>socket</code> 将响应报文传送回客户端</li>
+</ol>
+</li>
+<li>若为 <code>HEAD</code>， 则大致与 <code>GET</code> 相同，但不需要传送报文体</li>
+<li>若为 <code>POST</code>
+<ol>
+<li>通过 <code>Utils</code> 中的 <code>writeResponse(ResponseHeader, int)</code> 方法，写出对应的响应头</li>
+<li>将 <code>responseHeader</code> 中的 <code>Content-Length</code> 与 <code>Content-Type</code> 属性清空，表示不传送任何报文体</li>
+<li>从 <code>requestHeader</code> 中的 <code>data</code> 中获取客户端传送的数据</li>
+<li>将 <code>data</code> 写入数据库中后，将响应头传送回客户端</li>
+</ol>
+</li>
+<li>若为 <code>PUT</code> (这里的 <code>PUT</code> 方法只实现了将 <code>Markdown</code> 转化为 <code>Html</code> 文件)
+<ol>
+<li>通过 <code>Utils</code> 中的 <code>writeResponse(ResponseHeader, int)</code> 方法，写出对应的响应头</li>
+<li>取出 <code>requestHeader</code> 中的 <code>data</code> 并通过 <code>Utils</code> 中的 <code>mdToHtml(String)</code> 方法将其转化为 <code>Html</code> 的字节数组</li>
+<li>将 <code>responseHeader</code> 中的 <code>Content-Length</code> 设置为上一步中得到的数组的长度</li>
+<li>将报文头与报文体通过 <code>socket</code> 传送回客户端</li>
+</ol>
+</li>
+<li>若为其他，则跳转至 <code>handle501(Socket)</code></li>
+</ul>
+<p>其中 <code>writeResponse</code> 方法代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">writeResponse</span><span class="hljs-params">( <span class="hljs-meta">@NotNull</span> ResponseHeader header,<span class="hljs-type">int</span> code,<span class="hljs-type">int</span> length,String url)</span>&#123;<br>    header.setCode(code); <span class="hljs-comment">//设置状态码及含义</span><br>    header.setContent_length(length); <span class="hljs-comment">//设置长度</span><br>    header.setContent_type(Utils.queryFileType(url)); <span class="hljs-comment">//查询并设置类型</span><br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">writeResponse</span><span class="hljs-params">( <span class="hljs-meta">@NotNull</span> ResponseHeader header,<span class="hljs-type">int</span> code)</span>&#123;<br><br>    header.setCode(code);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>而报文头的编写，是通过重写其 <code>toString()</code> 方法来完成的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Override</span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">toString</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">StringBuilder</span> <span class="hljs-variable">ret</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>(); <span class="hljs-comment">//构造回复报文</span><br><br>    ret.append(String.format(<span class="hljs-string">&quot;%s %d %s\r\n&quot;</span>, getVersion(), code, code_meaning));<br>    ret.append(String.format(<span class="hljs-string">&quot;Server: %s\r\n&quot;</span>, getServer()));<br>    ret.append(String.format(<span class="hljs-string">&quot;Content-Type: %s\r\n&quot;</span>, getContent_type()));<br>    ret.append(String.format(<span class="hljs-string">&quot;Content-Length: %d\r\n&quot;</span>, getContent_length()));<br>    ret.append(<span class="hljs-string">&quot;Date:&quot;</span>).append(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>()).append(<span class="hljs-string">&quot;\r\n\r\n&quot;</span>);<br><br>    <span class="hljs-keyword">return</span> ret.toString();<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><code>handle200</code> 具体代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">handle200</span><span class="hljs-params">( Socket socket )</span> <span class="hljs-keyword">throws</span> IOException &#123;<br><br>        <span class="hljs-type">String</span> <span class="hljs-variable">method</span> <span class="hljs-operator">=</span> requestHeader.getMethod(); <span class="hljs-comment">//获取请求方法</span><br><br>        <span class="hljs-keyword">switch</span> (method)&#123;<br>            <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;GET&quot;</span>:<br>                <span class="hljs-type">String</span> <span class="hljs-variable">url</span> <span class="hljs-operator">=</span> requestHeader.getUrl(); <span class="hljs-comment">//获取请求的url</span><br><br>                <span class="hljs-keyword">if</span>(url.equals(Utils.EXIT)) <span class="hljs-comment">//if shutdown</span><br>                    System.exit(-<span class="hljs-number">1</span>); <span class="hljs-comment">//程序退出，关闭服务器</span><br><br>                <span class="hljs-type">byte</span>[] responseBody = Utils.NIOReadFile(url);<br><br>                Utils.writeResponse(responseHeader, <span class="hljs-number">200</span>, responseBody.length, url);<br>                socket.getOutputStream().write(responseHeader.toString().getBytes(StandardCharsets.UTF_8));<br>                socket.getOutputStream().write(responseBody);<br>                <span class="hljs-keyword">break</span>;<br>            <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;HEAD&quot;</span>:<br>                Utils.writeResponse(responseHeader, <span class="hljs-number">200</span>);<br>                socket.getOutputStream().write(responseHeader.toString().getBytes(StandardCharsets.UTF_8));<br>                <span class="hljs-keyword">break</span>;<br>            <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;POST&quot;</span>:<br>                Utils.writeResponse(responseHeader, <span class="hljs-number">200</span>);<br>                responseHeader.setContent_type(<span class="hljs-string">&quot;&quot;</span>);<br>                responseHeader.setContent_length(<span class="hljs-number">0</span>);<br>                <span class="hljs-type">String</span> <span class="hljs-variable">data</span> <span class="hljs-operator">=</span> requestHeader.getData(); <span class="hljs-comment">//获取post的内容</span><br>                Utils.NIOWriteFile(<span class="hljs-string">&quot;db/data.txt&quot;</span>, data, requestHeader.getContent_length()); <br>                <span class="hljs-comment">//将data写入数据库db（伪）</span><br>                socket.getOutputStream().write(responseHeader.toString().getBytes(StandardCharsets.UTF_8));<br>                <span class="hljs-keyword">break</span>;<br>                <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;PUT&quot;</span>:<br>                Utils.writeResponse(responseHeader, <span class="hljs-number">200</span>);<br>                responseHeader.setContent_type(Utils.queryFileType(<span class="hljs-string">&quot;.html&quot;</span>));<br>                responseBody = Utils.mdToHtml(responseHeader.getData()).getBytes(StandardCharsets.UTF_8);<br>                <span class="hljs-comment">//实现将md文件转换成html（读取请求报文体内容，转换成html并转换成字节数组）</span><br>                responseHeader.setContent_length(responseBody.length); <span class="hljs-comment">//获取字节数组长度</span><br>                socket.getOutputStream().write(responseHeader.toString().getBytes(StandardCharsets.UTF_8));<br>                socket.getOutputStream().write(responseBody);<br>                <span class="hljs-keyword">break</span>;<br>            <span class="hljs-keyword">default</span>:<br>                handle501(socket); <span class="hljs-comment">//未实现</span><br>        &#125;<br><br>    &#125;<br></code></pre></td></tr></table></figure>
+<p>当我们捕捉到异常时，便需要进入 <code>handleError(Socket, int)</code> 进行异常处理:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">handleError</span><span class="hljs-params">( <span class="hljs-meta">@NotNull</span> Socket socket ,<span class="hljs-type">int</span> code )</span> <span class="hljs-keyword">throws</span> IOException &#123;<br><br>    <span class="hljs-type">String</span> <span class="hljs-variable">filename</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;web/error/&quot;</span> + code + <span class="hljs-string">&quot;.html&quot;</span>; <span class="hljs-comment">//确定响应页面</span><br>    <span class="hljs-type">byte</span>[] responseBody = Utils.NIOReadFile(filename); <span class="hljs-comment">//获取响应报文数据</span><br>    Utils.writeResponse(responseHeader, code, responseBody.length, filename); <span class="hljs-comment">//生成响应报文头</span><br>    socket.getOutputStream().write(responseHeader.toString().getBytes(StandardCharsets.UTF_8));<br>    socket.getOutputStream().write(responseBody); <span class="hljs-comment">//回复响应报文头及数据</span><br><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>至此，一个简易的HTTP Server就完成了，其UML图如下：</p>
+<p><img src="https://s2.loli.net/2022/06/23/F79y52gIpdbA18M.png" srcset="/img/loading.gif" lazyload alt="Server" /></p>
+<h3 id="测试结果"><a class="markdownIt-Anchor" href="#测试结果"></a> 测试结果</h3>
+<h4 id="浏览器"><a class="markdownIt-Anchor" href="#浏览器"></a> 浏览器：</h4>
+<ul>
+<li>GET index.html页面：</li>
+</ul>
+<p><img src="https://s2.loli.net/2022/06/23/PNbY7otmnrjC46H.png" srcset="/img/loading.gif" lazyload alt="Test index.html" /></p>
+<ul>
+<li>GET 其他页面：</li>
+</ul>
+<p><img src="https://s2.loli.net/2022/06/23/GJAwHyvu5mP4LSD.png" srcset="/img/loading.gif" lazyload alt="Test 404" /></p>
+<ul>
+<li>GET shutdown：</li>
+</ul>
+<p><img src="https://s2.loli.net/2022/06/23/O5RqWcjuVCyYd6x.png" srcset="/img/loading.gif" lazyload alt="Test shutdown" /></p>
+<p><img src="https://s2.loli.net/2022/06/23/o6PXW8EpCylwOcL.png" srcset="/img/loading.gif" lazyload alt="Test shutdown" /></p>
+<h4 id="postman"><a class="markdownIt-Anchor" href="#postman"></a> postman：</h4>
+<ul>
+<li>GET index.html页面：</li>
+</ul>
+<p><img src="https://s2.loli.net/2022/06/23/XeOHGmIKa13JVAb.png" srcset="/img/loading.gif" lazyload alt="Test index.html" /></p>
+<ul>
+<li>GET 其他页面：</li>
+</ul>
+<p><img src="https://s2.loli.net/2022/06/21/bNkTiWIvSjn9fUP.png" srcset="/img/loading.gif" lazyload alt="Test 404" /></p>
+<ul>
+<li>HEAD index.html页面：</li>
+</ul>
+<p><img src="https://s2.loli.net/2022/06/23/vT57HfEhyqViLWR.png" srcset="/img/loading.gif" lazyload alt="Test index.html" /></p>
+<ul>
+<li>POST index.html页面：</li>
+</ul>
+<p><img src="https://s2.loli.net/2022/06/23/ve8YHjcBKEawQkA.png" srcset="/img/loading.gif" lazyload alt="Post test" /></p>
+<p><img src="https://s2.loli.net/2022/06/23/syaYcAdZvn5URCk.png" srcset="/img/loading.gif" lazyload alt="Post test" /></p>
+<ul>
+<li>PUT md文件</li>
+</ul>
+<p><img src="https://s2.loli.net/2022/06/23/cdZRnybI8XH2vgC.png" srcset="/img/loading.gif" lazyload alt="Put test" /></p>
+<ul>
+<li>GET shutdown：</li>
+</ul>
+<p><img src="https://s2.loli.net/2022/06/23/Naq38DdRGIJytHo.png" srcset="/img/loading.gif" lazyload alt="Test shutdown" /></p>
+<p><img src="https://s2.loli.net/2022/06/23/o6PXW8EpCylwOcL.png" srcset="/img/loading.gif" lazyload alt="Test shutdown" /></p>
+<h4 id="jmter压测"><a class="markdownIt-Anchor" href="#jmter压测"></a> jmter压测：</h4>
+<p><img src="https://s2.loli.net/2022/06/23/iDJK9CO7dtXTqYI.png" srcset="/img/loading.gif" lazyload alt="1000并发数" /></p>
+<p><img src="https://s2.loli.net/2022/06/23/549XQ6FjWEpVNdS.png" srcset="/img/loading.gif" lazyload alt="Result" /></p>
+<p><img src="https://s2.loli.net/2022/06/23/UogqiDlNvACuRSV.png" srcset="/img/loading.gif" lazyload alt="10000并发数" /></p>
+<p><img src="https://s2.loli.net/2022/06/23/uTVlFMEqcJwBRAn.png" srcset="/img/loading.gif" lazyload alt="Result" /></p>
+<p>观察异常的结果，我们可以发现，其异常原因并非是 <code>Connection refused</code>，事实上，都返回了确定响应报文，但状态码被设置为 <code>500</code>，如图所示：</p>
+<p><img src="https://s2.loli.net/2022/06/23/lxqAQgCrwNPM6oe.png" srcset="/img/loading.gif" lazyload alt="Error reason" /></p>
+<p>事实上出现这样的结果是因为顺势并发量太大，而导致有部分线程并未运行到 <code>handle200()</code> 就被输出了，因此我们在代码中检查了这一情况，并将其状态码设置为 <code>500</code> 。</p>
+<hr />
+<h2 id="题目二实现一个简易的多线程代理服务器"><a class="markdownIt-Anchor" href="#题目二实现一个简易的多线程代理服务器"></a> 题目二：实现一个简易的多线程代理服务器</h2>
+<blockquote>
+<p>第二题中源服务器与第一题相同，因此在这里略过</p>
+</blockquote>
+<p>首先明确，题目中要求完成的代理是什么。</p>
+<ol>
+<li>当你的代理服务器从一个浏览器接收到对某个对象的HTTP请求时，它生成对相同对象的一个新的HTTP请求并向初始服务器发送。</li>
+<li>当该代理从初始服务器接收到具有该对象的HTTP相应时，它生成一个包括该对象的新的HTTP响应，并发送给该客户。</li>
+<li>这个代理将是多线程的，使其在相同能够处理多个请求。</li>
+</ol>
+<p>理解是需要完成的代理是一个类似于中转站的服务器，它把请求报文和响应报文原封不动的传送给服务器与客户端，如下图所示：</p>
+<p><img src="https://s2.loli.net/2022/05/30/ELisekZnKlPoI9u.png" srcset="/img/loading.gif" lazyload alt="Proxy" /></p>
+<p>但本质上代理依然是一个服务器，于是参照先前的写法，我们可以如下设计此代理服务器：</p>
+<p><img src="https://s2.loli.net/2022/06/23/cLoVXFdCf5xbIeE.png" srcset="/img/loading.gif" lazyload alt="Proxy UML" /></p>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> org.jetbrains.annotations.Contract;<br><span class="hljs-keyword">import</span> org.jetbrains.annotations.NotNull;<br><br><span class="hljs-keyword">import</span> java.io.*;<br><span class="hljs-keyword">import</span> java.net.ServerSocket;<br><span class="hljs-keyword">import</span> java.net.Socket;<br><span class="hljs-keyword">import</span> java.nio.charset.StandardCharsets;<br><span class="hljs-keyword">import</span> java.util.Arrays;<br><span class="hljs-keyword">import</span> java.util.concurrent.ExecutorService;<br><span class="hljs-keyword">import</span> java.util.concurrent.Executors;<br><span class="hljs-keyword">import</span> java.util.regex.Pattern;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Proxy</span> &#123; <span class="hljs-comment">//类服务器</span><br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">PORT</span> <span class="hljs-operator">=</span> <span class="hljs-number">8080</span>;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">( String[] args )</span> <span class="hljs-keyword">throws</span> IOException &#123;<br><br>        <span class="hljs-type">ServerSocket</span> <span class="hljs-variable">serverSocket</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ServerSocket</span>(PORT);<br><br>        <span class="hljs-type">ExecutorService</span> <span class="hljs-variable">HandlerPool</span> <span class="hljs-operator">=</span> Executors.newFixedThreadPool(<span class="hljs-number">100</span>);<br><br>        <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>)&#123;<br><br>            <span class="hljs-keyword">try</span> &#123;<br>                <span class="hljs-type">Socket</span> <span class="hljs-variable">socket</span> <span class="hljs-operator">=</span> serverSocket.accept();<br><br>                HandlerPool.execute(<span class="hljs-keyword">new</span> <span class="hljs-title class_">ProxyHandler</span>(socket));<br><br>            &#125;<br>            <span class="hljs-keyword">catch</span> (IOException e)&#123;<br>                e.printStackTrace();<br>            &#125;<br>        &#125;<br><br>    &#125;<br><br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">ProxyHandler</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Runnable</span>&#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Socket client;<br><br>    ProxyHandler( Socket socket)&#123;<br>        <span class="hljs-built_in">this</span>.client = socket;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span>&#123;<br><br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">// 具体工作</span><br>        &#125;<br>        <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            e.printStackTrace();<br>        &#125;<br><br><br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>代理相对于客户端而言，应当是一台服务器，而对于源服务器而言，应该是一个客户端。</p>
+<p>于是，代理的工作流程可以描述为：</p>
+<ol>
+<li>监听代理端口，当有客户端连接时，线程池分配线程处理连接</li>
+<li>从客户端接受报文</li>
+<li>检查报文结构（获取客户端的<code>Host</code>信息）并生成一份新报文</li>
+<li>通过 <code>Host</code> 信息得到服务器的<code>IP</code> 与 端口，建立新 <code>Socket</code> 与服务器取得连接</li>
+<li>将新生成的报文发送给服务器</li>
+<li>从服务器接受响应报文并生成一份新报文，通过客户端的 <code>Socket</code> 传送给客户端</li>
+</ol>
+<p>前三步就是第一题中服务器的内容，很容易就能写出如下代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-meta">@NotNull</span> String <span class="hljs-title function_">getMsg</span><span class="hljs-params">( <span class="hljs-meta">@NotNull</span> BufferedReader reader)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>    <span class="hljs-type">StringBuilder</span> <span class="hljs-variable">ret</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>();<br>    <span class="hljs-keyword">do</span>&#123;<br>        <span class="hljs-type">char</span>[] chars = <span class="hljs-keyword">new</span> <span class="hljs-title class_">char</span>[Utils.SIZE];<br>        reader.read(chars);<br>        ret.append(chars);<br>    &#125; <span class="hljs-keyword">while</span> (reader.ready());<br>    <span class="hljs-keyword">return</span> ret.toString(); <br>&#125;<br><br><span class="hljs-meta">@Override</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span>&#123;<br><br>    <span class="hljs-keyword">try</span> &#123;<br><br>        <span class="hljs-type">String</span> <span class="hljs-variable">temp</span> <span class="hljs-operator">=</span> getMsg(<span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InputStreamReader</span>(client.getInputStream()))); <br>        <span class="hljs-type">RequestHeader</span> <span class="hljs-variable">requestHeader</span> <span class="hljs-operator">=</span> Utils.requestParseString(temp);<br>        <span class="hljs-type">String</span> <span class="hljs-variable">host</span> <span class="hljs-operator">=</span> requestHeader.getHost(); <br>        <span class="hljs-type">int</span> <span class="hljs-variable">idx</span> <span class="hljs-operator">=</span> host.indexOf(<span class="hljs-string">&quot;:&quot;</span>);<br>        <span class="hljs-keyword">if</span>(idx != -<span class="hljs-number">1</span>) &#123;<br>            port = Integer.parseInt(host.substring(idx + <span class="hljs-number">1</span>)); <span class="hljs-comment">//截取(localhost:8081)目的端口号，若无则为80</span><br>            host = host.substring(<span class="hljs-number">0</span>, idx);<br>            String[] parts = requestHeader.getUrl().split(<span class="hljs-string">&quot;/&quot;</span>); <span class="hljs-comment">// http://localhost:8081/index.html</span><br>            requestHeader.setUrl(parts[parts.length - <span class="hljs-number">1</span>]); <span class="hljs-comment">//截出所需url部分（即index.html）</span><br>        &#125;<br>        <span class="hljs-comment">// To Server</span><br>        client.close();<br><br>    &#125;<br>    <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>        e.printStackTrace();<br>    &#125;<br><br><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这里需要注意</p>
+<ul>
+<li>代理服务器读到的 <code>url</code> 与服务器读到的 <code>url</code> 是不相同的，例如，客户端请求 <code>http://localhost:8081/index.html</code>，代理得到的 <code>url</code> 是 <code>http://localhost:8081/index.html</code> ，而服务器读到的是 <code>/index.html</code>，因此，我们需要通过一些操作截取出 <code>index.html</code> 部分，并包装成新的 <code>url</code>。</li>
+<li><code>Host</code>字段可能会出现 <code>localhost:8081</code> 这种域名+端口的形式，于是我们需要将端口与域名分割，而若不存在这种情况的话，那么我们默认端口为80</li>
+</ul>
+<p>接下来，我们就可以建立新的 <code>Socket</code> 向源服务器建立连接，发送消息并接受服务器的响应报文：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Override</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span>&#123;<br><br>    <span class="hljs-keyword">try</span> &#123;<br><br>        <span class="hljs-type">String</span> <span class="hljs-variable">temp</span> <span class="hljs-operator">=</span> getMsg(<span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InputStreamReader</span>(client.getInputStream()))); <br>        <span class="hljs-type">RequestHeader</span> <span class="hljs-variable">requestHeader</span> <span class="hljs-operator">=</span> Utils.requestParseString(temp); <br>        <span class="hljs-type">String</span> <span class="hljs-variable">host</span> <span class="hljs-operator">=</span> requestHeader.getHost(); <br>        <span class="hljs-type">int</span> <span class="hljs-variable">idx</span> <span class="hljs-operator">=</span> host.indexOf(<span class="hljs-string">&quot;:&quot;</span>);<br>        <span class="hljs-keyword">if</span>(idx != -<span class="hljs-number">1</span>) &#123;<br>            port = Integer.parseInt(host.substring(idx + <span class="hljs-number">1</span>)); <span class="hljs-comment">//截取(localhost:8081)目的端口号，若无则为80</span><br>            host = host.substring(<span class="hljs-number">0</span>, idx);<br>            String[] parts = requestHeader.getUrl().split(<span class="hljs-string">&quot;/&quot;</span>); <span class="hljs-comment">// http://localhost:8081/index.html</span><br>            requestHeader.setUrl(parts[parts.length - <span class="hljs-number">1</span>]); <span class="hljs-comment">//截出所需url部分（即index.html）</span><br>        &#125;<br>        <span class="hljs-type">Socket</span> <span class="hljs-variable">server</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Socket</span>(host, port);<br>        server.getOutputStream().write(requestHeader.toString().getBytes(StandardCharsets.UTF_8));<br><br>        temp = getMsg(<span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InputStreamReader</span>(server.getInputStream()))); <span class="hljs-comment">//获取服务器响应报文</span><br>        <span class="hljs-type">ResponseHeader</span> <span class="hljs-variable">responseHeader</span> <span class="hljs-operator">=</span> Utils.responseParseString(temp);<br>        <br>        <span class="hljs-comment">// 向客户端发送数据</span><br><br>        server.close();<br>        client.close();<br><br>    &#125;<br>    <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>        e.printStackTrace();<br>    &#125;<br><br><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>但在向客户端发送数据前，我们需要对服务器传送来的报文体（可能没有）进行处理，这是因为，由于传送的 <code>String</code> 的 <code>byte[]</code> 可能在末尾会出现大量的 <code>0</code> 也就是会出现大量的不应该出现的 <code>NULL</code>，于是我们需要对传送来的报文体进行一些处理：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Contract(pure = true)</span><br><span class="hljs-keyword">private</span> <span class="hljs-type">byte</span> <span class="hljs-meta">@NotNull</span> [] getData( <span class="hljs-meta">@NotNull</span> String data,<span class="hljs-type">int</span> length)&#123; <span class="hljs-comment">//去除报文内容中的null</span><br>        <span class="hljs-type">byte</span>[] ret = <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[length]; <span class="hljs-comment">//开一个等同报文体长度的字节数组</span><br>        <span class="hljs-type">byte</span>[] bytes = data.getBytes(StandardCharsets.UTF_8); <span class="hljs-comment">//将捕获的报文体内容重新转为字节格式</span><br>        System.arraycopy(bytes ,<span class="hljs-number">0</span> ,ret ,<span class="hljs-number">0</span> ,length); <span class="hljs-comment">//将报文体内容复制到新开的数组中</span><br>        <span class="hljs-keyword">return</span> ret;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>通过调用这个方法，我们就可以将后续的几步实现了：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Override</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span>&#123;<br><br>    <span class="hljs-keyword">try</span> &#123;<br><br>        <span class="hljs-type">String</span> <span class="hljs-variable">temp</span> <span class="hljs-operator">=</span> getMsg(<span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InputStreamReader</span>(client.getInputStream())));<br>        <span class="hljs-type">RequestHeader</span> <span class="hljs-variable">requestHeader</span> <span class="hljs-operator">=</span> Utils.requestParseString(temp); <br>        <span class="hljs-type">String</span> <span class="hljs-variable">host</span> <span class="hljs-operator">=</span> requestHeader.getHost(); <br>        <span class="hljs-type">int</span> <span class="hljs-variable">idx</span> <span class="hljs-operator">=</span> host.indexOf(<span class="hljs-string">&quot;:&quot;</span>);<br>        <span class="hljs-keyword">if</span>(idx != -<span class="hljs-number">1</span>) &#123;<br>            port = Integer.parseInt(host.substring(idx + <span class="hljs-number">1</span>)); <span class="hljs-comment">//截取(localhost:8081)目的端口号，若无则为80</span><br>            host = host.substring(<span class="hljs-number">0</span>, idx);<br>            String[] parts = requestHeader.getUrl().split(<span class="hljs-string">&quot;/&quot;</span>); <span class="hljs-comment">// http://localhost:8081/index.html</span><br>            requestHeader.setUrl(parts[parts.length - <span class="hljs-number">1</span>]); <span class="hljs-comment">//截出所需url部分（即index.html）</span><br>        &#125;<br>        <span class="hljs-type">Socket</span> <span class="hljs-variable">server</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Socket</span>(host, port);<br>        server.getOutputStream().write(requestHeader.toString().getBytes(StandardCharsets.UTF_8));<br><br>        temp = getMsg(<span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InputStreamReader</span>(server.getInputStream()))); <span class="hljs-comment">//获取服务器响应报文</span><br>        <span class="hljs-type">ResponseHeader</span> <span class="hljs-variable">responseHeader</span> <span class="hljs-operator">=</span> Utils.responseParseString(temp);<br>        <span class="hljs-type">OutputStream</span> <span class="hljs-variable">os</span> <span class="hljs-operator">=</span> client.getOutputStream();<br>        os.write(responseHeader.toString().getBytes(StandardCharsets.UTF_8));<br><br>        <span class="hljs-type">byte</span>[] responseBody = getData(responseHeader.getData(), responseHeader.getContent_length());<br>        os.write(responseBody);<br><br>        server.close();<br>        client.close();<br><br>    &#125;<br>    <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>        e.printStackTrace();<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>整体架构为：</p>
+<p><img src="https://s2.loli.net/2022/06/20/XaLknIyts5U2NKJ.png" srcset="/img/loading.gif" lazyload alt="Server And Proxy" /></p>
+<h3 id="测试结果-2"><a class="markdownIt-Anchor" href="#测试结果-2"></a> 测试结果</h3>
+<p>浏览器与postman的测试结果同题1图</p>
+<h4 id="jmter压测-2"><a class="markdownIt-Anchor" href="#jmter压测-2"></a> jmter压测：</h4>
+<p><img src="https://s2.loli.net/2022/06/23/iDJK9CO7dtXTqYI.png" srcset="/img/loading.gif" lazyload alt="1000并发数" /></p>
+<p><img src="https://s2.loli.net/2022/06/23/eRwgz2M4riVotsX.png" srcset="/img/loading.gif" lazyload alt="Result" /></p>
+<p><img src="https://s2.loli.net/2022/06/21/YiSfDKOyaTkbHoq.png" srcset="/img/loading.gif" lazyload alt="10000并发数" /></p>
+<p><img src="https://s2.loli.net/2022/06/21/Q2fK8h1EtcIubxA.png" srcset="/img/loading.gif" lazyload alt="Result" /></p>
+<p>我们继续查看测试异常的结果，可以发现，其异常原因依然是因为服务器返回 <code>500</code> ，而非 <code>Connection refused</code>:</p>
+<p><img src="https://s2.loli.net/2022/06/23/VM6pw9ktYWU7rNh.png" srcset="/img/loading.gif" lazyload alt="Error Reason" /></p>
+<blockquote>
+<p>注：如何测试代理服务器</p>
+<ol>
+<li>
+<p>浏览器（以msedge为例）</p>
+<ol>
+<li>
+<p>打开浏览器的设置页面（右上角三点，设置）</p>
+</li>
+<li>
+<p>在左侧搜索栏搜索“代理”，点击右侧的最后一个</p>
+<p><img src="https://s2.loli.net/2022/06/01/JKFrfQDoTjMkdcY.png" srcset="/img/loading.gif" lazyload alt="操作步骤" /></p>
+</li>
+<li>
+<p>打开后，手动开启代理，设置端口号为代理服务器的端口号，这里为8080</p>
+<p><img src="https://s2.loli.net/2022/06/01/a12X3f5lD6LeSbm.png" srcset="/img/loading.gif" lazyload alt="代理设置" /></p>
+</li>
+<li>
+<p>测试完需关闭代理，这里的代理是电脑的代理，如果不关闭会导致电脑的所有网络连接都是通过这个代理实现的</p>
+</li>
+</ol>
+</li>
+<li>
+<p>postman</p>
+<p>如图：</p>
+<p><img src="https://s2.loli.net/2022/06/01/tWnlLqbuSX3ROKI.png" srcset="/img/loading.gif" lazyload alt="打开设置" /></p>
+<p><img src="https://s2.loli.net/2022/06/01/lKHCTN8YIsrSteM.png" srcset="/img/loading.gif" lazyload alt="代理设置" /></p>
+</li>
+</ol>
+</blockquote>
+<hr />
+<h2 id="附加nio服务器与nio代理服务器"><a class="markdownIt-Anchor" href="#附加nio服务器与nio代理服务器"></a> 附加：NIO服务器与NIO代理服务器</h2>
+<h3 id="nio服务器"><a class="markdownIt-Anchor" href="#nio服务器"></a> NIO服务器</h3>
+<h4 id="nio简介"><a class="markdownIt-Anchor" href="#nio简介"></a> NIO简介</h4>
+<ol>
+<li>
+<p><strong>ByteBuffer</strong>：</p>
+<p>NIO的传输基本单位，任何<code>String</code>类型都必须转化为<code>ByteBuffer</code>来传输</p>
+<p><code>String</code> 与 <code>ByteBuffer</code> 的转换为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> StandardCharsets.UTF_8.decode(byteBuffer).toString();<br><br><span class="hljs-type">ByteBuffer</span> <span class="hljs-variable">bb</span> <span class="hljs-operator">=</span> StandardCharsets.UTF_8.encode(str);<br><span class="hljs-comment">// or</span><br><span class="hljs-type">ByteBuffer</span> <span class="hljs-variable">bb2</span> <span class="hljs-operator">=</span> ByteBuffer.wrap(str.getBytes(StandardCharsets.UTF_8));<br></code></pre></td></tr></table></figure>
+<p>关于 <code>ByteBuffer</code> 内部的实现这里不着重讲，需要注意的是，我们每次往 <code>ByteBuffer</code> 中读完数据，若想 <code>ByteBuffer</code> 能够向其他地方写数据，我们需要将其 <code>flip</code>一下，来翻转读写模式，例如</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">channel.read(byteBuffer); <span class="hljs-comment">//读完数据</span><br><br>byteBuffer.flip();<br><br><span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> StandardCharsets.UTF_8.decode(byteBuffer).toString();<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>Channel</strong>:</p>
+<p>NIO中，读写不再使用<code>OutputStream</code>这种流传输，转为使用传输 <code>ByteBuffer</code> 来传输数据，可以用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">ByteBuffer</span> <span class="hljs-variable">bb</span> <span class="hljs-operator">=</span> ByteBuffer.alloc(<span class="hljs-number">1024</span>); <span class="hljs-comment">//申请大小为1024字节的缓冲区</span><br><br>channel.read(bb);<br><br>bb.flip();<br><br>channel.write(bb);    <br></code></pre></td></tr></table></figure>
+<p>这样的方式，来向管道中读写数据，我们可以将此管道视为<code>BIO</code>（传统IO）中的 <code>Socket.getInputStream</code> 与 <code>Socket.getOutputStream</code>。</p>
+<p>但是需要注意的，这里的 <code>channel</code> 支持双向读写，也就是说我们不需要区分<code>Input</code>与<code>Output</code>了。</p>
+</li>
+<li>
+<p><strong>Selector</strong></p>
+<p>这是NIO中最重要的部分，我们可以通过下图来解释<code>Selector</code>可以用来做什么。</p>
+<p><img src="https://s2.loli.net/2022/06/01/yQY4wKC5xt7h2AG.png" srcset="/img/loading.gif" lazyload alt="Selector" /></p>
+<p>我们可以发现，一个 <code>Selector</code> 可以管理多个 <code>Channel</code>。</p>
+<p>不如把 <code>Selector</code> 视为一个服务器，下面的 <code>Channel</code> 视为客户端，那么这个图就会很清晰，而在NIO，这种想法恰好可以实现：</p>
+<p>我们运行一个线程，在这个线程中创建一个 <code>Selector</code> ，让这个线程去监听一个固定的端口，每当有客户端尝试连接这个端口时，我们就接受这个连接，并开启一个 <code>Channel</code> ，注册到这个 <code>Selector</code> 下面，让 <code>Selector</code> 来管理这个 <code>Channel</code>。</p>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">try</span>(<span class="hljs-type">ServerSocketChannel</span> <span class="hljs-variable">server</span> <span class="hljs-operator">=</span> ServerSocketChannel.open()) &#123; <span class="hljs-comment">//打开服务器的套接字通道</span><br>            Thread.currentThread().setName(<span class="hljs-string">&quot;master&quot;</span>); <span class="hljs-comment">//启动一个主线程</span><br>            server.bind(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InetSocketAddress</span>(PORT)); <span class="hljs-comment">//监听固定端口</span><br>            server.configureBlocking(<span class="hljs-literal">false</span>); <span class="hljs-comment">//将该通道设置为非阻塞（不设置则仍为BIO）</span><br><br>            <span class="hljs-type">Selector</span> <span class="hljs-variable">master</span> <span class="hljs-operator">=</span> Selector.open(); <span class="hljs-comment">//创建一个Selector</span><br>            server.register(master, SelectionKey.OP_ACCEPT);<br>            <span class="hljs-comment">//将当前这个 server 注册到 Selector 下面, 后面的OP_ACCEPT表示这个server只管接受连接，其他什么都不做</span><br><br>            Handler[] handlers = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Handler</span>[<span class="hljs-number">4</span>];<br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span> ; i&lt; handlers.length; i++)<br>                handlers[i] = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Handler</span>(String.valueOf(i));<br><br>            <span class="hljs-type">AtomicInteger</span> <span class="hljs-variable">idx</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">AtomicInteger</span>();<br><br><br>            <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>) &#123;<br><br>                master.select();<br><br>                Iterator&lt;SelectionKey&gt; iter = master.selectedKeys().iterator();<br>                <span class="hljs-keyword">while</span> (iter.hasNext()) &#123; <span class="hljs-comment">//遍历Selector中监听到的事件</span><br><br>                    <span class="hljs-type">SelectionKey</span> <span class="hljs-variable">key</span> <span class="hljs-operator">=</span> iter.next();<br>                    iter.remove();<br><br>                    <span class="hljs-keyword">if</span>(key.isAcceptable()) &#123;<br>                        <span class="hljs-comment">//事件：有客户端已建立连接（类似的事件还有 isReadable, isWriteable, isConnected）</span><br>                        <span class="hljs-type">SocketChannel</span> <span class="hljs-variable">channel</span> <span class="hljs-operator">=</span> server.accept(); <span class="hljs-comment">//获取建立的通道</span><br>                        channel.configureBlocking(<span class="hljs-literal">false</span>);<br>                        handlers[idx.getAndIncrement() % handlers.length].register(channel);<br>                        <span class="hljs-comment">//循环选择线程，将通道注册到其下</span><br>                        <span class="hljs-comment">// 在这里，我们已经接受了客户端的连接，并且拿到了与客户端通信的Channel，后面我们只需要分配一个线程，去处理客户端的请求即可</span><br>                    &#125;<br>                    <span class="hljs-keyword">else</span> &#123;<br>                        key.cancel();<br>                    &#125;<br>                &#125;<br>            &#125;<br>        &#125;<span class="hljs-keyword">catch</span> (Exception e)&#123;<br>            e.printStackTrace();<br>        &#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="服务器的设计"><a class="markdownIt-Anchor" href="#服务器的设计"></a> 服务器的设计</h4>
+<p>需要用到的NIO知识大概就这么多，下面可以来设计服务器了</p>
+<p>想法如图：</p>
+<p><img src="https://s2.loli.net/2022/06/01/nVMgXLfQOB6C7ts.png" srcset="/img/loading.gif" lazyload alt="服务器架构" /></p>
+<p>服务器总是运行一个主线程，称为 <code>master</code> 线程，监听端口<code>8081</code>，来确定是否有客户端尝试连接。</p>
+<p>当有一个客户端连接时，我们通过上面的代码，生成一个 <code>SocketChannel</code> 并将其传递给一个 <code>Handler</code> 线程</p>
+<p>由于 <code>Selector</code> 是可以管理多个通道的，那么我们其实没必要每次接收到一个连接就新建一个线程（线程会自带 <code>Selector</code> ），我们可以创建 <code>n</code> 个 <code>Handler</code> （这个 <code>n</code> 取决于电脑CPU是几核的）</p>
+<p><img src="https://s2.loli.net/2022/06/20/wZi5nhpNeV4Dtf8.png" srcset="/img/loading.gif" lazyload alt="Server" /></p>
+<p>于是，我们可以开始编写 <code>Handler</code> 了</p>
+<p>首先，我们需要一个 <code>register</code> 方法，将连接的任务加入到 <code>Handler</code> 的任务队列中</p>
+<p>事实上，我们可以把一个 <code>Handler</code> 当做一个流水线上的工人，他有一个任务列表，不断的做TODO-List中的事项（当然这部分也可以视为模板编程，因为这个大家写的都差不多）</p>
+<p>重点是在处理数据的部分：</p>
+<ol>
+<li>
+<p>新建一个 <code>Method</code> 对象，这个对象包涵的方法其实就是第一题中 <code>Server</code> 中 <code>Handler</code> 的方法，但在NIO中，每次遍历的 <code>key</code> 只会存在一个关心的事件，这就要求我们在更改其关注的事件时，需要将解析的请求头通过通道的 <code>attchment</code> 传递出去</p>
+</li>
+<li>
+<p>于是，在 <code>Method</code> 中解析请求报文完成后，我们将其包装好并传递到此 <code>Channel</code> 中的 <code>attchment</code> 中，并更改 <code>key</code> 关注的事件为 <code>write</code> 事件</p>
+</li>
+<li>
+<p>随后，在下一次询问时，我们会进入 <code>write</code> 事件，并通过 <code>Method</code> 中的响应方法返回响应报文</p>
+<p>响应方法与第一题中的响应方法类似：</p>
+<ol>
+<li>首先，我们通过 <code>attchment</code> 中取出先前包装好的请求报文，并通过响应报文的构造方法，生成一个 <code>ResponseHeader</code> 对象</li>
+<li>与先前的服务器类似，我们通过<code>handle200(SocketChannel, String), handleError(SocketChannel, int)</code> 等函数对不同的情况发出响应（但在这里需要注意的是，由于传输对象是 <code>ByteBUffer</code> 而不是原来的 <code>byte[]</code> ，因此我们需要将 <code>byte[]</code> 包装为 <code>ByteBuffer</code> 后才能输出）</li>
+</ol>
+</li>
+</ol>
+<p><code>Handler</code> 的代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Handler</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Runnable</span>&#123;<br><br>    <span class="hljs-keyword">private</span> Thread thread;<br>    <span class="hljs-keyword">private</span> Selector selector;<br>    <span class="hljs-keyword">private</span> ConcurrentLinkedQueue&lt;Runnable&gt; queue = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ConcurrentLinkedQueue</span>&lt;&gt;();<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Handler</span><span class="hljs-params">( String name)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        thread = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(<span class="hljs-built_in">this</span>, name);<br>        thread.start();<br>        selector = Selector.open();<br>    &#125;<br><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">register</span><span class="hljs-params">(SocketChannel sc)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        queue.add(()-&gt;&#123; <span class="hljs-comment">//将注册通道加入队列维护</span><br>            <span class="hljs-keyword">try</span> &#123;<br>                sc.register(<span class="hljs-built_in">this</span>.selector,SelectionKey.OP_READ,<span class="hljs-literal">null</span>); <span class="hljs-comment">//注册感兴趣的事件</span><br>            &#125; <span class="hljs-keyword">catch</span> (ClosedChannelException e) &#123;<br>                e.printStackTrace();<br>            &#125;<br>        &#125;);<br><br>        selector.wakeup(); <span class="hljs-comment">//唤醒阻塞的select()方法</span><br>    &#125;<br><br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br><br>        <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;<br>            <span class="hljs-keyword">try</span> &#123;<br><br>                selector.select();<br>                <span class="hljs-type">Runnable</span> <span class="hljs-variable">task</span> <span class="hljs-operator">=</span> queue.poll(); <span class="hljs-comment">//取出队首并删除结点</span><br><br>                <span class="hljs-keyword">if</span>(task!=<span class="hljs-literal">null</span>)<br>                    task.run(); <span class="hljs-comment">//调用register run方法以注册通道</span><br><br>                Iterator&lt;SelectionKey&gt; iter = <span class="hljs-built_in">this</span>.selector.selectedKeys().iterator();<br>                <span class="hljs-keyword">while</span> (iter.hasNext()) &#123;<br>                    <span class="hljs-type">SelectionKey</span> <span class="hljs-variable">key</span> <span class="hljs-operator">=</span> iter.next();<br>                    iter.remove();<br>                    <span class="hljs-keyword">if</span> (key.isReadable()) &#123; <span class="hljs-comment">//若该事件可读，即收到请求报文</span><br>                        <span class="hljs-type">Method</span> <span class="hljs-variable">method</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Method</span>(); <span class="hljs-comment">//实例化method方法</span><br>                        method.processRequest(key); <span class="hljs-comment">//解析报文并将其附着到该通道所关联的key的attchment中</span><br>                        key.interestOps(SelectionKey.OP_WRITE); <span class="hljs-comment">//将该事件改为可写</span><br>                    &#125;<br>                    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(key.isWritable())&#123; <span class="hljs-comment">//若该事件可写，即需回复报文</span><br>                        <span class="hljs-type">Method</span> <span class="hljs-variable">method</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Method</span>();<br>                        method.processResponse(key); <span class="hljs-comment">//写响应报文</span><br>                    &#125;<br>                    <span class="hljs-keyword">else</span><br>                        key.cancel(); <span class="hljs-comment">//忽略该事件</span><br>                &#125;<br>            &#125;<span class="hljs-keyword">catch</span> (Exception e) &#123;<br>                e.printStackTrace();<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><code>Method</code> 代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Method</span> &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> NIOFileHandler nioFileHandler;<br><br>    RequestHeader requestHeader;<br><br>    ResponseHeader responseHeader;<br><br>    Method()&#123;<br>        nioFileHandler = <span class="hljs-keyword">new</span> <span class="hljs-title class_">NIOFileHandler</span>();<br>    &#125;<br><br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">processRequest</span><span class="hljs-params">( <span class="hljs-meta">@NotNull</span> SelectionKey key)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br><br>        <span class="hljs-type">SocketChannel</span> <span class="hljs-variable">channel</span> <span class="hljs-operator">=</span> (SocketChannel) key.channel(); <span class="hljs-comment">//获取传输报文的通道</span><br>        <span class="hljs-type">ByteBuffer</span> <span class="hljs-variable">byteBuffer</span> <span class="hljs-operator">=</span> ByteBuffer.allocate(Utils.SIZE); <span class="hljs-comment">//申请一个固定大小的缓冲区</span><br>        channel.read(byteBuffer); <span class="hljs-comment">//将报文写至缓冲区</span><br><br>        byteBuffer.flip(); <span class="hljs-comment">//翻转读写方式</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">temp</span> <span class="hljs-operator">=</span> StandardCharsets.UTF_8.decode(byteBuffer).toString(); <span class="hljs-comment">//将报文格式转变为string</span><br>        <span class="hljs-keyword">try</span>&#123;<br>            <span class="hljs-type">RequestHeader</span> <span class="hljs-variable">requestHeader</span> <span class="hljs-operator">=</span> Utils.requestParseString(temp);<br>            key.attach(Optional.of(requestHeader));<br>            <span class="hljs-comment">//设置key的attachment字段，而一个key和一个channel绑定，即可后续从通道中获取该请求报文</span><br>        &#125;<br>        <span class="hljs-keyword">catch</span> (Exception e)&#123;<br>            e.printStackTrace();<br>        &#125;<br><br>    &#125;<br><br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">processResponse</span><span class="hljs-params">( <span class="hljs-meta">@NotNull</span> SelectionKey key )</span> <span class="hljs-keyword">throws</span> IOException &#123;<br><br>        <span class="hljs-type">SocketChannel</span> <span class="hljs-variable">channel</span> <span class="hljs-operator">=</span> (SocketChannel) key.channel();<br>        Optional&lt;RequestHeader&gt; op = (Optional&lt;RequestHeader&gt;) key.attachment(); <span class="hljs-comment">//请求报文</span><br><br>        <span class="hljs-keyword">if</span>(op.isEmpty())&#123;<br>            handle400(channel); <span class="hljs-comment">//错误请求</span><br>            channel.close(); <span class="hljs-comment">//关闭通道</span><br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br><br>        requestHeader = op.get();<br>        responseHeader = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ResponseHeader</span>(requestHeader);<br><br>        <span class="hljs-keyword">try</span>&#123;<br>            handle200(channel, requestHeader.getUrl());<br>        &#125;<br>        <span class="hljs-keyword">catch</span> (FileNotFoundException e)&#123;<br>            handle404(channel);<br>        &#125;<br>        <span class="hljs-keyword">catch</span> (Exception e)&#123;<br>            handle500(channel);<br>        &#125;<br>        <span class="hljs-keyword">finally</span> &#123;<br>            channel.close();<br>        &#125;<br><br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">handle400</span><span class="hljs-params">( SocketChannel channel )</span> &#123;<br>        <span class="hljs-keyword">try</span>&#123;<br>            handleError(channel, <span class="hljs-number">400</span>);<br>        &#125;<br>        <span class="hljs-keyword">catch</span> (Exception e)&#123;<br>            handle500(channel);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">handle404</span><span class="hljs-params">( SocketChannel channel )</span> &#123;<br>        <span class="hljs-keyword">try</span>&#123;<br>            handleError(channel, <span class="hljs-number">404</span>);<br>        &#125;<br>        <span class="hljs-keyword">catch</span> (Exception e)&#123;<br>            handle500(channel);<br>        &#125;<br><br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">handle500</span><span class="hljs-params">( SocketChannel channel )</span> &#123;<br>        <span class="hljs-keyword">try</span>&#123;<br>            handleError(channel, <span class="hljs-number">500</span>);<br>        &#125;<br>        <span class="hljs-keyword">catch</span> (Exception e)&#123;<br>            e.printStackTrace();<br>        &#125;<br><br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">handle501</span><span class="hljs-params">( SocketChannel channel )</span>&#123;<br>        <span class="hljs-keyword">try</span>&#123;<br>            handleError(channel, <span class="hljs-number">501</span>);<br>        &#125;<br>        <span class="hljs-keyword">catch</span> (Exception e)&#123;<br>            e.printStackTrace();<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">handle200</span><span class="hljs-params">( <span class="hljs-meta">@NotNull</span> SocketChannel channel ,String url )</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        responseHeader.setCode(<span class="hljs-number">200</span>);<br>        <span class="hljs-type">String</span> <span class="hljs-variable">method</span> <span class="hljs-operator">=</span> requestHeader.getMethod();<br>        <span class="hljs-keyword">if</span>(method.equals(Utils.MethodName.GET.toString()))&#123;<br><br>            <span class="hljs-keyword">if</span>(url.equals(Utils.EXIT))&#123;<br>                Server.flag.set(<span class="hljs-number">0</span>);<br>                System.exit(-<span class="hljs-number">1</span>);<br>            &#125;<br><br>            <span class="hljs-type">ByteBuffer</span> <span class="hljs-variable">responseBody</span> <span class="hljs-operator">=</span> nioFileHandler.read(<span class="hljs-string">&quot;web/request/&quot;</span> + url);<br>            responseHeader.setContent_length(responseBody.capacity());<br>            responseHeader.setContent_type(Utils.queryFileType(url));<br>            <span class="hljs-type">ByteBuffer</span> <span class="hljs-variable">responseHead</span> <span class="hljs-operator">=</span> ByteBuffer.wrap(responseHeader.toString().getBytes(StandardCharsets.UTF_8));<br>            <span class="hljs-comment">//将string格式转变为butebuffer</span><br>            channel.write(<span class="hljs-keyword">new</span> <span class="hljs-title class_">ByteBuffer</span>[]&#123;responseHead, responseBody&#125;);<br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(method.equals(Utils.MethodName.HEAD.toString()))&#123;<br>            <span class="hljs-type">ByteBuffer</span> <span class="hljs-variable">responseHead</span> <span class="hljs-operator">=</span> ByteBuffer.wrap(responseHeader.toString().getBytes(StandardCharsets.UTF_8));<br>            channel.write(responseHead);<br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(method.equals(Utils.MethodName.POST.toString()))&#123;<br>            <span class="hljs-type">String</span> <span class="hljs-variable">data</span> <span class="hljs-operator">=</span> requestHeader.getData();<br>            responseHeader.setContent_length(<span class="hljs-number">0</span>);<br>            responseHeader.setContent_type(<span class="hljs-string">&quot;&quot;</span>);<br>            nioFileHandler.write(<span class="hljs-string">&quot;db/data.txt&quot;</span>, data);<br>            <span class="hljs-type">ByteBuffer</span> <span class="hljs-variable">responseHead</span> <span class="hljs-operator">=</span> ByteBuffer.wrap(responseHeader.toString().getBytes(StandardCharsets.UTF_8));<br>            channel.write(responseHead);<br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(method.equals(Utils.MethodName.PUT.toString()))&#123;<br>            <span class="hljs-type">String</span> <span class="hljs-variable">data</span> <span class="hljs-operator">=</span> Utils.mdToHtml(requestHeader.getData());<br>            <span class="hljs-type">ByteBuffer</span> <span class="hljs-variable">responseBody</span> <span class="hljs-operator">=</span> StandardCharsets.UTF_8.encode(data);<br>            responseHeader.setContent_type(Utils.queryFileType(<span class="hljs-string">&quot;.html&quot;</span>));<br>            responseHeader.setContent_length(responseBody.limit());<br>            <span class="hljs-type">ByteBuffer</span> <span class="hljs-variable">responseHead</span> <span class="hljs-operator">=</span> ByteBuffer.wrap(responseHeader.toString().getBytes(StandardCharsets.UTF_8));<br>            channel.write(<span class="hljs-keyword">new</span> <span class="hljs-title class_">ByteBuffer</span>[]&#123;responseHead, responseBody&#125;);<br>        &#125;<br>        <span class="hljs-keyword">else</span> &#123;<br>            handle501(channel);<br>        &#125;<br><br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">handleError</span><span class="hljs-params">( <span class="hljs-meta">@NotNull</span> SocketChannel channel ,<span class="hljs-type">int</span> code )</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        responseHeader.setCode(code);<br><br>        <span class="hljs-type">String</span> <span class="hljs-variable">filename</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;web/error/&quot;</span> + code + <span class="hljs-string">&quot;.html&quot;</span>;<br>        <span class="hljs-type">ByteBuffer</span> <span class="hljs-variable">responseBody</span> <span class="hljs-operator">=</span> nioFileHandler.read(filename);<br>        responseHeader.setContent_length(responseBody.capacity());<br>        responseHeader.setContent_type(Utils.queryFileType(filename));<br>        requestHeader.setVersion(<span class="hljs-built_in">this</span>.requestHeader.getVersion());<br>        <span class="hljs-type">ByteBuffer</span> <span class="hljs-variable">responseHead</span> <span class="hljs-operator">=</span> ByteBuffer.wrap(responseHeader.toString().getBytes(StandardCharsets.UTF_8));<br><br>        channel.write(<span class="hljs-keyword">new</span> <span class="hljs-title class_">ByteBuffer</span>[]&#123;responseHead, responseBody&#125;);<br>    &#125;<br><br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">NIOFileHandler</span>&#123;<br><br>    NIOFileHandler()&#123;&#125;<br><br><br>    ByteBuffer <span class="hljs-title function_">read</span><span class="hljs-params">(String filename)</span> <span class="hljs-keyword">throws</span> IOException&#123;<br><br>        <span class="hljs-type">RandomAccessFile</span> <span class="hljs-variable">access</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RandomAccessFile</span>(filename, <span class="hljs-string">&quot;r&quot;</span>);<br><br>        <span class="hljs-type">FileChannel</span> <span class="hljs-variable">channel</span> <span class="hljs-operator">=</span> access.getChannel();<br>        <span class="hljs-type">ByteBuffer</span> <span class="hljs-variable">byteBuffer</span> <span class="hljs-operator">=</span> ByteBuffer.allocate((<span class="hljs-type">int</span>)channel.size());<br><br>        channel.read(byteBuffer);<br>        byteBuffer.flip();<br><br>        <span class="hljs-keyword">return</span> byteBuffer;<br>    &#125;<br><br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">write</span><span class="hljs-params">(String filename, String data)</span> <span class="hljs-keyword">throws</span> IOException&#123;<br><br>        <span class="hljs-type">RandomAccessFile</span> <span class="hljs-variable">access</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RandomAccessFile</span>(filename, <span class="hljs-string">&quot;rw&quot;</span>);<br><br>        <span class="hljs-type">FileChannel</span> <span class="hljs-variable">channel</span> <span class="hljs-operator">=</span> access.getChannel();<br>        <span class="hljs-type">ByteBuffer</span> <span class="hljs-variable">byteBuffer</span> <span class="hljs-operator">=</span> StandardCharsets.UTF_8.encode(data);<br><br>        channel.write(byteBuffer);<br><br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>测试后，发现吞吐量确实上升很快</p>
+<h3 id="nio-proxy"><a class="markdownIt-Anchor" href="#nio-proxy"></a> NIO Proxy</h3>
+<p>NIO的代理，难写的点在于，NIO处理读写的代码结构与 <code>Socket</code> 那种完全不同，因此，在对NIO仅仅只是了解了皮毛的基础上，我只能写出一个能跑，但是效率不怎么高的代理服务器…</p>
+<p>代理的想法还是很简单，只需要转送报文即可。于是，我们采用与NIO Server相同的结构，来完成这一代理：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Proxy</span> &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">PORT</span> <span class="hljs-operator">=</span> <span class="hljs-number">8080</span>;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">( String[] args )</span> &#123;<br><br>        <span class="hljs-type">ExecutorService</span> <span class="hljs-variable">threadPool</span> <span class="hljs-operator">=</span> Executors.newScheduledThreadPool(<span class="hljs-number">200</span>);<br><br>        <span class="hljs-keyword">try</span>(<span class="hljs-type">ServerSocketChannel</span> <span class="hljs-variable">server</span> <span class="hljs-operator">=</span> ServerSocketChannel.open())&#123;<br><br>            server.bind(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InetSocketAddress</span>(PORT));<br>            server.configureBlocking(<span class="hljs-literal">false</span>);<br>            <span class="hljs-type">Selector</span> <span class="hljs-variable">master</span> <span class="hljs-operator">=</span> Selector.open();<br>            server.register(master, SelectionKey.OP_ACCEPT);<br>            <span class="hljs-keyword">while</span> (Server.flag.get() == <span class="hljs-number">1</span>) &#123;<br>                master.select();<br>                Iterator&lt;SelectionKey&gt; iterator = master.selectedKeys().iterator();<br>                <span class="hljs-keyword">while</span> (iterator.hasNext()) &#123;<br>                    <span class="hljs-type">SelectionKey</span> <span class="hljs-variable">key</span> <span class="hljs-operator">=</span> iterator.next();<br>                    iterator.remove();<br>                    <span class="hljs-keyword">if</span> (key.isAcceptable()) &#123;<br>                        <span class="hljs-type">SocketChannel</span> <span class="hljs-variable">client</span> <span class="hljs-operator">=</span> server.accept();<br>                        threadPool.execute(<span class="hljs-keyword">new</span> <span class="hljs-title class_">ProxyHandler</span>(client));<br>                    &#125; <span class="hljs-keyword">else</span><br>                        key.cancel();<br>                &#125;<br>            &#125;<br><br>        &#125;<br>        <span class="hljs-keyword">catch</span> (IOException e)&#123;<br>            e.printStackTrace();<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">ProxyHandler</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Runnable</span>&#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> SocketChannel client;<br><br>    String host;<br><br>    <span class="hljs-type">int</span> <span class="hljs-variable">port</span> <span class="hljs-operator">=</span> <span class="hljs-number">80</span>;<br><br>    RequestHeader requestHeader;<br><br>    ResponseHeader responseHeader;<br><br>    ProxyHandler(SocketChannel client)&#123;<br>        <span class="hljs-built_in">this</span>.client = client;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br><br>        <span class="hljs-keyword">try</span> &#123;<br><br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>            e.printStackTrace();<br>        &#125;<br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这里采用的是线程池的方法，每次都用一个线程，两个 <code>Selector</code> 来处理一次连接</p>
+<p>可以画图表现为</p>
+<p><img src="https://s2.loli.net/2022/06/20/cWVyagru76mDiPx.png" srcset="/img/loading.gif" lazyload alt="Handler" /></p>
+<p>但我们如何在接受完客户端的请求报文后，立刻为服务器写报文呢？</p>
+<p>我的想法是，直接创建一个 <code>SocketChannel</code> 通过请求报文中的 <code>Host</code> 字段直接连接到服务器，并将此通道注册到新建的选择器下，将监测事件选择为可写</p>
+<p>然后，遍历选择器中的事件，为可写时，直接向服务器发送报文，并将 <code>key</code> 关心的事件更改为可读，以读取服务器的响应报文，读取完后，我们就可以关掉这个 <code>Selector</code> 和 <code>SocketChannel</code> 了</p>
+<p>这样，我们可以写入如下代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">try</span> &#123;<br><br>            client.configureBlocking(<span class="hljs-literal">false</span>);<br>            <span class="hljs-type">Selector</span> <span class="hljs-variable">clientSelector</span> <span class="hljs-operator">=</span> Selector.open();<br>            client.register(clientSelector, SelectionKey.OP_READ);<br>            <span class="hljs-type">int</span> <span class="hljs-variable">over</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; <span class="hljs-comment">//标记是否与客户端断开通道</span><br>            <span class="hljs-keyword">while</span> (over == <span class="hljs-number">1</span>) &#123;<br>                clientSelector.select();<br>                Iterator&lt;SelectionKey&gt; clientIt = clientSelector.selectedKeys().iterator();<br>                <span class="hljs-keyword">while</span> (clientIt.hasNext()) &#123;<br>                    <span class="hljs-type">SelectionKey</span> <span class="hljs-variable">clientKey</span> <span class="hljs-operator">=</span> clientIt.next();<br>                    clientIt.remove();<br><br>                    <span class="hljs-keyword">if</span> (clientKey.isReadable()) &#123; <span class="hljs-comment">//获取到客户端的请求报文</span><br><br>                        <span class="hljs-type">SocketChannel</span> <span class="hljs-variable">clientChannel</span> <span class="hljs-operator">=</span> (SocketChannel) clientKey.channel(); <span class="hljs-comment">//获取与客户端连接的通道</span><br>                        <span class="hljs-type">ByteBuffer</span> <span class="hljs-variable">content</span> <span class="hljs-operator">=</span> ByteBuffer.allocate(Utils.SIZE);<br>                        clientChannel.read(content);<br>                        content.flip();<br>                        requestHeader = Utils.requestParseByteBuffer(content); <span class="hljs-comment">//解析请求报文</span><br><br>                        host = requestHeader.getHost(); <span class="hljs-comment">//获取目的服务器与处理url</span><br>                        <span class="hljs-type">int</span> <span class="hljs-variable">idx</span> <span class="hljs-operator">=</span> host.indexOf(<span class="hljs-string">&quot;:&quot;</span>);<br>                        <span class="hljs-keyword">if</span> (idx != -<span class="hljs-number">1</span>) &#123;<br>                            port = Integer.parseInt(host.substring(idx + <span class="hljs-number">1</span>));<br>                            host = host.substring(<span class="hljs-number">0</span> ,idx);<br>                            String[] parts = requestHeader.getUrl().split(<span class="hljs-string">&quot;/&quot;</span>);<br>                            requestHeader.setUrl(parts[ parts.length - <span class="hljs-number">1</span> ]);<br>                        &#125;<br><br>                        <span class="hljs-type">SocketChannel</span> <span class="hljs-variable">server</span> <span class="hljs-operator">=</span> SocketChannel.open(); <span class="hljs-comment">//与服务器建立通道</span><br>                        server.connect(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InetSocketAddress</span>(host, port));<br>                        server.configureBlocking(<span class="hljs-literal">false</span>);<br><br>                        <span class="hljs-type">Selector</span> <span class="hljs-variable">serverSelector</span> <span class="hljs-operator">=</span> Selector.open();<br>                        server.register(serverSelector , SelectionKey.OP_WRITE); <span class="hljs-comment">//向该selector注册一个可写的事件</span><br>                        <span class="hljs-type">int</span> <span class="hljs-variable">flag</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; <span class="hljs-comment">//标记是否与服务器断开通道</span><br>                        <span class="hljs-keyword">while</span> (flag == <span class="hljs-number">1</span>) &#123;<br><br>                            serverSelector.select();<br>                            Iterator&lt;SelectionKey&gt; serverIt = serverSelector.selectedKeys().iterator();<br><br>                            <span class="hljs-keyword">while</span> (serverIt.hasNext()) &#123;<br><br>                                <span class="hljs-type">SelectionKey</span> <span class="hljs-variable">serverKey</span> <span class="hljs-operator">=</span> serverIt.next();<br>                                serverIt.remove();<br>                                <span class="hljs-keyword">if</span> (serverKey.isWritable()) &#123; <span class="hljs-comment">//即代理向服务器传送请求报文</span><br>                                    <span class="hljs-type">SocketChannel</span> <span class="hljs-variable">serverChannel</span> <span class="hljs-operator">=</span> (SocketChannel) serverKey.channel();<br>                                    <span class="hljs-type">ByteBuffer</span> <span class="hljs-variable">trans</span> <span class="hljs-operator">=</span> ByteBuffer.wrap(<br>                                            requestHeader.trans().getBytes(StandardCharsets.UTF_8)<br>                                    );<br>                                    serverChannel.write(trans);<br>                                    serverKey.interestOps(SelectionKey.OP_READ); <span class="hljs-comment">//改为可读</span><br>                                &#125;<br>                                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (serverKey.isReadable()) &#123; <span class="hljs-comment">//即收到服务器的响应报文</span><br>                                    <span class="hljs-type">SocketChannel</span> <span class="hljs-variable">serverChannel</span> <span class="hljs-operator">=</span> (SocketChannel) serverKey.channel();<br>                                    <span class="hljs-type">ByteBuffer</span> <span class="hljs-variable">response</span> <span class="hljs-operator">=</span> ByteBuffer.allocate(Utils.SIZE);<br>                                    serverChannel.read(response);<br>                                    response.flip();<br>                                    responseHeader = Utils.responseParseByteBuffer(response);<br>                                    serverChannel.close();<br>                                    flag = <span class="hljs-number">0</span>;<br>                                &#125;<br><br>                            &#125;<br>                        &#125;<br><br>                        clientKey.interestOps(SelectionKey.OP_WRITE); <span class="hljs-comment">//改为可写，向客户端传回响应报文</span><br>                    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (clientKey.isWritable()) &#123;<br>                        <span class="hljs-type">SocketChannel</span> <span class="hljs-variable">clientChannel</span> <span class="hljs-operator">=</span> (SocketChannel) clientKey.channel();<br>                        <span class="hljs-type">ByteBuffer</span> <span class="hljs-variable">response</span> <span class="hljs-operator">=</span> ByteBuffer.wrap(responseHeader.trans().getBytes(StandardCharsets.UTF_8));<br>                        clientChannel.write(response);<br>                        over = <span class="hljs-number">0</span>;<br>                    &#125;<br>                &#125;<br>            &#125;<br><br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>            e.printStackTrace();<br>        &#125;<br></code></pre></td></tr></table></figure>
+<p>这里有两个地方需要注意：</p>
+<ol>
+<li>
+<p>注意到这里有 <code>over</code> 与 <code>flag</code> 两个标识符来判断什么时候可以结束监听 <code>Selector</code></p>
+</li>
+<li>
+<p>注意到这里我们新增了两个 <code>trans</code> 方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// IN RequestHeader</span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">trans</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-type">StringBuilder</span> <span class="hljs-variable">sb</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>();<br><br>    sb.append(String.format(<span class="hljs-string">&quot;%s %s %s\r\n&quot;</span>, getMethod(), getUrl(), getVersion()));<br>    <span class="hljs-keyword">for</span>(String K : headMap.keySet())<br>        sb.append(String.format(<span class="hljs-string">&quot;%s:%s\r\n&quot;</span>, K, headMap.get(K)));<br>    sb.append(<span class="hljs-string">&quot;\r\n&quot;</span>);<br>    sb.append(data.toString());<br><br>    <span class="hljs-keyword">return</span> sb.toString();<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// IN ResopnseHeader</span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">trans</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-built_in">this</span>.setContent_length(data.toString().getBytes(StandardCharsets.UTF_8).length);<br><br>    <span class="hljs-type">StringBuilder</span> <span class="hljs-variable">ret</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>();<br>    ret.append(String.format(<span class="hljs-string">&quot;%s %d %s\r\n&quot;</span>, getVersion(), code, code_meaning));<br>    ret.append(String.format(<span class="hljs-string">&quot;Server: %s\r\n&quot;</span>, getServer()));<br>    ret.append(String.format(<span class="hljs-string">&quot;Content-Type: %s\r\n&quot;</span>, getContent_type()));<br>    ret.append(String.format(<span class="hljs-string">&quot;Content-Length: %d\r\n&quot;</span>, getContent_length()));<br>    ret.append(<span class="hljs-string">&quot;Date:&quot;</span>).append(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>()).append(<span class="hljs-string">&quot;\r\n\r\n&quot;</span>);<br><br>    ret.append(data.toString());<br><br>    <span class="hljs-keyword">return</span> ret.toString();<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这两个函数用来写转运时的报文头与报文体</p>
+</li>
+</ol>
+<p>至此，我们的工作已经做完了，NIO部分的代理与服务器的结构如下图所示</p>
+<p><img src="https://s2.loli.net/2022/06/20/DSXmPVMRKnT7eYa.png" srcset="/img/loading.gif" lazyload alt="Design" /></p>
+<h4 id="jmter压测-3"><a class="markdownIt-Anchor" href="#jmter压测-3"></a> jmter压测：</h4>
+<p>打开代理后：</p>
+<p><img src="https://s2.loli.net/2022/06/23/iDJK9CO7dtXTqYI.png" srcset="/img/loading.gif" lazyload alt="1000并发数" /></p>
+<p><img src="https://s2.loli.net/2022/06/23/Lyizavp8BTo2eXW.png" srcset="/img/loading.gif" lazyload alt="Result" /></p>
+<p><img src="https://s2.loli.net/2022/06/23/UogqiDlNvACuRSV.png" srcset="/img/loading.gif" lazyload alt="10000并发数" /></p>
+<p><img src="https://s2.loli.net/2022/06/23/S8AqoMaHQmsPFiO.png" srcset="/img/loading.gif" lazyload alt="Result" /></p>
+<p>若不使用代理，则NIO服务器的压测为：</p>
+<p><img src="https://s2.loli.net/2022/06/21/FlKnq8fycdbW2eH.png" srcset="/img/loading.gif" lazyload alt="Result-1" /></p>
+<p><img src="https://s2.loli.net/2022/06/21/5obBe3ZMF2LWVzp.png" srcset="/img/loading.gif" lazyload alt="Result-2" /></p>
+<p><img src="https://s2.loli.net/2022/06/23/gP1iOYurbIZQWhJ.png" srcset="/img/loading.gif" lazyload alt="Result-3" /></p>
+<hr />
+<h2 id="困难与问题"><a class="markdownIt-Anchor" href="#困难与问题"></a> 困难与问题</h2>
+<ul>
+<li>在问题一中，需要去了解报文头中各个参数的含义，在写报文头时遇到了一些 <code>bug</code> ，如在第一次写报文时将 <code>Content-Length</code> 与 <code>Transfer-Encoding</code> 同时写进报文头中；</li>
+<li>实验过程中，由于浏览器对报文格式的要求并不严格，如即使不传送 <code>Content-Length</code> ，浏览器也能够显示传送的报文体内容，但对于 <code>postman</code> 而言这样是不行的，这种对报文格式的区别要求也为调试代码带来了一些困难；</li>
+<li>在实现代理的过程中，由于数组习惯性的开大了，于是在传送报文体的过程中，字节数组总会有未被用完的部分，但这部分也被传送出去，导致在字符串的后面会出现大量的<code>NULL</code>，这种错误在浏览器端可以被自动忽略，但在 <code>postman</code> 中会报错。由于 <code>postman</code> 并不支持查看错误的响应报文，于是只能自己写一个客户端，将响应报文输出到文件中查看（见第二题中的 <code>client.java</code>）</li>
+<li>由于原生的 <code>NIO</code> 编程与 <code>Socket</code> 编程有很大的不同，在实现过程中遇到的问题很多，包括但不限于如何在多线程模式下尽最大可能使用 <code>Selector</code> 来保证并发量，如何合理管理内存使得在并发量很大的情况下能够安全运行而不发生内存泄漏，如何避免粘包与半包问题。</li>
+</ul>
+<p>以上问题大多数都已解决，但对于<code>Java</code>如何合理管理内存依然存在疑问，由于 <code>Java</code> 的自动 <code>gc</code> 机制导致不能像使用 <code>C/C++</code> 那样直接对内存进行操作，因此在 <code>NIO</code> 中，若并发数太多，便会抛出内存不够的异常。此问题日后会尽力去解决，并完善自己的 <code>NIO</code> 服务器。</p>
+<hr />
+<h2 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h2>
+<p>本次实验中使用Java语言开发了一个简单的Web服务器，了解并熟悉了套接字的使用以及多线程接管连接的实现；同时，开发了一个简单的多线程Web代理服务器，了解并熟悉了代理的运行机制以及线程池的工作；最后，使用NIO实现服务器支持连接的并发功能，了解了NIO的定义以及优势。在这个过程中，我学习了浏览器和<code>postman</code>的代理测试，以及压测的一定知识等等，收获颇丰。</p>
+<style>
+    .markdown-body {
+    font-family: 'Lato';
+    font-size: 16px;
+  }
+</style>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%80%BB%E4%B9%8B%E5%B0%B1%E6%98%AF%E4%B8%80%E4%BA%9B%E9%9B%B6%E9%9B%B6%E7%A2%8E%E7%A2%8E/" class="category-chain-item">总之就是一些零零碎碎</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/ECNU/">#ECNU</a>
+      
+        <a href="/tags/Computer-Net/">#Computer Net</a>
+      
+    </div>
+  
+</div>
+
+
+             
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/18/%E6%80%BB%E4%B9%8B%E5%B0%B1%E6%98%AF%E4%B8%80%E4%BA%9B%E9%9B%B6%E9%9B%B6%E7%A2%8E%E7%A2%8E/2022-summer-todo-list/" title="2022 SUMMER TODO LIST">
+                        <span class="hidden-mobile">2022 SUMMER TODO LIST</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'topdeoo/topdeoo.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', '💬');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <link href="https://fonts.font.im/css?family=Nothing+You+Could+Do" rel="stylesheet">
+        </div>
+      </div>
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
