@@ -24,7 +24,7 @@
 <meta property="og:description" content="MIT 6.S081实验所需要安装的环境😶">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-04-01T12:00:20.000Z">
-<meta property="article:modified_time" content="2022-04-26T10:34:13.391Z">
+<meta property="article:modified_time" content="2022-07-03T06:22:23.119Z">
 <meta property="article:author" content="Virgil">
 <meta property="article:tag" content="OS">
 <meta property="article:tag" content="MIT">
@@ -233,7 +233,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          971 字
+          1k 字
         
       </span>
     
@@ -297,7 +297,7 @@
                 
                   
                     <!-- compatible with older versions-->
-                    本文最后更新于：2022年4月26日 晚上
+                    本文最后更新于：2022年7月3日 下午
                   
                 
               </p>
@@ -342,10 +342,12 @@
 <li>输入 <code>&lt;Ctrl + b&gt;</code> 后输入 <code>o</code> 可在拆分的窗口中切换</li>
 </ul>
 <p>然后, 我们在一个窗口内输入 <code>make qemu-gdb CPUS=1</code>, 可以发现输出了很多信息,其中有一条是 <code>tcp :25000</code></p>
-<p>最后, 我们在另外一个窗口中输入 <code>gdb multiarch</code> , 然后输入 <code>set architecture riscv:rv64</code> <code>target remote :25000</code>即可连接上<code>qemu</code>进行调试</p>
+<p>最后, 我们在另外一个窗口中输入 <code>gdb-multiarch</code> , 然后输入 <code>set architecture riscv:rv64</code> <code>target remote :25000</code>即可连接上<code>qemu</code>进行调试</p>
 <blockquote>
-<p>当然我们也可以在 ~/.gdbinit 中加上 <code>add-auto-load-safe-path ~/xv6-labs-2021/.gdbinit</code> 即可</p>
+<p>当然我们也可以在 ~/.gdbinit 中加上 <code>add-auto-load-safe-path ~/xv6-labs-2021/.gdbinit</code></p>
+<p>随后，只需要输入 <code>gdb-multiarch</code> 就可以进入调试</p>
 </blockquote>
+<p>注意，这里的 <code>gdb</code> 不能输入 <code>r</code> ，应该输入 <code>c</code> 以开始运行。</p>
 <style>
     .markdown-body {
     font-family: 'Lato';

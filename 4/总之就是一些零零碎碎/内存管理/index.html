@@ -16,25 +16,28 @@
   <meta name="author" content="Virgil">
   <meta name="keywords" content="">
   
-    <meta name="description" content=".markdown-body {     font-family: &#39;Lato&#39;;     font-size: 16px;   }">
+    <meta name="description" content="MINIX3内存管理">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Learning to Resolve Conflicts for Multi-Agent Path Finding with CBS">
-<meta property="og:url" content="https://topdeoo.github.io/1/Paper/MAPF/learning-to-resolve-conflicts-for-multi-agent-path-finding-with-cbs/index.html">
+<meta property="og:title" content="内存管理">
+<meta property="og:url" content="https://topdeoo.github.io/4/%E6%80%BB%E4%B9%8B%E5%B0%B1%E6%98%AF%E4%B8%80%E4%BA%9B%E9%9B%B6%E9%9B%B6%E7%A2%8E%E7%A2%8E/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/index.html">
 <meta property="og:site_name" content="随便扯扯">
-<meta property="og:description" content=".markdown-body {     font-family: &#39;Lato&#39;;     font-size: 16px;   }">
+<meta property="og:description" content="MINIX3内存管理">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-04-01T12:01:37.000Z">
-<meta property="article:modified_time" content="2022-07-03T03:04:29.852Z">
+<meta property="og:image" content="https://s2.loli.net/2022/07/04/2I4rBKongWkyfS3.png">
+<meta property="og:image" content="c:/Users/LENOVO/AppData/Roaming/Typora/typora-user-images/image-20220704184158296.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/04/3W9YTH4e2yESVUr.png">
+<meta property="article:published_time" content="2022-07-04T10:34:37.000Z">
+<meta property="article:modified_time" content="2022-07-04T10:42:39.158Z">
 <meta property="article:author" content="Virgil">
-<meta property="article:tag" content="paper">
-<meta property="article:tag" content="MAPF">
-<meta property="article:tag" content="Machine Learning">
+<meta property="article:tag" content="OS">
+<meta property="article:tag" content="ECNU">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2022/07/04/2I4rBKongWkyfS3.png">
   
   
     <meta name="msvalidate.01" content="2AAE2FAE478A113F14EC4F000EC4A180" />
   
-  <title>Learning to Resolve Conflicts for Multi-Agent Path Finding with CBS - 随便扯扯</title>
+  <title>内存管理 - 随便扯扯</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -45,8 +48,6 @@
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
-
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css" />
 
 
 
@@ -205,7 +206,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Learning to Resolve Conflicts for Multi-Agent Path Finding with CBS"></span>
+            <span id="subtitle" data-typed-text="内存管理"></span>
           
         </div>
 
@@ -221,8 +222,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-04-01 20:01" pubdate>
-          2022年4月1日 晚上
+        <time datetime="2022-07-04 18:34" pubdate>
+          2022年7月4日 晚上
         </time>
       </span>
     
@@ -234,7 +235,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          50 字
+          3.7k 字
         
       </span>
     
@@ -246,7 +247,7 @@
         
         
           <!-- compatible with older versions-->
-          1 分钟
+          31 分钟
         
       </span>
     
@@ -292,20 +293,43 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Learning to Resolve Conflicts for Multi-Agent Path Finding with CBS</h1>
+            <h1 style="display: none">内存管理</h1>
             
               <p class="note note-info">
                 
                   
                     <!-- compatible with older versions-->
-                    本文最后更新于：2022年7月3日 上午
+                    本文最后更新于：2022年7月4日 晚上
                   
                 
               </p>
             
             <div class="markdown-body">
               
-              <hr />
+              <blockquote>
+<p>MINIX3内存管理</p>
+</blockquote>
+<span id="more"></span>
+<h1 id="minix312-内存管理"><a class="markdownIt-Anchor" href="#minix312-内存管理"></a> MINIX3.1.2 内存管理</h1>
+<p><strong>修改brk的实现方式，将内存块的分配方式从首次适配更改为最佳适配</strong></p>
+<h2 id="allocc"><a class="markdownIt-Anchor" href="#allocc"></a> alloc.c</h2>
+<p>修改<code>/usr/src/servers/pm/alloc.c</code> 中的 <code>alloc_mem</code> 函数，把首次适配修改成改为最佳适配。</p>
+<p>即分配内存时，遍历整个空闲内存块列表，找到最适合大小的空闲块</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs c">PUBLIC phys_clicks <span class="hljs-title function_">alloc_mem</span><span class="hljs-params">(clicks)</span><br>phys_clicks clicks; <span class="hljs-comment">/* amount of memory requested */</span><br>&#123;<br>  <span class="hljs-comment">/* Allocate a block of memory from the free list using best fit. The block</span><br><span class="hljs-comment">  * consists of a sequence of contiguous bytes, whose length in clicks is</span><br><span class="hljs-comment">  * given by &#x27;clicks&#x27;. A pointer to the block is returned. The block is</span><br><span class="hljs-comment">  * always on a click boundary. This procedure is called when memory is</span><br><span class="hljs-comment">  * needed for FORK or EXEC. Swap other processes out if needed.</span><br><span class="hljs-comment">  */</span><br>  <span class="hljs-keyword">register</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">hole</span>* <span class="hljs-title">hp</span>, * <span class="hljs-title">prev_ptr</span>, * <span class="hljs-title">best_ptr</span>, * <span class="hljs-title">temp</span>;</span><br>  phys_clicks old_base;<br>  <span class="hljs-type">int</span> flag = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">do</span> &#123;<br>    prev_ptr = NIL_HOLE;<br>    hp = hole_head;<br>    <span class="hljs-keyword">while</span> (hp != NIL_HOLE &amp;&amp; hp-&gt;h_base &lt; swap_base) &#123;<br>      <span class="hljs-keyword">if</span> (hp-&gt;h_len &gt;= clicks &amp;&amp; ((hp-&gt;h_len &lt; best_ptr-&gt;h_len) || (flag ==<br>        <span class="hljs-number">0</span>))) &#123;<br>        best_ptr = hp;<br>        temp = prev_ptr;<br>        flag = <span class="hljs-number">1</span>;<br>      &#125;<br>      prev_ptr = hp;<br>      hp = hp-&gt;h_next;<br>    &#125;<br>  &#125; <span class="hljs-keyword">while</span> (swap_out()); <span class="hljs-comment">/* try to swap some other process out */</span><br>  <span class="hljs-keyword">if</span> (flag == <span class="hljs-number">1</span>) &#123;<br>    old_base = best_ptr-&gt;h_base;<br>    best_ptr-&gt;h_base += clicks;<br>    best_ptr-&gt;h_len -= clicks;<br>    <span class="hljs-comment">/* Remember new high watermark of used memory. */</span><br>    <span class="hljs-keyword">if</span> (best_ptr-&gt;h_base &gt; high_watermark)<br>      high_watermark = best_ptr-&gt;h_base;<br>    <span class="hljs-comment">/* Delete the hole if used up completely. */</span><br>    <span class="hljs-keyword">if</span> (best_ptr-&gt;h_len == <span class="hljs-number">0</span>) del_slot(temp, best_ptr);<br>    <span class="hljs-comment">/* Return the start address of the acquired block. */</span><br>    <span class="hljs-keyword">return</span>(old_base);<br>  &#125;<br>  <span class="hljs-keyword">return</span>(NO_MEM);<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="修改-brk-中的-adjust-函数"><a class="markdownIt-Anchor" href="#修改-brk-中的-adjust-函数"></a> 修改 brk 中的 adjust 函数</h2>
+<p>修改 <code>adjust</code> 函数，计算程序当前的空闲空间是否足够分配：若足够，则调整数据段指针，堆栈指针；若不够，调用 <code>allocate_new_mem</code> 函数申请新的足够大的内存空间</p>
+<p><img src="https://s2.loli.net/2022/07/04/2I4rBKongWkyfS3.png" srcset="/img/loading.gif" lazyload alt="Stack Frame" /></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c">	<span class="hljs-comment">/* Compute size of gap between stack and data segments. */</span><br>	delta = (<span class="hljs-type">long</span>) mem_sp-&gt;mem_vir - (<span class="hljs-type">long</span>) sp_click;<br>	lower = (delta &gt; <span class="hljs-number">0</span> ? sp_click : mem_sp-&gt;mem_vir);<br><span class="hljs-meta">#<span class="hljs-keyword">define</span> SAFETY_BYTES (384 * sizeof(char *))</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> SAFETY_CLICKS ((SAFETY_BYTES + CLICK_SIZE - 1) / CLICK_SIZE)</span><br>	gap_base = mem_dp-&gt;mem_vir + data_clicks + SAFETY_CLICKS;<br>	<span class="hljs-keyword">if</span> (lower &lt; gap_base)&#123; <span class="hljs-comment">/* data and stack collided */</span><br>	<span class="hljs-keyword">if</span>(allocate_new_mem(rmp, (phys_clicks)(mem_sp-&gt;mem_vir + mem_sp-&gt;mem_len<br>- mem_dp-&gt;mem_vir)) == ENOMEM)<br>	<span class="hljs-keyword">return</span>(ENOMEM);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>被调用的 <code>allocate_new_mem</code> 函数要完成三件事情：</p>
+<ol>
+<li>申请一段足够大的内存空间： <code>alloc_mem(new_mem_clicks)</code></li>
+<li>将程序现有的数据段和堆栈段的内容分别拷贝至新内存区： <code>sys_abscopy(old_data_addr, new_data_addr, databytes)</code></li>
+<li>释放原空间： <code>free_mem(old_data_base, old_mem_clicks)</code></li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs c">PUBLIC <span class="hljs-type">int</span> <span class="hljs-title function_">allocate_new_mem</span><span class="hljs-params">(rmp, old_mem_clicks)</span><br><span class="hljs-keyword">register</span> <span class="hljs-keyword">struct</span> mproc* rmp;<br>phys_clicks old_mem_clicks;<br>&#123;<br>  <span class="hljs-keyword">register</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">mem_map</span>* <span class="hljs-title">mem_sp</span>, * <span class="hljs-title">mem_dp</span>;</span><br>  phys_clicks new_mem_clicks, new_data_base, old_data_base, old_stack_base,<br>    new_stack_base;<br>  phys_bytes new_data_addr, old_data_addr, new_stack_addr, old_stack_addr;<br>  phys_bytes databytes, stackbytes;<br>  mem_dp = &amp;rmp-&gt;mp_seg[D];<br>  mem_sp = &amp;rmp-&gt;mp_seg[S];<br>  new_mem_clicks = old_mem_clicks * <span class="hljs-number">2</span>;<br>  new_data_base = alloc_mem(new_mem_clicks);<br>  <span class="hljs-keyword">if</span> (new_data_base == NO_MEM)<br>    <span class="hljs-keyword">return</span> (NO_MEM);<br>  old_data_base = mem_dp-&gt;mem_phys, old_stack_base = mem_sp-&gt;mem_phys;<br>  new_stack_base = new_data_base + new_mem_clicks - mem_sp-&gt;mem_len;<br>  new_data_addr = (phys_bytes)(new_data_base &lt;&lt; CLICK_SHIFT);<br>  old_data_addr = (phys_bytes)(old_data_base &lt;&lt; CLICK_SHIFT);<br>  new_stack_addr = (phys_bytes)(new_stack_base &lt;&lt; CLICK_SHIFT);<br>  old_stack_addr = (phys_bytes)(old_stack_base &lt;&lt; CLICK_SHIFT);<br>  databytes = (phys_bytes)(mem_dp-&gt;mem_len &lt;&lt; CLICK_SHIFT);<br>  stackbytes = (phys_bytes)(mem_sp-&gt;mem_len &lt;&lt; CLICK_SHIFT);<br>  <span class="hljs-keyword">if</span> (sys_abscopy(old_data_addr, new_data_addr, databytes) &lt; <span class="hljs-number">0</span> ||<br>    sys_abscopy(old_stack_addr, new_stack_addr, stackbytes) &lt; <span class="hljs-number">0</span>)<br>    panic(__FILE__, <span class="hljs-string">&quot;do_fork can&#x27;t copy&quot;</span>, <span class="hljs-number">-1</span>);<br>  rmp-&gt;mp_seg[D].mem_phys = new_data_base;<br>  rmp-&gt;mp_seg[S].mem_phys = new_stack_base;<br>  rmp-&gt;mp_seg[S].mem_vir = mem_dp-&gt;mem_vir + new_mem_clicks - mem_sp -<br>    &gt; mem_len;<br>  free_mem(old_data_base, old_mem_clicks);<br>  <span class="hljs-keyword">return</span> (OK);<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="测试结果"><a class="markdownIt-Anchor" href="#测试结果"></a> 测试结果</h2>
+<p><img src="C:/Users/LENOVO/AppData/Roaming/Typora/typora-user-images/image-20220704184158296.png" srcset="/img/loading.gif" lazyload alt="Test1" /></p>
+<p><img src="https://s2.loli.net/2022/07/04/3W9YTH4e2yESVUr.png" srcset="/img/loading.gif" lazyload alt="Test2" /></p>
 <style>
     .markdown-body {
     font-family: 'Lato';
@@ -329,15 +353,8 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Paper/" class="category-chain-item">Paper</a>
+  <a href="/categories/%E6%80%BB%E4%B9%8B%E5%B0%B1%E6%98%AF%E4%B8%80%E4%BA%9B%E9%9B%B6%E9%9B%B6%E7%A2%8E%E7%A2%8E/" class="category-chain-item">总之就是一些零零碎碎</a>
   
-  
-    <span>></span>
-    
-  <a href="/categories/Paper/MAPF/" class="category-chain-item">MAPF</a>
-  
-  
-
   
 
       </span>
@@ -351,11 +368,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/paper/">#paper</a>
+        <a href="/tags/OS/">#OS</a>
       
-        <a href="/tags/MAPF/">#MAPF</a>
-      
-        <a href="/tags/Machine-Learning/">#Machine Learning</a>
+        <a href="/tags/ECNU/">#ECNU</a>
       
     </div>
   
@@ -369,18 +384,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/1/%E5%85%B3%E4%BA%8EOS%E7%9A%84%E4%B8%80%E4%BA%9B%E9%9B%B6%E9%9B%B6%E7%A2%8E%E7%A2%8E/MIT-6-S081/mit-6-s081-lab2-system-call/" title="MIT 6.S081 lab2 System Call">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">MIT 6.S081 lab2 System Call</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/1/%E5%85%B3%E4%BA%8EOS%E7%9A%84%E4%B8%80%E4%BA%9B%E9%9B%B6%E9%9B%B6%E7%A2%8E%E7%A2%8E/MIT-6-S081/mit-6-s081-lab1-utils/" title="MIT 6.S081 lab1 Utils">
-                        <span class="hidden-mobile">MIT 6.S081 lab1 Utils</span>
+                      <a href="/23/%E6%80%BB%E4%B9%8B%E5%B0%B1%E6%98%AF%E4%B8%80%E4%BA%9B%E9%9B%B6%E9%9B%B6%E7%A2%8E%E7%A2%8E/httpserver/" title="HttpServer">
+                        <span class="hidden-mobile">HttpServer</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -466,11 +475,6 @@
 
 
   
-
-
-  
-  
-
 
 
 
