@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>Stanford CS143 Compilers lab0</title>
+    <link href="/16/%E5%85%B3%E4%BA%8ECompilers%E7%9A%84%E4%B8%80%E4%BA%9B%E9%9B%B6%E9%9B%B6%E7%A2%8E%E7%A2%8E/Stanford-CS143/stanford-cs143-compilers-lab0/"/>
+    <url>/16/%E5%85%B3%E4%BA%8ECompilers%E7%9A%84%E4%B8%80%E4%BA%9B%E9%9B%B6%E9%9B%B6%E7%A2%8E%E7%A2%8E/Stanford-CS143/stanford-cs143-compilers-lab0/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>Stanford CS143 实验环境安装与配置</p></blockquote><span id="more"></span><h1 id="lab0-实验环境"><a class="markdownIt-Anchor" href="#lab0-实验环境"></a> Lab0 实验环境</h1><p><strong>针对Windows系统</strong></p><h2 id="下载并安装-docker"><a class="markdownIt-Anchor" href="#下载并安装-docker"></a> 下载并安装 docker</h2><p>步骤可见<a href="/29/%E5%85%B3%E4%BA%8ECSAPP%E7%9A%84%E4%B8%80%E4%BA%9B%E9%9B%B6%E9%9B%B6%E7%A2%8E%E7%A2%8E/cs-app-%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="docker的安装与配置">docker的安装与配置</a></p><h2 id="环境安装"><a class="markdownIt-Anchor" href="#环境安装"></a> 环境安装</h2><p>这部分与 <code>CSAPP</code> 不同，我们不需要从头开始配置环境，可以使用网上古圣先贤配好的环境，地址为<a href="https://hub.docker.com/r/syhkiller/stanford-cs143/#!">syhkiller/stanford-cs143 - Docker Image | Docker Hub</a></p><ol><li><p><code>win + r</code> 输入 <code>cmd</code> 打开命令行，输入命令：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker pull syhkiller/stanford-cs143<br></code></pre></td></tr></table></figure></li><li><p>等待下载完成后，运行容器：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker container run -it -v --name=cs143 syhkiller/stanford-cs143 /bin/bash<br></code></pre></td></tr></table></figure></li><li><p>这样，我们就创建了一个名为 <code>cs143</code> 的容器。</p></li></ol><h2 id="环境检验"><a class="markdownIt-Anchor" href="#环境检验"></a> 环境检验</h2><p>由于这个实验不需要我们自己创建文件夹完成，所以这里使用另一种方法。</p><p>在 <code>VS Code</code> 中安装两个插件 <code>Docker</code> 与 <code>Remote Container</code>，下面演示一下如何使用 <code>VS Code</code> 来浏览 <code>Docker</code> 中的文件。</p><p><img src="https://s2.loli.net/2022/07/16/xcFzluGIyW5EhDY.png" alt="Step-1" /></p><p>随后，会弹出一个全新页面，我们选择打开文件夹：</p><p><img src="https://s2.loli.net/2022/07/16/16BtNyJF7kUL5ne.png" alt="Step-2" /></p><p>打开 <code>PA1</code> 文件夹后，我们在 <code>stack.cl</code> 中编写如下代码：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cool">class Main inherits IO&#123;<br>    main(): SELF_TYPE&#123;<br>        out_string(&quot;Hello World!\n&quot;)<br>    &#125;;<br>&#125;;<br><br></code></pre></td></tr></table></figure><p>并对 <code>Makefile</code> 中的 <code>test</code> 部分进行修改：</p><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">test:compile</span><br>@echo stack.test<br>$&#123;CLASSDIR&#125;/bin/spim -file stack.s &lt; stack.test<br></code></pre></td></tr></table></figure><p>随后，我们在终端中输入 <code>make test</code>，得到如下结果：</p><p><img src="https://s2.loli.net/2022/07/16/gNYDy2HOiUf4JEu.png" alt="Hello World" /></p><p>那么说明实验环境已经成功配置。</p><blockquote><p>在 <code>VS Code</code> 中，我们还可以下载一个 <code>language-cool</code> 的拓展，来让 <code>.cl</code> 文件有高亮显示</p></blockquote><style>    .markdown-body {    font-family: 'Lato';    font-size: 16px;  }</style>]]></content>
+    
+    
+    <categories>
+      
+      <category>关于Compilers的一些零零碎碎</category>
+      
+      <category>Stanford CS143</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Compilers</tag>
+      
+      <tag>Stanford</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>MST</title>
     <link href="/10/uncategorized/mst/"/>
     <url>/10/uncategorized/mst/</url>
