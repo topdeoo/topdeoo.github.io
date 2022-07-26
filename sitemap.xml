@@ -2,7 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://topdeoo.github.io/10/Algorithm/Miscellaneous/tail-recursion/</loc>
+    
+    <lastmod>2022-07-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://topdeoo.github.io/10/Algorithm/Miscellaneous/binary-answer/</loc>
+    
+    <lastmod>2022-07-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://topdeoo.github.io/10/Algorithm/Miscellaneous/encryption-algorithm/</loc>
+    
+    <lastmod>2022-07-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://topdeoo.github.io/29/Algorithm/NumberTheory/about-prime/</loc>
     
     <lastmod>2022-07-26</lastmod>
     
@@ -20,27 +47,9 @@
   </url>
   
   <url>
-    <loc>https://topdeoo.github.io/29/Algorithm/NumberTheory/about-prime/</loc>
-    
-    <lastmod>2022-07-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://topdeoo.github.io/16/%E5%85%B3%E4%BA%8ECompilers%E7%9A%84%E4%B8%80%E4%BA%9B%E9%9B%B6%E9%9B%B6%E7%A2%8E%E7%A2%8E/Stanford-CS143/stanford-cs143-compilers-lab0/</loc>
     
     <lastmod>2022-07-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://topdeoo.github.io/10/Algorithm/Miscellaneous/binary-answer/</loc>
-    
-    <lastmod>2022-07-10</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -57,15 +66,6 @@
   
   <url>
     <loc>https://topdeoo.github.io/10/uncategorized/shortest-path/</loc>
-    
-    <lastmod>2022-07-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://topdeoo.github.io/10/uncategorized/tail-recursion/</loc>
     
     <lastmod>2022-07-10</lastmod>
     
@@ -384,14 +384,14 @@
   </url>
   
   <url>
-    <loc>https://topdeoo.github.io/categories/Algorithm/Miscellaneous/</loc>
+    <loc>https://topdeoo.github.io/categories/Algorithm/NumberTheory/</loc>
     <lastmod>2022-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://topdeoo.github.io/categories/Algorithm/NumberTheory/</loc>
+    <loc>https://topdeoo.github.io/categories/Algorithm/Miscellaneous/</loc>
     <lastmod>2022-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

@@ -16,22 +16,30 @@
   <meta name="author" content="Virgil">
   <meta name="keywords" content="">
   
-    <meta name="description" content="​">
+    <meta name="description" content="尾递归（还是递归）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="tail-recursion">
-<meta property="og:url" content="https://topdeoo.github.io/10/uncategorized/tail-recursion/index.html">
+<meta property="og:title" content="Tail Recursion">
+<meta property="og:url" content="https://topdeoo.github.io/10/Algorithm/Miscellaneous/tail-recursion/index.html">
 <meta property="og:site_name" content="我在摆大烂">
-<meta property="og:description" content="​">
+<meta property="og:description" content="尾递归（还是递归）">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/07/26/LXZTEJnNbyxCe6Y.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/26/7MYEAadVlZnbRDg.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/26/KStAaEzdCjMGRHh.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/26/Rv3k5W8YFyPKsiU.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/26/x34ryl9e1dsinPZ.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/26/JWIyxF4tol5vQfc.png">
 <meta property="article:published_time" content="2022-07-10T06:14:19.000Z">
-<meta property="article:modified_time" content="2022-07-10T06:14:19.073Z">
+<meta property="article:modified_time" content="2022-07-26T14:11:18.544Z">
 <meta property="article:author" content="Virgil">
+<meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2022/07/26/LXZTEJnNbyxCe6Y.png">
   
   
     <meta name="msvalidate.01" content="2AAE2FAE478A113F14EC4F000EC4A180" />
   
-  <title>tail-recursion - 我在摆大烂</title>
+  <title>Tail Recursion - 我在摆大烂</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -202,7 +210,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="tail-recursion"></span>
+            <span id="subtitle" data-typed-text="Tail Recursion"></span>
           
         </div>
 
@@ -231,7 +239,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          51 字
+          1.6k 字
         
       </span>
     
@@ -243,7 +251,7 @@
         
         
           <!-- compatible with older versions-->
-          1 分钟
+          14 分钟
         
       </span>
     
@@ -289,13 +297,13 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">tail-recursion</h1>
+            <h1 style="display: none">Tail Recursion</h1>
             
               <p class="note note-info">
                 
                   
                     <!-- compatible with older versions-->
-                    本文最后更新于：2022年7月10日 下午
+                    本文最后更新于：2022年7月26日 晚上
                   
                 
               </p>
@@ -303,9 +311,64 @@
             <div class="markdown-body">
               
               <blockquote>
-<p>​</p>
+<p>尾递归（还是递归）</p>
 </blockquote>
 <span id="more"></span>
+<h1 id="尾递归"><a class="markdownIt-Anchor" href="#尾递归"></a> 尾递归</h1>
+<h2 id="导引"><a class="markdownIt-Anchor" href="#导引"></a> 导引</h2>
+<p>我们从一个简单的例子看起：<code>Fib(n)</code> 斐波那契数列。</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>F</mi><mi>i</mi><mi>b</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mrow><mo fence="true">{</mo><mtable rowspacing="0.3599999999999999em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>1</mn><mo separator="true">,</mo><mspace width="1em"/><mi>n</mi><mo>=</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>F</mi><mi>i</mi><mi>b</mi><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo>+</mo><mi>F</mi><mi>i</mi><mi>b</mi><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>2</mn><mo stretchy="false">)</mo><mo separator="true">,</mo><mspace width="1em"/><mi>o</mi><mi>t</mi><mi>h</mi><mi>e</mi><mi>r</mi><mi>w</mi><mi>i</mi><mi>s</mi><mi>e</mi></mrow></mstyle></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">Fib(n) = 
+\begin{cases}
+1, \quad n = 0,1\\
+Fib(n-1) +Fib(n-2), \quad otherwise
+\end{cases}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault">i</span><span class="mord mathdefault">b</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.0000299999999998em;vertical-align:-1.25003em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault">i</span><span class="mord mathdefault">b</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault">i</span><span class="mord mathdefault">b</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">2</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">o</span><span class="mord mathdefault">t</span><span class="mord mathdefault">h</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord mathdefault">i</span><span class="mord mathdefault">s</span><span class="mord mathdefault">e</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>我们很容易写出一个递归函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">f</span>(<span class="hljs-params">n</span>):<br>    <span class="hljs-keyword">if</span> n &lt;= <span class="hljs-number">1</span>:<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span><br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-keyword">return</span> f(n - <span class="hljs-number">1</span>) + f(n - <span class="hljs-number">2</span>)<br></code></pre></td></tr></table></figure>
+<p>但这种写法我们已经被告知：“啊这种肯定不行啊，算个 <code>Fib(100)</code> 电脑就能煎鸡蛋了”。</p>
+<p>这个最大的问题其实是会发生 <code>Stack Overflow</code>。</p>
+<p>在大多数语言中，函数的调用过程如下图所示：</p>
+<p><img src="https://s2.loli.net/2022/07/26/LXZTEJnNbyxCe6Y.png" srcset="/img/loading.gif" lazyload alt="process stack" /></p>
+<p>这个栈就是一个进程的栈空间，一个进程的内存空间是有限的：</p>
+<p><img src="https://s2.loli.net/2022/07/26/7MYEAadVlZnbRDg.png" srcset="/img/loading.gif" lazyload alt="Process PageTable" /></p>
+<p>所以栈空间是很宝贵的，当我们使用上面的递归进行计算时，当 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 较大时会发现我们调用的函数层数太深，每调用一次函数都会增加一个栈帧，于是 <code>Stack Overflow</code> 就成为了必然的事情。</p>
+<p>所以我们想知道，有没有一种方法可以避免这种事情的发生呢？</p>
+<p>有的，迭代是一个常见的方法。但有些时候，一些问题的递归写法更直观，那么我们就可以通过尾递归的方式来实现。</p>
+<h2 id="尾递归优化"><a class="markdownIt-Anchor" href="#尾递归优化"></a> 尾递归优化</h2>
+<p>若函数在尾位置调用自身（或是一个尾调用本身的其他函数等等），则称这种情况为<strong>尾递归</strong>。尾递归也是递归的一种特殊情形。尾递归是一种特殊的尾调用，即在尾部直接调用自身的递归函数。对尾递归的优化也是关注尾调用的主要原因。尾调用不一定是递归调用，但是尾递归特别有用，也比较容易实现。</p>
+<p>这样的定义可能有些抽象，我们以上面的递归为例，尾递归可以写成：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">tailFib</span>(<span class="hljs-params">n, prev, current</span>):<br>    <span class="hljs-keyword">if</span> n &lt;= <span class="hljs-number">1</span>:<br>        <span class="hljs-keyword">return</span> prev<br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-keyword">return</span> tailFib(n - <span class="hljs-number">1</span>, current, prev + current)<br></code></pre></td></tr></table></figure>
+<p>也就是说，我们把需要计算的值设置为函数的参数，并通过参数传递给下一个递归函数。</p>
+<blockquote>
+<p>需要注意的是，尾递归只是一种写法，真实的优化是编译器完成的</p>
+</blockquote>
+<p>但对于 <code>Java</code> 与 <code>Python</code> 而言，这样是没有啥作用的……因为这两个语言并不做尾递归优化，他们相比于优化更倾向于让程序员知道 <code>bug</code> 的位置：在抛出异常时有完整的 <code>Stack Trace</code>。</p>
+<p>但 <code>C/C++</code> 不同，我们可以通过查看栈的层数来检查编译器是否进行了尾递归优化：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">tailFib</span><span class="hljs-params">(<span class="hljs-type">int</span> n, <span class="hljs-type">int</span> prev,<span class="hljs-type">int</span> current)</span></span>&#123;<br>    <span class="hljs-keyword">if</span>(n &lt;= <span class="hljs-number">1</span>)<br>        <span class="hljs-keyword">return</span> prev;<br>    <span class="hljs-keyword">else</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">tailFib</span>(n - <span class="hljs-number">1</span>, current, prev + current);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>我们编写测试代码进行测试：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">tailFib</span><span class="hljs-params">(<span class="hljs-type">int</span> n, <span class="hljs-type">int</span> prev,<span class="hljs-type">int</span> current)</span></span>&#123;<br>    <span class="hljs-keyword">if</span>(n &lt;= <span class="hljs-number">1</span>)<br>        <span class="hljs-keyword">return</span> prev;<br>    <span class="hljs-keyword">else</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">tailFib</span>(n - <span class="hljs-number">1</span>, current, prev + current);<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span>&#123;<br>    <span class="hljs-type">int</span> ans = <span class="hljs-built_in">tailFib</span>(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>);<br>    cout&lt;&lt;ans&lt;&lt;endl;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>首先，我们在 <code>-O1</code> 的优化条件下进行测试：</p>
+<p><img src="https://s2.loli.net/2022/07/26/KStAaEzdCjMGRHh.png" srcset="/img/loading.gif" lazyload alt="Compile" /></p>
+<p>随后在 <code>gdb</code> 下测试递归三次时的栈信息：</p>
+<p><img src="https://s2.loli.net/2022/07/26/Rv3k5W8YFyPKsiU.png" srcset="/img/loading.gif" lazyload alt="Stack Info" /></p>
+<p>可以发现，编译器并未对尾递归进行优化。</p>
+</li>
+<li>
+<p>随后，我们在 <code>-O3</code> 的优化条件下进行测试：</p>
+<p><img src="https://s2.loli.net/2022/07/26/x34ryl9e1dsinPZ.png" srcset="/img/loading.gif" lazyload alt="Stack Info" /></p>
+<p><img src="https://s2.loli.net/2022/07/26/JWIyxF4tol5vQfc.png" srcset="/img/loading.gif" lazyload alt="VS Code Stack Info" /></p>
+<p>可以发现，即使调用了10次，但始终都只有一层栈（main函数）</p>
+</li>
+</ul>
+<h2 id="尾递归写法"><a class="markdownIt-Anchor" href="#尾递归写法"></a> 尾递归写法</h2>
+<blockquote>
+<p>啊这个真的需要讲吗</p>
+</blockquote>
+<p>只需要在函数的尾部调用自身或者调用此函数中调用的函数即可，但不可在函数最后出现运算，如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">return</span> <span class="hljs-built_in">tailFib</span>(n - <span class="hljs-number">1</span>, current, prev + current) + prev;<br></code></pre></td></tr></table></figure>
+<p>并不能算尾递归。</p>
 <style>
     .markdown-body {
     font-family: 'Lato';
@@ -319,6 +382,41 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Algorithm/" class="category-chain-item">Algorithm</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Algorithm/Miscellaneous/" class="category-chain-item">Miscellaneous</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Algorithm/">#Algorithm</a>
+      
+    </div>
   
 </div>
 
@@ -340,8 +438,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/10/Algorithm/Miscellaneous/encryption-algorithm/" title="encryption-algorithm">
-                        <span class="hidden-mobile">encryption-algorithm</span>
+                      <a href="/10/Algorithm/Miscellaneous/encryption-algorithm/" title="Encryption Algorithm">
+                        <span class="hidden-mobile">Encryption Algorithm</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
