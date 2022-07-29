@@ -315,14 +315,14 @@
 <p>Shell 能解析的命令行如下:</p>
 <ol>
 <li>
-<p>带参数的程序运行功能。 <code>program arg1 arg2 ... argN</code></p>
+<p>带参数的程序运行功能。 <code>program arg1 arg2 ... argN </code></p>
 </li>
 <li>
 <p>重定向功能，将文件作为程序的输入/输出。</p>
 <ol>
-<li>“<code>&gt;</code>”表示覆盖写 <code>program arg1 arg2 ... argN &gt; output-file</code></li>
-<li>“<code>&gt;&gt;</code>”表示追加写 <code>program arg1 arg2 ... argN &gt;&gt; output-file</code></li>
-<li>“<code>&lt;</code>”表示文件输入 <code>program arg1 arg2 ... argN &lt; input-file</code></li>
+<li>“<code>&gt;</code>”表示覆盖写 <code>program arg1 arg2 ... argN &gt; output-file </code></li>
+<li>“<code>&gt;&gt;</code>”表示追加写 <code>program arg1 arg2 ... argN &gt;&gt; output-file </code></li>
+<li>“<code>&lt;</code>”表示文件输入 <code>program arg1 arg2 ... argN &lt; input-file </code></li>
 </ol>
 </li>
 <li>
@@ -362,7 +362,7 @@
 <p>此处，由于我们需要实现 <code>history</code> 命令，因此需要一个全局变量用以保存历史输入的所有命令。</p>
 <p>有关实现命令的所有细节，都在 <code>eval</code> 函数中实现。</p>
 <h3 id="内置命令的实现cd-history-n-exit"><a class="markdownIt-Anchor" href="#内置命令的实现cd-history-n-exit"></a> 内置命令的实现（<code>cd</code>, <code>history n</code>, <code>exit</code>)</h3>
-<p>通过 <code>csapp</code> 中<code>shell lab</code> 的启发，我们采用了与该实验中相似的函数结构，即：</p>
+<p>通过 <code>csapp</code> 中<code> shell lab</code> 的启发，我们采用了与该实验中相似的函数结构，即：</p>
 <ol>
 <li>使用 <code>eval</code> 函数来执行命令</li>
 <li>使用 <code>parse_cmd</code> 函数来分隔命令行</li>
@@ -376,7 +376,7 @@
 <li>对于 <code>history n</code> 命令，由于 <code>n</code> 是可选的，于是我们需要对此参数进行判断，若 <code>n</code> 不存在，我们需要输出历史输入的所有命令。</li>
 <li>对于 <code>mytop</code> 命令，由于完全陌生以及复杂程度较高，于是将此命令放在最后实现。</li>
 </ol>
-<p>（针对此处 <code>parse_cmd</code> 函数中使用 <code>malloc</code> 的解释：由于程序运行时会发生段错误，加上对 <code>gdb</code> 调试的不熟练，于是转向使用 <code>VS2019</code> 进行调试，但 <code>VS</code> 使用的编译器 <code>MSVC</code> 的标准较苛刻，不同于 <code>GNU</code>， 只用使用 <code>malloc</code> 才不会使程序在中途内存越界而无法观察到逻辑错误的位置）</p>
+<p>（针对此处 <code>parse_cmd</code> 函数中使用 <code>malloc</code> 的解释：由于程序运行时会发生段错误，加上对 <code>gdb</code> 调试的不熟练，于是转向使用 <code> VS2019</code> 进行调试，但 <code>VS</code> 使用的编译器 <code>MSVC</code> 的标准较苛刻，不同于 <code>GNU</code>， 只用使用 <code>malloc</code> 才不会使程序在中途内存越界而无法观察到逻辑错误的位置）</p>
 <h3 id="程序命令的实现"><a class="markdownIt-Anchor" href="#程序命令的实现"></a> 程序命令的实现</h3>
 <p>首先我们知道，当命令为程序命令时，我们通常所进行的操作时，<code>fork</code> 一个子进程，子进程来运行 <code>exec</code> 进而执行命令，而后返回父进程，父进程应当等待子进程运行完毕，方可退出。</p>
 <p>下面按照实现时的次序来介绍</p>
