@@ -53,7 +53,7 @@ pintos --
 
 ![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230810233232.png)
 
-可以按 {% kbd < Ctrl A > %} + {% kbd X %}，表示先按下 {% kbd Ctrl %} + {% kbd A %}，再按下 {% kbd X %} 来退出 `QEMU`
+可以按 ` < Ctrl A > ` + ` X `，表示先按下 ` Ctrl ` + ` A `，再按下 ` X ` 来退出 `QEMU`
 
 # Improve
 

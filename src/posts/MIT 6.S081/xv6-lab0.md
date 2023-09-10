@@ -47,7 +47,7 @@ link: https://docs.microsoft.com/zh-cn/windows/wsl/install
    
    将实验所需要的文件克隆到本地
 
-3. 在 `xv6-labs-2021`  目录下，使用命令`make qemu` 来启动`xv6` 系统， 若想来退出系统的`shell`，先{% kbd Ctrl %} + {% kbd A %}，随后按{% kbd X %}即可 ，此系统实验所需要的文件在`user` 与 `kernel` 文件夹中。
+3. 在 `xv6-labs-2021`  目录下，使用命令`make qemu` 来启动`xv6` 系统， 若想来退出系统的`shell`，先` Ctrl ` + ` A `，随后按` X `即可 ，此系统实验所需要的文件在`user` 与 `kernel` 文件夹中。
 
 4. 建议下载编辑器来进行实验，Ubuntu自带的VIM命令行下确实不太好用……，可以使用`VS Code` 来进行实验。
 
@@ -56,9 +56,9 @@ link: https://docs.microsoft.com/zh-cn/windows/wsl/install
 首先你需要有两个终端, 针对这点, 我们使用 `tmux`, 这里简单介绍一下用法: 
 
 - 输入 `tmux` 以进入
-- 输入 {% kbd Ctrl %} + {% kbd B %} 后输入 {% kbd % %} 可竖直拆分窗口
-- 输入 {% kbd Ctrl %} + {% kbd B %} 后输入 {% kbd " %} 可水平拆分
-- 输入 {% kbd Ctrl %} + {% kbd B %} 后输入 {% kbd o %} 可在拆分的窗口中切换
+- 输入 ` Ctrl ` + ` B ` 后输入 ` % ` 可竖直拆分窗口
+- 输入 ` Ctrl ` + ` B ` 后输入 ` " ` 可水平拆分
+- 输入 ` Ctrl ` + ` B ` 后输入 ` o ` 可在拆分的窗口中切换
 
 然后, 我们在一个窗口内输入 `make qemu-gdb CPUS=1`, 可以发现输出了很多信息,其中有一条是 `tcp :25000`
 
