@@ -2,6 +2,7 @@
 title: SparseTIR & SparTA 环境搭建与实现复现
 math: true
 date: 2023-06-12 13:45:28
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230803170225.png
 tag:
  - SparseTIR
  - SparTA

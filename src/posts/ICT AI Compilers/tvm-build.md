@@ -2,6 +2,7 @@
 title: TVM 运行环境搭建
 math: true
 date: 2023-06-06 14:26:08
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/831074.png
 tag:
  - TVM
  - Compilers

@@ -2,6 +2,7 @@
 title: ECNU DaSE2020 OS_HW3 RAM与Disk读写速度对比
 math: true
 date: 2022-05-08 22:25:01
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230628184041.png
 tag:
   - OS
   - ECNU

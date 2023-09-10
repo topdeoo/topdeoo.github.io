@@ -2,6 +2,7 @@
 title: PKU OS L0
 math: true
 date : 2023-08-10 22:53:00
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230803170014.png
 tag:
     - PKU
     - OS

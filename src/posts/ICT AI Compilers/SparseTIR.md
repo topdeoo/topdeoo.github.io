@@ -2,6 +2,7 @@
 title: SparseTIR 解读
 math: true
 date: 2023-06-16 22:48:31
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230627230306.png
 tag:
  - SparseTIR
  - Compilers

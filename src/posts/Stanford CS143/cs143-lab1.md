@@ -2,6 +2,7 @@
 title: Stanford CS143 Compilers lab1
 math: true
 date: 2022-11-20 17:03:53
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230803170433.png
 tag:
   - Compilers
   - Stanford

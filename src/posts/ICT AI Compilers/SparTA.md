@@ -2,6 +2,7 @@
 title: SparTA 解读
 math: true
 date: 2023-06-16 22:48:23
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/684458.png
 tag:
  - SparTA
  - Compilers

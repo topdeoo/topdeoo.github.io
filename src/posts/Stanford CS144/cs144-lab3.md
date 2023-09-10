@@ -1,6 +1,7 @@
 ---
 title: CS144 Lab3
 date: 2023-03-23 14:45:06
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230724204246.png
 tag:
   - Stanford
   - Computer Network

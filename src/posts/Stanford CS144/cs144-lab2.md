@@ -2,6 +2,7 @@
 title: CS144 Lab2
 math: true
 date: 2023-03-16 14:27:15
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/1311817.jpg
 tag:
   - Stanford
   - Computer Network

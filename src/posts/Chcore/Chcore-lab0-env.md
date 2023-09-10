@@ -8,6 +8,7 @@ tag:
 category:
   - 关于OS的一些零零碎碎    
   - IPADS
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230803170225.png
 ---
 
 Set the envrionment and boot the machine

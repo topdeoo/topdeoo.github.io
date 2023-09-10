@@ -2,6 +2,7 @@
 title: Perceptron And Neural Networks
 math: true
 date: 2022-08-03 17:16:17
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/n-buna.jpg
 tag:
 - Machine Learning
 - For civil

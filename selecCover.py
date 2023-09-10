@@ -26,7 +26,14 @@ cover_list = [
     "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/1311817.jpg"
 ]
 
-import random
+import hashlib
+import datetime
+
 
 if __name__ == '__main__':
-    print(random.choice(cover_list))
+    t = datetime.datetime.now()
+    md5_value = hashlib.md5(str(t).encode('utf-8')).hexdigest()
+    idx = 0
+    for i in range(len(md5_value)):
+        idx += int(ord(md5_value[i]))
+    print(cover_list[idx % len(cover_list)])

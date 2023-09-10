@@ -2,6 +2,7 @@
 title: Linear Regression And Basic Gradient Descent 1
 math: true
 date: 2022-07-31 11:09:54
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/644887.png
 tag:
 - Machine Learning
 - For civil
