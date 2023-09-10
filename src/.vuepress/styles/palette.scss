@@ -1,0 +1,11 @@
+// you can change colors here
+$theme-color: rgba(12, 140, 55, 0.792);
+
+@font-face {
+    font-family: 'Monaco';
+    src: url(../public/assets/fonts/Monaco.woff);
+}
+
+$font-family-mono: 'Monaco';
+$font-family: 'Monaco';
+$font-family-heading: 'Monaco';
