@@ -8,7 +8,6 @@ tag:
     - OS
 category:
 	- 关于OS的一些零零碎碎
-cover:
 ---
 
 > Project Setup & Simple Test

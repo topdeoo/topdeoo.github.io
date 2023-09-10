@@ -22,7 +22,7 @@ category:
 
 鉴于我在 `edx` 上学这门课，所以先放个作业首页：[Assignment #1 | Week 2: Lexical Analysis & Finite Automata | Compilers | edX](https://learning.edx.org/course/course-v1:StanfordOnline+SOE.YCSCS1+3T2020/block-v1:StanfordOnline+SOE.YCSCS1+3T2020+type@sequential+block@a412e45be94f499581b0e44aafff58f9/block-v1:StanfordOnline+SOE.YCSCS1+3T2020+type@vertical+block@344787aaf99044a7b5caa8ee5556ade9)
 
-需要注意的是，这门课是推荐使用 `VM` / `VirtualBox` 作为实验环境的，但我比较偏爱 `docker` 一点（，实验环境的搭建可以见 {% post_link cs143-lab0 'cs143环境搭建' %}
+需要注意的是，这门课是推荐使用 `VM` / `VirtualBox` 作为实验环境的，但我比较偏爱 `docker` 一点（，实验环境的搭建可以见 [Stanford CS143 Compilers lab0 | Virgil's Blog](https://topdeoo.github.io/posts/Stanford%20CS143/cs143-lab0/) 。
 
 # 实验准备
 

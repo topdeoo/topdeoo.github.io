@@ -18,7 +18,7 @@ category:
 
 # 下载并安装 docker
 
-步骤可见{% post_link CS-APP-lab0 'docker的安装与配置' %}
+步骤可见 [Get Docker | Docker Documentation](https://docs.docker.com/get-docker/)
 
 # 环境安装
 
