@@ -2,8 +2,8 @@
 $theme-color: rgba(12, 140, 55, 0.792);
 
 @font-face {
-    font-family: 'Monaco';
-    src: url(../public/assets/fonts/Monaco.woff);
+    font-family: Monaco;
+    src: url(../public/assets/fonts/Monaco.woff) format('woff');
 }
 
 $font-family-mono: 'Monaco';
