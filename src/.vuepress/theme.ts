@@ -12,7 +12,7 @@ export default hopeTheme({
 
   iconAssets: "fontawesome-with-brands",
 
-  logo: "/logo.png",
+  logo: "/logo.svg",
 
   repo: "topdeoo/topdeoo.github.io",
 

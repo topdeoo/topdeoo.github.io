@@ -456,5 +456,5 @@ link: https://zh0ngtian.github.io/2021/07/08/4b419b6f.html
 
 ```card
 title: PyTorch编译简介
-link: https://topdeoo.github.io/post/torch-dynamo.html
+link: https://topdeoo.github.io/posts/ICT%20AI%20Compilers/torch-dynamo.html
 ```

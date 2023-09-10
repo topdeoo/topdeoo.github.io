@@ -29,10 +29,10 @@ projects:
   #   desc: Detailed description of the article
   #   link: https://link.to.your.article
 
-  # - icon: friend
-  #   name: 友人帐
-  #   desc: Detailed description of friend
-  #   link: https://topdeoo.github.io/friends/
+  - icon: friend
+    name: Windlinxy
+    desc: Windlinxy's blog
+    link: https://www.windlinxy.top/
 
   # - icon: air-conditioner
   #   name: 小空调
