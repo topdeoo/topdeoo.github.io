@@ -11,7 +11,6 @@ category:
 cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230628183743.png
 ---
 
-------
 
 > MIT 6.S081实验所需要安装的环境😶
 

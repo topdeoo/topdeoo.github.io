@@ -19,7 +19,6 @@ cover_list = [
     "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230803170258.png",
     "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230627230306.png",
     "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/658268.png",
-    "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230628184041.png",
     "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/644887.png",
     "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/831074.png",
     "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/684458.png",
