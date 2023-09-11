@@ -26,7 +26,10 @@ comments: true
 虽然觉得可能 `Latex` 更符合我对笔记一类的审美，但是 `Markdown` 在一些方面确实方便（尤其是代码高亮这一块）。所以就用 `Markdown` 来记录一些零零碎碎了。
 
 但是可能最后会烂尾，毕竟我本身也没有记录的习惯🙄
-`
+
+## 关于正在做的事情
+
+- [x] 摆烂
 
 ## 关于课程
 
@@ -44,12 +47,26 @@ link: https://15445.courses.cs.cmu.edu/spring2023/
 logo: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230628002412.png
 ```
 
+```card
+title: SJTU Operating System
+link: https://ipads.se.sjtu.edu.cn/courses/os/schedule.shtml
+logo: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230911194918.png
+```
+
+```card
+title: PKU Operating System(UCB CS162)
+link: https://pku-os.github.io/sp23/
+logo: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230911195014.png
+```
+
 :::
 
 
 ### 2022
 
 - [x] ECNU Operating System
+
+:::card
 
 ```card
 title: CMU 15-213 CS:APP
@@ -58,7 +75,7 @@ logo: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/202306280
 ```
 
 ```card
-title: MIT 6.S081 Operating Syste
+title: MIT 6.S081 Operating System
 link:  https://pdos.csail.mit.edu/6.828/2022/index.html
 logo: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230628002644.png
 ```
@@ -75,7 +92,11 @@ link: https://pdos.csail.mit.edu/6.824/
 logo: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230628002644.png
 ```
 
+:::
+
 ### 2021
+
+:::card
 
 ```card
 title: MIT 6.006 Introduction To Algorithms
@@ -89,3 +110,4 @@ link: https://missing.csail.mit.edu/
 logo: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230628003052.png
 ```
 
+:::
