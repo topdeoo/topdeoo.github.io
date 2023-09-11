@@ -7,7 +7,7 @@ heroImage: false
 heroText: また夏を追う
 tagline: false
 heroFullScreen: true
-bgImage: /bg.jpg
+bgImage: /bg.png
 projects:
   # - icon: project
   #   name: project name

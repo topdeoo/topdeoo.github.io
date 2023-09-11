@@ -10,7 +10,7 @@ export default defineUserConfig({
   locales: {
     "/": {
       lang: "zh-CN",
-      title: "思想犯",
+      title: "nya~",
       description: "Virgil's personal blog",
     },
   },
