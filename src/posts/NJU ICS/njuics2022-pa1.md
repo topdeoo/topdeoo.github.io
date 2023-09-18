@@ -318,6 +318,8 @@ static bool make_token(char *e) {
 
 第二个函数的行为是：找到主操作符，其方法在文档以给出，记得重点为 **_优先级最低_**
 
+> 在这里我们还需要实现关于负数的操作，我的做法很简单，在 `eval` 中进行判断是否当前所求值为负数（因为传入的字符流一定存在一个 `-` 符号）
+
 因此，其具体实现为：
 
 ```c
@@ -382,4 +384,63 @@ int find_main_op(int p, int q, bool *success) {
 }
 ```
 
-由此，便能够正常工作了，但实验还要求完成一个单元测试
+此 `eval` 函数如下：
+
+```c {20-22}
+word_t eval(int p, int q, bool *success) {
+  if (p > q) {
+    *success = false;
+    return 0;
+  } else if (p == q) {
+
+    int idx = p;
+    if (tokens[idx].type == TK_INT) {
+      return atoi(tokens[idx].str);
+    } else if (tokens[idx].type == TK_REG) {
+      *success = true;
+      return isa_reg_str2val(tokens[idx].str, success);
+    } else if (tokens[idx].type == TK_VAR) {
+      // TODO: handle variable type
+      return 0;
+    }
+
+  } else if (check_parentheses(p, q) == true) {
+    return eval(p + 1, q - 1, success);
+  } else if (tokens[p].str[0] == '-' && p == q - 1) {
+    *success = true;
+    return -atoi(tokens[p + 1].str);
+  } else {
+    int op = find_main_op(p, q, success);
+    int val1 = eval(p, op - 1, success);
+    int val2 = eval(op + 1, q, success);
+
+    if (!success) {
+      return 0;
+    }
+
+    switch (tokens[op].str[0]) {
+    case '+':
+      return val1 + val2;
+    case '-':
+      return val1 - val2;
+    case '*':
+      return val1 * val2;
+    case '/':
+      if (!val2) {
+        success = false;
+        printf("divided by zero\n");
+        return 0;
+      }
+      return (sword_t)val1 / (sword_t)val2;
+    }
+  }
+  return 0;
+}
+```
+
+:::note
+
+成功时需要将 `success` 设置为 `true`，但感觉在最后处理是否能够成功计算时不太对，可能还需要改进
+
+:::
+

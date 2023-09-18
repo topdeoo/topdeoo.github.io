@@ -10,7 +10,7 @@
 
 @font-face {
     font-family: Monaco;
-    src: url(../public/assets/fonts/Monaco.woff) format('woff');
+    src: url(@/assets/fonts/Monaco.woff) format('woff');
 }
 
 .vp-category {

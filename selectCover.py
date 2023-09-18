@@ -22,7 +22,16 @@ cover_list = [
     "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/644887.png",
     "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/831074.png",
     "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/684458.png",
-    "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/1311817.jpg"
+    "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/1311817.jpg",
+    "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230916163505.png",
+    "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230916163539.png",
+    "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230916163739.png",
+    "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230916163924.png",
+    "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230916164128.png",
+    "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230916164153.png",
+    "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230916164305.png",
+    "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230916164444.png"
+
 ]
 
 import hashlib
