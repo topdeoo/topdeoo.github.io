@@ -2,7 +2,7 @@
 title: Chcore lab2 内存管理
 math: true
 date: 2023-09-11 04:40:09
-tags:
+tag:
   - OS
   - SJTU
 category:

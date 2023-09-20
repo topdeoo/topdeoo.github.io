@@ -3,7 +3,7 @@ title: 2023 吉林省赛环境配置
 math: true
 date: 2023-04-19 18:31:16
 cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/658268.png
-tags:
+tag:
   - ACM
   - CCPC
   - NENU
