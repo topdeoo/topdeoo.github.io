@@ -3,7 +3,7 @@ $theme-color: rgba(70, 180, 220, 0.792);
 
 @font-face {
     font-family: Monaco;
-    src: url(@/assets/fonts/Monaco.woff) format('woff');
+    src: url(fonts/Monaco.woff) format('woff');
 }
 
 $font-family-mono: 'Monaco';

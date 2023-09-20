@@ -5,7 +5,7 @@ date: 2023-09-11 04:40:09
 tags:
   - OS
   - SJTU
-categories:
+category:
   - 关于OS的一些零零碎碎
   - IPADS
 cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/1150451.jpg

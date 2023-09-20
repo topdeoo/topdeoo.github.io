@@ -6,7 +6,7 @@ cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230803
 tag:
     - Compilers
 category:
-	- InNight
+- InNight
 ---
 
 > 编译原理的一些简单复习
