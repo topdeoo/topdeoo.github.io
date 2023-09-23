@@ -31,8 +31,11 @@ comments: true
 
 - [x] 摆烂
 
-## 关于课程
+- [ ] 一些 [文档](https://bouncy-okapi-399.notion.site/36d199ea8b954200ad0874ef3eb7f9f1?v=0c5a194b9ad348f7bc526f5a0577d2f2&pvs=4)
 
+- [ ] 一些教程
+
+## 关于课程
 
 
 ### 2023
@@ -60,6 +63,8 @@ logo: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/202309111
 ```
 
 :::
+
+- [x] NENU Computer Architecture---(86/100)
 
 
 ### 2022
@@ -94,6 +99,22 @@ logo: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/202306280
 
 :::
 
+- [x] NENU Operating System---(97/100)
+
+- [x] NENU Computer Organization---(91/100)
+
+- [x] NENU Algorithm Analysis And Design---(94/100)
+
+- [x] NENU Combination Mathematics---(94/100)
+
+- [x] NENU Computer Graphics---(93/100)
+
+- [x] NENU Principle Of Database System---(96/100)
+
+- [x] NENU Software Engineering---(90/100)
+
+- [x] NENU Compilers---(100/100)
+
 ### 2021
 
 :::card
@@ -111,3 +132,45 @@ logo: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/202306280
 ```
 
 :::
+
+- [x] NENU OOP(i.e. Java)---(95/100)
+
+- [x] NENU Algorithm & Computer Programming(I)---(100/100)
+
+- [x] NENU Discrete Mathematics(I)---(95/100)
+
+- [x] NENU Digital Circuit---(89/100)
+
+- [x] NENU Calculus(II)---(99/100)
+
+- [x] NENU Introduction To Artificial Intelligence---(91/100)
+
+- [x] NENU Computer Network---(89/100)
+
+- [x] NENU Introduction To Machine Learning---(98/100)
+
+- [x] NENU Data Structure---(82/100) :sob:
+
+- [x] NENU Probability Theory And Mathematical Statistics---(88/100) :rage:
+
+- [x] NENU Discrete Mathematics(II)---(86/100) :sob:
+
+- [x] NENU Algorithm & Computer Programming(II)---(98/100)
+
+### 2020
+
+:::tip
+
+学校的课程，但我建议教材使用其他的而非老师指定的那些。
+
+:::
+
+- [x] NENU C Programming Language---(88/100) :sweat_smile:
+
+- [x] NENU Introduction To Computer Science---(91/100)
+
+- [x] NENU Linear Algebra---(88/100) :rage:
+
+- [x] NENU Calculus(I)---(98/100)
+
+
