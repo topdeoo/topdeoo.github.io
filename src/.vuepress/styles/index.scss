@@ -8,15 +8,15 @@
     color: #fbfbfb;
 }
 
-@import url('https://fonts.cdnfonts.com/css/monaco');
+// @import url('https://fonts.cdnfonts.com/css/monaco');
 
-// @font-face {
-//     font-family: Monaco;
-//     src: url(@/assets/fonts/Monaco.woff) format('woff');
-// }
+@font-face {
+    font-family: Monaco;
+    src: url(/fonts/Monaco.woff) format('woff');
+}
 
 .vp-category {
-    font-family: 'monaco';
+    font-family: 'Monaco';
 }
 
 .nav-item {
