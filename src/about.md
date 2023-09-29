@@ -15,9 +15,15 @@ comments: true
 
 喜欢的音乐和歌手都很多，最爱的外国乐队是 `Yorushika` ，最爱的国语歌是五月天的  `如烟`，但这些都不算很重要的事情
 
+:::tip
 
+2023.9.29 更新
 
-现在的理想是自己能有书读，但迷茫的是不知道自己应该读 `AI` 方向还是 `sys` 方向
+读研了...
+
+![研究生是一种什么感觉](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/81FBADE864521AF450ADE568EA019DDD.png)
+
+:::
 
 ## 关于博客
 
@@ -34,6 +40,8 @@ comments: true
 - [ ] 一些 [文档](https://bouncy-okapi-399.notion.site/36d199ea8b954200ad0874ef3eb7f9f1?v=0c5a194b9ad348f7bc526f5a0577d2f2&pvs=4)
 
 - [ ] 一些教程
+
+- [ ] 一些毕设
 
 ## 关于课程
 
