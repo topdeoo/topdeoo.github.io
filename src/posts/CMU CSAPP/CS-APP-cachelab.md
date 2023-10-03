@@ -2,7 +2,7 @@
 title: CS-APP-cachelab
 math: true
 date: 2023-10-03 01:42:30
-tags:
+tag:
   - CMU
   - CSAPP
 category:
