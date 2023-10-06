@@ -19,11 +19,6 @@ projects:
   #   desc: link detailed description
   #   link: https://link.address
 
-  # - icon: book
-  #   name: book name
-  #   desc: Detailed description of the book
-  #   link: https://link.to.your.book
-
   # - icon: article
   #   name: article name
   #   desc: Detailed description of the article
@@ -33,6 +28,11 @@ projects:
     name: Windlinxy
     desc: Windlinxy's blog
     link: https://www.windlinxy.top/
+
+  - icon: book
+    name: ChCore Lab
+    desc: A Guide for ChCore Lab
+    link: https://topdeoo.github.io/docs/ChCore
 
   # - icon: air-conditioner
   #   name: 小空调

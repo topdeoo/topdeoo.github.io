@@ -2,10 +2,9 @@
 title: CS144(sp23) Lab0
 math: true
 date: 2023-10-05 03:40:25
-tags:
+tag:
   - Stanford
-  - Computer
-  - Network
+  - Computer Network
 category:
   - 关于CS144的一些零零碎碎
 cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230916164444.png
@@ -247,12 +246,12 @@ cmake --build build --target check_webget
 class ByteStream {
 protected:
     uint64_t capacity_;
-    uint64_t write_index_;
-    uint64_t read_index_;
-    uint64_t read_count_;
-    uint64_t write_count_;
-    bool closed_;
-    bool error_;
+    uint64_t write_index_ { 0 };
+    uint64_t read_index_ { 0 };
+    uint64_t read_count_ { 0 };
+    uint64_t write_count_ { 0 };
+    bool closed_ { false };
+    bool error_ { false };
     std::vector<char> buffer_;
 // ... other code
 }
@@ -261,14 +260,7 @@ protected:
 我们从上面提到的简单接口开始实现，首先是构造函数：
 
 ```cpp
-ByteStream::ByteStream( uint64_t capacity )
-  : capacity_( capacity )
-  , write_index_( 0 )
-  , read_index_( 0 )
-  , read_count_( 0 )
-  , write_count_( 0 )
-  , closed_( false )
-  , error_( false ) {
+ByteStream::ByteStream( uint64_t capacity ) : capacity_( capacity ){
     buffer_.resize( capacity );
 }
 ```
@@ -375,7 +367,7 @@ void Writer::push( string data ) {
     if ( closed_ ) {
         return;
     }
-    uint64_t remaining = available_capacity();
+    auto remaining = available_capacity();
     if ( remaining >= data.size() ) {
         for ( auto& i : data ) {
             buffer_[write_index_] = i;
@@ -465,7 +457,7 @@ void Reader::pop( uint64_t len ) {
 
 于是我们修改 `push` 如下：
 
-```cpp {6, 8}
+```cpp {6-8}
 void Writer::push( string data ) {
     // Your code here.
     if ( closed_ ) {
@@ -492,7 +484,7 @@ void Writer::push( string data ) {
 }
 ```
 
-```cpp {2, 4}
+```cpp {2-4}
 string_view Reader::peek() const {
     // Your code here.
     if ( bytes_buffered() == 0 ) {
