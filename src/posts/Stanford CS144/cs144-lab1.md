@@ -7,7 +7,7 @@ tag:
   - Stanford
   - Computer Network
 category:
-	- 我的很多零零碎碎
+- 我的很多零零碎碎
 ---
 
 > `Lab Checkpoint 1: stitching substrings into a byte stream` 实现重组字节流

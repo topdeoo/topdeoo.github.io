@@ -3,6 +3,9 @@ title: Efficient Algorithm for Power Dominating Set Problem
 date: 2023-09-26 16:22:51
 layout: Slide
 ---
+> slide of Efficient Algorithm for Power Dominating Set Problem
+
+<!--more-->
 
 @slidestart [sky]
 

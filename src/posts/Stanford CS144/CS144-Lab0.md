@@ -7,7 +7,7 @@ tag:
   - Stanford
   - Computer Network
 category:
-	- 我的很多零零碎碎
+- 我的很多零零碎碎
 ---
 
 > `CS144 Checkpoint 0: network warmup `，实现一个 `best effort` 的字节传输流

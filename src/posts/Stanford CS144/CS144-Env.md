@@ -6,7 +6,7 @@ tag:
   - Stanford
   - Computer Network
 category:
-	- 我的很多零零碎碎
+- 我的很多零零碎碎
 ---
 
 > CS144 的一些准备工作

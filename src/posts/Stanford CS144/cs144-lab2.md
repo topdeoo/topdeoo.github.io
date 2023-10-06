@@ -7,7 +7,7 @@ tag:
   - Stanford
   - Computer Network
 category:
-	- 我的很多零零碎碎
+- 我的很多零零碎碎
 ---
 
 > 与 `Lab1` 结合，写出完整的 `TCP Receiver` 

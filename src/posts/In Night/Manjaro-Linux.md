@@ -6,13 +6,19 @@ tag:
     - Manjaro
     - Linux
 category:
-	- 我的很多零零碎碎
+- 我的很多零零碎碎
 cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/desktop3.png
 ---
 
 > 由于在 `Windows` 下开WSL和IDE导致电脑内存已经吃不消了，所以我直接把电脑系统刷成了 `Linux` （彻底疯狂了），这里记录一下我的配置过程 
 
 <!--more-->
+
+:::tip
+
+2023.10 更新微信安装及其配置， wps安装及其配置， 美化主题配置 请看[更新](#更新)
+
+:::
 
 放一张图展示一下我的成果
 
@@ -190,12 +196,14 @@ yay -S v2raya
 - [x]  `JetBrains` 全家桶
 - [x]  `VS Code`
 - [x]  `Typora`
+- [x] `Obsidian` ✅ 2023-10-05
 - [x]  `LunarVim`
 - [ ]  `Emacs`
 
 ```bash
 yay -S clion pycharm-professional intellij-idea-ultimate-edition goland
 yay -S typora
+yay -S obsidian
 yay -S  visual-studio-code-bin
 ```
 
@@ -311,4 +319,90 @@ sudo pacman -S neofetch lolcat
 然后就可以愉快的秀 `Terminal` 了
 
 
+
+# 更新
+
+## Wechat
+
+在 `AUR` 官网上搜索 com.qq.weixin.deepin，然后yay下载即可
+
+
+```shell
+yay -S com.qq.weixin.deepin
+```
+
+会遇到的问题：
+
+1. 输入框中大字只会出现方框不显示文字
+2. 缩放不对，显示的字体太小
+3. 输入法太小，看不清字
+
+前两个的解决方法都在网站上有，复制过来就是：
+
+Q:高分屏缩放支持
+A:执行 `WINEPREFIX=~/.deepinwine/Deepin-WeChat deepin-wine6-stable winecfg`，在显示标签下调整DPI,100%缩放为96dpi，依次类推200%缩放192dpi
+
+Q:输入框无法显示输入字符，只显示口
+A:可以下载安装宋体字体文件`simsun.ttc`，重启微信即可正常显示
+
+> 关于 Linux 如何安装字体，可以直接 Google
+
+关于输入法的问题：
+
+可以用可视化界面解决，打开输入法的配置（一般输入法默认为 `Fcitx5`，在 `manjaro` 下可以直接用 `Manjaro-Hello` 来安装，不需要自己配置）：
+
+![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20231005161619.png)
+
+按照次序点击选择即可，字号选择自己看着舒服的就行。
+
+## WPS 配置
+
+1. 显示配置
+2. WPS Word无法导出pdf的配置
+
+显示的时候字号会变小，而且无法调整，我们在启动的社会加入参数即可。
+
+选择一个 wps app，右键，点击 “编辑应用程序”，配置如下：
+
+![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20231005161932.png)
+在环境变量处加上 `QT_FONT_DPI=xxx` 即可（xxx为你需要缩放的 DPI 值，一般为100, 120, 144）
+
+WPS Word无法导出pdf：
+
+此问题为缺少环境，其导出依赖于 `libtiff5.so.5`，下载安装即可：
+
+```bash
+yay -S libtiff5
+```
+
+## Obsidian
+
+`Obsidian` 中还是存在很多问题的，但我觉得大部分都是插件之间冲突的原因，比如 `style setting` 和 `codeBlock customizer` 设置之后会导致很多插件的即时预览出现毛病…… 
+
+不过这里找的问题是查看关系图谱时直接黑了，什么图都没有，一般报错是报 `js` 的问题（甚至还是警告），据了解应该是 `mesa` 版本的问题，降版本可以解决（然而 `Manjaro` 清理了缓存之后就没办法降级了……能降级的[archlinuxfr](http://repo.archlinux.fr/)直接停止维护了，如下：
+![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20231005162845.png)
+
+但论坛上给出了另外一种解决方法：
+
+`rm -rf .config/obsidian/GPUCache/` 
+
+然后重启  `obsidian` 即可。
+
+## 美化
+
+感觉是最无聊的一个板块（？
+
+重新用的主题和一些配置如下：
+
+主题：`Lavanda-Sea-Light`
+应用程序风格：`kvantum`
+视觉风格：`Lavanda-Sea-Dark`
+窗口装饰元素：`Breezemite dark`
+图标： `ePapirus`
+光标：`Volantes Cursors`
+欢迎界面：`Arch Simple Blue`
+
+目前界面如下：
+
+![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20231005163435.png)
 
