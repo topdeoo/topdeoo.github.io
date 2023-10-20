@@ -1,6 +1,7 @@
 import { sidebar } from "vuepress-theme-hope";
 import { docs } from "./docs";
 import { posts } from "./posts";
+import { research } from "./research";
 
 export const zhSidebar = sidebar({
     "/": [
@@ -26,4 +27,8 @@ export const zhSidebar = sidebar({
 
     "/docs/ChCore/": "structure",
     "/docs": docs,
+
+    "/Efficient_Research": research,
+    "/Efficient_Research/C_C++/": "structure",
+
 });

@@ -14,7 +14,7 @@ sticky: 20
 
 # 代码规范与风格
 
-- [C/C++](/Effective Research/C_C++)
+- [C/C++](/Effective_Research/C_C++)
 
 
 # 复现与迁移
