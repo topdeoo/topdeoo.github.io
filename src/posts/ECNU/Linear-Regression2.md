@@ -42,7 +42,7 @@ category:
 $$
 L(\theta) = L(\theta^{\prime}) + (\theta - \theta^{\prime})^T\mathop{g} + \frac{1}{2}(\theta -\theta^{\prime})^T\mathop{H}(\theta - \theta^{\prime}) + o(\theta^T\theta)
 $$
-其中，$\mathop{g} = \nabla L(\theta^{\prime})$  为 $L(\theta)$ 在 $\theta = \theta^{\prime}$ 处的梯度，$\mathop{H}$ 称为海森矩阵(`Hessian Matrix`)，$H_{ij} = \frac{\part^2}{\part\theta_i\part\theta_j}L(\theta^{\prime})$
+其中，$\mathop{g} = \nabla L(\theta^{\prime})$  为 $L(\theta)$ 在 $\theta = \theta^{\prime}$ 处的梯度，$\mathop{H}$ 称为海森矩阵(`Hessian Matrix`)，$H_{ij} = \frac{\partial^2}{\partial\theta_i\partial\theta_j}L(\theta^{\prime})$
 
 那么由于我们现在到了一个驻点，于是 $g = \nabla L(\theta^{\prime}) = 0$
 
@@ -56,8 +56,8 @@ $$
 $$
 L(\theta) - L(\theta^{\prime}) = \frac{1}{2}(\theta -\theta^{\prime})^T\mathop{H}(\theta - \theta^{\prime}) = 
 \begin{cases}
-> 0\par 
-< 0\par 
+> 0\\
+< 0\\ 
 Sometimes > 0, sometimes < 0
 \end{cases}
 $$
@@ -105,8 +105,8 @@ $$
 批量梯度下降，名头看起来很大，其实本质上就是最朴素的梯度下降。在前面一篇中我们提到，我们每次更新参数的公式为：
 $$
 \begin{aligned}
-(w^{(i+1)}, b^{(i+1)}) &= (w^{(i)}, b^{(i)}) - \alpha\nabla Loss(w^{(i)}, b^{(i)}) \par 
-&= (w^{(i)}, b^{(i)}) - \alpha(\frac{\part Loss}{\part w}, \frac{\part Loss}{\part b})\par 
+(w^{(i+1)}, b^{(i+1)}) &= (w^{(i)}, b^{(i)}) - \alpha\nabla Loss(w^{(i)}, b^{(i)}) \\ 
+&= (w^{(i)}, b^{(i)}) - \alpha(\frac{\partial Loss}{\partial w}, \frac{\partial Loss}{\partial b})\\ 
 &= (w^{(i)}, b^{(i)}) - \alpha(\frac{1}{N}\sum^N_{j=1}x_j(b^{(i)} + w^{(i)T}x_j - y_j), \frac{1}{N}\sum^N_{j=1}(b^{(i)}+w^{(i)T}x_j - y_j))
 \end{aligned}
 $$
@@ -180,8 +180,10 @@ $$
 
 事实上，我们的做法是将参数更新的公式进行了更改：
 $$
-\theta^{(0)}, m^{(0)} = 0\par 
-m^{(i+1)} = \lambda m^{(i)} - \alpha \nabla Loss(\theta^{(i)})\par 
+\theta^{(0)}, m^{(0)} = 0
+$$$$
+m^{(i+1)} = \lambda m^{(i)} - \alpha \nabla Loss(\theta^{(i)})
+$$$$
 \theta^{(i+1)} = \theta^{(i)} + m^{(i+1)}
 $$
 这样而言，我们每次计算的 $m$ 事实上都是前面我们走过的梯度的合成，也就是我们的初速度（），这样即使我们当前的梯度是个负值（梯度为负的话就说明梯度在把你往后拉），但我们的动量是个正值，这样我们就不会轻易被梯度给拉回去（拉回一个局部最小）
@@ -222,9 +224,12 @@ $$
 
 如下所示：
 $$
-\theta^{(1)} = \theta^{(0)} - \frac{\alpha}{\sigma^{(0)}}\nabla Loss(\theta^{(0)})\quad \sigma^{(0)} = \sqrt{(\nabla Loss(\theta^{(0)}))^2} = ||\nabla Loss(\theta^{(0)})||_2\par 
-\theta^{(2)} = \theta^{(1)} - \frac{\alpha}{\sigma^{(1)}}\nabla Loss(\theta^{(1)})\quad \sigma^{(1)} = \sqrt{\frac{1}{2}(\nabla Loss(\theta^{(0)}))^2 + \nabla Loss(\theta^{(1)}))^2)}\par 
-\vdots\par 
+\theta^{(1)} = \theta^{(0)} - \frac{\alpha}{\sigma^{(0)}}\nabla Loss(\theta^{(0)})\quad \sigma^{(0)} = \sqrt{(\nabla Loss(\theta^{(0)}))^2} = ||\nabla Loss(\theta^{(0)})||_2
+$$$$
+\theta^{(2)} = \theta^{(1)} - \frac{\alpha}{\sigma^{(1)}}\nabla Loss(\theta^{(1)})\quad \sigma^{(1)} = \sqrt{\frac{1}{2}(\nabla Loss(\theta^{(0)}))^2 + \nabla Loss(\theta^{(1)}))^2)}
+$$$$
+\vdots
+$$$$
 \theta^{(i+1)} = \theta^{(i)} - \frac{\alpha}{\sigma^{(i)}}\nabla Loss(\theta^{(i)})\quad \sigma^{(i)} = \sqrt{\frac{1}{i+1}\sum^i_{j=1}\nabla Loss(\theta^{(j)})^2}
 $$
 也就是说，我们的这个 $\sigma$ 事实上是一个梯度的均方根。
@@ -241,9 +246,12 @@ $$
 
 `RMSProp` 对 `Adagrad` 的算法进行了一些修改，让我们的学习率不至于衰减的如此之快。如下所示：
 $$
-\theta^{(1)} = \theta^{(0)} - \frac{\alpha}{\sigma^{(0)}}\nabla Loss(\theta^{(0)})\quad \sigma^{(0)} = \sqrt{(\nabla Loss(\theta^{(0)}))^2} = ||\nabla Loss(\theta^{(0)})||_2\par 
-\theta^{(2)} = \theta^{(1)} - \frac{\alpha}{\sigma^{(1)}}\nabla Loss(\theta^{(1)})\quad \sigma^{(1)} = \sqrt{\beta(\sigma^{(0)})^2 + (1-\beta)(\nabla Loss(\theta^{(1)}))^2}\par 
-\vdots\par 
+\theta^{(1)} = \theta^{(0)} - \frac{\alpha}{\sigma^{(0)}}\nabla Loss(\theta^{(0)})\quad \sigma^{(0)} = \sqrt{(\nabla Loss(\theta^{(0)}))^2} = ||\nabla Loss(\theta^{(0)})||_2
+$$$$
+\theta^{(2)} = \theta^{(1)} - \frac{\alpha}{\sigma^{(1)}}\nabla Loss(\theta^{(1)})\quad \sigma^{(1)} = \sqrt{\beta(\sigma^{(0)})^2 + (1-\beta)(\nabla Loss(\theta^{(1)}))^2}
+$$$$
+\vdots
+$$$$
 \theta^{(i+1)} = \theta^{(i)} - \frac{\alpha}{\sigma^{(i)}}\nabla Loss(\theta^{(i)})\quad \sigma^{(i)} = \sqrt{\beta(\sigma^{(i-1)})^2 + (1-\beta)(\nabla Loss(\theta^{(i)}))^2}
 $$
 其中 $0<\beta<1$ 。
@@ -267,10 +275,14 @@ $$
 具体而言，我们的参数更新就变成了：
 $$
 g^{(i+1)} = \nabla Loss(\theta^{(i)}_j)\par 
-m^{(i+1)} = \beta_1m^{(i)} + (1-\beta_1)g^{(i+1)}\par 
-\sigma^{(i+1)} = \beta_2 \sigma^{(i)} + (1-\beta_2)(g^{(i+1)})^2\par 
-\hat{m}^{(i+1)} = \frac{m^{(i+1)}}{1-\beta_1^{i+1}}\par 
-\hat{\sigma}^{(i+1)} = \frac{\sigma^{(i+1)}}{1-\beta_2^{i+1}}\par 
+m^{(i+1)} = \beta_1m^{(i)} + (1-\beta_1)g^{(i+1)}
+$$$$
+\sigma^{(i+1)} = \beta_2 \sigma^{(i)} + (1-\beta_2)(g^{(i+1)})^2
+$$$$
+\hat{m}^{(i+1)} = \frac{m^{(i+1)}}{1-\beta_1^{i+1}}
+$$$$
+\hat{\sigma}^{(i+1)} = \frac{\sigma^{(i+1)}}{1-\beta_2^{i+1}}
+$$$$
 \theta^{(i+1)} = \theta^{(i)} - \frac{\alpha\hat{m}^{(i+1)}}{\sqrt{\hat{\sigma}^{(i+1)}} + \epsilon}
 $$
 其中， $\alpha, \beta_1, \beta_2, \epsilon$ 都是超参数，一般选择 $0.001, 0.9, 0.999, 10^{-8}$（原始论文中是这么选择的）

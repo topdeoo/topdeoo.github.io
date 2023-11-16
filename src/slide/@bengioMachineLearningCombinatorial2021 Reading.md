@@ -223,7 +223,6 @@ Read this paper [here](https://arxiv.org/pdf/1811.06128.pdf) , if you want to re
 ## Question
 
 1. 提出的第三个范式由于可以解耦，因此其 ML 通常为 offline 模型训练，但如果需要 online 的方式来训练这个模型，我们如何找到合适的集合？
-2. 要包含完整的决策过程，大部分的选择都是 RNN，但 RNN 没办法很好的体现图的结构（由于大多数问题都可以编码为图论问题），在这种条件下也有人使用 GNN 编码问题定义，但这时是否就无法使用
 
 @slideend
 

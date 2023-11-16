@@ -128,7 +128,7 @@ $$
 于是
 $$
 \begin{aligned}
-\nabla Loss &=(\frac{\part Loss}{\part w}, \frac{\part Loss}{\part b})\par  
+\nabla Loss &=\left(\frac{\partial Loss}{\partial w}, \frac{\partial Loss}{\partial b}\right)\\  
 &= (\frac{1}{3}\sum^3_{i=1}x_i(b + w^Tx_i - y_i), \frac{1}{3}\sum^3_{i=1}(b+w^Tx_i - y_i))
 \end{aligned}
 $$
@@ -138,8 +138,13 @@ $$
 
 于是我们有：
 $$
-(w^{(2)}, b^{(2)}) \leftarrow (w^{(1)}, b^{(1)}) - \alpha \nabla Loss(w^{(1)}, b^{(1)})\par 
-(w^{(2)}, b^{(2)}) \leftarrow (0, 0) - (\frac{1}{3}\sum^3_{i=1}x_i(- y_i), \frac{1}{3}\sum^3_{i=1}(- y_i))\par 
+(w^{(2)}, b^{(2)}) \leftarrow (w^{(1)}, b^{(1)}) - \alpha \nabla Loss(w^{(1)}, b^{(1)})
+$$
+$$
+(w^{(2)}, b^{(2)}) \leftarrow (0, 0) - (\frac{1}{3}\sum^3_{i=1}x_i(- y_i), \frac{1}{3}\sum^3_{i=1}(- y_i))
+$$
+
+$$
 (w^{(2)}, b^{(2)}) \leftarrow ((-\frac{37}{3},-\frac{40}{3}), -\frac{16}{3})
 $$
 如此反复迭代，直到 $Loss$ 值收敛不变 / $\nabla Loss = 0$ / 达到最大迭代次数
