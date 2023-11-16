@@ -158,7 +158,7 @@ sudo apt install docker docker-compose -y
 
 在开始部署之前，需要修改 `grub` 
 
-请编辑`/etc/default/grub`，修改：
+请编辑 `/etc/default/grub`，修改：
 
 ```bash
 GRUB_CMDLINE_LINUX_DEFAULT="quiet cgroup_enable=memory swapaccount=1"
