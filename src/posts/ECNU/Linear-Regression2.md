@@ -7,7 +7,7 @@ tag:
 - Machine Learning
 - For civil
 category:
-	- 关于zq的一些零零碎碎
+- 关于zq的一些零零碎碎
 ---
 
 > 这部分是一个拓展，文中的图片来源于李宏毅老师的ppt
