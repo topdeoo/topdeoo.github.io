@@ -30,8 +30,12 @@ cover_list = [
     "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230916164128.png",
     "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230916164153.png",
     "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230916164305.png",
-    "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230916164444.png"
-
+    "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230916164444.png",
+    "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/desktop3.png",
+    "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/1336068.jpeg",
+    "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/1336671.webp",
+    "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/1336369.jpeg",
+   "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/IMG_4213(20231118-102632).webp"
 ]
 
 import hashlib

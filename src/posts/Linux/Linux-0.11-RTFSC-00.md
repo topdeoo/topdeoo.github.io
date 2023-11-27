@@ -2,14 +2,12 @@
 title: Linux-0.11 RTFSC 00 环境配置
 math: true
 date: 2023-11-17 10:05:20
-tags:
+tag:
   - OS
   - Linux
 category:
   - 关于 Linux 的一些零零碎碎
-cover: |-
-  
-  https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230916163505.png
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230916163505.png
 ---
 
 > Linux 0.11 源码阅读（及其调试），环境搭建

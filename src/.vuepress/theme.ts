@@ -182,7 +182,6 @@ export default hopeTheme({
         presets: ["ts", "vue"],
       },
       presentation: ["highlight", "math", "search", "notes", "zoom"],
-      revealJs: true,
       stylize: [
         {
           matcher: "Recommended",
