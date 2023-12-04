@@ -1,16 +1,9 @@
 // you can change colors here
 $theme-color: rgba(70, 180, 220, 0.792);
 
-// @import url('https://fonts.cdnfonts.com/css/monaco');
-
-@font-face {
-    font-family: Monaco;
-    src: url('/fonts/Monaco.woff') format('.woff');
-}
-
-$font-family-mono: 'Monaco', sans-serif;
-$font-family: 'Monaco', sans-serif;
-$font-family-heading: 'Monaco', sans-serif;
+$font-family-mono: "'Monaco', sans-serif";
+$font-family: "'Monaco', sans-serif";
+$font-family-heading: "'Monaco', sans-serif";
 
 
 $navbar-horizontal-padding: 2vw;

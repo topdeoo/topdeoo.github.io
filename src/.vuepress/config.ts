@@ -15,6 +15,13 @@ export default defineUserConfig({
     },
   },
 
+  head: [
+    ["link", {
+      href: "https://fonts.cdnfonts.com/css/monaco",
+      rel: "stylesheet",
+    }],
+  ],
+
   theme,
 
   plugins: [
