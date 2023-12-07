@@ -49,8 +49,8 @@ $$
 f(u,v)=
 \begin{cases}
 \begin{aligned} 
-&f(u,v),&(u,v)\in E\par  
-&-f(v,u),&(v,u)\in E\par  
+&f(u,v),&(u,v)\in E\\  
+&-f(v,u),&(v,u)\in E\\  
 &0,&(u,v)\notin E,(v,u)\notin E 
 \end{aligned}
 \end{cases}

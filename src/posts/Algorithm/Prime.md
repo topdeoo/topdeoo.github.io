@@ -81,21 +81,27 @@ $$
 
 又根据 `Mertens' theorems` ：
 $$
-\exists B_1 \in \mathbf{R} \par
+\exists B_1 \in \mathbf{R}
+$$
+$$
 s.t.\quad n \sum^{\pi(n)}_{k=1}\frac{1}{p_k} = \log\log{n} + B_1 + O(\frac{1}{\log n})
 $$
 
 因此，埃氏筛的时间复杂度是 $O(n\log\log{n})$ 。接下来证明 `Mertens' theorems` 的弱化版本 $\sum_{k\le \pi(n)}\frac{1}{p_k} = O(\log\log{n})$:
+
+由于 $\pi(n) = \Theta(\frac{n}{\log{n}})$ 那么第n个素数的大小为 $\Theta(n\log{n})$
+
+于是
 $$
-\text{由于} \pi(n) = \Theta(\frac{n}{\log{n}}) \text{,那么第n个素数的大小为} \Theta(n\log{n})\par
-\text{于是}\par
+
 \begin{aligned}
-\sum^{\pi(n)}_{k=1}\frac{1}{p_k} &=O(\sum^{\pi(n)}_{k=2}\frac{1}{k\log{k}})\par
-&=O(\int^{\pi(n)}_2\frac{dx}{x\log{x}})\par
+\sum^{\pi(n)}_{k=1}\frac{1}{p_k} &=O(\sum^{\pi(n)}_{k=2}\frac{1}{k\log{k}})\\
+&=O(\int^{\pi(n)}_2\frac{dx}{x\log{x}})\\
 &=O(\log\log{\pi(n)})
 =O(\log\log n)
 \end{aligned}
 $$
+
 事实上，可以将渐进复杂度“降”到 $O(n\log\log{\sqrt{n}})$（因为这个复杂度渐进时间和上面是一样的，所以降字用双引号引起来了），实际做法是：
 
 ```cpp
@@ -173,10 +179,9 @@ $$
 
 
 但我们仍需要一样定理：**二次探测定理**
-$$
-\text{若} p \text{奇素数，则} x^2 \equiv 1 (mod\ p)\text{的解为}\par
-x\equiv 1(mod\ p)\text{或}x\equiv p-1(mod\ p)
-$$
+
+若 $p$  为奇素数，则 $x^2 \equiv 1 (mod \, p)$ 的解为 $x\equiv 1(mod\ p)$ 或 $x\equiv p-1(mod\, p)$
+
 不妨将费马小定理和二次探测定理结合起来使用：
 
 将 $a^{n-1}\equiv 1(mod\ n)$ 中的指数 $n-1$ 分解为 $n-1=2^t*u$ ，在每轮测试中对随机出来的 $a$ 先求出 $a^u \mod n$ ，之后对这个值执行最多 $t$ 次平方操作，若发现非平凡平方根时即可判断出其不是素数，否则通过此轮测试。

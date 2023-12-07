@@ -15,7 +15,6 @@ category:
 <!--more-->
 
 
-
 在这里，我们重点谈谈 **如果模型训练不动了怎么办**
 
 # 驻点问题
@@ -181,9 +180,13 @@ $$
 事实上，我们的做法是将参数更新的公式进行了更改：
 $$
 \theta^{(0)}, m^{(0)} = 0
-$$$$
+$$
+
+$$
 m^{(i+1)} = \lambda m^{(i)} - \alpha \nabla Loss(\theta^{(i)})
-$$$$
+$$
+
+$$
 \theta^{(i+1)} = \theta^{(i)} + m^{(i+1)}
 $$
 这样而言，我们每次计算的 $m$ 事实上都是前面我们走过的梯度的合成，也就是我们的初速度（），这样即使我们当前的梯度是个负值（梯度为负的话就说明梯度在把你往后拉），但我们的动量是个正值，这样我们就不会轻易被梯度给拉回去（拉回一个局部最小）
@@ -225,11 +228,17 @@ $$
 如下所示：
 $$
 \theta^{(1)} = \theta^{(0)} - \frac{\alpha}{\sigma^{(0)}}\nabla Loss(\theta^{(0)})\quad \sigma^{(0)} = \sqrt{(\nabla Loss(\theta^{(0)}))^2} = ||\nabla Loss(\theta^{(0)})||_2
-$$$$
+$$
+
+$$
 \theta^{(2)} = \theta^{(1)} - \frac{\alpha}{\sigma^{(1)}}\nabla Loss(\theta^{(1)})\quad \sigma^{(1)} = \sqrt{\frac{1}{2}(\nabla Loss(\theta^{(0)}))^2 + \nabla Loss(\theta^{(1)}))^2)}
-$$$$
+$$
+
+$$
 \vdots
-$$$$
+$$
+
+$$
 \theta^{(i+1)} = \theta^{(i)} - \frac{\alpha}{\sigma^{(i)}}\nabla Loss(\theta^{(i)})\quad \sigma^{(i)} = \sqrt{\frac{1}{i+1}\sum^i_{j=1}\nabla Loss(\theta^{(j)})^2}
 $$
 也就是说，我们的这个 $\sigma$ 事实上是一个梯度的均方根。
@@ -247,11 +256,17 @@ $$
 `RMSProp` 对 `Adagrad` 的算法进行了一些修改，让我们的学习率不至于衰减的如此之快。如下所示：
 $$
 \theta^{(1)} = \theta^{(0)} - \frac{\alpha}{\sigma^{(0)}}\nabla Loss(\theta^{(0)})\quad \sigma^{(0)} = \sqrt{(\nabla Loss(\theta^{(0)}))^2} = ||\nabla Loss(\theta^{(0)})||_2
-$$$$
+$$
+
+$$
 \theta^{(2)} = \theta^{(1)} - \frac{\alpha}{\sigma^{(1)}}\nabla Loss(\theta^{(1)})\quad \sigma^{(1)} = \sqrt{\beta(\sigma^{(0)})^2 + (1-\beta)(\nabla Loss(\theta^{(1)}))^2}
-$$$$
+$$
+
+$$
 \vdots
-$$$$
+$$
+
+$$
 \theta^{(i+1)} = \theta^{(i)} - \frac{\alpha}{\sigma^{(i)}}\nabla Loss(\theta^{(i)})\quad \sigma^{(i)} = \sqrt{\beta(\sigma^{(i-1)})^2 + (1-\beta)(\nabla Loss(\theta^{(i)}))^2}
 $$
 其中 $0<\beta<1$ 。
@@ -274,15 +289,26 @@ $$
 
 具体而言，我们的参数更新就变成了：
 $$
-g^{(i+1)} = \nabla Loss(\theta^{(i)}_j)\par 
+g^{(i+1)} = \nabla Loss(\theta^{(i)}_j)
+$$
+
+$$
 m^{(i+1)} = \beta_1m^{(i)} + (1-\beta_1)g^{(i+1)}
-$$$$
+$$
+
+$$
 \sigma^{(i+1)} = \beta_2 \sigma^{(i)} + (1-\beta_2)(g^{(i+1)})^2
-$$$$
+$$
+
+$$
 \hat{m}^{(i+1)} = \frac{m^{(i+1)}}{1-\beta_1^{i+1}}
-$$$$
+$$
+
+$$
 \hat{\sigma}^{(i+1)} = \frac{\sigma^{(i+1)}}{1-\beta_2^{i+1}}
-$$$$
+$$
+
+$$
 \theta^{(i+1)} = \theta^{(i)} - \frac{\alpha\hat{m}^{(i+1)}}{\sqrt{\hat{\sigma}^{(i+1)}} + \epsilon}
 $$
 其中， $\alpha, \beta_1, \beta_2, \epsilon$ 都是超参数，一般选择 $0.001, 0.9, 0.999, 10^{-8}$（原始论文中是这么选择的）

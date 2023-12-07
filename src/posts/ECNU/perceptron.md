@@ -38,7 +38,7 @@ $$
 $$
 sign(x) = 
 \begin{cases}
-1, x\geq 0\par 
+1, x\geq 0\\
 -1, x < 0
 \end{cases}
 $$
@@ -170,7 +170,7 @@ $$
 那么从 $f_1 \to g_1$ ，我们可以描述为：
 $$
 \begin{aligned}
-g_1 &= \sigma(\sum^4_{i=1}f_iw_{2i} + b_{21})\par 
+g_1 &= \sigma(\sum^4_{i=1}f_iw_{2i} + b_{21})\\
 &= \sigma(w^T_{21}f+b_{21})
 \end{aligned}
 $$

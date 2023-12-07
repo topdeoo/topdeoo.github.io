@@ -20,7 +20,7 @@ category:
 $$
 Fib(n) = 
 \begin{cases}
-1, \quad n = 0,1 \par
+1, \quad n = 0,1 \\
 Fib(n-1) +Fib(n-2), \quad otherwise
 \end{cases}
 $$

@@ -4,6 +4,8 @@ author: Raka Jovanovic, Antonio P. Sanfilippo, Stefan Voß
 layout: Slide
 date: 2023-12-04 17:33:40
 ---
+<!--more-->
+
 @slidestart
 
 # FSS 4 CPP

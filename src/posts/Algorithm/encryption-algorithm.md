@@ -80,36 +80,220 @@ category:
 
 我们定义四种操作：
 $$
-FF(a,b,c,d,Mj,s,ti) \to a = b + ((a + F(b,c,d) + M_j + t_i) <<< s)\par
-  GG(a,b,c,d,Mj,s,ti)\to a = b + ((a + G(b,c,d) + M_j + t_i) <<< s)\par
-  HH(a,b,c,d,Mj,s,ti)\to a = b + ((a + H(b,c,d) + M_j + t_i) <<< s)\par
+FF(a,b,c,d,Mj,s,ti) \to a = b + ((a + F(b,c,d) + M_j + t_i) <<< s)
+$$
+$$
+  GG(a,b,c,d,Mj,s,ti)\to a = b + ((a + G(b,c,d) + M_j + t_i) <<< s)
+$$
+$$
+  HH(a,b,c,d,Mj,s,ti)\to a = b + ((a + H(b,c,d) + M_j + t_i) <<< s)
+$$
+$$
   II(a,b,c,d,Mj,s,ti)\to a = b + ((a + I(b,c,d) + M_j + t_i) <<< s)
 $$
 那么，这四轮是：
 
 第一轮
 $$
-FF(a,b,c,d,M0,7,0xd76aa478)\par
-FF(d,a,b,c,M1,12,0xe8c7b756)\par
-FF(c,d,a,b,M2,17,0x242070db)\par FF(b,c,d,a,M3,22,0xc1bdceee)\par FF(a,b,c,d,M4,7,0xf57c0faf)\par FF(d,a,b,c,M5,12,0x4787c62a)\[ar] FF(c,d,a,b,M6,17,0xa8304613)\par FF(b,c,d,a,M7,22,0xfd469501)\par FF(a,b,c,d,M8,7,0x698098d8) \par FF(d,a,b,c,M9,12,0x8b44f7af)\par FF(c,d,a,b,M10,17,0xffff5bb1)\par FF(b,c,d,a,M11,22,0x895cd7be)\par FF(a,b,c,d,M12,7,0x6b901122)\par FF(d,a,b,c,M13,12,0xfd987193) \par FF(c,d,a,b,M14,17,0xa679438e) \par FF(b,c,d,a,M15,22,0x49b40821)
+FF(a,b,c,d,M0,7,0xd76aa478)
+$$
+$$
+FF(d,a,b,c,M1,12,0xe8c7b756)
+$$
+$$
+FF(c,d,a,b,M2,17,0x242070db)
+$$
+$$
+FF(b,c,d,a,M3,22,0xc1bdceee)
+$$
+$$
+FF(a,b,c,d,M4,7,0xf57c0faf)
+$$
+$$FF(d,a,b,c,M5,12,0x4787c62a)
+
+$$
+$$
+FF(c,d,a,b,M6,17,0xa8304613)
+$$
+$$
+FF(b,c,d,a,M7,22,0xfd469501)
+$$
+$$
+FF(a,b,c,d,M8,7,0x698098d8) 
+$$
+$$
+FF(d,a,b,c,M9,12,0x8b44f7af)
+$$
+$$
+FF(c,d,a,b,M10,17,0xffff5bb1)
+$$
+$$
+FF(b,c,d,a,M11,22,0x895cd7be)
+$$
+$$
+FF(a,b,c,d,M12,7,0x6b901122)
+$$
+$$
+FF(d,a,b,c,M13,12,0xfd987193)
+$$
+$$
+FF(c,d,a,b,M14,17,0xa679438e)
+$$
+$$ 
+FF(b,c,d,a,M15,22,0x49b40821)
 $$
 
 
 第二轮
 $$
-GG(a,b,c,d,M1,5,0xf61e2562)\par GG(d,a,b,c,M6,9,0xc040b340)\par GG(c,d,a,b,M11,14,0x265e5a51)\par GG(b,c,d,a,M0,20,0xe9b6c7aa)\par GG(a,b,c,d,M5,5,0xd62f105d)\par GG(d,a,b,c,M10,9,0x02441453)\par GG(c,d,a,b,M15,14,0xd8a1e681)\par GG(b,c,d,a,M4,20,0xe7d3fbc8)\par GG(a,b,c,d,M9,5,0x21e1cde6)\par GG(d,a,b,c,M14,9,0xc33707d6)\par GG(c,d,a,b,M3,14,0xf4d50d87)\par GG(b,c,d,a,M8,20,0x455a14ed)\par GG(a,b,c,d,M13,5,0xa9e3e905)\par GG(d,a,b,c,M2,9,0xfcefa3f8)\par GG(c,d,a,b,M7,14,0x676f02d9)\par GG(b,c,d,a,M12,20,0x8d2a4c8a)
+GG(a,b,c,d,M1,5,0xf61e2562)
+$$
+$$
+ GG(d,a,b,c,M6,9,0xc040b340)
+$$
+$$
+ GG(c,d,a,b,M11,14,0x265e5a51)
+$$
+$$
+ GG(b,c,d,a,M0,20,0xe9b6c7aa)
+$$
+$$
+ GG(a,b,c,d,M5,5,0xd62f105d)
+$$
+$$
+ GG(d,a,b,c,M10,9,0x02441453)
+$$
+$$
+ GG(c,d,a,b,M15,14,0xd8a1e681)
+$$
+$$
+ GG(b,c,d,a,M4,20,0xe7d3fbc8)
+$$
+$$
+ GG(a,b,c,d,M9,5,0x21e1cde6)
+$$
+$$
+ GG(d,a,b,c,M14,9,0xc33707d6)
+$$
+$$
+ GG(c,d,a,b,M3,14,0xf4d50d87)
+$$
+$$
+ GG(b,c,d,a,M8,20,0x455a14ed)
+$$
+$$
+ GG(a,b,c,d,M13,5,0xa9e3e905)
+$$
+$$
+ GG(d,a,b,c,M2,9,0xfcefa3f8)
+$$
+$$
+ GG(c,d,a,b,M7,14,0x676f02d9)
+$$
+$$
+ GG(b,c,d,a,M12,20,0x8d2a4c8a)
 $$
 
 
 第三轮
 $$
-HH(a,b,c,d,M5,4,0xfffa3942)\par HH(d,a,b,c,M8,11,0x8771f681)\par HH(c,d,a,b,M11,16,0x6d9d6122)\par HH(b,c,d,a,M14,23,0xfde5380c)\par HH(a,b,c,d,M1,4,0xa4beea44)\par HH(d,a,b,c,M4,11,0x4bdecfa9)\par HH(c,d,a,b,M7,16,0xf6bb4b60)\par HH(b,c,d,a,M10,23,0xbebfbc70)\par HH(a,b,c,d,M13,4,0x289b7ec6)\par HH(d,a,b,c,M0,11,0xeaa127fa)\par HH(c,d,a,b,M3,16,0xd4ef3085)\par HH(b,c,d,a,M6,23,0x04881d05)\par HH(a,b,c,d,M9,4,0xd9d4d039)\par HH(d,a,b,c,M12,11,0xe6db99e5)\par HH(c,d,a,b,M15,16,0x1fa27cf8)\par HH(b,c,d,a,M2,23,0xc4ac5665)
+HH(a,b,c,d,M5,4,0xfffa3942)
+$$
+$$
+ HH(d,a,b,c,M8,11,0x8771f681)
+$$
+$$
+ HH(c,d,a,b,M11,16,0x6d9d6122)
+$$
+$$
+ HH(b,c,d,a,M14,23,0xfde5380c)
+$$
+$$
+ HH(a,b,c,d,M1,4,0xa4beea44)
+$$
+$$
+ HH(d,a,b,c,M4,11,0x4bdecfa9)
+$$
+$$
+ HH(c,d,a,b,M7,16,0xf6bb4b60)
+$$
+$$
+ HH(b,c,d,a,M10,23,0xbebfbc70)
+$$
+$$
+ HH(a,b,c,d,M13,4,0x289b7ec6)
+$$
+$$
+ HH(d,a,b,c,M0,11,0xeaa127fa)
+$$
+$$
+ HH(c,d,a,b,M3,16,0xd4ef3085)
+$$
+$$
+ HH(b,c,d,a,M6,23,0x04881d05)
+$$
+$$
+ HH(a,b,c,d,M9,4,0xd9d4d039)
+$$
+$$
+ HH(d,a,b,c,M12,11,0xe6db99e5)
+$$
+$$
+ HH(c,d,a,b,M15,16,0x1fa27cf8)
+$$
+$$
+ HH(b,c,d,a,M2,23,0xc4ac5665)
 $$
 
 
 第四轮
 $$
-II(a,b,c,d,M0,6,0xf4292244)\par II(d,a,b,c,M7,10,0x432aff97)\par II(c,d,a,b,M14,15,0xab9423a7)\par II(b,c,d,a,M5,21,0xfc93a039)\par II(a,b,c,d,M12,6,0x655b59c3)\par II(d,a,b,c,M3,10,0x8f0ccc92)\par II(c,d,a,b,M10,15,0xffeff47d)\par II(b,c,d,a,M1,21,0x85845dd1)\par II(a,b,c,d,M8,6,0x6fa87e4f)\par II(d,a,b,c,M15,10,0xfe2ce6e0)\par II(c,d,a,b,M6,15,0xa3014314)\par II(b,c,d,a,M13,21,0x4e0811a1)\par II(a,b,c,d,M4,6,0xf7537e82)\par II(d,a,b,c,M11,10,0xbd3af235)\par II(c,d,a,b,M2,15,0x2ad7d2bb)\par II(b,c,d,a,M9,21,0xeb86d391)
+II(a,b,c,d,M0,6,0xf4292244)
+$$
+$$
+ II(d,a,b,c,M7,10,0x432aff97)
+$$
+$$
+ II(c,d,a,b,M14,15,0xab9423a7)
+$$
+$$
+ II(b,c,d,a,M5,21,0xfc93a039)
+$$
+$$
+ II(a,b,c,d,M12,6,0x655b59c3)
+$$
+$$
+ II(d,a,b,c,M3,10,0x8f0ccc92)
+$$
+$$
+ II(c,d,a,b,M10,15,0xffeff47d)
+$$
+$$
+ II(b,c,d,a,M1,21,0x85845dd1)
+$$
+$$
+ II(a,b,c,d,M8,6,0x6fa87e4f)
+$$
+$$
+ II(d,a,b,c,M15,10,0xfe2ce6e0)
+$$
+$$
+ II(c,d,a,b,M6,15,0xa3014314)
+$$
+$$
+ II(b,c,d,a,M13,21,0x4e0811a1)
+$$
+$$
+ II(a,b,c,d,M4,6,0xf7537e82)
+$$
+$$
+ II(d,a,b,c,M11,10,0xbd3af235)
+$$
+$$
+ II(c,d,a,b,M2,15,0x2ad7d2bb)
+$$
+$$
+ II(b,c,d,a,M9,21,0xeb86d391)
 $$
 所有这些完成之后，a、b、c、d分别在原来基础上再加上A、B、C、D，然后用下一分组数据继续运行以上算法。
 
@@ -203,7 +387,7 @@ $$
 $$
 \varphi(n) = 
 \begin{cases}
-n - 1\quad if\ n \ is \ prime,\par 
+n - 1\quad if\ n \ is \ prime,\\
 n(1-\frac{1}{p_1})(1-\frac{1}{p_2})\dots (1-\frac{1}{p_t})\quad otherwise
 \end{cases}
 $$
@@ -255,11 +439,21 @@ $$
 
 对于任意一个与 $n$ 互质的数 $a$ ，由于欧拉定理，我们有：
 $$
-a^{\varphi(n)} \equiv 1\ (mod\ n)\par 
-\rightarrow\ a^{k\varphi(n)} \equiv 1\ (mod\ n)\par 
-\rightarrow\ a^{k\varphi(n) + 1} \equiv a\ (mod\ n)\par 
-\rightarrow\ a^{ed} \equiv a\ (mod\ n)\par 
+a^{\varphi(n)} \equiv 1\ (mod\ n)
 $$
+$$
+ 
+\rightarrow\ a^{k\varphi(n)} \equiv 1\ (mod\ n)
+$$
+$$
+ 
+\rightarrow\ a^{k\varphi(n) + 1} \equiv a\ (mod\ n)
+$$
+$$
+ 
+\rightarrow\ a^{ed} \equiv a\ (mod\ n)
+$$
+
 所以，若 $c \equiv a^e\ (mod\ n)$， 则 $c^d \equiv a^{ed} \equiv a \ (mod\ n)$
 
 这样，我们得到公钥为 $(n, e)$， 私钥为 $(n, d)$

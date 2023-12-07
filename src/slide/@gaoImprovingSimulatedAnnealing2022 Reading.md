@@ -1,9 +1,13 @@
 ---
+email: virgiling7@gmail.com
+tags: 
 title: Improving Simulated Annealing for Clique Partitioning Problems
 author: Jian Gao, Yiqi Lv, Minghao Liu, Shaowei Cai, Feifei Ma
 layout: Slide
 date: 2023-12-04 17:33:40
 ---
+<!--more-->
+
 @slidestart
 
 ## Improving Simulated Anneling 4 CPP
