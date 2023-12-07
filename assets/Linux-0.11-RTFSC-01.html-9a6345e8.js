@@ -1,1 +1,0 @@
-import{_ as t}from"./plugin-vue_export-helper-c27b6911.js";import{o,c,f as n,a as e}from"./app-d46eced6.js";const r={},a=e("blockquote",null,[e("p",null,"Abstract")],-1);function s(_,l){return o(),c("div",null,[a,n("more")])}const f=t(r,[["render",s],["__file","Linux-0.11-RTFSC-01.html.vue"]]);export{f as default};
