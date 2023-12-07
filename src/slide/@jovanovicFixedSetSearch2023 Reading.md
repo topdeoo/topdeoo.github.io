@@ -56,7 +56,7 @@ $\max{f(C)} = \max{\sum_{c\in C}(\sum_{i,j\in c}w_{ij})}$
 
 于是，算法如下：
 
-![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/202312070914809.png)
+![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/202312070924400.png)
 <!-- .element: class="r-stretch" -->
 
 --
