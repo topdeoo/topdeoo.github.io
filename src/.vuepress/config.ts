@@ -20,6 +20,12 @@ export default defineUserConfig({
       href: "https://fonts.cdnfonts.com/css/monaco",
       rel: "stylesheet",
     }],
+    ["link", {
+      href: "https://cdn.staticfile.org/lxgw-wenkai-screen-webfont/1.6.0/lxgwwenkaiscreen.css",
+      rel: "stylesheet",
+      media: "print",
+      onload: "this.media='all'"
+    }],
   ],
 
   theme,
