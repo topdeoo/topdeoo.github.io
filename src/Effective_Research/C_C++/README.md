@@ -110,7 +110,7 @@ yay -S clangd clang clang-format clang-tidy
 请开启至少三个选项：
 
 ```bash
--Wall -Werror -fsanitizer=address
+-Wall -Werror -fsanitize=address
 ```
 
 保证你的代码能够通过编译检查
