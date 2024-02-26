@@ -1051,7 +1051,10 @@ evaluator = f.time_evaluator(f.entry_name, tvm.cuda(0), number=100)
 
 # 复现
 
-这篇文章没有给复现的代码，需要自己去首先 `spmm` 与 `sddmm` 算子进行复现，但好在在 `example` 中给出了如何使用 `SparseTIR` 的示例，如 `spmm` :
+> 经作者指出，AE 的所有代码与实验（baseline等）均在已 [开源](https://github.com/uwsampl/sparsetir-artifact) 中。
+> 此部分在论文的附录 `B.3 Description` 中提及
+
+在 `example` 中给出了如何使用 `SparseTIR` 的示例，如 `spmm` :
 
 ```python
 import dgl

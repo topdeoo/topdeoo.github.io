@@ -5,6 +5,6 @@ export const research = arraySidebar([
     {
         text: "C/C++",
         icon: "code",
-        children: ["C_C++/"],
+        children: ["C_CPP/", "Server/"],
     },
 ]);

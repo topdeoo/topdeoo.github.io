@@ -29,6 +29,7 @@ export const zhSidebar = sidebar({
     "/docs": docs,
 
     "/Efficient_Research": research,
-    "/Efficient_Research/C_C++/": "structure",
+    "/Efficient_Research/C_CPP/": "structure",
+    "/Efficient_Research/Server": "structure"
 
 });
