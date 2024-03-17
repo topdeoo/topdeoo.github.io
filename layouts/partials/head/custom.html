@@ -1,0 +1,36 @@
+<style>
+    :root {
+        --article-font-family: 'Monaco', sans-serif, var(--base-font-family);
+        --zh-font-family: 'LXGW WenKai Screen', sans-serif, var(--base-font-family);
+        --code-font-family: 'Monaco', sans-serif;
+    }
+</style>
+
+<script>
+    (function () {
+        const chineseFont = document.createElement('link');
+        chineseFont.href = 'https://cdn.staticfile.org/lxgw-wenkai-screen-webfont/1.6.0/lxgwwenkaiscreen.css';
+        chineseFont.rel = 'stylesheet';
+        chineseFont.type = 'text/css';
+        const codeFont = document.createElement('link');
+        codeFont.href = 'https://fonts.cdnfonts.com/css/monaco';
+        codeFont.rel = 'stylesheet';
+        codeFont.type = 'text/css';
+        document.head.appendChild(chineseFont);
+        document.head.appendChild(codeFont);
+    }());
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/js/nprogress.min.js"
+    integrity="sha384-bHDlAEUFxsRI7JfULv3DTpL2IXbbgn4JHQJibgo5iiXSK6Iu8muwqHANhun74Cqg"
+    crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/css/nprogress.css"
+    integrity="sha384-KJyhr2syt5+4M9Pz5dipCvTrtvOmLk/olWVdfhAp858UCa64Ia5GFpTN7+G4BWpE" crossorigin="anonymous" />
+<script>
+    NProgress.start();
+    document.addEventListener("readystatechange", () => {
+        if (document.readyState === "interactive") NProgress.inc(0.8);
+        if (document.readyState === "complete") NProgress.done();
+    });
+</script>
