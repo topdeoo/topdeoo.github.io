@@ -65,7 +65,7 @@ params:
 
     comments:
         enabled: true
-        provider: waline
+        provider: utterances
 
         disqusjs:
             shortname:
@@ -75,9 +75,10 @@ params:
             adminLabel:
 
         utterances:
-            repo:
+            repo: topdeoo/topdeoo.github.io
             issueTerm: pathname
-            label:
+            theme: github-light
+            label: bug
 
         beaudar:
             repo:
