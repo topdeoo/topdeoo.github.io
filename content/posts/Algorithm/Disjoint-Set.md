@@ -1,11 +1,13 @@
-+++
-categories = ['Algorithm']
-date = '2022-11-25 11:53:30'
-keywordswords = ['Algorithm']
-math = true
-title = 'Disjoint-Set'
-description = '不相交集合数据结构(disjoint-set data structure)，简称并查集（ACM培训）'
-+++
+---
+categories:
+- Algorithm
+date: "2022-11-25 11:53:30"
+description: 不相交集合数据结构(disjoint-set data structure)，简称并查集（ACM培训）
+keywordswords:
+- Algorithm
+math: true
+title: Disjoint-Set
+---
 
 # 写在前面
 

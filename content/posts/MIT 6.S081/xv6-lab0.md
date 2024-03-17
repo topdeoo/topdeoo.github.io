@@ -1,12 +1,15 @@
-+++
-categories = ['OS']
-cover = 'https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230628183743.png'
-date = '2022-04-01 20:00:20'
-keywords = ['OS', 'MIT']
-math = true
-title = ' Lab0 Tools'
-description = '实验所需要安装的环境😶'
-+++
+---
+categories:
+- OS
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230628183743.png
+date: "2022-04-01 20:00:20"
+description: "实验所需要安装的环境\U0001F636"
+keywords:
+- OS
+- MIT
+math: true
+title: ' Lab0 Tools'
+---
 
 # 实验准备
 

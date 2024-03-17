@@ -1,12 +1,15 @@
-+++
-categories = ['InNight']
-cover = 'https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/n-buna.jpg'
-date = '2022-08-03 17:16:17'
-keywords = ['Machine Learning', 'For civil']
-math = true
-title = 'Perceptron And Neural Networks'
-description = '感知机'
-+++
+---
+categories:
+- InNight
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/n-buna.jpg
+date: "2022-08-03 17:16:17"
+description: 感知机
+keywords:
+- Machine Learning
+- For civil
+math: true
+title: Perceptron And Neural Networks
+---
 
 # 感知机
 

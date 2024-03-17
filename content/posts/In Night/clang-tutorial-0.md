@@ -1,12 +1,16 @@
-+++
-categories = ['Compilers']
-cover = 'https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230627160407.png'
-date = '2023-05-30 21:27:00'
-keywords = ['Compiler', 'clang', 'Tutorial']
-math = true
-title = 'clang Tutorial#0'
-description = 'clang 源码阅读'
-+++
+---
+categories:
+- Compilers
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230627160407.png
+date: "2023-05-30 21:27:00"
+description: clang 源码阅读
+keywords:
+- Compiler
+- clang
+- Tutorial
+math: true
+title: clang Tutorial#0
+---
 
 对 `clang` 源码的阅读笔记
 

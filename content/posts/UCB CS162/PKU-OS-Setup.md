@@ -1,12 +1,15 @@
-+++
-categories = ['OS']
-cover = 'https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230803170014.png'
-date = '2023-08-10 22:53:00'
-keywords = ['PKU', 'OS']
-math = true
-title = 'PKU OS L0'
-description = 'Project Setup & Simple Test'
-+++
+---
+categories:
+- OS
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230803170014.png
+date: "2023-08-10 22:53:00"
+description: Project Setup & Simple Test
+keywords:
+- PKU
+- OS
+math: true
+title: PKU OS L0
+---
 
 # Setup
 

@@ -1,11 +1,13 @@
-+++
-categories = ['Algorithm']
-date = '2022-07-10 14:12:21'
-keywordswords = ['Algorithm']
-math = true
-title = 'Binary Answer'
-description = '二分答案（不是二分搜索）（蓝旭算法课）'
-+++
+---
+categories:
+- Algorithm
+date: "2022-07-10 14:12:21"
+description: 二分答案（不是二分搜索）（蓝旭算法课）
+keywordswords:
+- Algorithm
+math: true
+title: Binary Answer
+---
 
 # 导引
 

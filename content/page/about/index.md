@@ -1,18 +1,19 @@
-+++
-aliases = ['about-us', 'about-me', 'about']
-date = '2022-03-29 12:46:30'
-description = "もうじき夏が終わるから"
-lastmod = '2024-03-17 13:26:40'
-title = '关于'
-slug = 'about'
-
-[menu]
-  [menu.main]
-    weight = -90
-
-    [menu.main.params]
-      icon = 'user'
-+++
+---
+aliases:
+- about-us
+- about-me
+- about
+date: "2022-03-29 12:46:30"
+description: もうじき夏が終わるから
+lastmod: "2024-03-17 13:26:40"
+menu:
+  main:
+    params:
+      icon: user
+    weight: -90
+slug: about
+title: 关于
+---
 
 # 关于自己
 

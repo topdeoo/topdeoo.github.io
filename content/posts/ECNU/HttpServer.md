@@ -1,12 +1,15 @@
-+++
-categories = ['InNight']
-cover = 'https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230803165920.png'
-date = '2022-06-23 23:13:21'
-keywords = ['Computer Network', 'ECNU']
-math = true
-title = 'HttpServer'
-description = '计网项目作业'
-+++
+---
+categories:
+- InNight
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230803165920.png
+date: "2022-06-23 23:13:21"
+description: 计网项目作业
+keywords:
+- Computer Network
+- ECNU
+math: true
+title: HttpServer
+---
 
 > 本项目源代码已上传至Github: [topdeoo/Computer-Net-Project (github.com)](https://github.com/topdeoo/Computer-Net-Project)
 

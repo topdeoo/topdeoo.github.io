@@ -1,12 +1,15 @@
-+++
-categories = ['InNight']
-cover = 'https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/1311817.jpg'
-date = '2023-03-16 14:27:15'
-keywords = ['Stanford', 'Computer Network']
-math = true
-title = 'CS144 Lab2'
-description = '写出完整的 TCP Receiver'
-+++
+---
+categories:
+- InNight
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/1311817.jpg
+date: "2023-03-16 14:27:15"
+description: 写出完整的 TCP Receiver
+keywords:
+- Stanford
+- Computer Network
+math: true
+title: CS144 Lab2
+---
 
 感觉只看文档做可能还是会有些勉强，不知道是不是需要去看课程录像（虽然文档已经写的很详细了）
 

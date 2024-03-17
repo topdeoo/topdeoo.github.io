@@ -1,11 +1,15 @@
-+++
-categories = ['InNight']
-cover = 'https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/684458.png'
-date = '2023-06-16 22:48:23'
-keywords = ['SparTA', 'Compilers', 'AI System']
-math = true
-title = 'SparTA 解读'
-+++
+---
+categories:
+- InNight
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/684458.png
+date: "2023-06-16 22:48:23"
+keywords:
+- SparTA
+- Compilers
+- AI System
+math: true
+title: SparTA 解读
+---
 
 > `SparTA` 解读（[论文](https://www.usenix.org/system/files/osdi22-zheng-ningxin.pdf)、[源码](https://github.com/microsoft/SparTA) 与 [复现](https://github.com/microsoft/nni/tree/sparta_artifact/sparta) ）
 

@@ -1,11 +1,14 @@
-+++
-categories = ['InNight']
-date = '2023-02-20 21:03:42'
-keywords = ['Stanford', 'Computer Network']
-math = true
-title = 'CS144 Preparation'
-description = 'CS144 的一些准备工作'
-+++
+---
+categories:
+- InNight
+date: "2023-02-20 21:03:42"
+description: CS144 的一些准备工作
+keywords:
+- Stanford
+- Computer Network
+math: true
+title: CS144 Preparation
+---
 
 # 选修原因
 

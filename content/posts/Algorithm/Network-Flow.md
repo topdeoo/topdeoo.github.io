@@ -1,11 +1,13 @@
-+++
-categorieseses = ['Algorithm']
-date = '2022-07-29 14:46:33'
-keywords = ['Algorithm']
-math = true
-title = 'Basic Network Flow'
-description = '介绍一些基础的网络流算法（蓝旭算法课）'
-+++
+---
+categorieseses:
+- Algorithm
+date: "2022-07-29 14:46:33"
+description: 介绍一些基础的网络流算法（蓝旭算法课）
+keywords:
+- Algorithm
+math: true
+title: Basic Network Flow
+---
 
 首先我们需要知道，什么是网络，什么是流。
 

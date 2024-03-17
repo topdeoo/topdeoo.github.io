@@ -1,11 +1,14 @@
-+++
-categories = ['InNight']
-cover = 'https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230803170258.png'
-date = '2022-03-29 18:35:16'
-keywords = ['OS', 'ECNU']
-title = 'ECNU DaSE2020 OS_HW2 chrt系统调用'
-description = '实现chrt系统调用（简易版'
-+++
+---
+categories:
+- InNight
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230803170258.png
+date: "2022-03-29 18:35:16"
+description: 实现chrt系统调用（简易版
+keywords:
+- OS
+- ECNU
+title: ECNU DaSE2020 OS_HW2 chrt系统调用
+---
 
 # 需要修改的文件
 

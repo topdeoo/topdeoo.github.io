@@ -1,12 +1,15 @@
-+++
-categories = ['Compilers']
-cover = 'https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230803170433.png'
-date = '2022-11-20 17:03:53'
-keywords = ['Compilers', 'Stanford']
-math = true
-title = 'Stanford CS143 Compilers lab1'
-description = 'Assignment 1 实现词法分析器'
-+++
+---
+categories:
+- Compilers
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230803170433.png
+date: "2022-11-20 17:03:53"
+description: Assignment 1 实现词法分析器
+keywords:
+- Compilers
+- Stanford
+math: true
+title: Stanford CS143 Compilers lab1
+---
 
 
 > 前言：插件 `yash` 支持的 `flex` 后缀名不包含 `.flex` 需要更改为 `.fl` ，这样我们也必须将 `Makefile` 中第 7 行以及 44 行的 `cool.flex` 更改为  `cool.fl` 。这样才能够正确的 `make lexer`

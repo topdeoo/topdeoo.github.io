@@ -1,12 +1,15 @@
-+++
-categories = ['InNight']
-cover = 'https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230628184041.png'
-date = '2022-05-08 22:25:01'
-keywords = ['OS', 'ECNU']
-math = true
-title = 'ECNU DaSE2020 OS_HW3 RAM与Disk读写速度对比'
-description = '为什么MINIX你是微内核！我不理解！'
-+++
+---
+categories:
+- InNight
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230628184041.png
+date: "2022-05-08 22:25:01"
+description: 为什么MINIX你是微内核！我不理解！
+keywords:
+- OS
+- ECNU
+math: true
+title: ECNU DaSE2020 OS_HW3 RAM与Disk读写速度对比
+---
 
 
 # 实验目的

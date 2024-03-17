@@ -1,8 +1,8 @@
 ---
-title: Fixed set search applied to the clique partitioning problem
 author: Raka Jovanovic, Antonio P. Sanfilippo, Stefan Voß
+date: "2023-12-04 17:33:40"
 layout: Slide
-date: 2023-12-04 17:33:40
+title: Fixed set search applied to the clique partitioning problem
 ---
 <!--more-->
 

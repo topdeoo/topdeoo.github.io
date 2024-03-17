@@ -1,12 +1,15 @@
-+++
-categories = ['InNight']
-cover = 'https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/1190408.jpg'
-date = '2023-02-26 17:00:27'
-keywords = ['Stanford', 'Computer Network']
-math = true
-title = 'CS144 Lab1'
-description = '实现重组字节流'
-+++
+---
+categories:
+- InNight
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/1190408.jpg
+date: "2023-02-26 17:00:27"
+description: 实现重组字节流
+keywords:
+- Stanford
+- Computer Network
+math: true
+title: CS144 Lab1
+---
 
 > 一个函数写了两天，学成这样确实可以放弃了
 >

@@ -1,12 +1,15 @@
-+++
-categories = ['Compilers']
-cover = 'https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/1311817.jpg'
-date = '2022-07-16 15:14:53'
-keywords = ['Compilers', 'Stanford']
-math = true
-title = 'Stanford CS143 Compilers lab0'
-description = 'Stanford CS143 实验环境安装与配置'
-+++
+---
+categories:
+- Compilers
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/1311817.jpg
+date: "2022-07-16 15:14:53"
+description: Stanford CS143 实验环境安装与配置
+keywords:
+- Compilers
+- Stanford
+math: true
+title: Stanford CS143 Compilers lab0
+---
 
 
 **针对Windows系统**

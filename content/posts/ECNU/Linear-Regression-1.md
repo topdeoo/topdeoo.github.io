@@ -1,12 +1,15 @@
-+++
-categories = ['InNight']
-cover = 'https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/644887.png'
-date = '2022-07-31 11:09:54'
-keywords = ['Machine Learning', 'For civil']
-math = true
-title = 'Linear Regression And Basic Gradient Descent 1'
-description = '一个传统的线性回归讲义'
-+++
+---
+categories:
+- InNight
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/644887.png
+date: "2022-07-31 11:09:54"
+description: 一个传统的线性回归讲义
+keywords:
+- Machine Learning
+- For civil
+math: true
+title: Linear Regression And Basic Gradient Descent 1
+---
 
 一个老生常谈的话题，似乎每次学习都是从这个地方开始的（而且没继续深入过）。但是线性回归是一个很重要的内容，在谈线性回归之前，我想写解释一下什么是回归。
 

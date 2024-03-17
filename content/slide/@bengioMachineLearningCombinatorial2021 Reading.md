@@ -1,8 +1,8 @@
 ---
-title: "Machine learning for combinatorial optimization: A methodological tour d’horizon"
 author: Yoshua Bengio, Andrea Lodi, Antoine Prouvost
-date: 2023-11-14 17:08:19
+date: "2023-11-14 17:08:19"
 layout: Slide
+title: 'Machine learning for combinatorial optimization: A methodological tour d’horizon'
 ---
 <!--more-->
 

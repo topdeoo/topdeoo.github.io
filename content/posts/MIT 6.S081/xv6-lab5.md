@@ -1,12 +1,15 @@
-+++
-categories = ['OS']
-cover = 'https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230628183743.png'
-date = '2022-09-04 13:07:19'
-keywords = ['OS', 'MIT']
-math = true
-title = 'MIT 6.S081 lab5 Copy-on-Write Fork'
-description = '实验早就做好了但是…… 思路借鉴了课程中 `Prof. Robert Morris` 的思路'
-+++
+---
+categories:
+- OS
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230628183743.png
+date: "2022-09-04 13:07:19"
+description: 实验早就做好了但是…… 思路借鉴了课程中 `Prof. Robert Morris` 的思路
+keywords:
+- OS
+- MIT
+math: true
+title: MIT 6.S081 lab5 Copy-on-Write Fork
+---
 
 # Lab05 Copy-on-Write Fork
 

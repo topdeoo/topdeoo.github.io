@@ -1,11 +1,13 @@
-+++
-categories = ['Algorithm']
-date = '2022-07-30 13:06:15'
-keywords = ['Algorithm']
-math = true
-title = 'Hungarian Algorithm'
-description = '用以解决二分图的最大匹配（蓝旭算法课）'
-+++
+---
+categories:
+- Algorithm
+date: "2022-07-30 13:06:15"
+description: 用以解决二分图的最大匹配（蓝旭算法课）
+keywords:
+- Algorithm
+math: true
+title: Hungarian Algorithm
+---
 
 匈牙利算法主要被用于解决一些与二分图匹配有关的问题。
 

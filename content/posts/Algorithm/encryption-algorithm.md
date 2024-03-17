@@ -1,12 +1,14 @@
-+++
-categories = ['Algorithm']
-cover = 'https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230628184344.png'
-date = '2022-07-10 14:13:29'
-keywords = ['Algorithm']
-math = true
-title = 'Encryption Algorithm'
-description = '加密算法 (MD5, AES, RSA)（蓝旭算法课）'
-+++
+---
+categories:
+- Algorithm
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230628184344.png
+date: "2022-07-10 14:13:29"
+description: 加密算法 (MD5, AES, RSA)（蓝旭算法课）
+keywords:
+- Algorithm
+math: true
+title: Encryption Algorithm
+---
 
 # Description
 

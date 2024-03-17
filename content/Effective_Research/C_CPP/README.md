@@ -1,6 +1,6 @@
 ---
+date: "2023-10-20 11:48:20"
 title: My Formatter for C/C++
-date: 2023-10-20 11:48:20
 ---
 # Which Compiler
 

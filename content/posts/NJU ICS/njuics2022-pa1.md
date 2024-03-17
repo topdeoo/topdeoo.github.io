@@ -1,12 +1,15 @@
-+++
-categories = ['OS']
-cover = 'https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230716221813.png'
-date = '2023-07-16 21:54:49'
-keywordswords = ['NJU', 'OS']
-math = true
-title = 'NJU ICS PA-1'
-description = 'ICS PA1 sdb'
-+++
+---
+categories:
+- OS
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230716221813.png
+date: "2023-07-16 21:54:49"
+description: ICS PA1 sdb
+keywordswords:
+- NJU
+- OS
+math: true
+title: NJU ICS PA-1
+---
 
 ##### 计算机可以没有寄存器吗? (建议二周目思考)
 

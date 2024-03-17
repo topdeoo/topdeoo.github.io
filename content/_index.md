@@ -1,9 +1,8 @@
-+++
-[menu]
-  [menu.main]
-    name = '主页'
-    weight = -100
-
-    [menu.main.params]
-      icon = 'home'
-+++
+---
+menu:
+  main:
+    name: 主页
+    params:
+      icon: home
+    weight: -100
+---

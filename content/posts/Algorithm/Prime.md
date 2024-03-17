@@ -1,11 +1,13 @@
-+++
-categories = ['Algorithm']
-date = '2022-03-29 21:05:02'
-keywords = ['Algorithm']
-math = true
-title = 'About Prime'
-description = '这里介绍一些关于找素数的方法，可能是素数筛，也可能是快速判断一个数是不是素数'
-+++
+---
+categories:
+- Algorithm
+date: "2022-03-29 21:05:02"
+description: 这里介绍一些关于找素数的方法，可能是素数筛，也可能是快速判断一个数是不是素数
+keywords:
+- Algorithm
+math: true
+title: About Prime
+---
 
 素数筛，就是在一个给定的范围内，把素数与非素数区分出来。
 

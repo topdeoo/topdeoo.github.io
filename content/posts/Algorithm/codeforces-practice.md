@@ -1,11 +1,14 @@
-+++
-categories = ['InNight']
-date = '2023-05-16 15:58:30'
-keywords = ['Algorithm', 'Virgil']
-math = true
-title = 'Codeforces Practice'
-description = '为了机试的一些复健训练'
-+++
+---
+categories:
+- InNight
+date: "2023-05-16 15:58:30"
+description: 为了机试的一些复健训练
+keywords:
+- Algorithm
+- Virgil
+math: true
+title: Codeforces Practice
+---
 
 
 # [C. Scoring Subsequences](https://codeforces.com/contest/1794/problem/C)

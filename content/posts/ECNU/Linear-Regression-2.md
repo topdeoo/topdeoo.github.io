@@ -1,12 +1,15 @@
-+++
-categories = ['InNight']
-cover = 'https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/644887.png'
-date = '2022-08-01 17:28:22'
-keywords = ['Machine Learning', 'For civil']
-math = true
-title = 'Linear Regression And Basic Gradient Descent 2'
-description = '这部分是一个拓展，文中的图片来源于李宏毅老师的ppt'
-+++
+---
+categories:
+- InNight
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/644887.png
+date: "2022-08-01 17:28:22"
+description: 这部分是一个拓展，文中的图片来源于李宏毅老师的ppt
+keywords:
+- Machine Learning
+- For civil
+math: true
+title: Linear Regression And Basic Gradient Descent 2
+---
 
 在这里，我们重点谈谈 **如果模型训练不动了怎么办**
 

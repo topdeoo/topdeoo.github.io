@@ -1,12 +1,16 @@
-+++
-categorieses = ['CSAPP', 'CMU']
-cover = 'https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230628184041.png'
-date = '2022-11-03 17:16:02'
-keywords = ['CMU', 'CSAPP']
-math = true
-title = 'CS-APP-shelllab'
-description = '​不如我自己写的 `shell` 难度大（不过关于信号处理的部分还是很有意思的）'
-+++
+---
+categorieses:
+- CSAPP
+- CMU
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230628184041.png
+date: "2022-11-03 17:16:02"
+description: ​不如我自己写的 `shell` 难度大（不过关于信号处理的部分还是很有意思的）
+keywords:
+- CMU
+- CSAPP
+math: true
+title: CS-APP-shelllab
+---
 
 # 实验准备
 

@@ -1,12 +1,15 @@
-+++
-categories = ['OS']
-cover = 'https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230628183743.png'
-date = '2022-09-12 15:06:51'
-keywords = ['OS', 'MIT']
-math = true
-title = 'MIT 6.S081 lab8 Locks'
-description = '优化 xv6 中的锁结构'
-+++
+---
+categories:
+- OS
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230628183743.png
+date: "2022-09-12 15:06:51"
+description: 优化 xv6 中的锁结构
+keywords:
+- OS
+- MIT
+math: true
+title: MIT 6.S081 lab8 Locks
+---
 
 # Lab08 Locks
 

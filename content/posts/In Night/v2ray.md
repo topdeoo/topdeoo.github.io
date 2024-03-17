@@ -1,10 +1,12 @@
-+++
-categories = ['InNight']
-date = '2023-06-12 17:23:04'
-keywords = ['v2ray']
-math = true
-title = 'v2raya安装与使用'
-+++
+---
+categories:
+- InNight
+date: "2023-06-12 17:23:04"
+keywords:
+- v2ray
+math: true
+title: v2raya安装与使用
+---
 
 文档给出 `v2rayA` 的安装与配置过程
 

@@ -1,12 +1,15 @@
-+++
-categories = ['OS']
-cover = 'https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230628183743.png'
-date = '2022-09-08 15:11:28'
-keywords = ['OS', 'MIT']
-math = true
-title = 'MIT 6.S081 lab7 Networking'
-description = '使用 E1000 网卡写一个驱动程序'
-+++
+---
+categories:
+- OS
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230628183743.png
+date: "2022-09-08 15:11:28"
+description: 使用 E1000 网卡写一个驱动程序
+keywords:
+- OS
+- MIT
+math: true
+title: MIT 6.S081 lab7 Networking
+---
 
 
 # Lab07 Networking

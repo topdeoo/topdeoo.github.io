@@ -1,7 +1,8 @@
 ---
-title: Learning-based multi-start iterated local search for the profit maximization set covering problem
 author: Wen Sun, Wenlong Li, Jin-Kao Hao, Qinghua Wu
 layout: Slide
+title: Learning-based multi-start iterated local search for the profit maximization
+  set covering problem
 ---
 <!--more-->
 

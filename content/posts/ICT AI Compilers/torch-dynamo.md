@@ -1,12 +1,16 @@
-+++
-categories = ['InNight']
-cover = 'https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/images'
-date = '2023-06-24 18:52:18'
-math = true
-tags = ['Compilers', 'PyTorch', 'AI System']
-title = 'Dynamo & Triton 解析'
-description = '关于 PyTorch2.0 中对 Dynamo 的解析'
-+++
+---
+categories:
+- InNight
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/images
+date: "2023-06-24 18:52:18"
+description: 关于 PyTorch2.0 中对 Dynamo 的解析
+math: true
+tags:
+- Compilers
+- PyTorch
+- AI System
+title: Dynamo & Triton 解析
+---
 
 
 # `Introduction`

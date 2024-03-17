@@ -1,11 +1,13 @@
-+++
-categories = ['Algorithm']
-date = '2022-07-10 14:14:19'
-keywords = ['Algorithm']
-math = true
-title = 'Tail Recursion'
-description = '尾递归（还是递归）（蓝旭算法课）'
-+++
+---
+categories:
+- Algorithm
+date: "2022-07-10 14:14:19"
+description: 尾递归（还是递归）（蓝旭算法课）
+keywords:
+- Algorithm
+math: true
+title: Tail Recursion
+---
 
 ## 导引
 

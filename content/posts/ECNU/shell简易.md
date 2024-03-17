@@ -1,11 +1,14 @@
-+++
-categories = ['InNight']
-cover = 'https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230803165920.png'
-date = '2022-03-29 18:49:06'
-keywords = ['OS', 'ECNU']
-title = 'ECNU DaSE2020 OS_HW1 shell'
-description = '实现一个简易版的Shell，可以识别一些简单到不能再简单的命令（bushi'
-+++
+---
+categories:
+- InNight
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230803165920.png
+date: "2022-03-29 18:49:06"
+description: 实现一个简易版的Shell，可以识别一些简单到不能再简单的命令（bushi
+keywords:
+- OS
+- ECNU
+title: ECNU DaSE2020 OS_HW1 shell
+---
 
 # 实验目的  
 

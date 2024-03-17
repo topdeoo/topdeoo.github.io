@@ -1,12 +1,15 @@
-+++
-categories = ['InNight']
-cover = 'https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230916164444.png'
-date = '2023-10-05 03:40:25'
-keywords = ['Stanford', 'Computer Network']
-math = true
-title = 'CS144(sp23) Lab0'
-description = 'Stanford CS144 Spring 2023 实验环境与 Lab0'
-+++
+---
+categories:
+- InNight
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230916164444.png
+date: "2023-10-05 03:40:25"
+description: Stanford CS144 Spring 2023 实验环境与 Lab0
+keywords:
+- Stanford
+- Computer Network
+math: true
+title: CS144(sp23) Lab0
+---
 
 # 前言
 

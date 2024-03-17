@@ -1,7 +1,7 @@
 ---
-title: Connected power domination in graphs
-date: 2023-10-07 16:22:51
+date: "2023-10-07 16:22:51"
 layout: Slide
+title: Connected power domination in graphs
 ---
 > slide of Connected power domination in graphs
 

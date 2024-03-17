@@ -1,9 +1,9 @@
 ---
-title: Effective Research
-math: true
-date: 2023-10-20 10:57:13
+date: "2023-10-20 10:57:13"
 icon: book
+math: true
 sticky: 20
+title: Effective Research
 ---
 
 > 开发指南

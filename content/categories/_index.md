@@ -1,11 +1,11 @@
-+++
-title = "分类"
-comment = false
-slug = 'categories'
-[menu]
-    [menu.main]
-        weight = -70
-        [menu.main.params]
-        icon = "categories"
-+++
+---
+comment: false
+menu:
+  main:
+    params:
+      icon: categories
+    weight: -70
+slug: categories
+title: 分类
+---
 

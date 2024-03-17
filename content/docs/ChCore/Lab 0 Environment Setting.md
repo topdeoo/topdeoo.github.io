@@ -1,12 +1,12 @@
 ---
-title: ChCore 实验 0：环境搭建
-math: true
-date: 2023-09-21 23:06:00
-tag:
-  - Lab Documents
-  - ChCore
 category:
-  - 关于实验文档的零零碎碎
+- 关于实验文档的零零碎碎
+date: "2023-09-21 23:06:00"
+math: true
+tag:
+- Lab Documents
+- ChCore
+title: ChCore 实验 0：环境搭建
 ---
 # 实验 0：环境搭建
 

@@ -1,11 +1,15 @@
-+++
-categories = ['CSAPP', 'CMU']
-cover = 'https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230628184041.png'
-date = '2022-03-29 19:46:40'
-keywordswords = ['CMU', 'CSAPP']
-title = 'CS:APP datalab'
-description = '一个做了很久，做完之后其实还挺有收获的实验（我愿称之为最难🥺）'
-+++
+---
+categories:
+- CSAPP
+- CMU
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230628184041.png
+date: "2022-03-29 19:46:40"
+description: "一个做了很久，做完之后其实还挺有收获的实验（我愿称之为最难\U0001F97A）"
+keywordswords:
+- CMU
+- CSAPP
+title: CS:APP datalab
+---
 
 > 前置条件：阅读完第二章
 

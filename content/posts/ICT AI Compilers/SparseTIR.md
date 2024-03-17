@@ -1,11 +1,15 @@
-+++
-categories = ['InNight']
-cover = 'https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230627230306.png'
-date = '2023-06-16 22:48:31'
-keywords = ['SparseTIR', 'Compilers', 'AI System']
-math = true
-title = 'SparseTIR 解读'
-+++
+---
+categories:
+- InNight
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230627230306.png
+date: "2023-06-16 22:48:31"
+keywords:
+- SparseTIR
+- Compilers
+- AI System
+math: true
+title: SparseTIR 解读
+---
 
 `SparTA` 解读（[论文](https://dl.acm.org/doi/pdf/10.1145/3582016.3582047)、[源码](https://github.com/uwsampl/SparseTIR) ）
 

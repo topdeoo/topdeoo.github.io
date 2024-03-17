@@ -1,12 +1,17 @@
-+++
-categories = ['InNight']
-cover = 'https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230803170225.png'
-date = '2023-06-12 13:45:28'
-keywords = ['SparseTIR', 'SparTA', 'Compilers', 'AI System']
-math = true
-title = 'SparseTIR & SparTA 环境搭建与实现复现'
-description = 'SparseTIR 与 SparTA 的实验复现'
-+++
+---
+categories:
+- InNight
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230803170225.png
+date: "2023-06-12 13:45:28"
+description: SparseTIR 与 SparTA 的实验复现
+keywords:
+- SparseTIR
+- SparTA
+- Compilers
+- AI System
+math: true
+title: SparseTIR & SparTA 环境搭建与实现复现
+---
 
 
 # 环境搭建

@@ -1,12 +1,16 @@
-+++
-categories = ['InNight']
-cover = 'https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/831074.png'
-date = '2023-06-06 14:26:08'
-keywords = ['TVM', 'Compilers', 'AI System']
-math = true
-title = 'TVM 运行环境搭建'
-description = '介绍如何在一台只有 docker 的环境的服务器下配置 tvm 运行环境'
-+++
+---
+categories:
+- InNight
+cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/831074.png
+date: "2023-06-06 14:26:08"
+description: 介绍如何在一台只有 docker 的环境的服务器下配置 tvm 运行环境
+keywords:
+- TVM
+- Compilers
+- AI System
+math: true
+title: TVM 运行环境搭建
+---
 
 
 请在宿主服务器上安装 `cuda` 的驱动程序
