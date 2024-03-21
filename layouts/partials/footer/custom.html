@@ -1,0 +1,52 @@
+<script src="https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/js/nprogress.min.js"
+    integrity="sha384-bHDlAEUFxsRI7JfULv3DTpL2IXbbgn4JHQJibgo5iiXSK6Iu8muwqHANhun74Cqg"
+    crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/css/nprogress.css"
+    integrity="sha384-KJyhr2syt5+4M9Pz5dipCvTrtvOmLk/olWVdfhAp858UCa64Ia5GFpTN7+G4BWpE" crossorigin="anonymous" />
+<script>
+    NProgress.start();
+    document.addEventListener("readystatechange", () => {
+        if (document.readyState === "interactive") NProgress.inc(0.8);
+        if (document.readyState === "complete") NProgress.done();
+    });
+</script>
+
+<!--返回顶部JS -->
+<script>
+    // 定义一个函数 backToTop，用于滚动页面到顶部
+    function backToTop() {
+        // 使用 scrollTo 方法将页面滚动到顶部，平滑效果取决于浏览器的默认行为
+        window.scrollTo(0, 0);
+    }
+
+    // 当页面加载完成时执行以下代码
+    window.onload = function () {
+        // 获取当前滚动的垂直位置（兼容不同浏览器的写法）
+        let scrollTop = this.document.documentElement.scrollTop || this.document.body.scrollTop;
+        // 获取 ID 为 'back-to-top' 的元素，通常是一个返回顶部按钮
+        let totopBtn = this.document.getElementById('back-to-top');
+        if (scrollTop > 0) {
+            // 如果页面滚动位置大于 0，则显示返回顶部按钮
+            totopBtn.style.display = 'inline';
+        } else {
+            // 否则隐藏返回顶部按钮
+            totopBtn.style.display = 'none';
+        }
+    }
+
+    // 当页面滚动时执行以下代码
+    window.onscroll = function () {
+        // 获取当前滚动的垂直位置（兼容不同浏览器的写法）
+        let scrollTop = this.document.documentElement.scrollTop || this.document.body.scrollTop;
+        // 获取 ID 为 'back-to-top' 的元素
+        let totopBtn = this.document.getElementById('back-to-top');
+        if (scrollTop < 200) {
+            // 如果滚动位置小于 200 像素，则隐藏返回顶部按钮
+            totopBtn.style.display = 'none';
+        } else {
+            // 否则显示返回顶部按钮，并为按钮添加点击事件，点击时执行 backToTop 函数
+            totopBtn.style.display = 'inline';
+            totopBtn.addEventListener('click', backToTop, false);
+        }
+    }
+</script>

@@ -37,7 +37,7 @@ params:
         - posts
     featuredImageField: cover
     rssFullContent: true
-    favicon: /img/favicon.ico # e.g.: favicon placed in `static/favicon.ico` of your site folder, then set this field to `/favicon.ico` (`/` is necessary)
+    favicon: favicon.ico # e.g.: favicon placed in `static/favicon.ico` of your site folder, then set this field to `/favicon.ico` (`/` is necessary)
 
     footer:
         since: 2021
@@ -224,13 +224,14 @@ markup:
         renderer:
             ## Set to true if you have HTML content inside Markdown
             unsafe: true
-            hardWarps: true
+            hardWarps: false
     tableOfContents:
         endLevel: 4
         ordered: true
         startLevel: 2
     highlight:
         noClasses: false
+        style: onedark
         codeFences: true
         guessSyntax: true
         lineNoStart: 1

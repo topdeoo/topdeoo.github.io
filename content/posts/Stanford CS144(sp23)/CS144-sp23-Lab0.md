@@ -419,6 +419,7 @@ void Reader::pop( uint64_t len ) {
 测试如下：
 
 ![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20231006121208.png)
+
 其错误为：
 
 ![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20231006121246.png)
@@ -460,6 +461,8 @@ void Writer::push( string data ) {
 }
 ```
 
+对于 Reader 而言：
+
 ```cpp
 string_view Reader::peek() const {
     // Your code here.
@@ -477,6 +480,7 @@ string_view Reader::peek() const {
 ```
 
 这样，就能通过所有测试点了
+
 ![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20231006121855.png)
 
 如果你更喜欢命令行，那么可以测试如下：
