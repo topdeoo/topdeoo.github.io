@@ -221,17 +221,22 @@ related:
 
 markup:
     goldmark:
+        extensions:
+            cjk:
+                eastAsianLineBreak: true
+                eastAsianLineBreaksStyle: simple
+                enabled: true
         renderer:
             ## Set to true if you have HTML content inside Markdown
-            unsafe: true
+            unsafe: false
             hardWarps: false
     tableOfContents:
         endLevel: 4
         ordered: true
-        startLevel: 2
+        startLevel: 1
     highlight:
-        noClasses: false
-        style: onedark
+        noClasses: true
+        style: vulcan
         codeFences: true
         guessSyntax: true
         lineNoStart: 1

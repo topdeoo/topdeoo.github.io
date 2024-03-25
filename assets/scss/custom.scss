@@ -167,21 +167,15 @@ html {
     }
 }
 
-// light模式下的代码块样式调整
-[data-scheme="light"] .article-content .highlight {
-    background-color: #fff9f3;
+//------------------------------------------------------
+// 修复引用块内容窄页面显示问题
+a {
+    word-break: break-all;
 }
 
-[data-scheme="light"] .chroma {
-    color: #ff6f00;
-    background-color: #fff9f3cc;
-}
-
-// ---------------------------------------
 // 代码块样式修改
 .highlight {
     max-width: 102% !important;
-    background-color: var(--pre-background-color);
     padding: var(--card-padding);
     position: relative;
     border-radius: 20px;
@@ -201,21 +195,20 @@ html {
     }
 
     pre {
-        margin: initial;
+        overflow-x: auto;
         padding: 0;
         margin: 0;
         width: auto;
+        word-break: break-all;
+        white-space: pre-wrap;
+        word-wrap: break-word;
     }
-}
 
-//------------------------------------------------------
-// 修复引用块内容窄页面显示问题
-a {
-    word-break: break-all;
-}
-
-code {
-    word-break: break-all;
+    code {
+        word-wrap: break-word;
+        white-space: pre-wrap;
+        border-radius: 20px;
+    }
 }
 
 //--------------------------------------------------
