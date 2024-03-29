@@ -178,6 +178,7 @@ a {
     max-width: 102% !important;
     padding: var(--card-padding);
     position: relative;
+    background-color: #282c34;
     border-radius: 20px;
     margin-left: -7px !important;
     margin-right: -12px;
@@ -202,13 +203,27 @@ a {
         word-break: break-all;
         white-space: pre-wrap;
         word-wrap: break-word;
+        background-color: #282c34;
     }
 
     code {
         word-wrap: break-word;
         white-space: pre-wrap;
         border-radius: 20px;
+        background-color: #282c34;
     }
+}
+
+[data-scheme="light"] .article-content .highlight {
+    background-color: #282c34;
+}
+
+[data-scheme="dark"] .article-content .highlight {
+    background-color: #282c34;
+}
+
+[data-scheme="dark"] .chroma {
+    background-color: #282c34;
 }
 
 //--------------------------------------------------
