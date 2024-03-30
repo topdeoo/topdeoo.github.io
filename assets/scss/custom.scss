@@ -173,6 +173,54 @@ a {
     word-break: break-all;
 }
 
+pre code.hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 0 !important;
+}
+
+.article-content {
+    .highlight:before {
+        content: '';
+        display: block;
+        background: url(/code-header.svg);
+        height: 32px;
+        width: 100%;
+        background-size: 57px;
+        background-repeat: no-repeat;
+        margin-bottom: 5px;
+        background-position: -1px 2px;
+    }
+}
+
+//代码复制按钮
+.article-content .copyCodeButton {
+    position: absolute;
+    top: 10px;
+    right: 18px;
+    border-radius: 12px;
+    opacity: 1;
+    color: #ffffffad;
+    background: none;
+    border: none;
+    padding: 0;
+    font-weight: 500;
+}
+
+.article-content .languageCodeButton {
+    position: absolute;
+    border: none;
+    top: 9px;
+    right: 69px;
+    border-radius: 12px;
+    opacity: 1;
+    padding: 0 5px;
+    background: 0;
+    color: #ffffffad;
+    font-family: lato;
+    font-size: 1.5rem;
+}
+
 // 代码块样式修改
 .highlight {
     max-width: 102% !important;
@@ -195,36 +243,19 @@ a {
         direction: ltr;
     }
 
-    pre {
-        overflow-x: auto;
-        padding: 0;
-        margin: 0;
-        width: auto;
-        word-break: break-all;
-        white-space: pre-wrap;
-        word-wrap: break-word;
-        background-color: #282c34;
-    }
-
-    code {
-        word-wrap: break-word;
-        white-space: pre-wrap;
-        border-radius: 20px;
-        background-color: #282c34;
-    }
 }
 
-[data-scheme="light"] .article-content .highlight {
-    background-color: #282c34;
-}
+// [data-scheme="light"] .article-content .highlight {
+//     background-color: #282c34;
+// }
 
-[data-scheme="dark"] .article-content .highlight {
-    background-color: #282c34;
-}
+// [data-scheme="dark"] .article-content .highlight {
+//     background-color: #282c34;
+// }
 
-[data-scheme="dark"] .chroma {
-    background-color: #282c34;
-}
+// [data-scheme="dark"] .chroma {
+//     background-color: #282c34;
+// }
 
 //--------------------------------------------------
 // 文章内容图片圆角阴影

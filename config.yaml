@@ -33,6 +33,7 @@ permalinks:
     page: /:slug/
 
 params:
+    syntaxHighlighter: "highlight.js"
     mainSections:
         - posts
     featuredImageField: cover
@@ -235,11 +236,11 @@ markup:
         ordered: true
         startLevel: 1
     highlight:
-        noClasses: true
-        style: vulcan
-        codeFences: true
-        guessSyntax: true
-        lineNoStart: 1
-        lineNos: false
-        lineNumbersInTable: true
-        tabWidth: 4
+        noClasses: false
+        # style: monokai
+        # codeFences: true
+        # guessSyntax: true
+        # lineNoStart: 1
+        # lineNos: false
+        # lineNumbersInTable: true
+        # tabWidth: 4
