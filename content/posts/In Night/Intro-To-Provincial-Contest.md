@@ -1,7 +1,7 @@
 ---
 categories:
 - InNight
-cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/658268.png
+cover: wallpaper/658268.png
 date: "2023-04-19 18:31:16"
 description: '省赛配置流程，当做遗产留下来   '
 keywords:

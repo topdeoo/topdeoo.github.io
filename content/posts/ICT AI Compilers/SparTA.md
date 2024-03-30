@@ -1,7 +1,7 @@
 ---
 categories:
 - InNight
-cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/684458.png
+cover: wallpaper/684458.png
 date: "2023-06-16 22:48:23"
 keywords:
 - SparTA

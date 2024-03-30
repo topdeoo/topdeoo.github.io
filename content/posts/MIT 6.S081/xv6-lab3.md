@@ -1,7 +1,7 @@
 ---
 categories:
 - OS
-cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230628183743.png
+cover: class/20230628183743.png
 date: "2022-04-18 12:41:24"
 description: "你说的 easy 不是 easy，我说的 hard 是什么 hard\U0001F62D"
 keywordswords:

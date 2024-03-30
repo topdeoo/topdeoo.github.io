@@ -1,7 +1,7 @@
 ---
 categories:
 - InNight
-cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/desktop3.png
+cover: wallpaper/desktop3.png
 date: "2023-05-12 00:01:09"
 description: 由于在 Windows 下开WSL和IDE导致电脑内存已经吃不消了，所以我直接把电脑系统刷成了 Linux （彻底疯狂了），这里记录一下我的配置过程
 keywords:

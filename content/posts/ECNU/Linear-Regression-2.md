@@ -1,7 +1,7 @@
 ---
 categories:
 - InNight
-cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/644887.png
+cover: wallpaper/644887.png
 date: "2022-08-01 17:28:22"
 description: 这部分是一个拓展，文中的图片来源于李宏毅老师的ppt
 keywords:

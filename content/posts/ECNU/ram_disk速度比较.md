@@ -1,7 +1,7 @@
 ---
 categories:
 - InNight
-cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230628184041.png
+cover: wallpaper/20230628184041.png
 date: "2022-05-08 22:25:01"
 description: 为什么MINIX你是微内核！我不理解！
 keywords:

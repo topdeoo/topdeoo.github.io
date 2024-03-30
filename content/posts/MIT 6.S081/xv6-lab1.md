@@ -1,7 +1,7 @@
 ---
 categories:
 - OS
-cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230628183743.png
+cover: class/20230628183743.png 
 date: "2022-04-01 20:00:29"
 description: ' Lab1简单的熟悉xv6操作系统和怎么做实验'
 keywords:

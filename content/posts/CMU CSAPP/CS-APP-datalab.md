@@ -2,7 +2,7 @@
 categories:
 - CSAPP
 - CMU
-cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230628184041.png
+cover: class/20230628184041.png
 date: "2022-03-29 19:46:40"
 description: "一个做了很久，做完之后其实还挺有收获的实验（我愿称之为最难\U0001F97A）"
 keywordswords:

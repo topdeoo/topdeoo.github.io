@@ -1,7 +1,7 @@
 ---
 categories:
 - Compilers
-cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/1311817.jpg
+cover: wallpaper/1311817.jpg
 date: "2022-07-16 15:14:53"
 description: Stanford CS143 实验环境安装与配置
 keywords:

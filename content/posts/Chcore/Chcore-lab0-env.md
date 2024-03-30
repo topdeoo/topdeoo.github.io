@@ -2,7 +2,7 @@
 categories:
 - OS
 - IPADS
-cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230803170225.png
+cover: wallpaper/20230803170225.png
 date: "2023-09-01 08:48:00"
 description: Set the envrionment and boot the machine
 keywords:

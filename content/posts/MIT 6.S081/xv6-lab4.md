@@ -1,7 +1,7 @@
 ---
 categories:
 - OS
-cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230628183743.png
+cover: class/20230628183743.png
 date: "2022-04-19 19:41:06"
 description: 2020年的课和这个不太兼容（需要看完中断之后才能做这个实验）
 keywords:

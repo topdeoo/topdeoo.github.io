@@ -1,7 +1,7 @@
 ---
 categories:
 - OS
-cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230727232116.png
+cover: class/20230727232116.png
 date: "2023-07-27 23:18:00"
 description: 实现一个 pstree 的 shell 小工具（实际是 pstree 的一个阉割版本）
 keywords:

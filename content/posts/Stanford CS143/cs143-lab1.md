@@ -1,7 +1,7 @@
 ---
 categories:
 - Compilers
-cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230803170433.png
+cover: wallpaper/20230803170433.png
 date: "2022-11-20 17:03:53"
 description: Assignment 1 实现词法分析器
 keywords:

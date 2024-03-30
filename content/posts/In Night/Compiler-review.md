@@ -1,7 +1,7 @@
 ---
 categories:
 - InNight
-cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230803170527.png
+cover: wallpaper/20230803170527.png
 date: "2023-07-03 20:07:43"
 description: 编译原理的一些简单复习
 keywords:

@@ -1,7 +1,7 @@
 ---
 categories:
 - InNight
-cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/644887.png
+cover: wallpaper/644887.png
 date: "2022-07-31 11:09:54"
 description: 一个传统的线性回归讲义
 keywords:

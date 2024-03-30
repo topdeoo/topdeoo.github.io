@@ -1,7 +1,7 @@
 ---
 categories:
 - InNight
-cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230803170225.png
+cover: wallpaper/20230803170225.png
 date: "2024-01-27 01:07:01"
 description: 如何从 X11 转向 Wayland (Manjaro 专场)下的配置
 keywordss:

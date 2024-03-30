@@ -1,7 +1,7 @@
 ---
 categories:
 - OS
-cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230628183743.png
+cover: class/20230628183743.png
 date: "2022-04-01 20:09:38"
 description: ' Lab2 熟悉一些系统调用'
 keywords:

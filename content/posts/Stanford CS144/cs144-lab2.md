@@ -1,7 +1,7 @@
 ---
 categories:
 - InNight
-cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/1311817.jpg
+cover: wallpaper/1311817.jpg
 date: "2023-03-16 14:27:15"
 description: 写出完整的 TCP Receiver
 keywords:

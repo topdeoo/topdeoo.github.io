@@ -1,7 +1,7 @@
 ---
 categories:
 - InNight
-cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230803170207.png
+cover: wallpaper/20230803170207.png
 date: "2023-02-20 21:03:47"
 description: 实现一个 best effort 的字节传输流
 keywords:

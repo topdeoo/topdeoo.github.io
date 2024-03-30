@@ -1,7 +1,7 @@
 ---
 categories:
 - InNight
-cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/831074.png
+cover: wallpaper/831074.png
 date: "2023-06-06 14:26:08"
 description: 介绍如何在一台只有 docker 的环境的服务器下配置 tvm 运行环境
 keywords:

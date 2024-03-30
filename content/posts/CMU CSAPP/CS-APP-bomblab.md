@@ -2,7 +2,7 @@
 categories:
 - CSAPP
 - CMU
-cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230628184041.png
+cover: class/20230628184041.png
 date: "2022-03-29 20:04:37"
 description: "一个其实很简单但是居然有彩蛋的实验\U0001F60F"
 keywords:

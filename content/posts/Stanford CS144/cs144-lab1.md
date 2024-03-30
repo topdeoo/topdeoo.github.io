@@ -1,7 +1,7 @@
 ---
 categories:
 - InNight
-cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/1190408.jpg
+cover: wallpaper/1190408.jpg
 date: "2023-02-26 17:00:27"
 description: 实现重组字节流
 keywords:

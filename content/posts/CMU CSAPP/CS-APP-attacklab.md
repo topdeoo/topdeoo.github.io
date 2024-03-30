@@ -2,7 +2,7 @@
 categories:
 - CSAPP
 - CMU
-cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230628184041.png
+cover: class/20230628184041.png
 date: "2022-04-06 10:26:35"
 description: 一个一开始完全不知道怎么做的实验
 keywords:

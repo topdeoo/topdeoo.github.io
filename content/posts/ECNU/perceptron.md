@@ -1,7 +1,7 @@
 ---
 categories:
 - InNight
-cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/n-buna.jpg
+cover: wallpaper/n-buna.jpg
 date: "2022-08-03 17:16:17"
 description: 感知机
 keywords:

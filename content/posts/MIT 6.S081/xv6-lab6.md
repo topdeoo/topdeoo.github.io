@@ -1,7 +1,7 @@
 ---
 categories:
 - OS
-cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230628183743.png
+cover: class/20230628183743.png
 date: "2022-09-06 14:13:54"
 keywords:
 - OS

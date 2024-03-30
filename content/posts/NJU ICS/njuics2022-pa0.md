@@ -1,7 +1,7 @@
 ---
 categories:
 - OS
-cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230716221813.png
+cover: class/20230716221813.png
 date: "2023-07-16 21:54:47"
 description: ICS PA 的实验环境准备
 keywords:

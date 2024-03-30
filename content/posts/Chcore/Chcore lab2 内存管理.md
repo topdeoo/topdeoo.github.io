@@ -2,7 +2,7 @@
 categories:
 - OS
 - IPADS
-cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/1150451.jpg
+cover: wallpaper/1150451.jpg
 date: "2023-09-11 04:40:09"
 description: 内存管理，伙伴系统（Buddy System）与页表配置（Page Table） 重回中文写作
 keywords:

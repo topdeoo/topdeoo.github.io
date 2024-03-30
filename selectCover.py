@@ -35,16 +35,28 @@ cover_list = [
     "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/1336068.jpeg",
     "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/1336671.webp",
     "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/1336369.jpeg",
-   "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/IMG_4213(20231118-102632).webp"
+    "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/IMG_4213(20231118-102632).webp",
+    "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/1711803296488.jpg",
+    "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/1711803211807.jpg",
+    "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/1711803110624.jpg",
+    "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/Acheron.jpeg",
+    "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/1711802767058.jpg",
+    "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/1711802698151.jpg",
+    "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/1711802662756.jpg",
+    "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/1711802605292.jpg",
+    "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/1711802572281.jpg",
+    "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/1711802535376.jpg",
+    "https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/1711802420249.jpg",
 ]
 
 import hashlib
 import datetime
+import requests
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     t = datetime.datetime.now()
-    md5_value = hashlib.md5(str(t).encode('utf-8')).hexdigest()
+    md5_value = hashlib.md5(str(t).encode("utf-8")).hexdigest()
     idx = 0
     for i in range(len(md5_value)):
         idx += int(ord(md5_value[i]))

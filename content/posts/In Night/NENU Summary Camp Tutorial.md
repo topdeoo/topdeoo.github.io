@@ -1,7 +1,7 @@
 ---
 categories:
 - InNight
-cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230916163924.png
+cover: wallpaper/20230916163924.png
 date: "2023-09-20 07:05:38"
 description: 2023 NENU夏令营机试 Tutorial
 keywords:

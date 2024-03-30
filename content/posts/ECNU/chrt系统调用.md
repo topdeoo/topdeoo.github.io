@@ -1,7 +1,7 @@
 ---
 categories:
 - InNight
-cover: https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230803170258.png
+cover: wallpaper/20230803170258.png
 date: "2022-03-29 18:35:16"
 description: 实现chrt系统调用（简易版
 keywords:
