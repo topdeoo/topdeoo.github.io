@@ -32,6 +32,8 @@ permalinks:
     post: /p/:slug/
     page: /:slug/
 
+enableEmoji: true
+
 params:
     syntaxHighlighter: "highlight.js"
     mainSections:

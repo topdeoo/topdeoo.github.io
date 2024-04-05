@@ -1,12 +1,14 @@
 ---
+author: virgil
+email: virgiling7@gmail.com
 categories:
-- InNight
+  - InNight
 cover: wallpaper/20230916164444.png
-date: "2023-10-05 03:40:25"
+date: 2023-10-05 03:40:25
 description: Stanford CS144 Spring 2023 实验环境与 Lab0
 keywords:
-- Stanford
-- Computer Network
+  - Stanford
+  - Computer Network
 math: true
 title: CS144(sp23) Lab0
 ---
@@ -21,8 +23,7 @@ title: CS144(sp23) Lab0
 
 > 请注意文章创建的时间与工具版本之间的关系
 
-
-- - OS: Linux x86_64 (6.1.53-1-MANJARO)
+- OS: Linux x86_64 (6.1.53-1-MANJARO)
 - CPU: 13th Gen Intel i5-13500H (16) @ 4.700GHz
 - GPU: Intel Raptor Lake-P \[Iris Xe Graphics\]
 - Memory: 16GB
