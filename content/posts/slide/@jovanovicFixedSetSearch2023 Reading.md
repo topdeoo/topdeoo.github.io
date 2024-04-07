@@ -1,7 +1,8 @@
 ---
 author: Raka Jovanovic, Antonio P. Sanfilippo, Stefan Voß
 date: "2023-12-04 17:33:40"
-layout: Slide
+categories: 
+- Slides
 title: Fixed set search applied to the clique partitioning problem
 ---
 <!--more-->

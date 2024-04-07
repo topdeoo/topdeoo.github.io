@@ -1,6 +1,7 @@
 ---
 date: "2023-10-07 16:22:51"
-layout: Slide
+categories: 
+- Slides
 title: Connected power domination in graphs
 ---
 > slide of Connected power domination in graphs
