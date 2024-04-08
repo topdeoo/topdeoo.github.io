@@ -12,6 +12,8 @@ title: Manjaro 的安装与配置
 ---
 
 
+> 2024.04 更新，由于已经进化到 `KDE6` 了，本文中的一些美化已经过时，请谨慎食用
+> 
 > 2023.10 更新微信安装及其配置， wps安装及其配置， 美化主题配置 请看[更新](#更新)
 
 放一张图展示一下我的成果
@@ -95,6 +97,8 @@ title: Manjaro 的安装与配置
 这样会省去一些配置的时间（比如烦人的中文输入法），然后点击 `UPDATE SYSTEM` 即可
 
 接下来是 `AUR` 的安装（这也是为什么要使用 `Arch` 系的原因）
+
+> 备注：在下载包时如果不是对版本更新有强要求，那么最好下载带有 `-bin` 后缀的包
 
 但在安装之前，我们需要更新一下镜像源：
 
@@ -192,7 +196,7 @@ yay -S v2raya
 - [x]  `Typora`
 - [x] `Obsidian` ✅ 2023-10-05
 - [x]  `LunarVim`
-- [ ]  `Emacs`
+- [ ] `Emacs`
 
 ```bash
 yay -S clion pycharm-professional intellij-idea-ultimate-edition goland
@@ -221,6 +225,8 @@ sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub
 完成后，就可以打开 `discover` ，然后在里面找到 `steam` 了
 
 # 桌面美化
+
+> 更新：由于我更换了桌面环境，最新的美化可以参考 [Hyprland 美化](./Hyprland-Yes.md)
 
 ## `Konsole` 美化
 
@@ -316,10 +322,23 @@ sudo pacman -S neofetch lolcat
 
 # 更新
 
+> 更新二重奏
+
+## QQ
+
+在 `AUR` 上可以找到 `linuxqq` 这个包，安装即可，这个 `qq` 能够获得和 `windows` 上的 `qq` 相同的体验（大赞腾讯的 qq 部门）
+
+```shell
+yay -S linuxqq
+```
+
+
 ## Wechat
 
-在 `AUR` 官网上搜索 com.qq.weixin.deepin，然后yay下载即可
+> 更新
+> 现在可以直接下载 `wechat-beta-bwarp` 这个包，似乎效果比原先的微信体验好很多
 
+在 `AUR` 官网上搜索 com.qq.weixin.deepin，然后yay下载即可
 
 ```shell
 yay -S com.qq.weixin.deepin
