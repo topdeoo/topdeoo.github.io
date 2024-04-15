@@ -1,14 +1,14 @@
 ---
 title: Two-Level Segregated Fit
 math: true
-date: 2024-04-15 12:07:00
+date: 2024-04-15T12:07:00+08:00
 keywords:
   - OS
   - NENU
 categories:
   - InNight
   - OS
-cover: wallpaper/117165405_p2.png
+cover: wallpaper/117165573_p0.png
 description:
 ---
 
