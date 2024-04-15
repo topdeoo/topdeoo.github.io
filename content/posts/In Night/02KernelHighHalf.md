@@ -1,7 +1,7 @@
 ---
-title: SparrOS：A Toy OS 0x02
+title: "SparrOS: A Toy OS 0x02"
 math: true
-date: 2024-04-15 11:44:39
+date: 2024-04-14 21:44:39
 keywords:
   - OS
   - NENU
@@ -9,6 +9,7 @@ categories:
   - InNight
   - OS
 cover: wallpaper/117165405_p0.png
+description:
 ---
 >此提交的hash为 d571835f4c719a3e93092b0330a966077c0c9c20
 >如果想查看代码，请输入 `git checkout <hash>`

@@ -1,5 +1,5 @@
 ---
-title: SparrOS：A Toy OS 0x00
+title: "SparrOS: A Toy OS 0x00"
 math: true
 date: 2024-04-14 11:15:13
 keywords:

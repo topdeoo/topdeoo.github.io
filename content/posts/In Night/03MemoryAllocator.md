@@ -1,7 +1,7 @@
 ---
-title: SparrOS：A Toy OS 0x03
+title: "SparrOS: A Toy OS 0x03"
 math: true
-date: 2024-04-15 12:02:45
+date: 2024-04-14 22:15:13
 keywords:
   - NENU
   - OS
