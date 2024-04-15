@@ -11,8 +11,7 @@ categories:
 cover: wallpaper/20230803165920.png
 description:
 ---
-> 此提交的 hash 为 eaf48515c946501df450dadf40b5ca997aa77488
-> 如果想阅读代码，请运行 `git checkout <hash>`
+> 此提交的 `hash` 为 `eaf48515c946501df450dadf40b5ca997aa77488`，如果想阅读代码，请运行 `git checkout <hash>`
 # 机器启动
 
 一个计算器的启动大致流程如下：

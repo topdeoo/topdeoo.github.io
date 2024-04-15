@@ -26,7 +26,7 @@ description:
 > **碎片化**（英语：fragmentation）是指存储空间使用效率低下，结果导致功能、运行效率变低或二者兼而有之的现象。碎片化所造成的影响取决于具体的存储系统以及碎片化的种类。大部分情况下，碎片化都会导致存储空间的浪费，此时“碎片”一词亦可指代闲置的空间本身。对于其他的一些系统来说（比如[FAT](https://zh.wikipedia.org/wiki/FAT "FAT")文件系统），数据量一定的前提下，用于存储数据所占的存储空间是一定的，和碎片化的程度无关。   -- [维基百科](https://zh.wikipedia.org/wiki/%E7%A2%8E%E7%89%87%E5%8C%96)
 
 
-> 由于我们并不将 TLFS 用于实时系统，因此在这里我们不care时间对内存分配器的严格要求
+> 由于我们并不将 TLSF 用于实时系统，因此在这里我们不care时间对内存分配器的严格要求
 
 于是，内存分配器的失败的原因就变成了 内存不足。而内存不足主要有以下两个情况：
 
@@ -91,7 +91,7 @@ description:
 6. 内存不清空：初始池和空闲块都没有被清零。在多用户环境中使用的分配算法必须清空内存（通常用零填充）以避免安全问题。
 	> 换而言之，`TLFS` 只能被使用与可信环境下（也就是程序员必须完全遵守 `RAII` 原则）
 	
-## TLFS 数据结构
+## TLSF 数据结构
 
 主要使用的是 **隔离适配机制**
 
@@ -132,7 +132,7 @@ typedef struct control_t
 其 `Rust` 实现为：
 
 ```rust
-struct Tlfs {
+struct Tlsf {
 	fl_bitmap: FLBitmap,
 	sl_bitmap: [SLBitmap; FL_INDEX_COUNT],
 	free_blocks: [[Option<NonNull<FreeBlockHeader>>; SL_INDEX_COUNT]; FL_INDEX_COUNT]
@@ -177,22 +177,23 @@ struct UsedBlockHeader {
 
 ## 映射函数
 
-TLFS 的大多数操作都依赖于函数 `segregate list` ，通过给定此函数一个需求块的大小 `size` ，其返回需求块第一级（first level）和第二级（second level）在 `blocks` 中的 `index`
+TLSF 的大多数操作都依赖于函数 `segregate list` ，通过给定此函数一个需求块的大小 `size` ，其返回需求块第一级（first level）和第二级（second level）在 `blocks` 中的 `index`
 
 $$
-mapping = \begin{cases}
+f := \lfloor\log_2(size)\rfloor
+$$
 
-f := \lfloor\log_2(size)\rfloor\\
+$$
 s := (size - 2^f)\frac{2^{SLI}}{2^f}
-\end{cases}
 $$
+
 对于 $f$ 的计算，本质上就是找到 `size` 二进制表示下从左往右第一个 $1$ 的位置
 
 ## 操作
 
-下面列举了 tlfs 支持的操作
-- 初始化：tlfs会在内存中初始化自己的数据结构，剩余的内存被组织成为空闲池
-- 删除：将某个 tlfs 块标记为不可用
+下面列举了 tlsf 支持的操作
+- 初始化：tlsf会在内存中初始化自己的数据结构，剩余的内存被组织成为空闲池
+- 删除：将某个 tlsf 块标记为不可用
 - 搜索：返回一个恰好大于等于给定 `size` 的空闲块指针，这个操作分为两步：
 	- 计算索引 $f$ 与 $s$，如果搜索到的链表不为空，那么会将其标记为忙状态，然后返回给用户
 	- 否则，搜索下一个恰好大于等于给定 `size` 的链表
@@ -202,7 +203,7 @@ $$
 
 ## 参数
 
-- 第一层索引（`FLI`），也就是第一层的最大索引，一般计算方式为 $FLI = \min{(log_2(memory\_pool\_size), 31)}$ 
+- 第一层索引（`FLI`），也就是第一层的最大索引，一般计算方式为 $FLI = \min{(\log_2(memoryPoolSize), 31)}$ 
 - 第二层索引（`SLI`），细分了第一级范围。出于效率的考虑，SLI必须是2的幂次方，并且应该在 $[ 1 , 32]$ 范围内，以便使用简单的位图处理。为方便起见，将SLI表示为二级划分个数( e.g. SLI = 4，也就是将每个一级隔离类细分为16个隔离列表的对数值）
 	> 由于不同分隔列表的数量由SLI的值决定，SLI越大，碎片化程度越小。这是一个用户自定义的参数。合理取值为4或5。
 - 最小块尺寸( Minimum Block Size，MBS )：该参数是为了限制最小块尺寸而定义的。考虑到实现的原因，MBS 常量设置为16字节。
