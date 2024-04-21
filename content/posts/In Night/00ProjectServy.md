@@ -9,6 +9,7 @@ categories:
   - InNight
   - OS
 cover: wallpaper/20230724204246.png
+draft: true
 description:
 ---
 本人的一些毕业设计，没有什么能比自己写一个操作系统更有意思了！

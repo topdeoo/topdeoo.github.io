@@ -9,6 +9,7 @@ categories:
   - InNight
   - OS
 cover: wallpaper/117165573_p1.png
+draft: true
 description:
 ---
 
