@@ -11,22 +11,76 @@ math: true
 title: NJU ICS PA-0
 ---
 
-> 
-
-<!--more-->
-
 # 实验环境
 
-按照
-
-```card
-title: NJU ICS PA 0
-link: https://nju-projectn.github.io/ics-pa-gitbook/ics2022/pa0/
-```
-
-中的提示即可完成。
+按照 [文档](https://nju-projectn.github.io/ics-pa-gitbook/ics2022/pa0/) 中的提示即可完成。
 
 由于本人的系统为 `Manjaro`，因此并不需要安装双系统，这里直接开始搭建软件环境。
+
+> 更新，如果你不想安装双系统，这里有一种更合适的方式，使用 `docker`
+
+## Docker 版本的环境
+
+我们从裸的 `ubuntu 22.04` 开始，在 `cmd` 中运行如下 `Dockerfile`：
+
+```docker
+FROM ubuntu:latest
+
+RUN sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
+RUN apt-get -y update && apt -y  upgrade
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=Asia/Shanghai
+RUN apt-get install -y \
+    man \
+    vim \
+    git \
+    wget \
+    libgoogle-glog-dev \
+    gcc \
+    libtinfo-dev \
+    zlib1g-dev \
+    build-essential \
+    libedit-dev \
+    libxml2-dev \
+    libssl-dev \
+    unzip \
+    pip \
+    libsndfile1 \
+    gcc-doc \
+    gdb \
+    libreadline-dev \
+    libsdl2-dev \
+    llvm llvm-dev \
+    tmux \
+    clangd clang-format clang-tidy
+RUN apt-get update && \
+	apt-get install -y locales && \
+	locale-gen zh_CN && \
+	locale-gen zh_CN.utf8 && \
+	apt-get install -y ttf-wqy-microhei ttf-wqy-zenhei xfonts-wqy
+WORKDIR /root
+ENV LANG zh_CN.UTF-8  
+ENV LANGUAGE zh_CN.UTF-8
+ENV LC_ALL zh_CN.UTF-8
+```
+
+由于后期可能需要一些图形化界面，这里我们采取的策略是使用 `X11` 来进行转发，请安装 Windows 上的 `X11` 客户端：[VCXSRV](https://github.com/ArcticaProject/vcxsrv)
+
+随后，我们在一个目录下（你的代码目录）打开 `cmd`，输入：
+
+```powershell
+git clone -b 2022 git@github.com:NJU-ProjectN/ics-pa.git ICS
+```
+
+接着，通过以下命令来构建这个容器：
+
+```powershell
+docker build . -f Dockerfile -t njupa
+docker run -ti --rm -e DISPLAY=host.docker.internal:0.0 -v ICS:/root/ICS njupa
+```
+
+接着我们就可以在 windows 下编写代码，然后通过 `docker run` 这条命令进入 `ubuntu` 进行执行
+
 
 # 模拟器构建
 
