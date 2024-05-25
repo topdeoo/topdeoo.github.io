@@ -11,6 +11,34 @@ math: true
 title: Hyprland Yes!
 ---
 
+# 更新
+
+由于不太像使用 `Manajro` 了，想尝试 `NixOS` 所以换了一个系统，但用了一个礼拜发现 `NixOS` 的安装到使用都有点燃烧硬盘寿命的意思，所以最后还是变成了 `Arch-based`，但使用的是 `ArcoLinux` 这个小众的版本（
+
+以下是我的新桌面系统（不用neofetch了，因为作者回老家种地去了）：
+
+![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/202405251728640.png)
+
+
+这里记录一下安装过程中遇到的一些问题（未来也会继续更新，目前遇到的 bug 并不算多）
+
+1. `xwayland` 与 `wayland` 的剪切板不互通，这个似乎是 `hyprland` 的问题，在 `github` 上回退版本即可，或者不安装 `hyprland-git` 也可以，然后我们也需要安装一个 `X11` 下的剪贴板，可以是 `xclip`，我这里安装的是 `wl-clipboard-x11`
+2. 鼠标指针的主题在 `gtk` 上是正常的，但在 `hyprland` 中又没有被设置，这里只需要在 `~/.config/hypr/hyprland.conf` 中设置一下环境变量即可：`env = XCUCSOR_THEME,xxxx`
+
+> 这里是 NENU 专场，在 Linux 下如何访问学校的服务器，首先，我们需要保证自己有两个账号密码：
+> 1. 服务器的账号密码
+> 2. 管理服务器的 VPN 的账号密码
+> 例如，服务器账号密码为 ：virgil， virgil
+> 但连接学校vpn的账号为 xxx_virgil, virgil（不是统一认证账号）
+> 那么，我们运行如下命令：`docker run --rm --device /dev/net/tun --cap-add NET_ADMIN -ti -p 127.0.0.1:7080:1080 -p 127.0.0.1:8888:8888 -e EC_VER=7.6.3 -e CLI_OPTS="-d https://vpn.nenu.edu.cn -u info_wangstu -p dThqPx7Fs3FGA" hagb/docker-easyconnect:cli &` 
+> 即可在后台开启一个 `easyconnect`，然后，我们使用 `ssh` 如下：
+
+```bash
+ssh -o ProxyCommand='ncat --proxy-type socks5 --proxy 127.0.0.1:7080 virgil@<host-ip>
+```
+
+> 即可连接上服务器
+
 
 # Intro
 
