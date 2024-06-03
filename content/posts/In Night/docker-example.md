@@ -5,7 +5,7 @@ date: 2024-06-03 07:56:47
 categories:
   - InNight
   - dodola
-cover: 
+cover: wallpaper/1711803110624.jpg
 comments: true
 keywords:
 ---
