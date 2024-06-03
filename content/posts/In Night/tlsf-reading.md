@@ -10,7 +10,6 @@ categories:
   - OS
 cover: wallpaper/117165573_p0.png
 description:
-draft: true
 ---
 
 > [论文的地址](https://ieeexplore.ieee.org/document/1311009)及其 [实现](https://github.com/yvt/rlsf) ，此文的参考解读为：[TLSF解读](https://zhuanlan.zhihu.com/p/651465121)
