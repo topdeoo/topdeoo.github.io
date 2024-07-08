@@ -9,6 +9,10 @@ links:
   image: windlinxy.jpg
   title: Windlinxy
   website: https://www.windlinxy.top/
+- description: Doごみ箱
+  image: dodola.png
+  title: dodola
+  website: https://dodolalorc.cn/
 menu:
   main:
     params:
