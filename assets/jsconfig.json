@@ -1,10 +1,11 @@
 {
- "compilerOptions": {
-  "baseUrl": ".",
-  "paths": {
-   "*": [
-    "../themes/stack/assets/*"
-   ]
-  }
- }
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "*": [
+                "..\\themes\\stack\\assets\\*",
+                "../themes/stack/assets/*"
+            ]
+        }
+    }
 }
