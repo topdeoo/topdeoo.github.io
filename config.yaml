@@ -245,10 +245,3 @@ markup:
         startLevel: 1
     highlight:
         noClasses: false
-        # style: monokai
-        # codeFences: true
-        # guessSyntax: true
-        # lineNoStart: 1
-        # lineNos: false
-        # lineNumbersInTable: true
-        # tabWidth: 4
