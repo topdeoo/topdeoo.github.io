@@ -8,6 +8,7 @@ cover: wallpaper/116713516_p0.jpg
 comments: true
 keywords:
   - Linux
+  - Issue
 ---
 
 事情的起因是我在对 `SAT Solver` 进行优化测试时，发现了我的求解器测不准时间，具体表现为，我在代码中测试的时间与 `gprof` 得到的时间不相符，后者的时间要比前者少将近 $20\%$，实在是让人匪夷所思。
