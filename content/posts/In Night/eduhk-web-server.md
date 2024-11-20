@@ -4,7 +4,7 @@ math: true
 date: 2024-11-13 11:35:55
 categories:
   - InNight
-cover: wallpaper/117165573_p3
+cover: wallpaper/117165573_p3.png
 comments: true
 keywords:
   - Linux
@@ -13,6 +13,13 @@ keywords:
 ---
 # 安装系统问题
 
+服务器是 `VMware vSphere` 的一个虚拟机，开始本质上是一个 `bare metal`，我们需要通过 `VMware` 提供的工具（需要注册才能够下载）[Remote Console](https://knowledge.broadcom.com/external/article/368995/) 的文档进行下载（没有文档甚至根本不知道下载地址在哪里，太夸张了）
+
+下载了这个之后，需要下载一个服务器 `iso` 文件，这里以 `ubuntu-20.04.6-live-server-amd64.iso` 为例。
+
+在页面中挂载 `CD/DVD` 文件后，最重要的一步是：
+
+**在进入安装页面的时候会卡很久，一般可能是因为需要网络将 iso 文件传输过去，所以会导致很慢，尤其 20.04 会扫描一遍硬盘，基本上没有两个小时无法进入正常的安装页面**
 # docker-compose 构建后导致无法 ssh
 ## 问题记录
 
