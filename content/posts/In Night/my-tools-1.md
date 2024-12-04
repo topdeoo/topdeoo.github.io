@@ -1,5 +1,5 @@
 ---
-title: 差生文具店
+title: 差生文具店（第一集）
 math: true
 date: 2024-10-27 03:18:10
 categories:
@@ -501,3 +501,26 @@ https://www.continue.dev/
 - `Even Better TOML`:用来高亮 `Cargo.toml` 的拓展,其他的 `.toml` 文件也可以使用(
 
 ### Typst
+
+- Tinymist Typst
+
+只需要这一个即可，这个插件完美到甚至不需要自己去查文档记符号，可以直接通过手写来识别，例如：
+
+![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20241204155641.png)
+
+并且，插件还支持即时预览以及导出 pdf
+#### 包管理
+
+`Typst` 没有官方的包管理器，可以使用第三方的包管理器 [utpm](https://github.com/Thumuss/utpm) ，可以参考 github 链接进行安装
+
+> 如果你使用 `Windows`，可以考虑下载二进制文件后，增加 PATH 路径 <----- 这一点可以通过软件 `powertoys` （微软商店下载）轻松搞定
+
+另外，如果你想写一个自己的包，utpm 也提供了脚手架来创建一个新包
+
+### Latex
+
+没什么好说的，Latex 直接上 `overleaf`，虽然现在不付费的话编译速度极慢，不过本地配环境，字体等等一系列问题总会有一款问题比等编译更折磨人
+
+# 小结
+
+后续的内容请看 [差生文具店（第二集）](./my-tool-2.md)
