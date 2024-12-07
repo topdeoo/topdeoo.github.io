@@ -4,7 +4,7 @@ math: true
 date: 2024-10-27 03:18:10
 categories:
   - InNight
-cover: wallpaper/117165405_p2.png
+cover: wallpaper/117165641_p0.png
 comments: true
 description: 科研&学习工具分享
 ---
