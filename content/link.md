@@ -1,9 +1,11 @@
 ---
-author: virgil
-email: mailto:virgiling7@gmail.com
-create time: 星期三, 十月 30日 2024, 4:25:45 下午
-modify time: 星期三, 十月 30日 2024, 4:30:24 下午
 title: 友链
+description: 
+tags: []
+date: 2022-03-29
+lastmod: 2024-12-10
+draft: false
+comments: false
 ---
 
 > [!NOTE]

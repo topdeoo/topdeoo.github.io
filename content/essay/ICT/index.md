@@ -1,8 +1,8 @@
 ---
-title: 思想犯
+title: 一些 ICT 的实习
 description: 
-tags: []
-date: 2022-03-29 
+tags:
+date: 2023-06-06
 lastmod: 2024-12-10
 draft: false
 comments: false

@@ -6,13 +6,23 @@ export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [],
   afterBody: [],
-  footer: Component.Footer(),
+  footer: Component.Comments({
+    provider: "giscus",
+    options: {
+      repo: "topdeoo/topdeoo.github.io",
+      repoId: "R_kgDONbWvng",
+      category: "Announcements",
+      categoryId: "DIC_kwDONbWvns4ClFkN",
+    }
+  })
 }
 
 // components for pages that display a single page (e.g. a single note)
 export const defaultContentPageLayout: PageLayout = {
   beforeBody: [
-    Component.Breadcrumbs(),
+    Component.Breadcrumbs({
+      rootName: "主页"
+    }),
     Component.ArticleTitle(),
     Component.ContentMeta(),
     Component.TagList(),
@@ -22,7 +32,17 @@ export const defaultContentPageLayout: PageLayout = {
     Component.MobileOnly(Component.Spacer()),
     Component.Search(),
     Component.Darkmode(),
-    Component.DesktopOnly(Component.Explorer()),
+    Component.DesktopOnly(Component.Explorer({
+      mapFn: (node) => {
+        if (node.depth > 0) {
+          if (node.file) {
+            node.displayName = "📄 " + node.displayName
+          } else {
+            node.displayName = "📁 " + node.displayName
+          }
+        }
+      },
+    })),
   ],
   right: [
     Component.Graph(),
@@ -33,13 +53,19 @@ export const defaultContentPageLayout: PageLayout = {
 
 // components for pages that display lists of pages  (e.g. tags or folders)
 export const defaultListPageLayout: PageLayout = {
-  beforeBody: [Component.Breadcrumbs(), Component.ArticleTitle(), Component.ContentMeta()],
+  beforeBody: [
+    Component.Breadcrumbs({
+      rootName: "主页"
+    }),
+    Component.ArticleTitle(),
+    Component.ContentMeta()
+  ],
   left: [
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),
     Component.Search(),
     Component.Darkmode(),
-    Component.DesktopOnly(Component.Explorer()),
+    // Component.DesktopOnly(Component.Explorer()),
   ],
   right: [],
 }
