@@ -73,6 +73,7 @@ const config: QuartzConfig = {
       Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
       Plugin.Description({ descriptionLength: 60 }),
       Plugin.Latex({ renderEngine: "katex" }),
+      Plugin.LightBox(),
     ],
     filters: [Plugin.RemoveDrafts()],
     emitters: [
