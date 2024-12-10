@@ -1,3 +1,18 @@
 @use "./base.scss";
 
 // put your custom CSS here!
+@font-face {
+    font-family: "LXGWWenKaiScreen";
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+    src: url("/static/fonts/LXGWWenKaiScreen.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Monaco";
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+    src: url("/static/fonts/Monaco.woff2") format("woff2");
+}
