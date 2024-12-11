@@ -1,4 +1,6 @@
 ---
+author: virgil
+email: mailto:virgiling7@gmail.com
 title: 差生文具店（第一集）
 description: 科研&学习工具分享
 tags:
@@ -6,6 +8,8 @@ tags:
 date: 2024-10-27
 lastmod: 2024-12-10
 draft: false
+create time: 星期二, 十二月 10日 2024, 11:27:24 晚上
+modify time: 星期三, 十二月 11日 2024, 3:31:42 下午
 ---
 
 # 前言
@@ -21,7 +25,7 @@ draft: false
 
 这里，多端同步会掺杂在各个部分，可以选择自己需要的同步方法。
 
-> 考虑到我已经切换回 Windows 开发，因此这里介绍的主要在 Windows 的工具链，关于纯 Linux 的分享可以参考 [Hyprland-Yes](../Hyprland-Yes) 与 [Manjaro-Linux](../Manjaro-Linux)，虽然主要是在玩赛博暖暖（
+> 考虑到我已经切换回 Windows 开发，因此这里介绍的主要在 Windows 的工具链，关于纯 Linux 的分享可以参考 [[Hyprland-Yes|Hyprland美化]] 与 [[Manjaro-Linux|Manjaro配置与美化]]，虽然主要是在玩赛博暖暖（
 
 **!Attention** 很多工具其实都可以关注 `github` 上使用 `awesome` 开头的仓库，例如：
 
@@ -522,4 +526,4 @@ https://www.continue.dev/
 
 # 小结
 
-后续的内容请看 [差生文具店（第二集）](./my-tool-2.md)
+后续的内容请看 [[my-tools-2|差生文具店（第二集）]]

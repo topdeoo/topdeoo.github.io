@@ -1,4 +1,6 @@
 ---
+author: virgil
+email: mailto:virgiling7@gmail.com
 title: Hyprland Yes!
 description: 如何从 X11 转向 Wayland 下的配置
 tags:
@@ -7,9 +9,15 @@ tags:
 date: 2024-01-27
 lastmod: 2024-12-10
 draft: false
+create time: 星期二, 十二月 10日 2024, 11:27:24 晚上
+modify time: 星期三, 十二月 11日 2024, 3:26:54 下午
 ---
 
 # 更新
+
+> [!NOTE]
+>
+> 本文的前篇是 [[Manjaro-Linux]]，一些软件（或者 AUR 助手）之类的下载也可以参考上一篇文章
 
 由于不太想使用 `Manajro` 了，想尝试 `NixOS` 所以换了一个系统，但用了一个礼拜发现 `NixOS` 的安装到使用都有点燃烧硬盘寿命的意思，所以最后还是变成了 `Arch-based`，但使用的是 `ArcoLinux` 这个小众的版本（
 
@@ -22,8 +30,11 @@ draft: false
 1. `xwayland` 与 `wayland` 的剪切板不互通，这个似乎是 `hyprland` 的问题，在 `github` 上回退版本即可，或者不安装 `hyprland-git` 也可以，然后我们也需要安装一个 `X11` 下的剪贴板，可以是 `xclip`，我这里安装的是 `wl-clipboard-x11`
 2. 鼠标指针的主题在 `gtk` 上是正常的，但在 `hyprland` 中又没有被设置，这里只需要在 `~/.config/hypr/hyprland.conf` 中设置一下环境变量即可：`env = XCUCSOR_THEME,xxxx`
 
-> **upd**: NENU 换了 ATrust 作为 VPN 工具了，下面的方法已经寄啦（悲
+> [!WARNING]
 >
+> NENU 换了 ATrust 作为 VPN 工具了，下面的方法已经寄啦（悲
+
+> [!INFO]
 > 这里是 NENU 专场，在 Linux 下如何访问学校的服务器，首先，我们需要保证自己有两个账号密码：
 >
 > 1. 服务器的账号密码
@@ -31,13 +42,11 @@ draft: false
 >    例如，服务器账号密码为 ：virgil， virgil
 >    但连接学校 vpn 的账号为 xxx_virgil, virgil（不是统一认证账号）
 >    那么，我们运行如下命令：`docker run --rm --device /dev/net/tun --cap-add NET_ADMIN -ti -p 127.0.0.1:7080:1080 -p 127.0.0.1:8888:8888 -e EC_VER=7.6.3 -e CLI_OPTS="-d https://vpn.nenu.edu.cn -u info_wangstu -p dThqPx7Fs3FGA" hagb/docker-easyconnect:cli &`
->    即可在后台开启一个 `easyconnect`，然后，我们使用 `ssh` 如下：
+>    即可在后台开启一个 `easyconnect`，然后，我们使用 `ssh` 如下即可成功连接
 
-```bash
+```bash title="设置 easyconnect 连接校园 vpn"
 ssh -o ProxyCommand='ncat --proxy-type socks5 --proxy 127.0.0.1:7080 virgil@<host-ip>
 ```
-
-> 即可连接上服务器
 
 # Intro
 
@@ -50,6 +59,7 @@ ssh -o ProxyCommand='ncat --proxy-type socks5 --proxy 127.0.0.1:7080 virgil@<hos
 > 当然本质上还是在玩赛博暖暖
 
 下面是我的成果
+
 ![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/202402230022942.png)
 
 ![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/202402230023153.png)
@@ -97,6 +107,8 @@ ssh -o ProxyCommand='ncat --proxy-type socks5 --proxy 127.0.0.1:7080 virgil@<hos
 
 ## 遇到的问题
 
+> [!warning]
+> 
 > 应该遇到了很多问题，但由于时间跨度太大，导致我写这篇文章的时候已经记不起太多了，后面一定及时补充
 
 ### Picgo 上传问题

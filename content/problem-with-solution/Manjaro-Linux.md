@@ -1,4 +1,6 @@
 ---
+author: virgil
+email: mailto:virgiling7@gmail.com
 title: Manjaro 的安装与配置
 description: 由于在 Windows 下开WSL和IDE导致电脑内存已经吃不消了，所以我直接把电脑系统刷成了 Linux （彻底疯狂了），这里记录一下我的配置过程
 tags:
@@ -7,12 +9,14 @@ tags:
 date: 2023-05-12
 lastmod: 2024-12-10
 draft: false
+create time: 星期二, 十二月 10日 2024, 11:27:24 晚上
+modify time: 星期三, 十二月 11日 2024, 3:34:24 下午
 ---
-
-
-> 2024.04 更新，由于已经进化到 `KDE6` 了，本文中的一些美化已经过时，请谨慎食用
+> [!info]
 > 
-> 2023.10 更新微信安装及其配置， wps安装及其配置， 美化主题配置 请看[更新](#更新)
+> 2024.04 更新，由于已经进化到 `KDE6` 了，本文中的一些美化已经过时，请谨慎食用
+>
+> 2023.10 更新微信安装及其配置， wps 安装及其配置， 美化主题配置 请看 [[#更新]]
 
 放一张图展示一下我的成果
 
@@ -40,7 +44,7 @@ draft: false
 
 对于 `Deepin`，安装是没啥问题，特别顺利，完全是傻瓜式安装，然而它实在是太卡了，桌面动画卡成 `PPT` 的样子，和上古时代 `C` 盘被占满的 `Win 7` 一样
 
-所以到后来就直接选择基于 `Arch` 的 `Manjaro` 
+所以到后来就直接选择基于 `Arch` 的 `Manjaro`
 
 # 安装
 
@@ -50,7 +54,7 @@ draft: false
 
 2. 荣耀官方的电池管理系统 `OS Turbo 2.0`
 
-3. 键盘莫名其妙一直输入 `^@` 
+3. 键盘莫名其妙一直输入 `^@`
 
 4. 屏幕亮度会被莫名其妙的调节 （已解决）
 
@@ -88,7 +92,7 @@ draft: false
 
 (可能右下角的语言会是英文，但没关系，可以设置为中文)
 
-在这里点击 `Application`  必须要选的内容如下：
+在这里点击 `Application` 必须要选的内容如下：
 
 ![2023-05-12_01-21.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/2023-05-12_01-21.png)
 
@@ -96,7 +100,9 @@ draft: false
 
 接下来是 `AUR` 的安装（这也是为什么要使用 `Arch` 系的原因）
 
-> 备注：在下载包时如果不是对版本更新有强要求，那么最好下载带有 `-bin` 后缀的包
+> [!note]
+>
+> 在下载包时如果不是对版本更新有强要求，那么最好下载带有 `-bin` 后缀的包
 
 但在安装之前，我们需要更新一下镜像源：
 
@@ -106,7 +112,7 @@ draft: false
 sudo pacman-mirrors -i -c China -m rank
 ```
 
- 然后选择前三个镜像源即可，不用全选上（似乎全选上会有负面影响）
+然后选择前三个镜像源即可，不用全选上（似乎全选上会有负面影响）
 
 然后运行
 
@@ -116,7 +122,7 @@ sudo pacman -Syyu
 
 更新即可（记住这个命令，以后每天早上开机后都要滚一滚）
 
-然后我们就可以开始配置 `AUR` 了，这里我们选择 `yay` 
+然后我们就可以开始配置 `AUR` 了，这里我们选择 `yay`
 
 首先我们下载 `git` 和 `base-devel`
 
@@ -149,13 +155,13 @@ yay -S xxxx
 
 ### 工作类
 
-- [x]  `OBS`
-- [x]  `QQ`
-- [x]  `WPS`
-- [x]  坚果云
-- [x]  谷歌浏览器
+- [x] `OBS`
+- [x] `QQ`
+- [x] `WPS`
+- [x] 坚果云
+- [x] 谷歌浏览器
 - [x] `v2ray` 与 `v2raya`
-- [x]  `Wechat`
+- [x] `Wechat`
 
 给出每一样的安装步骤：
 
@@ -175,7 +181,7 @@ yay -S google-chrome
  sudo pacman -S v2ray
 ```
 
-安装 `v2ray` 内核，然后运行 `sudo systemctl enbale v2ray.service` 
+安装 `v2ray` 内核，然后运行 `sudo systemctl enbale v2ray.service`
 
 随后安装 `v2raya`
 
@@ -189,12 +195,11 @@ yay -S v2raya
 
 ### 开发类
 
-- [x]  `JetBrains` 全家桶
-- [x]  `VS Code`
-- [x]  `Typora`
+- [x] `JetBrains` 全家桶
+- [x] `VS Code`
+- [x] `Typora`
 - [x] `Obsidian` ✅ 2023-10-05
-- [x]  `LunarVim`
-- [ ] `Emacs`
+- [x] `LunarVim`
 
 ```bash
 yay -S clion pycharm-professional intellij-idea-ultimate-edition goland
@@ -207,7 +212,7 @@ yay -S  visual-studio-code-bin
 
 ### 游戏类
 
-只下载了 `Steam`，但是这个需要用 `discover` 这个软件，所以还需要先 
+只下载了 `Steam`，但是这个需要用 `discover` 这个软件，所以还需要先
 
 ```bash
 yay -S discover
@@ -224,7 +229,7 @@ sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub
 
 # 桌面美化
 
-> 更新：由于我更换了桌面环境，最新的美化可以参考 [Hyprland 美化](./Hyprland-Yes.md)
+> 更新：由于我更换了桌面环境，最新的美化可以参考 [[Hyprland-Yes|Hyperland美化]]
 
 ## `Konsole` 美化
 
@@ -258,17 +263,17 @@ sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub
 
 2. 安装插件
 
-   ```bash
-   sudo pacman -S zsh-autosuggestions zsh-syntax-highlighting zsh-theme-powerlevel10k zsh-completions
-   ```
+```bash
+sudo pacman -S zsh-autosuggestions zsh-syntax-highlighting zsh-theme-powerlevel10k zsh-completions
+```
 
 3. 启用插件，打开 `~/.zshrc`，加入以下代码
 
-   ```bash
-   source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-   source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-   source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
-   ```
+```bash
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+```
 
 4. 重启 `Konsole` ，即可进入 `powerlevel10k` 的配置界面，按照引导配置即可
 
@@ -316,11 +321,7 @@ sudo pacman -S neofetch lolcat
 
 然后就可以愉快的秀 `Terminal` 了
 
-
-
 # 更新
-
-> 更新二重奏
 
 ## QQ
 
@@ -330,13 +331,13 @@ sudo pacman -S neofetch lolcat
 yay -S linuxqq
 ```
 
-
 ## Wechat
 
-> 更新
+> [!important]
+>
 > 现在可以直接下载 `wechat-beta-bwarp` 这个包，似乎效果比原先的微信体验好很多
 
-在 `AUR` 官网上搜索 com.qq.weixin.deepin，然后yay下载即可
+在 `AUR` 官网上搜索 com.qq.weixin.deepin，然后 yay 下载即可
 
 ```shell
 yay -S com.qq.weixin.deepin
@@ -351,11 +352,13 @@ yay -S com.qq.weixin.deepin
 前两个的解决方法都在网站上有，复制过来就是：
 
 Q:高分屏缩放支持
-A:执行 `WINEPREFIX=~/.deepinwine/Deepin-WeChat deepin-wine6-stable winecfg`，在显示标签下调整DPI,100%缩放为96dpi，依次类推200%缩放192dpi
+A:执行 `WINEPREFIX=~/.deepinwine/Deepin-WeChat deepin-wine6-stable winecfg`，在显示标签下调整 DPI,100%缩放为 96dpi，依次类推 200%缩放 192dpi
 
 Q:输入框无法显示输入字符，只显示口
 A:可以下载安装宋体字体文件`simsun.ttc`，重启微信即可正常显示
 
+> [!quote]
+>
 > 关于 Linux 如何安装字体，可以直接 Google
 
 关于输入法的问题：
@@ -369,16 +372,16 @@ A:可以下载安装宋体字体文件`simsun.ttc`，重启微信即可正常显
 ## WPS 配置
 
 1. 显示配置
-2. WPS Word无法导出pdf的配置
+2. WPS Word 无法导出 pdf 的配置
 
 显示的时候字号会变小，而且无法调整，我们在启动的社会加入参数即可。
 
 选择一个 wps app，右键，点击 “编辑应用程序”，配置如下：
 
 ![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20231005161932.png)
-在环境变量处加上 `QT_FONT_DPI=xxx` 即可（xxx为你需要缩放的 DPI 值，一般为100, 120, 144）
+在环境变量处加上 `QT_FONT_DPI=xxx` 即可（xxx 为你需要缩放的 DPI 值，一般为 100, 120, 144）
 
-WPS Word无法导出pdf：
+WPS Word 无法导出 pdf：
 
 此问题为缺少环境，其导出依赖于 `libtiff5.so.5`，下载安装即可：
 
@@ -388,16 +391,16 @@ yay -S libtiff5
 
 ## Obsidian
 
-`Obsidian` 中还是存在很多问题的，但我觉得大部分都是插件之间冲突的原因，比如 `style setting` 和 `codeBlock customizer` 设置之后会导致很多插件的即时预览出现毛病…… 
+`Obsidian` 中还是存在很多问题的，但我觉得大部分都是插件之间冲突的原因，比如 `style setting` 和 `codeBlock customizer` 设置之后会导致很多插件的即时预览出现毛病……
 
 不过这里找的问题是查看关系图谱时直接黑了，什么图都没有，一般报错是报 `js` 的问题（甚至还是警告），据了解应该是 `mesa` 版本的问题，降版本可以解决（然而 `Manjaro` 清理了缓存之后就没办法降级了……能降级的[archlinuxfr](http://repo.archlinux.fr/)直接停止维护了，如下：
 ![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20231005162845.png)
 
 但论坛上给出了另外一种解决方法：
 
-`rm -rf .config/obsidian/GPUCache/` 
+`rm -rf .config/obsidian/GPUCache/`
 
-然后重启  `obsidian` 即可。
+然后重启 `obsidian` 即可。
 
 ## 美化
 
@@ -416,4 +419,3 @@ yay -S libtiff5
 目前界面如下：
 
 ![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20231005163435.png)
-
