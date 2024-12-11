@@ -5,7 +5,7 @@ tags:
   - OS
   - MIT
 date: 2022-09-06
-lastmod: 2024-12-10
+lastmod: 2024-12-11
 draft: false
 ---
 
@@ -121,7 +121,7 @@ thread_switch:
     ld s9, 88(a1)
     ld s10, 96(a1)
     ld s11, 104(a1)
-    
+
 	ret    /* return to ra */
 
 ```
@@ -150,11 +150,11 @@ if (current_thread != next_thread) {         /* switch threads?  */
 
 要求在真正的 `Linux` 或者 `MacOS` 上完成这个实验（`WSL2`完全可以胜任），因为要使用 `pthread` 这个库来进行一些多线程编程。
 
-这里会答应一个问题，就是，为什么我们使用2个线程来完成哈希表的插入的时候，会出现一大堆的 `missing` 呢？虽然速度是有着显著的提升。
+这里会答应一个问题，就是，为什么我们使用 2 个线程来完成哈希表的插入的时候，会出现一大堆的 `missing` 呢？虽然速度是有着显著的提升。
 
 如果你仔细看 `ph.c` 中的 `put()` 与 `insert()` 的话，我的理解是：
 
-> 多线程同时修改临界区的数据，可能会造成数据的丢失，例如两个线程如果都新插入一个条目的话，因为是异步的，所以可能会造成不同线程之间没有任何协同，导致前面刚插进去的东西，后一步就直接连到应该NULL上面去了，这样就会丢失很多数据，导致后面整个哈希表可能都是NULL
+> 多线程同时修改临界区的数据，可能会造成数据的丢失，例如两个线程如果都新插入一个条目的话，因为是异步的，所以可能会造成不同线程之间没有任何协同，导致前面刚插进去的东西，后一步就直接连到应该 NULL 上面去了，这样就会丢失很多数据，导致后面整个哈希表可能都是 NULL
 
 于是，他告诉我们，可以通过使用锁 (`mutex`) 来避免由于竞争带来的错误，并且我们的速度并不会受到很大的影响。
 
@@ -180,13 +180,13 @@ pthread_mutex_t lock;
    put_thread(void* xa) {
      int n = (int)(long)xa; // thread number
      int b = NKEYS / nthread;
-   
+
      for (int i = 0; i < b; i++) {
-       pthread_mutex_lock(&lock); 
+       pthread_mutex_lock(&lock);
        put(keys[b * n + i], n);
        pthread_mutex_unlock(&lock);
      }
-   
+
      return NULL;
    }
    ```
@@ -197,7 +197,7 @@ pthread_mutex_t lock;
 
    ![Cmp](https://s2.loli.net/2022/09/06/m2zihRcpGfIda8U.png)
 
-   可以发现2个线程运行的居然会比1个线程运行的还慢，这显然是不行的。
+   可以发现 2 个线程运行的居然会比 1 个线程运行的还慢，这显然是不行的。
 
 2. 我们结合上面问题的答案，大概能确定问题应该是出在 `insert()` 这个函数上，所以我们只需要在 `put()` 中调用 `insert()` 的前后加锁即可：
 
@@ -213,7 +213,7 @@ pthread_mutex_t lock;
    这样，我们运行后对比为：
 
    ![Cmp](https://s2.loli.net/2022/09/06/6mQ8uMSwhJYiZH2.png)
-   
+
    很完美
 
 ## Barrier
@@ -251,8 +251,3 @@ barrier() {
 ## 实验结果
 
 ![Final Grade](https://s2.loli.net/2022/09/06/7NfePJvjxnpDKhA.png)
-
-
-
-
-

@@ -6,7 +6,7 @@ tags:
   - NENU
   - Compiler
 date: 2023-07-03
-lastmod: 2024-12-10
+lastmod: 2024-12-11
 draft: false
 ---
 
@@ -14,7 +14,7 @@ draft: false
 
 这是一个特殊的部分，正常来说他不算在常规的编译范畴内。在源程序被编译器处理之前, 预处理器首先对源程序中的宏进行处理，这些宏是指由预处理命令书写的部分。
 
-预处理命令由`#`(hash字符)开头, 它独占一行, `#`之前只能是空白符. 以#开头的语句就是预处理命令, 不以`#`开头的语句为` C` 中的代码行。
+预处理命令由`#`(hash 字符)开头, 它独占一行, `#`之前只能是空白符. 以#开头的语句就是预处理命令, 不以`#`开头的语句为` C` 中的代码行。
 
 常见的预处理器指令及其作用：
 
@@ -22,7 +22,7 @@ draft: false
 
 2. `#pragma`设定编译器的状态或者是指示编译器完成一些特定的动作，它可以用于例如控制编译器的警告信息、优化选项、链接选项等等，用法如下：
 
-   - `#pragma GCC optimize("O2")` 可以用于告诉 `GCC` 编译器使用 `O2` 级别的优化选项（在OJ交题时可能会用到，但有些 OJ 会禁止提交包含 `#pragma`的代码）
+   - `#pragma GCC optimize("O2")` 可以用于告诉 `GCC` 编译器使用 `O2` 级别的优化选项（在 OJ 交题时可能会用到，但有些 OJ 会禁止提交包含 `#pragma`的代码）
 
    - `#pragma once` 用于防止头文件被重复包含。它的作用类似于传统的头文件保护宏（例如 `#ifndef` 和 `#define`），但是更加简洁和高效。当编译器遇到 `#pragma once` 指令时，它会检查当前文件是否已经被包含，如果已经被包含，则不会再次包含。需要注意的是，`#pragma once` 是一个非标准的指令，但是被大多数编译器所支持
 
@@ -36,12 +36,12 @@ draft: false
    #ifndef DEBUG
    #define DEBUG
    #endif
-   
+
    #ifdef DEBUG
-   
+
    // 生成调试信息的代码块
-   
-   #endif  
+
+   #endif
    ```
 
 通过预处理器处理 `.c, .cc`文件，变为 `.i `文件后，进入正式的编译阶段，我们可以通过：
@@ -54,7 +54,7 @@ gcc -E -C hello.c -o hello.i
 
 ![img](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/1688283002846-76a388fe-bc02-4f5f-adbb-1be86a46a48c.png)
 
-预处理后可以达到 2346 行，main函数部分变为：
+预处理后可以达到 2346 行，main 函数部分变为：
 
 ![img](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/1688283057223-ac7e4442-3bc0-4f65-b253-741364f7a1fd.png)
 
@@ -64,7 +64,7 @@ gcc -E -C hello.c -o hello.i
 
 编译器自举一般都是编译器开发的一个里程碑事件，例如`Pascal`编译器，其第一版编译器是用 `Fortran`写的，而这也是常见的编译器自举过程的几乎必走的一条路，即最开始使用 **X** 语言（如`Fortran`）实现 **Y** 语言（如`Pascal`）的编译器，即解决鸡与蛋的问题，之后成熟以后，就可以完全使用已经生成好的编译器来编译出我们的新编译器。
 
-以 `Go` 为例：`Go`在 1.0～ 1.4阶段都是使用 `C` 写的编译器来编译，在 `Go 1.5` 后完成了自举。自举的过程举例如下：
+以 `Go` 为例：`Go`在 1.0 ～ 1.4 阶段都是使用 `C` 写的编译器来编译，在 `Go 1.5` 后完成了自举。自举的过程举例如下：
 
 1. 首先，通过 `C` 写了一个最基础的编译器，假定名称为 `go compiler 1.0`
 2. 我们通过 `Go`来重写编译的逻辑，得到一个项目，然后使用 `go compiler 1.0` 来编译这个项目，就得到了一个自举的编译器 `go compiler 2.0`
@@ -84,7 +84,7 @@ gcc -E -C hello.c -o hello.i
 
 2. 语法分析，通过解析 `Token`，根据设计的文法，得到 `AST`
 
-3. 语义分析，在前面两步，我们已经构造出了 “符号表”，这里，我们使用 AST与符号表中的信息来检查源程序是否和语言定义的语义一致，同时，这里也会收集类型信息，将这些信息存放在 `AST` 与符号表中。检查的一致性包括：
+3. 语义分析，在前面两步，我们已经构造出了 “符号表”，这里，我们使用 AST 与符号表中的信息来检查源程序是否和语言定义的语义一致，同时，这里也会收集类型信息，将这些信息存放在 `AST` 与符号表中。检查的一致性包括：
 
    - 检查标识符的类型和作用域是否正确。
 
@@ -106,14 +106,7 @@ gcc -E -C hello.c -o hello.i
 
 语义分析中的：类型检查
 
-关于这部分可以看：
-
-```card
-title: 编译原理笔记
-link: https://gaozhiyuan.net/series/ustc-compilers-notes
-```
-
-
+关于这部分可以看 [编译原理笔记](https://gaozhiyuan.net/series/ustc-compilers-notes)
 
 ## 一些工具
 
@@ -121,58 +114,33 @@ link: https://gaozhiyuan.net/series/ustc-compilers-notes
 
 语法分析器：`yacc` 或 `bison`，生成的文法为 `LALR(1)` 文法
 
-`LALR` 或者说所有的 `LR`文法都不适合手写，所有教科书都会说明这一点，具体的原因可以看：
-
-```card
-title: 为什么LR文法不适合手写
-link: https://www.zhihu.com/question/21475266/answer/18346898
-```
-
+`LALR` 或者说所有的 `LR`文法都不适合手写，所有教科书都会说明这一点，具体的原因可以看 [为什么 LR 文法不适合手写](https://www.zhihu.com/question/21475266/answer/18346898)
 
 ## 现代编译器策略
 
 对于 `gcc` 与 `clang `而言，都采取了手写词法分析器与语法分析器的方式，词法分析并没太多的更改，依然是基于正则表达式的匹配方式，但语法分析器都采取了 递归下降 策略。
 
-对于手写语法分析器是否有必要有很大的争论，有人提出可以把文法生成器（`bison`）中的默认生成文法更改为 `GLR`，一个使用 `GLR` 的分析器如下：
+对于手写语法分析器是否有必要有很大的争论，有人提出可以把文法生成器（`bison`）中的默认生成文法更改为 `GLR`，一个使用 `GLR` 的分析器可以参考[这篇文章](http://www.scottmcpeak.com/elkhound/sources/elsa/doc/design.html)
 
-```card
-title: GLR分析器
-link: http://www.scottmcpeak.com/elkhound/sources/elsa/doc/design.html
-```
-
-`GLR`分析器可以处理上下文无关文法中的任意语法结构，包括二义性文法和无法用LR分析器处理的文法。`GLR`分析器使用了一种称为“图驱动”的技术，将输入的语法树转换为一个图，并在图上进行分析。
+`GLR`分析器可以处理上下文无关文法中的任意语法结构，包括二义性文法和无法用 LR 分析器处理的文法。`GLR`分析器使用了一种称为“图驱动”的技术，将输入的语法树转换为一个图，并在图上进行分析。
 
 其基本思想是，通过在分析过程中采用穷举方法，对输入语句在所有的可能路径上进行分析，从而实现了对语句的识别与翻译。
 
 显然这种做法的运行时间具有不确定性，一般情况下`GLR`一产生歧义处理就会增加内存消耗和占用多核心，最后效率总是不如手写，所以知名通用语言很少用`GLR`来解析。相反，做`DSL`（domain-specific language）解析，用`GLR`就比较好，语法规则要求不高，因为支持所有上下文无关语法，对效率又不是要求很高，所以这类情况会用语法生成工具比较多。
 
-
-
 # 中端（也可以属于前端部分）
-
-
 
 1. 中间代码生成
 2. 运行时环境
 
-
-
 ## 中间代码生成
-
-
 
 ## 运行时环境
 
-
-
 主题为：
-
-
 
 1. 存储管理：栈分配、堆管理、垃圾回收
 2. 对变量、数据的访问
-
-
 
 ### 存储管理
 
@@ -180,16 +148,12 @@ link: http://www.scottmcpeak.com/elkhound/sources/elsa/doc/design.html
 
 #### 栈分配
 
-- [ ] 需要完善
-
 栈分配需要关注的问题：
 
 1. 活动树
 2. 活动记录
 3. 调用代码序列
 4. 栈中的变长数据
-
-
 
 程序运行的所有过程活动可以用树表示，每个结点对应于一个过程活动，根结点对应于`main`过程的活动 ，过程`p`的某次活动对应的结点的所有子结点：
 
@@ -200,10 +164,6 @@ link: http://www.scottmcpeak.com/elkhound/sources/elsa/doc/design.html
 
 ![image-20230703195038942](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/image-20230703195038942.png)
 
-
-
-
-
 过程调用 (返回) 序列和活动 树的前序 (后序) 遍历对应
 
 #### 堆管理
@@ -211,8 +171,6 @@ link: http://www.scottmcpeak.com/elkhound/sources/elsa/doc/design.html
 堆空间的管理与 `CS: APP`中内存的管理类似
 
 分配策略为：
-
-
 
 1. Best-fit ：总是将请求的内存分配在满足请求的最小的窗口中
 2. First-fit ：总是将对象放置在第一个能够容纳请求的窗口中
@@ -234,11 +192,13 @@ link: http://www.scottmcpeak.com/elkhound/sources/elsa/doc/design.html
 3. 空间使用：最大限度地利用可用内存
 4. 程序局部性：改善空间局部性和时间局部性
 
+> [!info]
+>
 > 关于可达性
 >
 > 可达性就是指一个存储块可以被程序访问到
 >
-> 根集：不需要指针解引用就可以直接访问的数据，例如 Java中的静态成员、栈中变量
+> 根集：不需要指针解引用就可以直接访问的数据，例如 Java 中的静态成员、栈中变量
 >
 > 可达性 ：
 >
@@ -258,16 +218,16 @@ link: http://www.scottmcpeak.com/elkhound/sources/elsa/doc/design.html
 
    1. 每个对象有一个用于存放引用计数的字段，并按如下方式维护
 
-      1. 对象分配：引用计数设为1
-      2. 参数传递：引用计数加1
-      3. 引用赋值：u = v，u指向的对象引用减1，v指向的对象引用加1
-      4. 函数返回：局部变量指向对象的引用计数减1
+      1. 对象分配：引用计数设为 1
+      2. 参数传递：引用计数加 1
+      3. 引用赋值：u = v，u 指向的对象引用减 1，v 指向的对象引用加 1
+      4. 函数返回：局部变量指向对象的引用计数减 1
 
-   2. 如果一个对象的引用计数为0，在删除对象之前，此对象中各个指针所指对象的引用计数减1
+   2. 如果一个对象的引用计数为 0，在删除对象之前，此对象中各个指针所指对象的引用计数减 1
 
    3. **特点**：开销较大，但不会引起停顿
 
-   4. 缺陷：无法解决循环引用，例如下图，这三个对象没有来自外部的指针，应该都是垃圾，然而三个对象的引用计数都大于0（如果熟悉 `C++`的 `weak_ptr`应该能很快理解）
+   4. 缺陷：无法解决循环引用，例如下图，这三个对象没有来自外部的指针，应该都是垃圾，然而三个对象的引用计数都大于 0（如果熟悉 `C++`的 `weak_ptr`应该能很快理解）
 
       ![image-20230703195427480](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/image-20230703195427480.png)
 
@@ -314,9 +274,9 @@ link: http://www.scottmcpeak.com/elkhound/sources/elsa/doc/design.html
       }
       ```
 
-​				 **优点**： 实现简单，无需移动对象 (修改引用地址)
+​ **优点**： 实现简单，无需移动对象 (修改引用地址)
 
-​				 **缺点** ：效率堪忧，清扫阶段总是需要遍历所有内存，易产生内存碎片
+​ **缺点** ：效率堪忧，清扫阶段总是需要遍历所有内存，易产生内存碎片
 
 3. 标记-复制式垃圾回收
 
@@ -389,6 +349,8 @@ link: http://www.scottmcpeak.com/elkhound/sources/elsa/doc/design.html
          }
          ```
 
+> [!info]
+>
 > 分代式垃圾回收
 >
 > 根据对象生存周期特征进行垃圾回收
@@ -405,11 +367,7 @@ link: http://www.scottmcpeak.com/elkhound/sources/elsa/doc/design.html
 
 # 后端
 
-
-
 后端优化：
-
-- [ ] 需要完善
 
 1. 常量折叠(Constant Folding)
 2. 常量传播(Constant Propagation)
@@ -425,20 +383,16 @@ link: http://www.scottmcpeak.com/elkhound/sources/elsa/doc/design.html
 12. 向量化(Vectorzation)
 13. 无关代码移动(Code Motion)
 
-
-
 # 深度学习编译器
 
-## AI编译器入门
+## AI 编译器入门
 
 请看：
 
+[AI 编译器前端优化](https://zh0ngtian.github.io/2021/07/08/ee655d7b.html)
 
-[AI编译器前端优化](https://zh0ngtian.github.io/2021/07/08/ee655d7b.html)
-
-[AI编译器后端优化](https://zh0ngtian.github.io/2021/07/08/4b419b6f.html)
+[AI 编译器后端优化](https://zh0ngtian.github.io/2021/07/08/4b419b6f.html)
 
 ## PyTorch 2.0 的编译流程
 
-简单介绍：[PyTorch编译简介](https://topdeoo.github.io/posts/ICT%20AI%20Compilers/torch-dynamo.html)
-
+可以参考 [[torch-dynamo|PyTorch 编译简介]]

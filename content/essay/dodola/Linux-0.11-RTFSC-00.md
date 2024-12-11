@@ -6,13 +6,17 @@ tags:
   - OS
   - dodola
 date: 2023-11-17
-lastmod: 2024-12-10
+lastmod: 2024-12-11
 draft: false
 ---
 
 # 环境搭建
 
-建议在 `docker` 环境下搭建，构建的 `Dockerfile` 如下：
+建议在 `docker` 环境下搭建，构建的 `Dockerfile` 如下，如果对这部分有疑问，可以参考 [[docker-example|Docker 搭建实验环境]] 
+
+> [!bug]
+> 
+> 如果你的位置在南方（例如香港，深圳，广州等），也就是局域网的 IP 地址为 `172` 或者 `175` 开头的，可以参考 [[eduhk-web-server#docker-compose 构建后导致无法 ssh|Docker 构建后无法 ssh 登录服务器或容器]] 进行解决。 
 
 ```dockerfile
 from ubuntu:20.04

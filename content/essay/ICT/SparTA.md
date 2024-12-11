@@ -5,13 +5,11 @@ tags:
   - MLSys
   - Compiler
 date: 2023-06-16
-lastmod: 2024-12-10
+lastmod: 2024-12-11
 draft: false
 ---
 
 > `SparTA` 解读（[论文](https://www.usenix.org/system/files/osdi22-zheng-ningxin.pdf)、[源码](https://github.com/microsoft/SparTA) 与 [复现](https://github.com/microsoft/nni/tree/sparta_artifact/sparta) ）
-
-
 
 # `Introduction`
 
@@ -19,6 +17,8 @@ draft: false
 
 具体原因如下：
 
+> [!quote]
+> 
 > 对深度神经网络（`DNN`）进行稀疏化是为了减少模型的大小、加速模型的推理速度和降低模型的能耗。
 >
 > 具体来说，稀疏化可以通过去除网络中的一些不必要的神经元或连接，从而减少网络的参数数量和计算复杂度，以实现网络的轻量化和加速。通过稀疏化，可以使得模型在相同的精度下具有更小的体积和更快的推理速度，这对于一些资源受限或对实时性要求较高的应用非常有用。
@@ -29,12 +29,12 @@ draft: false
 
 常见的稀疏化方法包括量化和剪枝：
 
-- 量化是将模型中的某些权重转换为更低精度的值 (例如把16位浮点树变为8位整型)
+- 量化是将模型中的某些权重转换为更低精度的值 (例如把 16 位浮点树变为 8 位整型)
 - 剪枝则是将模型中的某些权重设置为 0 以减小模型的大小。
 
 这些方法可以有效地减少模型的大小，同时保持模型的精度。
 
-在这篇文章中，作者期望通过一个新的抽象，即`Tensor-with-Sparsity-Attribute`（`TeSA`），来实现模型的稀疏性，它增强了默认的 `Tensor` 抽象，该抽象基本上是为密集模型设计的。`TeSA` 使稀疏属性和模式（例如，用于剪枝和量化）能够被指定，在整个深度学习模型中向前和向后传播，并用于创建高效的专门运算符，同时考虑到不同稀疏模式在不同（稀疏感知）硬件上的执行效率。由此产生的 `SparTA` 框架可以适应各种稀疏模式和优化技术，与 $7$ 个最先进的稀疏解决方案相比，在推理延迟上提供了`1.7`倍∼`8.4`倍的平均速度，而且内存占用更小。作为一个端到端的模型稀疏性框架，`SparTA`促进了稀疏性算法探索更好的稀疏模型。
+在这篇文章中，作者期望通过一个新的抽象，即`Tensor-with-Sparsity-Attribute`（`TeSA`），来实现模型的稀疏性，它增强了默认的 `Tensor` 抽象，该抽象基本上是为密集模型设计的。`TeSA` 使稀疏属性和模式（例如，用于剪枝和量化）能够被指定，在整个深度学习模型中向前和向后传播，并用于创建高效的专门运算符，同时考虑到不同稀疏模式在不同（稀疏感知）硬件上的执行效率。由此产生的 `SparTA` 框架可以适应各种稀疏模式和优化技术，与 $7$ 个最先进的稀疏解决方案相比，在推理延迟上提供了`1.7`倍 ∼`8.4`倍的平均速度，而且内存占用更小。作为一个端到端的模型稀疏性框架，`SparTA`促进了稀疏性算法探索更好的稀疏模型。
 
 # `Motivation`
 
@@ -49,7 +49,7 @@ draft: false
 
 # 系统架构
 
-​	系统整体的架构如下：
+​ 系统整体的架构如下：
 
 ![image-20230608004439521](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/image-20230608004439521.png)
 
@@ -59,7 +59,7 @@ draft: false
 
 > 注意这里的初始化，实际上的做法是：
 >
-> 1. 从所有权值张量的集合 $W_i, i \in \{1, 2, ..., n\}$ 中选择一个子集 $W_j, j \in \{1, 2, ...,n\}$ 
+> 1. 从所有权值张量的集合 $W_i, i \in \{1, 2, ..., n\}$ 中选择一个子集 $W_j, j \in \{1, 2, ...,n\}$
 > 2. 为子集中的张量初始化 `TeSA` 属性
 
 随后，`SparTA` 根据传播规则进行属性传播，推断深度学习模型中所有其他张量的稀疏度属性。稀疏属性传播比原始稀疏张量暴露出更多的优化机会。
@@ -68,7 +68,7 @@ draft: false
 >
 > 注意到传播是以算子为单位的，例如这里的第二个 `MatMul` 算子，其执行的运算为 $T3 = W_2 \times T_2$
 >
-> - 考虑到 $W_2$ 的第二列被修剪（也就是说其值为 $0$ ），于是 $T_3$  的第二列注定要为零，因此也可以被修剪。
+> - 考虑到 $W_2$ 的第二列被修剪（也就是说其值为 $0$ ），于是 $T_3$ 的第二列注定要为零，因此也可以被修剪。
 > - 同样由于 $W_2$ 的第三行被修剪，因此 $T_2$ 的第三列也可以被修剪。
 >
 > ![image-20230608002612609](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/image-20230608002612609.png)
@@ -90,7 +90,7 @@ draft: false
 
 `TeSA` 是在传统张量的基础上增加一个形状相同的附加张量，其中每个元素都是一个标量值，表示原始张量中对应元素的稀疏属性，这使得用户可以在一个张量中指定任意的稀疏性模式。
 
-下图展示了 `TeSA` 的一个实例。左边显示了原始的稠密张量。右边表示对应的稀疏度属性，其中一个修剪张量中的第二行，用8位量化右下角元素，其余元素用4位量化。于是，`TeSA` 可以将张量量化和剪枝统一在一个抽象中。统一的抽象便于剪枝和量化的协同优化，例如，选择合适的块大小来覆盖(表示)剩余的(非剪枝的)元素，同时与低比特硬件指令对齐。
+下图展示了 `TeSA` 的一个实例。左边显示了原始的稠密张量。右边表示对应的稀疏度属性，其中一个修剪张量中的第二行，用 8 位量化右下角元素，其余元素用 4 位量化。于是，`TeSA` 可以将张量量化和剪枝统一在一个抽象中。统一的抽象便于剪枝和量化的协同优化，例如，选择合适的块大小来覆盖(表示)剩余的(非剪枝的)元素，同时与低比特硬件指令对齐。
 
 ![image-20230608120915335](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/image-20230608120915335.png)
 
@@ -151,15 +151,15 @@ draft: false
 
    在这里，$\alpha, \phi$ 分别代表了未剪枝的与已剪枝的元素
 
-2.  `Tensor Scrambling` 
+2. `Tensor Scrambling`
 
-   这是一种处理黑盒或复杂算子的概率传播规则。该规则通过对其他相关张量的值进行置乱，得到张量的剪枝元素。具体做法为，该规则将输入张量中被剪枝的元素置零，并为剩余元素分配随机值，然后运行该算子得到其输出张量。通过重复这个过程足够多次，该规则将那些始终保持为零的元素视为输出张量中的剪枝元素。
+这是一种处理黑盒或复杂算子的概率传播规则。该规则通过对其他相关张量的值进行置乱，得到张量的剪枝元素。具体做法为，该规则将输入张量中被剪枝的元素置零，并为剩余元素分配随机值，然后运行该算子得到其输出张量。通过重复这个过程足够多次，该规则将那些始终保持为零的元素视为输出张量中的剪枝元素。
 
 当然，上面的规则也只是输入到输出的传播，这都是显然的，我们着重需要考虑的是输出到输入的传播，输入到输入的传播。为了讨论这个部分，我们举如下例子：
 
 假设 $Y = AX + B$ ，其中 $Y$ 是输出张量，$A，B$ 和 $X$ 是输入张量。
 
-为了得到 $A，B，X$ 的 `TeSA`，我们分别对 $A，B，X$ 求导，即 $gA = gY × X^T$，$gB = gY$，$gX = A^T × gY$ 
+为了得到 $A，B，X$ 的 `TeSA`，我们分别对 $A，B，X$ 求导，即 $gA = gY × X^T$，$gB = gY$，$gX = A^T × gY$
 
 输出张量 $Y$ 到输入张量 $A$ 的稀疏传播采用$gA = gY × X^T$，$gY$ 与 $Y$ 具有相同的 `TeSA`
 
@@ -181,7 +181,7 @@ draft: false
 
 1. 使用训练/测试数据集对初始的 `DNN` 模型进行推理，并收集该算子的结果输入和输出张量来构建校准数据
 
-2. 在保持其他张量不变的情况下，逐步降低该算子一个张量的量化精度(例如, 32位到16位)。然后利用新精度下的标定数据对算子进行量化和微调
+2. 在保持其他张量不变的情况下，逐步降低该算子一个张量的量化精度(例如, 32 位到 16 位)。然后利用新精度下的标定数据对算子进行量化和微调
 
    > 微调的目的是在降低精度后，最小化校准数据中输出张量与该运算符输出张量之间的 `MSE`
 
@@ -278,7 +278,7 @@ draft: false
 
 ## `Traditional DNN Compiler`
 
-将生成的部分集成到传统的编译器中，在这里论文中采用了 `Rammer`，其在`Rammer`中实现了执行计划转换，增加了一个 `pass`，用更好的执行计划重写图。将专门的子操作符注入`Rammer` 的内核DB中，用于构建整个可执行文件。
+将生成的部分集成到传统的编译器中，在这里论文中采用了 `Rammer`，其在`Rammer`中实现了执行计划转换，增加了一个 `pass`，用更好的执行计划重写图。将专门的子操作符注入`Rammer` 的内核 DB 中，用于构建整个可执行文件。
 
 # 效果
 
@@ -464,7 +464,7 @@ class ModelSparsityInfo:
             ...
         else:
             self.modules_info[info.module_name] = info
-    
+
     def items(self):
         return self.modules_info.items()
 ```
@@ -511,16 +511,18 @@ def propagate_sparsity(model: nn.Module) -> ModelSparsityInfo:
 
 > 但实际上代码写的并没有更新的逻辑
 
+> [!bug]
+> 
 > 对于传播而言，在之前提到存在 `TeSA` 代数与 `scrambling`，但实际上只提供了代数的实现，其中 `True` 表示未剪枝元素，`Flase` 表示剪枝元素
 >
 > ```python
 > class Algebra:
 >     def __init__(self, val):
 >         self.val = bool(val)
-> 
+>
 >     def __add__(self, ele):
 >         return Algebra(self.val or ele.val)
-> 
+>
 >     def __mul__(self, ele):
 >         return Algebra(self.val and ele.val)
 > ```
@@ -529,10 +531,10 @@ def propagate_sparsity(model: nn.Module) -> ModelSparsityInfo:
 >
 > ```python
 > def propagate_matmul(tesa_in1: TeSA, tesa_in2: TeSA, tesa_out: TeSA) -> Tuple[TeSA, TeSA, TeSA]:
-> 
+>
 >     prop_tesa_out = algebra_matmul(tesa_in1, tesa_in2)
 >     tesa_out = merge_tesa(tesa_out, prop_tesa_out)
-> 
+>
 >     prop_tesa_in1 = algebra_matmul(tesa_out, transpose(tesa_in2))
 >     tesa_in1 = merge_tesa(tesa_in1, prop_tesa_in1)
 >     prop_tesa_in2 = algebra_matmul(transpose(tesa_in1), tesa_out)
@@ -554,11 +556,11 @@ def propagate_sparsity(model: nn.Module) -> ModelSparsityInfo:
 >                 tmp += Algebra(tesa_in1.tesa[i][x]) * Algebra(tesa_in2.tesa[x][j])
 >             tesa_out.tesa[i][j] = tmp.val
 >     return tesa_out
-> 
-> 
+>
+>
 > def transpose(tesa: TeSA) -> TeSA:
 >     return TeSA(torch.transpose(tesa.tesa, 0, 1))
-> 
+>
 > def merge_tesa(ta: TeSA, tb: TeSA) -> TeSA:
 >     m, n = ta.tesa.size()
 >     for i in range(m):
@@ -579,7 +581,7 @@ def optimize_and_rebuild(model: nn.Module,
                          device_info = None):
 
     opt_modules = {}
-    
+
     tpolicy = TransformPolicy(device_info)
     for module_name, module_sparsity in post_sparsity.items():
         transformed = tpolicy.transform_module(module_sparsity)
@@ -666,7 +668,7 @@ class TransformedModule:
         # currently, specific for 2080ti
         # int4, int8, float16, float32
         return [4, 8, 16, 32]
-    
+
     def _extract_bit_nums(self, tesa: TeSA) -> set:
         bit_set = set()
         flat_tesa = tesa.tesa.reshape(-1)
@@ -675,8 +677,8 @@ class TransformedModule:
         if 0 in bit_set:
             bit_set.remove(0)
         return bit_set
-    
-    
+
+
     def _convert_tesa_bit(self, tesa: TeSA, aligned_bit: int):
         flat_tesa = tesa.tesa.reshape(-1)
         for i, _ in enumerate(flat_tesa):
@@ -779,7 +781,7 @@ def wbc_matmuls(in_tesas: tuple, w_tesas: tuple, out_tesas: tuple) -> List[tuple
 
 接着就没有其他处理步骤了，循环展开与死代码消除均没有实现，因此开源代码是不全的，不能跑出实验结果。
 
-#  实验复现
+# 实验复现
 
 在 `artifact` 分支中，给出了复现的方法，运行他给定的脚本，跑出论文中的图进行复现，这里以 `figure8` 为例，进行讲解。
 
@@ -829,16 +831,16 @@ export_tesa(norm_model.cpu(), data, 'artifact_bert_coarse_onnx_with_tesa', propa
 ```json
 {
     "1": {
-        "in_shape": [[32, 128, 768]], 
-        "out_shape": [[32, 128, 64]], 
-        "weight_shape": [[64, 768]], 
+        "in_shape": [[32, 128, 768]],
+        "out_shape": [[32, 128, 64]],
+        "weight_shape": [[64, 768]],
         "type": "<class 'torch.nn.modules.linear.Linear'>",
         "state": {
             "weight": [[[123, 121, ...],...]...],
             "bais": [...]
-        }            
+        }
     },
-    
+
 }
 ```
 
@@ -943,4 +945,3 @@ int index_start = W_row[bx], index_end = W_row[bx+1];
 这里就是稀疏的解决方法，通过这个方式来索引非零元素进行计算，显然这种方式只适合稀疏度较高的矩阵，并且通用性不强，和论文中描述的更是大相径庭。
 
 通过读取这个模板文件，然后通过字符串的替换，选择在 `json` 文件中配置的最佳值进行代码的生成，最终 `result` 中的 `code` 就是替换之后的 `cuda` 代码。
-

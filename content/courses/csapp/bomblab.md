@@ -7,7 +7,7 @@ lastmod: 2024-12-10
 draft: false
 ---
 
-> 前置条件：阅读完3.10.3前的内容
+> 前置条件：阅读完 3.10.3 前的内容
 
 # 实验准备
 
@@ -43,11 +43,9 @@ objdump -d bomb > bomb.s
 
 也就是需要输入一行字符串（之类的），然后系统会判断输入的字符串是否合法，若合法则炸弹被排除，否则爆炸。
 
-（如果是CMU学生的话，每次炸弹爆炸都会把信息反馈到服务器....）
+（如果是 CMU 学生的话，每次炸弹爆炸都会把信息反馈到服务器....）
 
 大概知道是怎么回事了就可以开始进行真正的实验了，如果还不知道，建议仔细阅读 `Writeup` 文档（虽然是全英的）
-
-
 
 运行反汇编命令之后可以直接找到 `main` 函数，这与 `bomb.c` 中的结构是一样的，我们可以参照源代码来看这部分的汇编。
 
@@ -61,12 +59,12 @@ objdump -d bomb > bomb.s
 0000000000400ee0 <phase_1>:
   400ee0:	48 83 ec 08          	sub    $0x8,%rsp
   400ee4:	be 00 24 40 00       	mov    $0x402400,%esi
-  400ee9:	e8 4a 04 00 00       	callq  401338 <strings_not_equal> 
+  400ee9:	e8 4a 04 00 00       	callq  401338 <strings_not_equal>
   400eee:	85 c0                	test   %eax,%eax
   400ef0:	74 05                	je     400ef7 <phase_1+0x17>
   400ef2:	e8 43 05 00 00       	callq  40143a <explode_bomb>
   400ef7:	48 83 c4 08          	add    $0x8,%rsp
-  400efb:	c3                   	retq   
+  400efb:	c3                   	retq
 ```
 
 可以发现在 `400ee9` 处调用了 `strings_not_equal` 这个函数，并在下一行中查看 `%rax` （返回值）是否为 $0$，是则结束阶段，否则引爆炸弹。
@@ -78,16 +76,16 @@ objdump -d bomb > bomb.s
   401338:	41 54                	push   %r12
   40133a:	55                   	push   %rbp
   40133b:	53                   	push   %rbx
-  40133c:	48 89 fb             	mov    %rdi,%rbx 
+  40133c:	48 89 fb             	mov    %rdi,%rbx
   40133f:	48 89 f5             	mov    %rsi,%rbp
   401342:	e8 d4 ff ff ff       	callq  40131b <string_length>
-  401347:	41 89 c4             	mov    %eax,%r12d 
-  40134a:	48 89 ef             	mov    %rbp,%rdi 
+  401347:	41 89 c4             	mov    %eax,%r12d
+  40134a:	48 89 ef             	mov    %rbp,%rdi
   40134d:	e8 c9 ff ff ff       	callq  40131b <string_length>
-  401352:	ba 01 00 00 00       	mov    $0x1,%edx 
-  401357:	41 39 c4             	cmp    %eax,%r12d 
-  40135a:	75 3f                	jne    40139b <strings_not_equal+0x63> 
-  40135c:	0f b6 03             	movzbl (%rbx),%eax 
+  401352:	ba 01 00 00 00       	mov    $0x1,%edx
+  401357:	41 39 c4             	cmp    %eax,%r12d
+  40135a:	75 3f                	jne    40139b <strings_not_equal+0x63>
+  40135c:	0f b6 03             	movzbl (%rbx),%eax
   40135f:	84 c0                	test   %al,%al
   401361:	74 25                	je     401388 <strings_not_equal+0x50>
   401363:	3a 45 00             	cmp    0x0(%rbp),%al
@@ -112,7 +110,7 @@ objdump -d bomb > bomb.s
   40139d:	5b                   	pop    %rbx
   40139e:	5d                   	pop    %rbp
   40139f:	41 5c                	pop    %r12
-  4013a1:	c3                   	retq   
+  4013a1:	c3                   	retq
 ```
 
 在 `40133f` 处可以发现这个函数接受两个参数，分别存在 `%rdi` 与 `%rsi` 中，通过函数名也能猜出来，这个函数应该是判断两个字符串是否相等的。
@@ -122,8 +120,6 @@ objdump -d bomb > bomb.s
 事实上，我们只需要知道相等的返回值是多少即可（也可以直接猜出来）。
 
 显然，长度不相等，从 `401352` + `40139b` 可以看出来，应当返回 $1$ ,那么由 `401381`/`401388` 即可看出，若相等应该返回 $0$。
-
-
 
 但存储在 `%rdi` 与 `%rsi` 中的字符串到底是什么？
 
@@ -181,8 +177,8 @@ $ gdb bomb
   400f3c:	48 83 c4 28          	add    $0x28,%rsp
   400f40:	5b                   	pop    %rbx
   400f41:	5d                   	pop    %rbp
-  400f42:	c3                   	retq   
-  
+  400f42:	c3                   	retq
+
 ```
 
 `400f05` 显然是最显眼的，函数名也很暴力，直接告诉我们需要输入六个数字，并且在上一行中，还将 `%rsp` 的值存到了 `%rsi` （第二个参数）中，也就是说这六个数都存到了栈之中。
@@ -206,7 +202,7 @@ $ gdb bomb
   401492:	7f 05                	jg     401499 <read_six_numbers+0x3d>
   401494:	e8 a1 ff ff ff       	callq  40143a <explode_bomb>
   401499:	48 83 c4 18          	add    $0x18,%rsp
-  40149d:	c3                   	retq   
+  40149d:	c3                   	retq
 ```
 
 发现调用了一个陌生的函数 `sscanf` ，查阅文档后可知，其功能为将输入的字符串通过格式流进行转换，也就是可以将 `1 1 1 1 1` 转化为五个数字 `1`，返回值为转化的字符的个数，如这里就是 $5$。
@@ -224,7 +220,7 @@ void read_six_numbers(char *input, int* a){
 
 接下来，回到 `phase_2`，发现 `400f0a` 与下一行共同要求了，输入的第一个数 `(%rsp)` 一定为 $1$ ，否则引爆炸弹。
 
-若相等，代码令 `%rbx = &(%rsp + 4)` ，也就是令 `%rbx = &a[i + 1]`，若 `%rsp = &a[i]`；令 `%rbp = &(%rsp + 24) = &a[6]`，比最后一个数多4字节。然后跳转到 `400f17`，开始循环：
+若相等，代码令 `%rbx = &(%rsp + 4)` ，也就是令 `%rbx = &a[i + 1]`，若 `%rsp = &a[i]`；令 `%rbp = &(%rsp + 24) = &a[6]`，比最后一个数多 4 字节。然后跳转到 `400f17`，开始循环：
 
 ```asm
   400f17:	8b 43 fc             	mov    -0x4(%rbx),%eax
@@ -294,26 +290,26 @@ void read_six_numbers(char *input, int* a){
 
   400f83:	b8 c3 02 00 00       	mov    $0x2c3,%eax
   400f88:	eb 34                	jmp    400fbe <phase_3+0x7b>
-  
+
   400f8a:	b8 00 01 00 00       	mov    $0x100,%eax
   400f8f:	eb 2d                	jmp    400fbe <phase_3+0x7b>
-  
+
   400f91:	b8 85 01 00 00       	mov    $0x185,%eax
   400f96:	eb 26                	jmp    400fbe <phase_3+0x7b>
-  
+
   400f98:	b8 ce 00 00 00       	mov    $0xce,%eax
   400f9d:	eb 1f                	jmp    400fbe <phase_3+0x7b>
-  
+
   400f9f:	b8 aa 02 00 00       	mov    $0x2aa,%eax
   400fa4:	eb 18                	jmp    400fbe <phase_3+0x7b>
-  
+
   400fa6:	b8 47 01 00 00       	mov    $0x147,%eax
   400fab:	eb 11                	jmp    400fbe <phase_3+0x7b>
   400fad:	e8 88 04 00 00       	callq  40143a <explode_bomb>
-  
+
   400fb2:	b8 00 00 00 00       	mov    $0x0,%eax
   400fb7:	eb 05                	jmp    400fbe <phase_3+0x7b>
-  
+
   400fb9:	b8 37 01 00 00       	mov    $0x137,%eax
   400fbe:	3b 44 24 0c          	cmp    0xc(%rsp),%eax
   400fc2:	74 05                	je     400fc9 <phase_3+0x86>
@@ -363,7 +359,7 @@ void read_six_numbers(char *input, int* a){
   401056:	74 05                	je     40105d <phase_4+0x51>
   401058:	e8 dd 03 00 00       	callq  40143a <explode_bomb>
   40105d:	48 83 c4 18          	add    $0x18,%rsp
-  401061:	c3                   	retq   
+  401061:	c3                   	retq
 ```
 
 显然事情都在 `fun4` 中做了，`phase_4` 只是调用了一下函数，检查一下返回值而已。
@@ -412,7 +408,7 @@ void read_six_numbers(char *input, int* a){
 
 # t >= x
   401007:	48 83 c4 08          	add    $0x8,%rsp
-  40100b:	c3                   	retq   
+  40100b:	c3                   	retq
 ```
 
 于是，直接做逆向工程：
@@ -467,7 +463,7 @@ void phase_4(char* input){
 # 复制输入到 %rbx
   40106a:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
 # 复制输入的字符串到 %rax
-  401071:	00 00 
+  401071:	00 00
   401073:	48 89 44 24 18       	mov    %rax,0x18(%rsp)
 # 输入的字符串现在在 (%rsp + 24)中
   401078:	31 c0                	xor    %eax,%eax
@@ -510,12 +506,12 @@ void phase_4(char* input){
   4010d7:	eb b2                	jmp    40108b <phase_5+0x29>
   4010d9:	48 8b 44 24 18       	mov    0x18(%rsp),%rax
   4010de:	64 48 33 04 25 28 00 	xor    %fs:0x28,%rax
-  4010e5:	00 00 
+  4010e5:	00 00
   4010e7:	74 05                	je     4010ee <phase_5+0x8c>
   4010e9:	e8 42 fa ff ff       	callq  400b30 <__stack_chk_fail@plt>
   4010ee:	48 83 c4 20          	add    $0x20,%rsp
   4010f2:	5b                   	pop    %rbx
-  4010f3:	c3                   	retq   
+  4010f3:	c3                   	retq
 ```
 
 这里只提一下为什么会提到 `maduiersnfotvbyl` 这个字符串。
@@ -566,7 +562,7 @@ void phase_4(char* input){
 # %rbp = %r13 = %rsp
   401117:	41 8b 45 00          	mov    0x0(%r13),%eax
 # %eax为第一个输入的数
-  40111b:	83 e8 01             	sub    $0x1,%eax 
+  40111b:	83 e8 01             	sub    $0x1,%eax
 # 减一
   40111e:	83 f8 05             	cmp    $0x5,%eax
   401121:	76 05                	jbe    401128 <phase_6+0x34> # 无符号数
@@ -665,7 +661,7 @@ void phase_4(char* input){
   4011d0:	eb eb                	jmp    4011bd <phase_6+0xc9>
 # 遍历链表（重构链表，把节点连起来），可以看看 0x6032d0都装了些什么东西，可以发现是{332, 168, 924, 691, 477, 443}
   4011d2:	48 c7 42 08 00 00 00 	movq   $0x0,0x8(%rdx)
-  4011d9:	00 
+  4011d9:	00
   4011da:	bd 05 00 00 00       	mov    $0x5,%ebp
   4011df:	48 8b 43 08          	mov    0x8(%rbx),%rax
   4011e3:	8b 00                	mov    (%rax),%eax
@@ -682,10 +678,10 @@ void phase_4(char* input){
   4011fd:	41 5c                	pop    %r12
   4011ff:	41 5d                	pop    %r13
   401201:	41 5e                	pop    %r14
-  401203:	c3                   	retq   
+  401203:	c3                   	retq
 ```
 
-简单来说，你只需要输入 $1\to 6$ 这六个数，假设存储在 $a[i]$ 中，进行一个逆转 $a[i] = 7-a[i]$ 后，构建一个链表，这个链表满足的是递减顺序，我们需要使新的链表中前一个节点存放的数据值的低4字节都大于后一个节点， 我们可以直接去检查这个  `0x6032d0`（使用 `x/12xg 0x6032d0`，需要运行到`4011a9`才能进行检查），或者自己排序（在之前的步骤中，我们已经将索引与数值绑定了，第一个数的索引即为 $1$），于是，排序为：
+简单来说，你只需要输入 $1\to 6$ 这六个数，假设存储在 $a[i]$ 中，进行一个逆转 $a[i] = 7-a[i]$ 后，构建一个链表，这个链表满足的是递减顺序，我们需要使新的链表中前一个节点存放的数据值的低 4 字节都大于后一个节点， 我们可以直接去检查这个 `0x6032d0`（使用 `x/12xg 0x6032d0`，需要运行到`4011a9`才能进行检查），或者自己排序（在之前的步骤中，我们已经将索引与数值绑定了，第一个数的索引即为 $1$），于是，排序为：
 
 `3 4 5 6 1 2`
 
@@ -716,24 +712,24 @@ void phase_4(char* input){
 00000000004015c4 <phase_defused>:
   4015c4:	48 83 ec 78          	sub    $0x78,%rsp
   4015c8:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
-  4015cf:	00 00 
+  4015cf:	00 00
   4015d1:	48 89 44 24 68       	mov    %rax,0x68(%rsp)
   4015d6:	31 c0                	xor    %eax,%eax
   4015d8:	83 3d 81 21 20 00 06 	cmpl   $0x6,0x202181(%rip)        # 603760 <num_input_strings>
-  
+
   4015df:	75 5e                	jne    40163f <phase_defused+0x7b>
-  
+
   4015e1:	4c 8d 44 24 10       	lea    0x10(%rsp),%r8
   4015e6:	48 8d 4c 24 0c       	lea    0xc(%rsp),%rcx
   4015eb:	48 8d 54 24 08       	lea    0x8(%rsp),%rdx
-  
+
   4015f0:	be 19 26 40 00       	mov    $0x402619,%esi
   4015f5:	bf 70 38 60 00       	mov    $0x603870,%edi
   4015fa:	e8 f1 f5 ff ff       	callq  400bf0 <__isoc99_sscanf@plt>
-  
+
   4015ff:	83 f8 03             	cmp    $0x3,%eax
   401602:	75 31                	jne    401635 <phase_defused+0x71>
-  
+
   401604:	be 22 26 40 00       	mov    $0x402622,%esi
   401609:	48 8d 7c 24 10       	lea    0x10(%rsp),%rdi
   40160e:	e8 25 fd ff ff       	callq  401338 <strings_not_equal>
@@ -745,17 +741,17 @@ void phase_4(char* input){
   401626:	e8 e5 f4 ff ff       	callq  400b10 <puts@plt>
   40162b:	b8 00 00 00 00       	mov    $0x0,%eax
   401630:	e8 0d fc ff ff       	callq  401242 <secret_phase>
-  
+
   401635:	bf 58 25 40 00       	mov    $0x402558,%edi
   40163a:	e8 d1 f4 ff ff       	callq  400b10 <puts@plt>
-  
+
   40163f:	48 8b 44 24 68       	mov    0x68(%rsp),%rax
   401644:	64 48 33 04 25 28 00 	xor    %fs:0x28,%rax
-  40164b:	00 00 
+  40164b:	00 00
   40164d:	74 05                	je     401654 <phase_defused+0x90>
   40164f:	e8 dc f4 ff ff       	callq  400b30 <__stack_chk_fail@plt>
   401654:	48 83 c4 78          	add    $0x78,%rsp
-  401658:	c3                   	retq   
+  401658:	c3                   	retq
   401659:	90                   	nop
   40165a:	90                   	nop
   40165b:	90                   	nop
@@ -775,7 +771,7 @@ void phase_4(char* input){
 
 ![Check](https://s2.loli.net/2022/04/10/EUpkFvBKZn92NfW.png)
 
-由于我输入了`7 0 0 0 0 0 0`，可以发现这个地址存储的就是输入的字符串。并且我们可以从+240看出，这应该是第四行输入的字符串，也就是 `Phase_4` 输入的字符串。（因为第五阶段是+320，第三阶段可以自己看看...）
+由于我输入了`7 0 0 0 0 0 0`，可以发现这个地址存储的就是输入的字符串。并且我们可以从+240 看出，这应该是第四行输入的字符串，也就是 `Phase_4` 输入的字符串。（因为第五阶段是+320，第三阶段可以自己看看...）
 
 往下看可以发现，先判断了字符串是否相等，那么我们只需要去找`0x402622`处的字符串即可。
 
@@ -794,15 +790,15 @@ void phase_4(char* input){
   401248:	ba 0a 00 00 00       	mov    $0xa,%edx
   40124d:	be 00 00 00 00       	mov    $0x0,%esi
   401252:	48 89 c7             	mov    %rax,%rdi
-  
+
   401255:	e8 76 f9 ff ff       	callq  400bd0 <strtol@plt>
-  
+
   40125a:	48 89 c3             	mov    %rax,%rbx
   40125d:	8d 40 ff             	lea    -0x1(%rax),%eax
   401260:	3d e8 03 00 00       	cmp    $0x3e8,%eax
   401265:	76 05                	jbe    40126c <secret_phase+0x2a>
   401267:	e8 ce 01 00 00       	callq  40143a <explode_bomb>
-  
+
   40126c:	89 de                	mov    %ebx,%esi
   40126e:	bf f0 30 60 00       	mov    $0x6030f0,%edi
   401273:	e8 8c ff ff ff       	callq  401204 <fun7>
@@ -813,7 +809,7 @@ void phase_4(char* input){
   401287:	e8 84 f8 ff ff       	callq  400b10 <puts@plt>
   40128c:	e8 33 03 00 00       	callq  4015c4 <phase_defused>
   401291:	5b                   	pop    %rbx
-  401292:	c3                   	retq   
+  401292:	c3                   	retq
 ```
 
 还是一样的操作，读一行字符串后赋值给 `%rdi`，随后调用 `strtol` 函数，查阅文档知，此函数可以将一个字符串转换成对应的长整型数值。
@@ -833,28 +829,28 @@ void phase_4(char* input){
   401204:	48 83 ec 08          	sub    $0x8,%rsp
   401208:	48 85 ff             	test   %rdi,%rdi
   40120b:	74 2b                	je     401238 <fun7+0x34>
-  
+
   40120d:	8b 17                	mov    (%rdi),%edx
   40120f:	39 f2                	cmp    %esi,%edx
   401211:	7e 0d                	jle    401220 <fun7+0x1c>
-  
+
   401213:	48 8b 7f 08          	mov    0x8(%rdi),%rdi
   401217:	e8 e8 ff ff ff       	callq  401204 <fun7>
   40121c:	01 c0                	add    %eax,%eax
   40121e:	eb 1d                	jmp    40123d <fun7+0x39>
-  
+
   401220:	b8 00 00 00 00       	mov    $0x0,%eax
   401225:	39 f2                	cmp    %esi,%edx
   401227:	74 14                	je     40123d <fun7+0x39>
-  
+
   401229:	48 8b 7f 10          	mov    0x10(%rdi),%rdi
   40122d:	e8 d2 ff ff ff       	callq  401204 <fun7>
   401232:	8d 44 00 01          	lea    0x1(%rax,%rax,1),%eax
   401236:	eb 05                	jmp    40123d <fun7+0x39>
-  
+
   401238:	b8 ff ff ff ff       	mov    $0xffffffff,%eax
   40123d:	48 83 c4 08          	add    $0x8,%rsp
-  401241:	c3                   	retq   
+  401241:	c3                   	retq
 ```
 
 测试输入的地址值是否为 $0$，如果是则返回 $-1$。刚进入这个函数的时候，我们可以检查`0x6030f0`的值，可以发现为`0x24` ，显然不为 $0$。
@@ -892,8 +888,3 @@ void phase_4(char* input){
 # 总结
 
 没有总结（
-
-
-
-
-

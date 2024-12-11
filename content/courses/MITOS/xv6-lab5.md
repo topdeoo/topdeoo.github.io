@@ -5,11 +5,11 @@ tags:
   - OS
   - MIT
 date: 2022-09-04
-lastmod: 2024-12-10
+lastmod: 2024-12-11
 draft: false
 ---
 
-hh实验只有一题但是是 `hard`
+hh 实验只有一题但是是 `hard`
 
 不过如果看完了视频的思路我觉得对这个和后续的实验都有帮助（教了一种做实验的思路，就是 `bug` 有时候是你故意想要的）
 
@@ -67,7 +67,7 @@ fork(void)
 
 随后，我们需要取消掉父子进程页表中的 `PTE_W` 位（将其变为不可写）。
 
-最后的最后，我们在前面知道，一个 `PTE` 里面好心的开发商留了3位给程序员用来自定义状态，于是，我们在 `kernel/riscv.h` 中添加：
+最后的最后，我们在前面知道，一个 `PTE` 里面好心的开发商留了 3 位给程序员用来自定义状态，于是，我们在 `kernel/riscv.h` 中添加：
 
 ```c
 #define PTE_COW (1L << 8) // 1 -> for cow
@@ -91,7 +91,7 @@ uvmcopy(pagetable_t old, pagetable_t new, uint64 sz) {
       panic("uvmcopy: page not present");
     pa = PTE2PA(*pte);
     flags = PTE_FLAGS(*pte);
-      
+
     *pte = (*pte & (~PTE_W)) | PTE_COW;
     flags = (flags & (~PTE_W)) | PTE_COW;
     if (mappages(new, i, PGSIZE, (uint64)pa, flags) != 0) {
@@ -135,7 +135,7 @@ uvmcopy(pagetable_t old, pagetable_t new, uint64 sz) {
       p->killed = 1;
     }
   }
-````
+```
 
 > 这里需要这个 `va` 来知道出问题的到底是哪一页
 
@@ -163,6 +163,8 @@ cowfault(pagetable_t pagetable, uint64 va) {
 }
 ```
 
+> [!important]
+>
 > 注意，这里我们用了 `kernel/vm.c walk()` 函数，我们需要在 `kernel/defs.h` 中对这个函数进行注册（不然没法用）
 
 在这里，我们首先需要对 `va` 进行特判，防止系统进入 `panic`（因为如果大于 `MAXVA` 的话就说明应该是进程出问题了，这个时候你直接结束进程就行，不需要做任何处理）。
@@ -274,10 +276,10 @@ uvmcopy(pagetable_t old, pagetable_t new, uint64 sz) {
     if (mappages(new, i, PGSIZE, (uint64)pa, flags) != 0) {
       goto err;
     }
-      
+
     //add here
     incref(pa);
-      
+
   }
   return 0;
 
@@ -313,7 +315,7 @@ copyout(pagetable_t pagetable, uint64 dstva, char* src, uint64 len) {
     if ((*pte & PTE_COW) != 0) {
       if (cowfault(pagetable, va0) < 0)
         return -1;
-    }   
+    }
     // ..................
   }
   return 0;
@@ -325,6 +327,3 @@ copyout(pagetable_t pagetable, uint64 dstva, char* src, uint64 len) {
 ## 实验结果
 
 ![Final Grade](https://s2.loli.net/2022/09/04/x2tjn6XkpZADEF5.png)
-
-
-

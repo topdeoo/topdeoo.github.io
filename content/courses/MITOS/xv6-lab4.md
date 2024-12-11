@@ -5,7 +5,7 @@ tags:
   - MIT
   - OS
 date: 2022-04-19
-lastmod: 2024-12-10
+lastmod: 2024-12-11
 draft: false
 ---
 
@@ -53,7 +53,7 @@ int f(int x) {
   16:	6422                	ld	s0,8(sp)
   18:	0141                	addi	sp,sp,16
   1a:	8082                	ret
-  
+
 000000000000001c <main>:
 
 void main(void) {
@@ -126,7 +126,7 @@ printf(const char *fmt, ...)
 
 4. 在 `mian` 中使用 `printf` 后寄存器 `ra` 的值是多少
 
-5. 运行代码 
+5. 运行代码
 
    ```c
    unsigned int i = 0x00646c72;
@@ -143,13 +143,11 @@ printf(const char *fmt, ...)
 
 2. 两个函数由于过于简单，都被编译器内联优化了，`main`调用 `f` 时直接将答案计算出来，`f` 内联了 `g` 而非调用
 3. `0000000000000666`
-4. `jal`是跳转到某个地址同时把返回调用点的地址存储在`$ra`中，`jalr`可以使用相对地址跳转，兼具`jar`的作用。因此`$ra`中存储的就是下一条指令开始的地方`0x38`(当前跳转的地址address+4)
-5. 输出：`He110 World%`，这是因为RISC-V使用小端法表示数字，若为大端法则输出`He110 Wo%`; 数字不用改变，因为编译器会使用机器的编码方式做出改变。
-6. 会打印出 `a2` 的值，但在x86-64机器运行则会输出一个随机数。
+4. `jal`是跳转到某个地址同时把返回调用点的地址存储在`$ra`中，`jalr`可以使用相对地址跳转，兼具`jar`的作用。因此`$ra`中存储的就是下一条指令开始的地方`0x38`(当前跳转的地址 address+4)
+5. 输出：`He110 World%`，这是因为 RISC-V 使用小端法表示数字，若为大端法则输出`He110 Wo%`; 数字不用改变，因为编译器会使用机器的编码方式做出改变。
+6. 会打印出 `a2` 的值，但在 x86-64 机器运行则会输出一个随机数。
 
 ## Backtrace
-
-
 
 实现一个 `backtrace()` 函数，用于打印函数调用时的返回地址（也就是栈帧地址），方便 `debug` （说是这么说，但是我感觉 `gdb + tui` 比这个香多了）
 
@@ -157,7 +155,7 @@ printf(const char *fmt, ...)
 
 其他的就根据官网的 `Hint` 来就行，在对应的文件位置添加对应的条目，例如：
 
-> 1. Add the prototype for backtrace to `kernel/defs.h` so that you can invoke `backtrace` in `sys_sleep`.	
+> 1. Add the prototype for backtrace to `kernel/defs.h` so that you can invoke `backtrace` in `sys_sleep`.
 >
 > 2. The GCC compiler stores the frame pointer of the currently executing function in the register `s0`. Add the following function to `kernel/riscv.h`
 >
@@ -195,7 +193,7 @@ backtrace(void) {
 
 ## Alarm
 
->中断……
+> 中断……
 
 一个时钟中断问题
 
@@ -203,13 +201,9 @@ backtrace(void) {
 
 我们需要实现两个函数，分别为 `sys_sigalarm()` 与 `sys_sigreturn()`（实际上是两个系统调用，用户空间的函数需要自己去补充，按照添加系统调用的规则来做即可）
 
-
-
 第一个函数需要将 `interval` 与 `handler` 存储到当前的 `PCB` 中去（为此我们需要在 `PCB` 中添加存储这些内容的成员）
 
 第二个函数是一个回调函数，具体而言，他需要做的就是恢复执行 `handler` 函数前系统的状态。
-
-
 
 然而，提示还告诉我们，我们需要在 `PCB` 中添加当前进程在上一次调用 `sigalarm(interval, handler)` 后经过了多少 `CPU` 时间。
 
@@ -250,7 +244,7 @@ sys_sigalarm(void) {
 }
 ```
 
-当然，`rest` 在进程刚被创建时，我们就需要将其设置为 `0` 
+当然，`rest` 在进程刚被创建时，我们就需要将其设置为 `0`
 
 于是在 `kernel/proc.c` 中的 `allocproc()` 中，我们添加如下：
 
@@ -267,14 +261,12 @@ allocproc(void) {
 }
 ```
 
-
-
 随后，我们需要修改中断的代码，也就是在 `kernel/trap.c` 中的 `if(which_dev == 2)`（代表时钟中断）：
 
 ```c
   // give up the CPU if this is a timer interrupt.
   if (which_dev == 2) {
-    if (p->alarm) { 
+    if (p->alarm) {
       p->rest += 1;
       if (p->rest == p->alarm) {
         p->rest = 0;
@@ -301,15 +293,13 @@ sys_sigreturn(void) {
 
 然而，这样在 `test1` 会导致一个错误：
 
-
-
-原因我认为是，我们需要恢复的寄存器并不止是一个 `pc` ，其他100+个寄存器应该可能都是需要恢复的，那么我们就干脆把原本的 `trapframe` 复制一份存起来，等到回调时再恢复就可以了。
+原因我认为是，我们需要恢复的寄存器并不止是一个 `pc` ，其他 100+个寄存器应该可能都是需要恢复的，那么我们就干脆把原本的 `trapframe` 复制一份存起来，等到回调时再恢复就可以了。
 
 ### 正确代码
 
 既然知道错在什么地方，那么我们只需要修改存储的方法即可：
 
-1. 在 `PCB` 中添加一个 `struct trapframe* alarmframe` 用于存储前一次的 `trapframe` 
+1. 在 `PCB` 中添加一个 `struct trapframe* alarmframe` 用于存储前一次的 `trapframe`
 2. 在 `trap.c` 处理时钟中断时，我们将 `trapframe` 复制到 `alarmframe` 中去
 3. 在 `sys_sigalarm()` 中，我们需要将 `alarmframe` 设置为 `NULL` 方便在识别此处到底有没有存储数据
 4. 在 `sys_sigreturn()` 中，我们将 `alarmframe` 复制到 `trapframe` 中去
@@ -318,7 +308,7 @@ sys_sigreturn(void) {
 
 ```c
 struct proc {
-    
+
   // .....
   uint alarm;             // ALarm ticks
   uint64 handler;              // handler function
@@ -379,11 +369,4 @@ sys_sigreturn(void) {
 
 ## 实验结果
 
-
-
 ![grade](https://s2.loli.net/2022/07/04/dg5kRvIUAESoXaZ.png)
-
-
-
-
-

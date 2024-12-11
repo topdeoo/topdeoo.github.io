@@ -7,19 +7,16 @@ lastmod: 2024-12-10
 draft: false
 ---
 
-
 > 先决条件：
 >
-> 1. 电脑是Windows系统
-> 2. 确认开启了WSL2
+> 1. 电脑是 Windows 系统
+> 2. 确认开启了 WSL2
 
 # 前置
 
 在官网下载 `docker decktop` [Developers - Docker](https://www.docker.com/get-started/)
 
 然后根据安装步骤一步一步来，确定安装成功（过程中遇到什么问题可以百度解决）
-
-
 
 # 实验环境
 
@@ -31,15 +28,13 @@ docker pull ubuntu:18.04
 
 默认会拉取的 `Ubuntu` 的 `image`。
 
-
-
 拉取完成后，在本地实验的地方建一个文件夹，如 `D:\Documents\code\csapp`，然后输入命令
 
 ```shell
 docker container run -it -v D:\Documents\code\csapp:/csapp --name=csapp_env ubuntu:18.04 /bin/bash
 ```
 
-命令中的  `csapp_env` 可以改成想要的名字。
+命令中的 `csapp_env` 可以改成想要的名字。
 
 运行完之后，现在 `cmd` 就变成了一个 `Linux` 下的一个 `shell`，可以运行 `Linux` 的一些命令了，比如可以 `ls` 一下
 
@@ -49,13 +44,9 @@ ls -al
 
 会发现列出来的文件里面有我们的 `csapp` 文件夹。
 
-
-
 但到此为止，我们只解决了操作系统的问题，还有一些环境没配置...
 
 于是运行如下命令：
-
-
 
 ·更新 `apt` 软件源
 
@@ -98,14 +89,9 @@ docker exec -it csapp_env /bin/bash
 
 可以使用 `docker kill csapp_env` 来关闭环境。
 
-
-
 （干脆把 `cd` 那一块一起写了）
 
 ```shell
 cd csapp/xxxxlab
 # 开始 ./ 或者 gcc 或者 gbd 或者 objdump
 ```
-
-
-

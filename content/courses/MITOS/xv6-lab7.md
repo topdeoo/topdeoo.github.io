@@ -5,30 +5,25 @@ tags:
   - OS
   - MIT
 date: 2022-09-08
-lastmod: 2024-12-10
+lastmod: 2024-12-11
 draft: false
 ---
-
 
 说是一个驱动程序，实际上需要完成的只有两个函数，把源码看明白之后直接跟着 `Hint` 写就行。（记得去看 `Background`）
 
 那本厚厚的文档可以不用读，只用看几个部分就行。
 
-实验难度为 `hard` 
+实验难度为 `hard`
 
 ## Your Job
 
 **发送数据的流程**：
 
-`CPU`将`IP`数据包打包放入内存中，通知`DMA Engine`进行`DMA`传输，数据放入FIFO data buffer中。MAC将IP数据包拆分为最小64KB，最大1518KB的数据帧，每一帧包含了目标MAC地址、自己的MAC地址和数据包中的协议类型以及CRC校验码。目标MAC地址通过ARP协议获取。PHY接受MAC传送的数据，将并行数据转化为串行数据后进行编码，在转变为模拟信号将数据进行传输。
+`CPU`将`IP`数据包打包放入内存中，通知`DMA Engine`进行`DMA`传输，数据放入 FIFO data buffer 中。MAC 将 IP 数据包拆分为最小 64KB，最大 1518KB 的数据帧，每一帧包含了目标 MAC 地址、自己的 MAC 地址和数据包中的协议类型以及 CRC 校验码。目标 MAC 地址通过 ARP 协议获取。PHY 接受 MAC 传送的数据，将并行数据转化为串行数据后进行编码，在转变为模拟信号将数据进行传输。
 
 首先，我们给出 `struct tx_desc` 与 `struct desc` 的结构，在文档的 `3.3` 可以找到：
 
-
-
 ![tx_desc](https://s2.loli.net/2022/09/08/Wsh47qN1pbzIcdQ.png)
-
-
 
 ![tx_decs](https://s2.loli.net/2022/09/08/DQEeASsk4z83cUC.png)
 
@@ -78,8 +73,6 @@ e1000_transmit(struct mbuf* m) {
 
 （如果一开始想不到的话，可以去 `kernel/uart.c` 中的 `uartputc` 看看）
 
-
-
 ### e1000_recv
 
 这个我就不解释 `Hint` 了描述了，直接上代码：
@@ -116,15 +109,10 @@ e1000_recv(void) {
 }
 ```
 
-注意到这里，我们并没有使用锁，这是因为因为`e1000_recv()`是在`e1000_intr()`中被调用的，也就是说这实际上是一个 `interrupt handler`，只有一个进程在跑这个handler，因此不存在共享的数据结构。
+注意到这里，我们并没有使用锁，这是因为因为`e1000_recv()`是在`e1000_intr()`中被调用的，也就是说这实际上是一个 `interrupt handler`，只有一个进程在跑这个 handler，因此不存在共享的数据结构。
 
 （如果这个也不能想到的话，也可以查看 `kernel/uart.c` 中的 `uartgetc` 实现）
 
 ## 实验结果
 
 ![Final Grade](https://s2.loli.net/2022/09/08/wsdGrg1Opq6AXBW.png)
-
-
-
-
-

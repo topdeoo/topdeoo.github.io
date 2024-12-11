@@ -33,9 +33,11 @@ draft: false
 # 线性回归
 
 通俗来说，回归就是预测输入变量与输出变量之间的关系，等价于函数的拟合。线性回归是回归中的一个特殊的问题，意味着输入变量与输出变量之间存在线性关系。形式化的说法就是：
+
 $$
 y = f(x) = b + w^Tx
 $$
+
 其中 $y, b$ 为实数值，$w, x$ 为向量
 
 我们的任务，就是使用给定的 $x$ 与 $y$ 来计算出模型中的 $w$ 与 $b$ 。如此，对于后续任意给定的 $x$ ，我们都能够预测出其对应的 $y$ 是什么。
@@ -47,6 +49,7 @@ $$
 我们知道，我们通过一个 $Loss$ 函数来评价模型的好坏， $Loss$ 函数值越小，则模型在训练集上表现越好。因此，如何定义 $Loss$ 函数就是我们如何计算 $w, b$ 的关键。
 
 一般而言，我们定义 $Loss$ 函数为：
+
 $$
 Loss(w, b) = \frac{1}{2N} \sum^N_{i=1}(f(x_i) - y_i)^2 = \frac{1}{2N} \sum^N_{i=1}(b + w^Tx_i - y_i)^2
 $$
@@ -54,9 +57,11 @@ $$
 其中，$y_i$ 为数据真实值
 
 我们可以发现 $(b + w^Tx_i - y_i)^2$ 的含义就是估计值到真实值之间竖直距离的平方。显然这样的 $Loss$ 定义可以衡量模型的拟合程度：$Loss$ 值越小，说明估计值与真实值之间差距越小，说明模型的表现越好。因此，当 $Loss$ 取最小值时模型的表现是最好的，这个时候我们可以找到：
+
 $$
 w^*, b^* = \mathop{\arg\min}\limits_{w, b}\ Loss(w, b)
 $$
+
 于是问题就转变成，如何求出 $Loss$ 函数的最小值
 
 ## 梯度下降
@@ -70,23 +75,31 @@ $$
 我们不妨假设 $f(x)$ 的形状是这样的，那么对于每一点的梯度，显然我们只有两个方向，$\Delta x > 0$ 或者 $\Delta x < 0$，那我们应该如何选择？
 
 根据泰勒公式：
+
 $$
 f(x + \Delta x) \sim f(x) + \Delta x\times \nabla f(x)
 $$
+
 左边是 $f(x)$ 移动一小步 $\Delta x$ 后得到的下一个点的函数值，左右两边近似相等，我们期望：
+
 $$
 f(x + \Delta x) < f(x)
 $$
+
 那么我们就需要保证：
+
 $$
 \Delta x \times \nabla f(x) < 0
 $$
+
 因此，我们取 $\Delta x = -\alpha \nabla f(x), (\alpha>0)$
 
 从而保证了
+
 $$
 \Delta x \times \nabla f(x) = -\alpha (\nabla f(x))^2 < 0
 $$
+
 那么我们就有：$f(x + \Delta x) = f(x - \alpha \nabla f(x))$
 
 也就是说，我们每次需要移动的一小步，就是 $-\alpha \nabla f(x)$
@@ -112,25 +125,27 @@ $$
 | 2     | 1     | 5   |
 | 3     | 4     | 8   |
 
-我们假设模型为  $f(x) = b + w^Tx$， 其中 $x = (x_1, x_2)$
+我们假设模型为 $f(x) = b + w^Tx$， 其中 $x = (x_1, x_2)$
 
 那么构造 $Loss(w, b) = \frac{1}{2 * 3}\sum^3_{i=1}(b + w^Tx_i - y_i)^2$
 
 于是
+
 $$
 \begin{aligned}
-\nabla Loss &=\left(\frac{\partial Loss}{\partial w}, \frac{\partial Loss}{\partial b}\right)\\  
+\nabla Loss &=\left(\frac{\partial Loss}{\partial w}, \frac{\partial Loss}{\partial b}\right)\\
 &= (\frac{1}{3}\sum^3_{i=1}x_i(b + w^Tx_i - y_i), \frac{1}{3}\sum^3_{i=1}(b+w^Tx_i - y_i))
 \end{aligned}
 $$
 
-
 我们将第 $i$ 次迭代时的 $w, b$ 记为 $w^{(i)}, b^{(i)}$，并假设第一次迭代时，$w^{(1)} = 0, b^{(1)} = 0$， $\alpha = 1$
 
 于是我们有：
+
 $$
 (w^{(2)}, b^{(2)}) \leftarrow (w^{(1)}, b^{(1)}) - \alpha \nabla Loss(w^{(1)}, b^{(1)})
 $$
+
 $$
 (w^{(2)}, b^{(2)}) \leftarrow (0, 0) - (\frac{1}{3}\sum^3_{i=1}x_i(- y_i), \frac{1}{3}\sum^3_{i=1}(- y_i))
 $$
@@ -138,6 +153,7 @@ $$
 $$
 (w^{(2)}, b^{(2)}) \leftarrow ((-\frac{37}{3},-\frac{40}{3}), -\frac{16}{3})
 $$
+
 如此反复迭代，直到 $Loss$ 值收敛不变 / $\nabla Loss = 0$ / 达到最大迭代次数
 
 # 非线性回归
@@ -157,7 +173,7 @@ $$
 类似的，对于更加复杂的图像，可能二次曲线也不能描述，那么我们就会继续升维，构造 $f(x) = b + \sum^m_{i=1}w_ix^i$ ，这样的模型就被称之为多项式回归。
 
 然而，多项式回归也可以转化成线性回归的形式：
-我们可以构造一个线性映射 $T$ ，$T$ 是从 $\mathbb{R}^m$ 到 $\mathcal{P}_m$ 的线性映射，其中 $\mathcal{P}_m$ 是一个线性空间，其标准基为 $(1, x, x^2,\dots, x^m)$ 
+我们可以构造一个线性映射 $T$ ，$T$ 是从 $\mathbb{R}^m$ 到 $\mathcal{P}_m$ 的线性映射，其中 $\mathcal{P}_m$ 是一个线性空间，其标准基为 $(1, x, x^2,\dots, x^m)$
 
 我们构造的映射 $T$ 具体而言：
 
@@ -200,9 +216,11 @@ $T$ 使得 $z_1 = x, z_2 = x^2, z_3 = x^3, \dots, z_m = x^m$
   3. 让模型更简单。在多项式回归中就是说，我们需要适当的减小 $m$。具体而言，我们将更改 $Loss$ 的定义。
 
      我们定义 $Loss$ 函数为
+
      $$
      Loss(w, b) =\frac{1}{2N} \sum^N_{i=1}(f(x_i) - y_i)^2 + \lambda J(f)
      $$
+
      其中 $J(f)$ 为模型的复杂程度，被称为 **正则化项**
 
      通过这样定义 $Loss$ 函数，我们可以将模型的复杂程度与拟合程度统筹考虑。这种类型的 $Loss$ 函数被称为**结构风险最小化**
@@ -212,6 +230,3 @@ $T$ 使得 $z_1 = x, z_2 = x^2, z_3 = x^3, \dots, z_m = x^m$
 如图：
 
 ![Summary](https://s2.loli.net/2022/08/01/sDYiLdPQClrUtNA.png)
-
-
-

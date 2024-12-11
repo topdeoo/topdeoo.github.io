@@ -4,25 +4,19 @@ description: Lab1简单的熟悉xv6操作系统和怎么做实验
 tags:
   - MIT
 date: 2022-04-01
-lastmod: 2024-12-10
+lastmod: 2024-12-11
 draft: false
 ---
 
-官网上对实验难度的描述是`easy` , `easy`, `moderate/hard`,  `moderate`, `moderate`。
+官网上对实验难度的描述是`easy` , `easy`, `moderate/hard`, `moderate`, `moderate`。
 
-我感觉是`moderate`, `moderate`, `??`,  `hard`, `???`
+我感觉是`moderate`, `moderate`, `??`, `hard`, `???`
 
-可能和我看不懂他自带的教材有关系:cry:
+可能和我看不懂他自带的教材有关系 :cry:
 
-
-
-开始实验前，建议阅读一下xv6系统的源码，看看定式是怎样的（至少要知道应该引入哪些头文件），强烈建议阅读 `K&R C` （深刻的认识到对C语言的理解完全不够，函数都认不全:pensive:)
-
-
+开始实验前，建议阅读一下 xv6 系统的源码，看看定式是怎样的（至少要知道应该引入哪些头文件），强烈建议阅读 `K&R C` （深刻的认识到对 C 语言的理解完全不够，函数都认不全:pensive:)
 
 一定，一定，读完一章之后，再来做实验
-
-
 
 ## Sleep (easy)
 
@@ -57,8 +51,6 @@ main(int argc, char** argv) {
 }
 
 ```
-
-
 
 ## PingPong(easy)
 
@@ -141,8 +133,8 @@ main(int argc, char** argv) {
 
 解题思路为：
 
-1. 第一个进程将2到35传入第二个进程。
-2. 前一个进程传入的第一个数必然为质数（例如第一个到第二个，第一个数为2），于是，遍历后续的数字，将不能被此数字整除的数传递给下一个进程。
+1. 第一个进程将 2 到 35 传入第二个进程。
+2. 前一个进程传入的第一个数必然为质数（例如第一个到第二个，第一个数为 2），于是，遍历后续的数字，将不能被此数字整除的数传递给下一个进程。
 3. 反复进行第二步操作，直到遍历完所有数字。
 
 添加文件 `user/primes.c`
@@ -217,8 +209,6 @@ main(int argc, char** argv) {
 ```
 
 ## Find（moderate）
-
-
 
 建议多看几遍官方的 `Hint` ，尤其是阅读 `ls.c` 的提示，会发现，其实这个代码跟 `ls.c` 的代码相差不大。
 
@@ -298,8 +288,6 @@ main(int argc, char** argv) {
 }
 
 ```
-
-
 
 ## xargs（moderate）
 
@@ -397,9 +385,7 @@ int main(int argc, char const* argv[]) {
 
 ```
 
-
-
-**所有任务都完成后，记得在 `Makefile` 中添加 `$U/_xxxx \$` ，xxxx为调用名称**，也可以每写一个就添加一个，这样方便调试。
+**所有任务都完成后，记得在 `Makefile` 中添加 `$U/_xxxx \$` ，xxxx 为调用名称**，也可以每写一个就添加一个，这样方便调试。
 
 ## 最终成绩
 
@@ -417,6 +403,3 @@ git commit -m "finish util"
 ```
 
 不需要 `push` = =。
-
-
-

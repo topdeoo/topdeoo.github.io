@@ -8,18 +8,17 @@ lastmod: 2024-12-10
 draft: false
 ---
 
-
 # 实验目的
 
-1. 熟悉类UNIX系统的I/O设备管理
-2. 熟悉MINIX块设备驱动
-3. 熟悉MINIX RAM盘
+1. 熟悉类 UNIX 系统的 I/O 设备管理
+2. 熟悉 MINIX 块设备驱动
+3. 熟悉 MINIX RAM 盘
 
 # 实验环境
 
 开发环境：`VS Code (GNU)`
 
-宿主机系统环境：`Windows10 +  WSL2（Ubuntu 20.04）`
+宿主机系统环境：`Windows10 + WSL2（Ubuntu 20.04）`
 
 虚拟机应用：`VMware WorkStation16`
 
@@ -31,7 +30,7 @@ draft: false
 
 输入命令 `git reset HEAD^`即可回退到`project-2`的前一个版本（原始版本）
 
-## 创建RAM盘并挂载
+## 创建 RAM 盘并挂载
 
 列出需要新增/修改的文件：
 
@@ -60,61 +59,61 @@ draft: false
 3. 添加文件 `buildmyram.c` （仿照 `ramdisk.c` 实现）
 
    ```c
-   
+
    #include <minix/paths.h>
-   
+
    #include <sys/ioc_memory.h>
    #include <stdio.h>
    #include <fcntl.h>
    #include <stdlib.h>
-   
+
    int
    main(int argc, char* argv[]) {
        int fd;
        signed long size;
        char* d;
-   
+
        if (argc < 2 || argc > 3) {
            fprintf(stderr, "usage: %s <size in MB> [device]\n",
                argv[0]);
            return 1;
        }
-   
+
        d = argc == 2 ? _PATH_RAMDISK : argv[2];
        if ((fd = open(d, O_RDONLY)) < 0) {
            perror(d);
            return 1;
        }
-   
+
    #define MFACTOR 1048576
        size = atol(argv[1]) * MFACTOR;
-   
+
        if (size < 0) {
            fprintf(stderr, "size should be non-negative.\n");
            return 1;
        }
-   
+
        if (ioctl(fd, MIOCRAMSIZE, &size) < 0) {
            perror("MIOCRAMSIZE");
            return 1;
        }
-   
+
        fprintf(stderr, "size on %s set to %ldMB\n", d, size / MFACTOR);
-   
+
        return 0;
    }
-   
+
    ```
 
-4. 创建RAM盘
+4. 创建 RAM 盘
 
-   输入命令 `mknod /dev/myram b 1 13` 来创建实验用RAM盘，可以使用 `ls /dev/ | grep ram` 来查看是否创建成功
+   输入命令 `mknod /dev/myram b 1 13` 来创建实验用 RAM 盘，可以使用 `ls /dev/ | grep ram` 来查看是否创建成功
 
    在`root`目录下创建文件夹 `myram` 便于接下来的挂载
 
-5. 设置RAM大小并挂载
+5. 设置 RAM 大小并挂载
 
-   由于每次重启都要重新设置RAM的大小并挂载，这里写一个脚本 `project3.sh` 来实现
+   由于每次重启都要重新设置 RAM 的大小并挂载，这里写一个脚本 `project3.sh` 来实现
 
    ```shell
    buildmyram 512 /dev/myram
@@ -123,7 +122,7 @@ draft: false
    df
    ```
 
-   首次运行前，需要先输入 `chmod u+x project3.sh` 后，输入 `./project3.sh` 
+   首次运行前，需要先输入 `chmod u+x project3.sh` 后，输入 `./project3.sh`
 
 ## 测试代码
 
@@ -223,11 +222,11 @@ plt.show()
 
 ![性能测试](https://s2.loli.net/2022/05/12/Kjo1yeIaHx7N4AU.png)
 
-可以发现进程数大约在15时，RAM达到饱和，使得吞吐量趋于稳定
+可以发现进程数大约在 15 时，RAM 达到饱和，使得吞吐量趋于稳定
 
 于是，将后续的并发数设置为 `15`
 
-### 任务二：探究在不同block size条件下，RAM与Disk的性能对比
+### 任务二：探究在不同 block size 条件下，RAM 与 Disk 的性能对比
 
 1. 读写函数
 
@@ -266,10 +265,10 @@ read_file(int blocksize, bool isrand, char* filepath) {
    calc_time(struct timeval t1, struct timeval t2) {
        return (double)(t2.tv_sec - t1.tv_sec) * 1000 + (t2.tv_usec - t1.tv_usec) / 1000;
    }
-   
+
    ```
 
-3. `main`函数，接受三个参数，`argv[1]` 表示读`R`或写`W`，`argv[2]` 表示是RAM`R`还是Disk`D`，`argv[3]`  表示是顺序`S`还是随机`R`
+3. `main`函数，接受三个参数，`argv[1]` 表示读`R`或写`W`，`argv[2]` 表示是 RAM`R`还是 Disk`D`，`argv[3]` 表示是顺序`S`还是随机`R`
 
    ```c
    int
@@ -321,7 +320,7 @@ read_file(int blocksize, bool isrand, char* filepath) {
            gettimeofday(&t2, NULL);
            t = calc_time(t1, t2) / 1000.0;
            int total_size = blocksize * proc_num * MAX_ITER;
-   
+
            printf("%lf,%lf,%lf\n", 1.0 * blocksize / 1024,
                1.0 * total_size / 1024 / 1024, 1.0 * total_size / t / 1024 / 1024);
            // printf("blocksize_KB=%.4fKB,filesize_MB=%.4fMB,speed=%fMB/s\n",
@@ -553,9 +552,6 @@ for i in range(len(check)):
 
 # 总结
 
-微内核真麻烦😐
+微内核真麻烦 😐
 
-设计是好设计，好就好在_______________________________
-
-
-
+设计是好设计，好就好在**************\_\_\_**************

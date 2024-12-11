@@ -4,21 +4,22 @@ description: 实现一个简易版的Shell，可以识别一些简单到不能�
 tags:
   - ECNU
 date: 2022-03-29
-lastmod: 2024-12-10
+lastmod: 2024-12-11
 draft: false
 ---
 
-# 实验目的  
+# 实验目的
 
-在 MINIX 环境下通过系统调用实现一个基本的 Shell。 
+在 MINIX 环境下通过系统调用实现一个基本的 Shell。
 
-# 内容与设计思想  
+# 内容与设计思想
 
-Shell 能解析的命令行如下: 
+Shell 能解析的命令行如下:
 
 1. 带参数的程序运行功能。 `program arg1 arg2 ... argN `
 
 2. 重定向功能，将文件作为程序的输入/输出。
+
    1. “`>`”表示覆盖写 `program arg1 arg2 ... argN > output-file `
    2. “`>>`”表示追加写 `program arg1 arg2 ... argN >> output-file `
    3. “`<`”表示文件输入 `program arg1 arg2 ... argN < input-file `
@@ -35,19 +36,19 @@ Shell 能解析的命令行如下:
  program arg1 arg2 ... argN &
 ```
 
-5. 工作路径移动命令 `cd`。 
+5. 工作路径移动命令 `cd`。
 
 6. 程序运行统计 `mytop`。
 
-7. shell 退出命令 `exit`。 
+7. shell 退出命令 `exit`。
 
 8. `history n` 显示最近执行的 n 条指令。
 
-# 使用环境  
+# 使用环境
 
 开发环境：VS Code (GNU) + VS2019 (MSVC)
 
-宿主机系统环境：Windows10 +  WSL2（Ubuntu 20.04）
+宿主机系统环境：Windows10 + WSL2（Ubuntu 20.04）
 
 虚拟机应用：VMware WorkStation16
 
@@ -57,13 +58,11 @@ Shell 能解析的命令行如下:
 
 ![算法流程](https://s2.loli.net/2022/04/02/bTO4Rjy3vUdrSAQ.png)
 
-# Shell实验过程
+# Shell 实验过程
 
+## Shell 主体的实现
 
-
-## Shell主体的实现
-
-通过实验文档的描述，我们可以知道，Shell主函数的作用只是用来打印命令提示符，接收输入的命令，在接收到 `exit` 命令前都会一直运行下去，因此，`main` 函数是显然的：
+通过实验文档的描述，我们可以知道，Shell 主函数的作用只是用来打印命令提示符，接收输入的命令，在接收到 `exit` 命令前都会一直运行下去，因此，`main` 函数是显然的：
 
 ```c
 #include <unistd.h>
@@ -102,13 +101,9 @@ main(int argc, char** argv) {
 
 有关实现命令的所有细节，都在 `eval` 函数中实现。
 
-
-
 ## 内置命令的实现（`cd`, `history n`, `exit`)
 
-
-
-通过 `csapp` 中` shell lab` 的启发，我们采用了与该实验中相似的函数结构，即：
+通过 `csapp` 中 [[shelllab|Shell Lab]] 的启发，我们采用了与该实验中相似的函数结构，即：
 
 1. 使用 `eval` 函数来执行命令
 2. 使用 `parse_cmd` 函数来分隔命令行
@@ -181,8 +176,6 @@ eval(const char* cmd) {
 
 （针对此处 `parse_cmd` 函数中使用 `malloc` 的解释：由于程序运行时会发生段错误，加上对 `gdb` 调试的不熟练，于是转向使用 ` VS2019` 进行调试，但 `VS` 使用的编译器 `MSVC` 的标准较苛刻，不同于 `GNU`， 只用使用 `malloc` 才不会使程序在中途内存越界而无法观察到逻辑错误的位置）
 
-
-
 ## 程序命令的实现
 
 首先我们知道，当命令为程序命令时，我们通常所进行的操作时，`fork` 一个子进程，子进程来运行 `exec` 进而执行命令，而后返回父进程，父进程应当等待子进程运行完毕，方可退出。
@@ -247,7 +240,7 @@ parse_cmd(char* buf[MAX_COMMAND], const char* cmd, struct Program_Details* pd) {
             pd->output_mode = 1, output_idx = cnt;
         else if (!strcmp(p, ">>"))
             pd->output_mode = 2, output_idx = cnt;
-        
+
         else {
             buf[cnt] = (char*)malloc(sizeof(char) * strlen(p));
             strcpy(buf[cnt++], p);
@@ -293,7 +286,7 @@ eval(const char* cmd) {
                 close(STDOUT_FILENO);
                 dup(fd);
             }
-            
+
 
             if (execvp(buf[0], buf) < 0) {
                 printf("Error: %s is not a valid command", cmd);
@@ -347,7 +340,7 @@ parse_cmd(char* buf[MAX_COMMAND], const char* cmd, struct Program_Details* pd) {
             pd->output_mode = 2, output_idx = cnt;
         else if (!strcmp(p, "&"))
             pd->bg_fg = 1;
-        
+
         else {
             buf[cnt] = (char*)malloc(sizeof(char) * strlen(p));
             strcpy(buf[cnt++], p);
@@ -383,7 +376,7 @@ eval(const char* cmd) {
         else {
             signal(SIGCHLD, SIG_DFL);
         }
-        
+
         if ((pid = fork()) == 0) {
             if (pd.input_mode == 1) {
                 int fd = open(pd.input_file, O_RDONLY);
@@ -408,7 +401,7 @@ eval(const char* cmd) {
                 close(STDIN_FILENO);
                 dup(fd);
             }
-            
+
             else {
                 if (execvp(buf[0], buf) < 0) {
                     printf("Error: %s is not a valid command", cmd);
@@ -437,7 +430,7 @@ waitfg(pid_t pid) {
 
 但为了从原本的 `buf` 数组中取出每一条命令，设定了一个二维数组指针 `argv` ，其中 `argv[i]` 表示第 `i` 条子命令，通过 `pipeline` 函数来完成这一工作。
 
-显然，还需要对 `Process_Details` 增加两个变量，`pipe_num` 与`pipe_idx` 表示管道的数量与管道的位置（其中首/末位为 `buf` 中命令开始的位置与结束的位置，为了便于pipeline函数分割命令）
+显然，还需要对 `Process_Details` 增加两个变量，`pipe_num` 与`pipe_idx` 表示管道的数量与管道的位置（其中首/末位为 `buf` 中命令开始的位置与结束的位置，为了便于 pipeline 函数分割命令）
 
 于是，对 `parse_cmd` 函数进行修改，以保证其可以记录 `pipe_num` 与 `pipe_idx` 。
 
@@ -479,7 +472,7 @@ parse_cmd(char* buf[MAX_COMMAND], const char* cmd, struct Program_Details* pd) {
             pd->pipe_idx[cmd_idx++] = cnt;
             pd->pipe_num++;
         }
-        
+
         else {
             buf[cnt] = (char*)malloc(sizeof(char) * strlen(p));
             strcpy(buf[cnt++], p);
@@ -488,7 +481,7 @@ parse_cmd(char* buf[MAX_COMMAND], const char* cmd, struct Program_Details* pd) {
         memset(p, 0, sizeof p);
         j = 0, i++;
     }
-    
+
     if (pd->input_mode == 1) {
         pd->input_file = (char*)malloc(sizeof(char) * strlen(buf[input_idx]));
         strcpy(pd->input_file, buf[input_idx]);
@@ -553,11 +546,11 @@ eval(const char* cmd) {
                                 close(STDIN_FILENO);
                                 dup(fd);
                             }
-                            
+
                             close(p[i][0]); /* Block input from the parent process*/
                             close(STDOUT_FILENO);
                             dup(p[i][1]);
-                            
+
                         }
                         else if (i == pd.pipe_num) {
                             if (pd.output_mode == 1) {
@@ -655,17 +648,17 @@ eval(const char* cmd) {
 此命令需要输出两个内容：
 
 1. 内存的使用率
-2. CPU的使用率
+2. CPU 的使用率
 
 设置一个任务管理器结构体`Task_Mgr` 以储存需要输出的内容。
 
 对于内存的使用率，很轻易就能够解决。只需要打开 `/proc/meminfo` ，并按照参数的顺序读取，然后计算输出即可。
 
-对于CPU的使用率，分为3步解决：
+对于 CPU 的使用率，分为 3 步解决：
 
 1. 通过 `/proc/kinfo` 读取进程与任务的总数量
 2. 遍历所有进程的 `psinfo` 文件，获得其 `State` 与 `ticks`
-3. 将状态不为 `R` 的进程的 `ticks` 累加起来，得到空闲进程的 `ticks`，通过总 `ticks` 与空闲进程的 `ticks` ，便可以计算得到CPU利用率
+3. 将状态不为 `R` 的进程的 `ticks` 累加起来，得到空闲进程的 `ticks`，通过总 `ticks` 与空闲进程的 `ticks` ，便可以计算得到 CPU 利用率
 
 ```c
 struct Task_Mgr {
@@ -1116,13 +1109,13 @@ builtin_cmd(const char* buf[MAX_COMMAND]) {
     else
             return 0;
 }
-               
+
 void
 waitfg(pid_t pid) {
     int status;
     waitpid(pid, &status, 0);
 }
-               
+
 void
 pipeline(char* argv[MAX_COMMAND][MAX_COMMAND], const char*
     buf[MAX_COMMAND], struct Program_Details pd) {
@@ -1133,7 +1126,7 @@ pipeline(char* argv[MAX_COMMAND][MAX_COMMAND], const char*
         }
     }
 }
-               
+
 void get_procs() {
     struct proc* p;
     int i;
@@ -1154,7 +1147,7 @@ void get_procs() {
 u_int64_t make64(unsigned long lo, unsigned long hi) {
     return ((u_int64_t)hi << 32) | (u_int64_t)lo;
 }
-               
+
 void parse_file(pid_t pid) {
     char path[MAXBUF], name[256], type, state;
     int version, endpt, effuid;
@@ -1226,7 +1219,7 @@ void parse_file(pid_t pid) {
     p->p_flags |= USED;
     fclose(fp);
 }
-               
+
 void parse_dir() {
     DIR* p_dir;
     struct dirent* p_ent;
@@ -1257,7 +1250,7 @@ u_int64_t cputicks(struct proc* p1, struct proc* p2, int timemode) {
     }
     return t;
 }
-               
+
 double get_usage(struct proc* proc1, struct proc* proc2, int cputimemode) {
     int p, nprocs;
     u64_t systemticks = 0;
@@ -1295,17 +1288,10 @@ double get_usage(struct proc* proc1, struct proc* proc2, int cputimemode) {
 
 ```
 
-
-
 # 总结
 
-写完很有成就感，在接触操作系统不足两周的情况下写出一个简单粗糙但还算能跑的Shell对我来说的确不算是一件简单的事情。
+写完很有成就感，在接触操作系统不足两周的情况下写出一个简单粗糙但还算能跑的 Shell 对我来说的确不算是一件简单的事情。
 
-如上所说，这个Shell存在着很多不足，最突出的或许就是最初的设计模式与他所需要实现的功能存在一些冲突.....
+如上所说，这个 Shell 存在着很多不足，最突出的或许就是最初的设计模式与他所需要实现的功能存在一些冲突.....
 
-这个实验，让人对Shell的工作原理没有什么很深入的了解，但是确实对系统调用更加熟悉了，exec属于是救命函数。
-
-
-
-
-
+这个实验，让人对 Shell 的工作原理没有什么很深入的了解，但是确实对系统调用更加熟悉了，exec 属于是救命函数。

@@ -5,7 +5,7 @@ tags:
   - Stanford
   - Network
 date: 2023-03-16
-lastmod: 2024-12-10
+lastmod: 2024-12-11
 draft: false
 ---
 
@@ -18,7 +18,7 @@ draft: false
 
 遇到的问题：
 
--  合并后，运行 `make -j4` 出错：
+- 合并后，运行 `make -j4` 出错：
 
 ![image-20230316142940587](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/image-20230316142940587.png)
 
@@ -49,9 +49,9 @@ apt install libclang-cpp9 libclang1-9 doxygen libpcap-dev
 
 这里补充一些 `TCP` 的三次握手：
 
-​	`TCP` 三次握手是指建立一个`TCP`连接时，需要客户端和服务器总共发送 $3$ 个包。三次握手的目的是连接服务器指定端口，建立 `TCP` 连接，并同步连接双方的序列号和确认号并交换 `TCP` 窗口大小信息。第一次握手：客户端发送 `syn` 包到服务器，并进入`SYN_SEND`状态，等待服务器确认；第二次握手：服务器收到 `syn` 包，必须确认客户端的 `SYN`，同时自己也发送一个 `SYN` 包，即`SYN+ACK` 包，此时服务器进入`SYN_RECV`状态；第三次握手：客户端收到服务器的`SYN+ACK`包，向服务器发送确认包`ACK`，此包发送完毕，客户端和服务器进入`ESTABLISHED`状态，完成三次握手。
+​ `TCP` 三次握手是指建立一个`TCP`连接时，需要客户端和服务器总共发送 $3$ 个包。三次握手的目的是连接服务器指定端口，建立 `TCP` 连接，并同步连接双方的序列号和确认号并交换 `TCP` 窗口大小信息。第一次握手：客户端发送 `syn` 包到服务器，并进入`SYN_SEND`状态，等待服务器确认；第二次握手：服务器收到 `syn` 包，必须确认客户端的 `SYN`，同时自己也发送一个 `SYN` 包，即`SYN+ACK` 包，此时服务器进入`SYN_RECV`状态；第三次握手：客户端收到服务器的`SYN+ACK`包，向服务器发送确认包`ACK`，此包发送完毕，客户端和服务器进入`ESTABLISHED`状态，完成三次握手。
 
-上述过程可能有些复杂，随着阅读后续的文档会逐渐理解这个过程。下面先介绍我们在 `StreamReassembler` 中写到的 `index` 
+上述过程可能有些复杂，随着阅读后续的文档会逐渐理解这个过程。下面先介绍我们在 `StreamReassembler` 中写到的 `index`
 
 ## `seqno` 与 `index`
 
@@ -59,14 +59,14 @@ apt install libclang-cpp9 libclang1-9 doxygen libpcap-dev
 
 ![image-20230317094624957](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/image-20230317094624957.png)
 
-限于 `TCP` 报文头的长度限制，我们拿到的 `seqno` (另一种意义上的 `index`) 和我们需要的 `index` 是不一样的，在传输过程中的`seq`是32位的，但我们本地的`seq`是64位系统下的，所以我们需要将对其做一个转化。32位最大值为 $2^{32}-1$, 超过这个数字就从0开始。
+限于 `TCP` 报文头的长度限制，我们拿到的 `seqno` (另一种意义上的 `index`) 和我们需要的 `index` 是不一样的，在传输过程中的`seq`是 32 位的，但我们本地的`seq`是 64 位系统下的，所以我们需要将对其做一个转化。32 位最大值为 $2^{32}-1$, 超过这个数字就从 0 开始。
 
 而这个 `seqno` 的含义为：当前 `payload` 中的第一个字符在整个报文中的位置模 $2^{32}$ （当然可能不止 `payload`，这在后面会提到），而这个 `seqno` 的选择并不是和 `index` 一样从 $0$ 开始的。
 
-- 第一次握手时，`seqno`  以一个 $32$ 位随机值初始化。目的是为了防止被猜到，以及网络中较早的数据报造成干扰。一端连接中第一个 `seqno` 就以一个 $32$ 位的数字初始化，叫做`Initial Sequence Number(ISN)`，之后每个 $seq_n = ISN + n (mod\,2^{32})$
-- 连接开始和结束每个占用一个序列号：除了确保收到所有字节的数据，TCP确保流的开始和结束同样是是可靠的。因此，在TCP中，SYN（流开始）和 FIN（流终端）控制标志被分配 `seqno` ，都占据一个字节（SYN标志占用的序列号就是ISN）。流中的每个数据字节还占用一个字节。注意，标志位虽然占据一个字节但是并不算在需要读出的数据里。
+- 第一次握手时，`seqno` 以一个 $32$ 位随机值初始化。目的是为了防止被猜到，以及网络中较早的数据报造成干扰。一端连接中第一个 `seqno` 就以一个 $32$ 位的数字初始化，叫做`Initial Sequence Number(ISN)`，之后每个 $seq_n = ISN + n (mod\,2^{32})$
+- 连接开始和结束每个占用一个序列号：除了确保收到所有字节的数据，TCP 确保流的开始和结束同样是是可靠的。因此，在 TCP 中，SYN（流开始）和 FIN（流终端）控制标志被分配 `seqno` ，都占据一个字节（SYN 标志占用的序列号就是 ISN）。流中的每个数据字节还占用一个字节。注意，标志位虽然占据一个字节但是并不算在需要读出的数据里。
 
-为了转化 `seqno` 和 `stream index`，我们提出了 `absolute seqno`。`absolute seqno` 始终以零开始并且为64位，`stream index` 为`StreamReassEmbler`流中的每个字节的索引，从零开始，64位，具体见下图:
+为了转化 `seqno` 和 `stream index`，我们提出了 `absolute seqno`。`absolute seqno` 始终以零开始并且为 64 位，`stream index` 为`StreamReassEmbler`流中的每个字节的索引，从零开始，64 位，具体见下图:
 
 ![image-20230317085346682](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/image-20230317085346682.png)
 
@@ -112,7 +112,7 @@ apt install libclang-cpp9 libclang1-9 doxygen libpcap-dev
 
 当然在这里，我们并不需要发送什么东西给发送端，做好前面的部分即可。这里唯一的问题是 `checkpoint` 怎么计算，以及接收到受到的报文为什么也会有 `ackno`。
 
-我的想法是这个 `ack` 实际上就是上一次收到报文后，接收端计算出的 `ack` 值，那么在下一次收到报文后，这个值就变成了一个检查点。因为上一次的 `ackno` 是期望发送端发出这个值为开始索引的报文，那么在下一次确定 `absolute seqno`  时显然这个值就是 `checkpoint`（思考一下 `checkpoint` 的定义）
+我的想法是这个 `ack` 实际上就是上一次收到报文后，接收端计算出的 `ack` 值，那么在下一次收到报文后，这个值就变成了一个检查点。因为上一次的 `ackno` 是期望发送端发出这个值为开始索引的报文，那么在下一次确定 `absolute seqno` 时显然这个值就是 `checkpoint`（思考一下 `checkpoint` 的定义）
 
 那么我们需要增加以下定义：
 
@@ -177,6 +177,3 @@ size_t TCPReceiver::window_size() const {
 ![image-20230317151735861](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/image-20230317151735861.png)
 
 （一样的错误一样的不用管）
-
-
-

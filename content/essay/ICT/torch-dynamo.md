@@ -5,10 +5,9 @@ tags:
   - Compilers
   - MLSys
 date: 2023-06-24
-lastmod: 2024-12-10
+lastmod: 2024-12-11
 draft: false
 ---
-
 
 # `Introduction`
 
@@ -20,11 +19,7 @@ draft: false
 
 # `Frontend`
 
-> 假定我们已经知道计算图的定义，如果不知道的话请看
-> ```card
-> title: 计算图介绍
-> link: https://fuchaojie.com/2022/09/backpropagation-computation-graph-and-visualization/
-> ```
+假定我们已经知道计算图的定义，如果不知道的话请看[计算图介绍](https://fuchaojie.com/2022/09/backpropagation-computation-graph-and-visualization/)
 
 ## `torch._dynamo`
 
@@ -64,15 +59,14 @@ symbolic_traced.graph.print_tabular()
 
 FX IR 或者叫 FX Graph 的特点是：
 
-1. 定义简单，只有6个 Opcode
+1. 定义简单，只有 6 个 Opcode
 2. 组织简单，很容易写出后续的解析代码
 3. 对正向图操作快速，并且 Trace 是 python2python 的，调试方便
 4. 不能表达控制流（例如 `if-else` 结构）
 
 而在 `dynamo` 中，也延续了使用 FX IR 来表示计算图的思路，但消除了不能表达控制流的缺陷
 
->  接下来的内容有些涉及底层，可以跳过不看，当然也不会特别底层（例如CPython的原理）
-
+> 接下来的内容有些涉及底层，可以跳过不看，当然也不会特别底层（例如 CPython 的原理）
 
 ### `dynamo` 优化原理 (high-level)
 
@@ -86,10 +80,10 @@ TorchDynamo 是一个 **Python 级别** 的即时(`JIT` Just In Time)编译器�
 
 ![image-20230629000946087](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/image-20230629000946087.png)
 
-在之前都知道Python是通过解释器执行的，具体的机理如下：
+在之前都知道 Python 是通过解释器执行的，具体的机理如下：
 
-1. Python源代码被编译成一系列中间字节码
-2. 由CPython虚拟机内部 `while` 循环不断匹配字节码，并执行对应字节码指令 `case` 分支内部的多条C函数
+1. Python 源代码被编译成一系列中间字节码
+2. 由 CPython 虚拟机内部 `while` 循环不断匹配字节码，并执行对应字节码指令 `case` 分支内部的多条 C 函数
 
 例如：
 
@@ -105,10 +99,10 @@ print(dis.dis(add))
 对应的字节码如下：
 
 ```python
-2 LOAD_FAST                0 (x)                                                  
-4 LOAD_FAST                1 (y)                                                      
-6 BINARY_OP                0 (+)                                                           
-10 RETURN_VALUE    
+2 LOAD_FAST                0 (x)
+4 LOAD_FAST                1 (y)
+6 BINARY_OP                0 (+)
+10 RETURN_VALUE
 ```
 
 ### 帧评估 (帧执行)
@@ -148,11 +142,11 @@ if __name__ == '__main__':
 
 ![image-20230629002931697](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/image-20230629002931697.png)
 
-解析 Frame 是 `dynamo` 所做的第一步，通过这一步，我们得到了 `PyFrameObject` 与 `PyCodeObject` 
+解析 Frame 是 `dynamo` 所做的第一步，通过这一步，我们得到了 `PyFrameObject` 与 `PyCodeObject`
 
-然而在模型实际运行时，其调用栈非常复杂，如何自动化解析成为了一个问题。PyTorch提出了 [PEP](https://link.zhihu.com/?target=https%3A//peps.python.org/pep-0523/) 来自动化地为每个函数额外加上解析 Frame 的行为
+然而在模型实际运行时，其调用栈非常复杂，如何自动化解析成为了一个问题。PyTorch 提出了 [PEP](https://link.zhihu.com/?target=https%3A//peps.python.org/pep-0523/) 来自动化地为每个函数额外加上解析 Frame 的行为
 
-事实上，我们很难在 Python 层面想到一种方法，将某一个修改递归地作用在所有的函数栈上。但我们回顾Python的运行原理，可以发现所有的 Frame 的评估，都是依赖于 CPython 解释器的。
+事实上，我们很难在 Python 层面想到一种方法，将某一个修改递归地作用在所有的函数栈上。但我们回顾 Python 的运行原理，可以发现所有的 Frame 的评估，都是依赖于 CPython 解释器的。
 
 因此 ，CPython 解释器的帧执行方式（Frame Evaluation）应该是可扩展的，这样用户就可以用自定义的方式进行 Frame Evaluation。
 
@@ -162,7 +156,7 @@ if __name__ == '__main__':
 
 ![image-20230629004144170](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/image-20230629004144170.png)
 
-dynamo 就是这样做的，他在 [set_eval_frame](https://link.zhihu.com/?target=https%3A//github.com/pytorch/pytorch/blob/e33f1eeeb73a8d680b8aae7944011389f76faaff/torch/csrc/dynamo/eval_frame.c%23L121) 中将默认的 **_PyEval_EvalFrameDefault** 替换成自定义的执行函数
+dynamo 就是这样做的，他在 [set_eval_frame](https://link.zhihu.com/?target=https%3A//github.com/pytorch/pytorch/blob/e33f1eeeb73a8d680b8aae7944011389f76faaff/torch/csrc/dynamo/eval_frame.c%23L121) 中将默认的 **\_PyEval_EvalFrameDefault** 替换成自定义的执行函数
 
 dynamo 非常聪明的选择在 Python 层做字节码解析，以回调函数的形式传给自定义的帧评估函数。当我们调用 `optimizer('inductor')(fn)` 时，dynamo 会将 `fn` 的帧评估函数替换成 dynamo 自定义的，并且传入回调函数。
 
@@ -170,13 +164,13 @@ dynamo 非常聪明的选择在 Python 层做字节码解析，以回调函数�
 
 ### 动态编译
 
-在之前我们已经对 FX Graph 有过介绍，这部分实际上是 `dynamo` 解析字节码后得到的 IR，但仅凭借字节码，实际上是损失了很多信息的（例如运行时信息），如果光从字节码去做Trace，这和从AST出发做Trace区别不大，得到的图也只是一个静态图，不符合 `dynamo` 想要做到的动态编译，我们没办法完整的生成所需要的 IR，因此这里引入了 **VariableTracker**，用于承载程序运行时我们可以获得输入信息，我们可以将这个当作构成计算图的节点。
+在之前我们已经对 FX Graph 有过介绍，这部分实际上是 `dynamo` 解析字节码后得到的 IR，但仅凭借字节码，实际上是损失了很多信息的（例如运行时信息），如果光从字节码去做 Trace，这和从 AST 出发做 Trace 区别不大，得到的图也只是一个静态图，不符合 `dynamo` 想要做到的动态编译，我们没办法完整的生成所需要的 IR，因此这里引入了 **VariableTracker**，用于承载程序运行时我们可以获得输入信息，我们可以将这个当作构成计算图的节点。
 
 对于动态编译而言，我们期望解决的最大问题就是：不要总是编译。也就是说我们希望他和静态编译相差不多，能够做到一次编译，数次运行，但又具备动态编译的特点，即该编译时才编译。这就需要 `Guard` 来做到.
 
 在构建 VariableTracker 时，可能会绑定一个或多个 Guard，**用于生成监视变量的检查代码，** 也就是我们最初提到的 **check_fn**。 需要注意的是，Graph trace 阶段可能会生成非常多的 Guard，但是最后只有部分 Guard 会被用于生成 `check_fn`，这其实也很好理解，因为只有部分变量都会造成模型的动态结构。
 
-对于一个 `class Model(nn.Module)`，其Guard 的输出结果如下：
+对于一个 `class Model(nn.Module)`，其 Guard 的输出结果如下：
 
 ```json
 local 'self' NN_MODULE
@@ -202,7 +196,7 @@ local 'x' TENSOR_MATCH
 
 ```
 
-Guard的检查有以下几种：
+Guard 的检查有以下几种：
 
 1. 检查变量 id 是否相等（`ID_MATCH`），`check_fn` 会调用以下函数
 
@@ -311,8 +305,6 @@ def compiled_toy_example(x):
   ```
 
   该函数会在首次执行时被 dynamo 捕获并编译
-
-  
 
 - `__resume_at_38_2()`: dynamo 未编译的子图，对应 `else` 分支，该函数也会在首次执行时被 dynamo 捕获并编译:
 
@@ -432,7 +424,7 @@ dynamo 通过字节码指令 `CALL_FUNCTION` 实现内联函数，其中识别�
 
 ### Distributed Data Parallel
 
->  不需要太过关注这部分
+> 不需要太过关注这部分
 
 通过数据并行在多 GPU 上训练深度学习模型时，需要调用 allreduce 对所有 GPU 上的梯度进行规约。深度学习框架中往往都把一些参数的梯度放在一个 bucket 中，当这个 bucket 中的所有梯度都已经就绪后，就会使用 allreduce 进行梯度规约。
 
@@ -479,7 +471,7 @@ AOTAutograd 得以工作的核心是 `__torch_dispatch__`**。**PyTorch 的核�
 
 ![image-20230630201352885](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/image-20230630201352885.png)
 
-这里，每个`aten`算子都可能有其对应设备的实现（如果没有的话就会退化，例如cuda没有就可能采用默认的算子），我们通过查这个表，从而获得底层通过 `C++` 实现的函数指针，然后将其返回，赋值给原来的算子，这样就能保证原来的算子可以去调用这个底层算子，从而提高运算效率。
+这里，每个`aten`算子都可能有其对应设备的实现（如果没有的话就会退化，例如 cuda 没有就可能采用默认的算子），我们通过查这个表，从而获得底层通过 `C++` 实现的函数指针，然后将其返回，赋值给原来的算子，这样就能保证原来的算子可以去调用这个底层算子，从而提高运算效率。
 
 例如 `torch` 中 `Tensor` 之间的 `dot` 运算，在这里就会通过 `dispatch` 映射到 `aten::dot` 上去，而这个是在底层 `C++` 实现的，例如：
 
@@ -644,7 +636,7 @@ if __name__ == '__main__':
     model(x)
 ```
 
-通过前端 `	lowering` 后，我们得到 `aten/prims` 级别的算子如下：
+通过前端 ` lowering` 后，我们得到 `aten/prims` 级别的算子如下：
 
 ```python
 def forward(self, primals_1, primals_2, primals_3, primals_4, primals_5, primals_6, primals_7, primals_8):
@@ -738,10 +730,6 @@ def forward(self, primals_1, primals_2, primals_3, primals_4, primals_5, primals
 
 因此，这一层的 `pass` 会对 `aten IR` 的每一句话进行解析，并且每次的解析都会与前文联系起来，最终得到一个归约的 `IR`
 
-
-
-
-
 =>
 
 `loop-level IR`
@@ -823,7 +811,7 @@ def triton_(in_out_ptr0, in_ptr0, xnumel, XBLOCK : tl.constexpr):
     x3 = xindex
     x1 = (xindex // 36) % 32
     tmp0 = tl.load(in_out_ptr0 + (x3), xmask)
-    tmp1 = tl.load(in_ptr0 + (x1), xmask)	
+    tmp1 = tl.load(in_ptr0 + (x1), xmask)
     tmp2 = tmp0 + tmp1
     tl.store(in_out_ptr0 + (x3 + tl.zeros([XBLOCK], tl.int32)), tmp2, xmask)
 ''')
@@ -1024,49 +1012,49 @@ if __name__ == "__main__":
 
 1. `loop-level IR` 是如何完成到 `triton kernel` 的生成的
 
-   通过数据结构 `GraphLowering`  的方法 `run(*example_input)` 也就是一个 `Fake Tensor` 进行生成：
+   通过数据结构 `GraphLowering` 的方法 `run(*example_input)` 也就是一个 `Fake Tensor` 进行生成：
 
-   ```json
-   
-   Graph ID : 0 
-   
+```json
+
+   Graph ID : 0
+
    Input : {
        'primals_1': TensorBox(StorageBox(
      InputBuffer(name='primals_1', layout=FixedLayout('cuda', torch.float32, size=[32, 16, 3, 3], stride=[144, 9, 3, 1]))
-   )), 
+   )),
        'primals_2': TensorBox(StorageBox(
      InputBuffer(name='primals_2', layout=FixedLayout('cuda', torch.float32, size=[32], stride=[1]))
-   )), 
+   )),
        'primals_3': TensorBox(StorageBox(
      InputBuffer(name='primals_3', layout=FixedLayout('cuda', torch.float32, size=[32], stride=[1]))
-   )), 
+   )),
        'primals_4': TensorBox(StorageBox(
      InputBuffer(name='primals_4', layout=FixedLayout('cuda', torch.float32, size=[32], stride=[1]))
-   )), 
+   )),
        'primals_5': TensorBox(StorageBox(
      InputBuffer(name='primals_5', layout=FixedLayout('cuda', torch.float32, size=[32], stride=[1]))
-   )), 
+   )),
        'primals_6': TensorBox(StorageBox(
      InputBuffer(name='primals_6', layout=FixedLayout('cuda', torch.float32, size=[32], stride=[1]))
-   )), 
+   )),
        'primals_7': TensorBox(StorageBox(
      InputBuffer(name='primals_7', layout=FixedLayout('cuda', torch.int64, size=[], stride=[]))
-   )), 
+   )),
        'primals_8': TensorBox(StorageBox(
      InputBuffer(name='primals_8', layout=FixedLayout('cuda', torch.float32, size=[2, 16, 8, 8], stride=[1024, 64, 8, 1]))
-   ))} 
-   
+   ))}
+
    Origin Input : {
-       'primals_1': InputBuffer(name='primals_1', layout=FixedLayout('cuda', torch.float32, size=[32, 16, 3, 3], stride=[144, 9, 3, 1])), 
-       'primals_2': InputBuffer(name='primals_2', layout=FixedLayout('cuda', torch.float32, size=[32], stride=[1])), 
-       'primals_3': InputBuffer(name='primals_3', layout=FixedLayout('cuda', torch.float32, size=[32], stride=[1])), 
-       'primals_4': InputBuffer(name='primals_4', layout=FixedLayout('cuda', torch.float32, size=[32], stride=[1])), 
-       'primals_5': InputBuffer(name='primals_5', layout=FixedLayout('cuda', torch.float32, size=[32], stride=[1])), 
-       'primals_6': InputBuffer(name='primals_6', layout=FixedLayout('cuda', torch.float32, size=[32], stride=[1])), 
-   	'primals_7': InputBuffer(name='primals_7', layout=FixedLayout('cuda', torch.int64, size=[], stride=[])), 
-       'primals_8': InputBuffer(name='primals_8', layout=FixedLayout('cuda', torch.float32, size=[2, 16, 8, 8], stride=[1024, 64, 8, 1]))} 
-   
-   
+       'primals_1': InputBuffer(name='primals_1', layout=FixedLayout('cuda', torch.float32, size=[32, 16, 3, 3], stride=[144, 9, 3, 1])),
+       'primals_2': InputBuffer(name='primals_2', layout=FixedLayout('cuda', torch.float32, size=[32], stride=[1])),
+       'primals_3': InputBuffer(name='primals_3', layout=FixedLayout('cuda', torch.float32, size=[32], stride=[1])),
+       'primals_4': InputBuffer(name='primals_4', layout=FixedLayout('cuda', torch.float32, size=[32], stride=[1])),
+       'primals_5': InputBuffer(name='primals_5', layout=FixedLayout('cuda', torch.float32, size=[32], stride=[1])),
+       'primals_6': InputBuffer(name='primals_6', layout=FixedLayout('cuda', torch.float32, size=[32], stride=[1])),
+   	'primals_7': InputBuffer(name='primals_7', layout=FixedLayout('cuda', torch.int64, size=[], stride=[])),
+       'primals_8': InputBuffer(name='primals_8', layout=FixedLayout('cuda', torch.float32, size=[2, 16, 8, 8], stride=[1024, 64, 8, 1]))}
+
+
    Output : [
        StorageBox(ComputedBuffer(name='buf6', layout=FixedLayout('cuda', torch.float32, size=[32], stride=[1]), data=Pointwise(
        'cuda',
@@ -1083,7 +1071,7 @@ if __name__ == "__main__":
        ranges=[32],
        origins={add_2}
      ))
-   ), 
+   ),
    	StorageBox(ComputedBuffer(name='buf7', layout=FixedLayout('cuda', torch.float32, size=(32,), stride=[1]), data=Pointwise(
        'cuda',
        torch.float32,
@@ -1103,7 +1091,7 @@ if __name__ == "__main__":
        ranges=(32,),
        origins={add_3}
      ))
-   ), 
+   ),
    	StorageBox(ComputedBuffer(name='buf10', layout=FixedLayout('cuda', torch.int64, size=[], stride=[]), data=Pointwise(
        'cuda',
        torch.int64,
@@ -1115,7 +1103,7 @@ if __name__ == "__main__":
        ranges=[],
        origins={primals_7, clone_2, add}
      ))
-   ), 
+   ),
    	StorageBox(ComputedBuffer(name='buf8', layout=FixedLayout('cuda', torch.float32, size=[2, 32, 6, 6], stride=[1152, 36, 6, 1]), data=Pointwise(
        'cuda',
        torch.float32,
@@ -1139,13 +1127,13 @@ if __name__ == "__main__":
        ranges=[2, 32, 6, 6],
        origins={relu}
      ))
-   ), 
+   ),
    	StorageBox(InputBuffer(name='primals_1', layout=FixedLayout('cuda', torch.float32, size=[32, 16, 3, 3], stride=[144, 9, 3, 1]))
-   ), 
+   ),
    	StorageBox(InputBuffer(name='primals_3', layout=FixedLayout('cuda', torch.float32, size=[32], stride=[1]))
-   ), 
+   ),
    	StorageBox(InputBuffer(name='primals_8', layout=FixedLayout('cuda', torch.float32, size=[2, 16, 8, 8], stride=[1024, 64, 8, 1]))
-   ), 
+   ),
    	StorageBox(ComputedBuffer(name='buf1', layout=FixedLayout('cuda', torch.float32, size=[2, 32, 6, 6], stride=[1152, 36, 6, 1]), data=Pointwise(
        'cuda',
        torch.float32,
@@ -1157,7 +1145,7 @@ if __name__ == "__main__":
        ranges=[2, 32, 6, 6],
        origins={convolution}
      ))
-   ), 
+   ),
    	StorageBox(ComputedBuffer(name='buf5', layout=FixedLayout('cuda', torch.float32, size=(32,), stride=[1]), data=Pointwise(
        'cuda',
        torch.float32,
@@ -1172,7 +1160,7 @@ if __name__ == "__main__":
        ranges=(32,),
        origins={squeeze_1}
      ))
-   ), 
+   ),
    	StorageBox(ComputedBuffer(name='buf9', layout=FixedLayout('cuda', torch.bool, size=[2, 32, 6, 6], stride=[1152, 36, 6, 1]), data=Pointwise(
        'cuda',
        torch.bool,
@@ -1184,7 +1172,7 @@ if __name__ == "__main__":
        ranges=[2, 32, 6, 6],
        origins={le}
      ))
-   ), 
+   ),
    ReinterpretView(StorageBox(ComputedBuffer(name='buf3', layout=FixedLayout('cuda', torch.float32, size=[1, 32, 1, 1], stride=[32, 1, 32, 32]), data=Pointwise(
          'cuda',
          torch.float32,
@@ -1202,17 +1190,16 @@ if __name__ == "__main__":
    )]
    ```
 
-2. 调度的策略是什么样的，调度的目的又是什么 
+2. 调度的策略是什么样的，调度的目的又是什么
 
    调度的目的：由于在前面已经进行了 `decompose` (一般在转为 `aten` 算子的时候就已经完成了)，因此这里的目的是为了调整 `buff` 的次序，也就是调度内存，以优化内存访问的效率。
-
-
 
 # `Trace` 记录
 
 `aten IR` 到 `loop-level IR` 在 `torch/_inductor/compile_fx.py` 中 #179 完成的
 
 其中，输入的 `gm` 中存储的 `code` 为：
+
 ```python
 def forward(self, primals_1, primals_2, primals_3, primals_4, primals_5, primals_6, primals_7, primals_8):
     clone = torch.ops.aten.clone.default(primals_5);  primals_5 = None
@@ -1253,11 +1240,9 @@ def forward(self, primals_1, primals_2, primals_3, primals_4, primals_5, primals
 
 生成的 `loop-level IR` 代码在之前已经给出了
 
-随后，得到的 `loop-level IR` 会通过下一行的 `compile_to_fn()` 进行到 `triton` 的转化，生成的 `triron` 代码会存储在 `/tmp/` 目录下的一个 `.py` 文件中，例如这里的 `/tmp/torchinductor_xuruiyuan/hi/chirjp335x7uz3omvvfgceqnzplwllaqcywzyumftwtnk4mc5wvo.py` 
+随后，得到的 `loop-level IR` 会通过下一行的 `compile_to_fn()` 进行到 `triton` 的转化，生成的 `triron` 代码会存储在 `/tmp/` 目录下的一个 `.py` 文件中，例如这里的 `/tmp/torchinductor_xuruiyuan/hi/chirjp335x7uz3omvvfgceqnzplwllaqcywzyumftwtnk4mc5wvo.py`
 
 返回的值是一个函数 `compiled_fn` ，其 `__module__` 变量存储着上述的文件路径，例如 `'torch._inductor.codecache.chirjp335x7uz3omvvfgceqnzplwllaqcywzyumftwtnk4mc5wvo'`
-
-
 
 ## 如何从 `GraphLowering` 生成 `Triton` 内核
 
@@ -1269,9 +1254,11 @@ def forward(self, primals_1, primals_2, primals_3, primals_4, primals_5, primals
 
 3. 对于 `compiler_to_module()`，首先调用 `self.codegen()` 来生成 `triton` 代码（返回一个 `py` 文件），随后将此代码重命名后返回
 
-4. 在 `codegen` 中，首先调用了 `self.init_wrapper_code()`，此函数只是检查是否需要使用 `cpp` 包装，一般而言都不需要，于是实例化了一个 `WrapperCodeGen()` 的对象并返回 
+4. 在 `codegen` 中，首先调用了 `self.init_wrapper_code()`，此函数只是检查是否需要使用 `cpp` 包装，一般而言都不需要，于是实例化了一个 `WrapperCodeGen()` 的对象并返回
 
-   > `WrapperCodeGen` 定义在 `torch/——inductor/codegen/wrapper.py` 中，初始化的代码如下：
+> [!quote]
+> 
+> `WrapperCodeGen` 定义在 `torch/——inductor/codegen/wrapper.py` 中，初始化的代码如下：
    >
    > ```python
    >     def __init__(self):
@@ -1291,11 +1278,11 @@ def forward(self, primals_1, primals_2, primals_3, primals_4, primals_5, primals
    >                 from torch import empty_strided, as_strided, device
    >                 from {codecache.__name__} import AsyncCompile
    >                 from torch._inductor.select_algorithm import extern_kernels
-   > 
+   >
    >                 aten = torch.ops.aten
    >                 assert_size_stride = torch._C._dynamo.guards.assert_size_stride
    >                 async_compile = AsyncCompile()
-   > 
+   >
    >             """
    >         )
    > ```
@@ -1310,7 +1297,7 @@ def forward(self, primals_1, primals_2, primals_3, primals_4, primals_5, primals
        def __init__(self, nodes):
            super().__init__()
            self.backends = {}
-   
+
            self.nodes = []
            self.available_buffer_names = {
                *V.graph.graph_inputs.keys(),
@@ -1333,10 +1320,10 @@ def forward(self, primals_1, primals_2, primals_3, primals_4, primals_5, primals
            self.available_buffer_names.update(V.graph.constants.keys())
            for node in self.nodes:
                node.prune_deps()
-   
+
            self.name_to_node = {node.get_name(): node for node in self.nodes}
            self.name_to_fused_node = None  # set in fuse_nods()
-   
+
            # we handle mutation by renaming modified versions of the same
            # buffer in the dependency graph to prevent cycles.
            # mutation_renames: tracks the current name for a given buffer
@@ -1344,12 +1331,12 @@ def forward(self, primals_1, primals_2, primals_3, primals_4, primals_5, primals
            self.mutation_real_name = {}
            # mutation_real_name: maps back to the original name for codegen
            self.mutation_renames = {}
-   
+
            self.compute_dependencies()
            self.topological_sort_schedule()
            self.compute_predecessors()
            self.dead_node_elimination()
-   
+
            metrics.ir_nodes_pre_fusion += len(self.nodes)
            V.debug.ir_pre_fusion(self.nodes)
            self.num_orig_nodes = len(self.nodes)
@@ -1359,7 +1346,7 @@ def forward(self, primals_1, primals_2, primals_3, primals_4, primals_5, primals
            V.debug.ir_post_fusion(self.nodes)
            V.debug.graph_diagram(self.nodes)
            self.debug_draw_graph()
-   
+
            # used during codegen:
            self.current_device = None
            self.buffer_names_to_free = set()
@@ -1390,7 +1377,7 @@ def forward(self, primals_1, primals_2, primals_3, primals_4, primals_5, primals
          class ExternKernelSchedulerNode(BaseSchedulerNode):
              def debug_str_extra(self):
                  return f"{self.get_name()}.node.kernel = {getattr(self.node, 'kernel', None)}"
-         
+
              def is_extern(self):
                  return True
          ```
@@ -1417,10 +1404,9 @@ def forward(self, primals_1, primals_2, primals_3, primals_4, primals_5, primals
          卷积`node` 重新生成后如下：
 
          ![image-20230628144716677](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/image-20230628144716677.png)
-
-      > 考虑 `ComputedNode`，以下图为例：
-      >
-      > ![image-20230628144852198](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/image-20230628144852198.png)
+ 	> [!note]
+      >   考虑 `ComputedNode`，以下图为例：
+      >  ![image-20230628144852198](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/image-20230628144852198.png)
       >
       > 我们会进入 `get_backend(node.get_device()).group_fn` 中
       >
@@ -1450,9 +1436,9 @@ def forward(self, primals_1, primals_2, primals_3, primals_4, primals_5, primals
       >                self._sizes,
       >                self._body,
       >            ) = node.simplify_and_reorder()
-      >    
+      >
       >            self.group = (node.get_device(), group_fn(self._sizes))
-      >    
+      >
       >            if self.is_template():
       >                self.set_read_writes(node.normalized_read_writes())
       >            else:
@@ -1461,7 +1447,7 @@ def forward(self, primals_1, primals_2, primals_3, primals_4, primals_5, primals
       >                        self._body, *self._sizes, normalize=True
       >                    )
       >                )
-      >    
+      >
       >            if self.is_reduction():
       >                # reduction has last (reduced) dim in its sizes, and some
       >                # downstream dependencies get confused by it
@@ -1486,7 +1472,7 @@ def forward(self, primals_1, primals_2, primals_3, primals_4, primals_5, primals
       >    2. 将连续的维度融合在一起
       >    3. 根据跨度顺序重新排列尺寸
       >
-      >    例如这里的 
+      >    例如这里的
       >
       >    ```python
       >    StorageBox(ComputedBuffer(name='buf1', layout=FixedLayout('cuda', torch.float32, size=[2, 32, 6, 6], stride=[1152, 36, 6, 1]), data=Pointwise(
@@ -1517,9 +1503,8 @@ def forward(self, primals_1, primals_2, primals_3, primals_4, primals_5, primals
       >    2. 最后，返回一个 `ReadWrites` 对象，其读写范围为上面修改后的内容
       >
       > 8. 最后查看是否需要 `reduction`
-
-      > 在 `buf4` 时，触发了 `reduction`，`buf4` 的`loop-level` 如下：
-      >
+      >  在 `buf4` 时，触发了 `reduction`，`buf4` 的`loop-level` 如下：
+      > 
       > ```python
       > ComputedBuffer(name='buf4', layout=FixedLayout('cuda', torch.float32, size=[1, 32, 1, 1], stride=[32, 1, 32, 32]), data=Reduction(
       >   'cuda',
@@ -1543,4 +1528,4 @@ def forward(self, primals_1, primals_2, primals_3, primals_4, primals_5, primals
 
       来说明哪些节点已经被融合
 
-6. 做完调度后，接着就开始直接生成内核，注意，如果是特殊的算子（例如卷积）是不会被翻译为 `triton` 的，直接生成 `aten` ，否则，我们会进入 `codegen_kernel` 阶段，而是 `pointwise` 还是 `reduction`，我们需要使用调度后融合的节点来完成这一点，例如，2,3,6,4,5,7进行了融合，因此我们需要把这几个 `buff` 生成到一个 `kernel` 里面去
+6. 做完调度后，接着就开始直接生成内核，注意，如果是特殊的算子（例如卷积）是不会被翻译为 `triton` 的，直接生成 `aten` ，否则，我们会进入 `codegen_kernel` 阶段，而是 `pointwise` 还是 `reduction`，我们需要使用调度后融合的节点来完成这一点，例如，2,3,6,4,5,7 进行了融合，因此我们需要把这几个 `buff` 生成到一个 `kernel` 里面去

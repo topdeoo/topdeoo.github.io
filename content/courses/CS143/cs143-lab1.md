@@ -5,12 +5,13 @@ tags:
   - Compiler
   - Stanford
 date: 2022-11-20
-lastmod: 2024-12-10
+lastmod: 2024-12-11
 draft: false
 ---
 
-
-> 前言：插件 `yash` 支持的 `flex` 后缀名不包含 `.flex` 需要更改为 `.fl` ，这样我们也必须将 `Makefile` 中第 7 行以及 44 行的 `cool.flex` 更改为  `cool.fl` 。这样才能够正确的 `make lexer`
+> [!note]
+>
+> 前言：插件 `yash` 支持的 `flex` 后缀名不包含 `.flex` 需要更改为 `.fl` ，这样我们也必须将 `Makefile` 中第 7 行以及 44 行的 `cool.flex` 更改为 `cool.fl` 。这样才能够正确的 `make lexer`
 >
 > 不过有一说一这个 `yash` 的语法支持确实是依托答辩，能正常编译的文件会报一大片红
 >
@@ -18,17 +19,13 @@ draft: false
 
 鉴于我在 `edx` 上学这门课，所以先放个作业首页：[Assignment #1 | Week 2: Lexical Analysis & Finite Automata | Compilers | edX](https://learning.edx.org/course/course-v1:StanfordOnline+SOE.YCSCS1+3T2020/block-v1:StanfordOnline+SOE.YCSCS1+3T2020+type@sequential+block@a412e45be94f499581b0e44aafff58f9/block-v1:StanfordOnline+SOE.YCSCS1+3T2020+type@vertical+block@344787aaf99044a7b5caa8ee5556ade9)
 
-需要注意的是，这门课是推荐使用 `VM` / `VirtualBox` 作为实验环境的，但我比较偏爱 `docker` 一点（，实验环境的搭建可以见 [Stanford CS143 Compilers lab0 | Virgil's Blog](https://topdeoo.github.io/posts/Stanford%20CS143/cs143-lab0/) 。
+需要注意的是，这门课是推荐使用 `VM` / `VirtualBox` 作为实验环境的，但我比较偏爱 `docker` 一点（，实验环境的搭建可以见 [[cs143-lab0|CS143 环境搭建]]
 
 # 实验准备
-
-
 
 首先打开 `VS Code` ，更改实验目录为 `PA2`（默认用 `C++`，才不用 `Java`，可能后面会补上 `Java` 版本），目录如下所示：
 
 ![origin dir](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/image-20221120171136125.png)
-
-
 
 输入 `make` 后，会增加很多文件，包括 `test.cl` 等，实验要求在 `README` 与 [PA1.pdf (edx.org)](https://courses.edx.org/assets/courseware/v1/00e29b916fa002225f3ab7590307d69c/asset-v1:StanfordOnline+SOE.YCSCS1+3T2020+type@asset+block/PA1.pdf) 中描述的很详细
 
@@ -51,7 +48,7 @@ make dotest
 在这里我先给出一部分快速开始实验的建议
 
 1. `Cool` 文档中 `10 Lexical Structure` 需要全部阅读
-2. `Flex` 文档中的  `Patterns` 与 `Start Conditions` 需要全部阅读
+2. `Flex` 文档中的 `Patterns` 与 `Start Conditions` 需要全部阅读
 3. 文件中 `cool-parse.h` 需要阅读
 
 > 显然 `cool.fl` 是一定要读完注释的
@@ -73,11 +70,9 @@ User code
 
 - 在 `User code`中，我们定义一些函数，可能在这个文件中使用，也可能在其它文件使用。（当然在这里我完全没使用）
 
-- 在 `Definitions`中，我们包含头文件、定义全局变量、定义结构体、定义宏，做了 `User code` 区没做的事情。我们平时写的C文件大多数都可以分成这样的两部分，在`.flex`文件中对这两部分的处理就像在`.c`文件中一样。
+- 在 `Definitions`中，我们包含头文件、定义全局变量、定义结构体、定义宏，做了 `User code` 区没做的事情。我们平时写的 C 文件大多数都可以分成这样的两部分，在`.flex`文件中对这两部分的处理就像在`.c`文件中一样。
 
 - `Rules` 区，我们在这里写正则表达式。每个正则表达式后跟着一个`{}`定义的代码块，每当这个正则表达式达到匹配，就会执行这个代码块。
-
-
 
 我们的主要工作集中在`Rules`区，设置各个正则表达式和对应的处理代码块。
 
@@ -117,10 +112,6 @@ User code
 
 ```
 
-
-
-
-
 # 实验过程
 
 ## 实验目标
@@ -128,8 +119,6 @@ User code
 做到像官方给的词法分析器 `~/cool/bin/reflexer` 这样：
 
 ![image-20230228201318709](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/image-20230228201318709.png)
-
-
 
 下面我按照我的实验步骤开始讲述。
 
@@ -284,38 +273,38 @@ f(?i:lase)  {
 
    ```c
    %x comment starter
-   
+
    %%
-   
+
        int comment_caller;
-   
+
    "(*"    {
        comment_caller = INITIAL;
        BEGIN(comment);
    }
-   
+
    <starter>"(*"   {
        comment_caller = starter;
        BEGIN(comment);
    }
-   
+
    <comment>[^*\n]*    {}
    <comment>\n {++curr_lineno;}
    <comment>"*"+")"    {
        BEGIN(comment_caller);
    }
-   
+
    <comment><<EOF>>    {
        yylval.error_msg = "EOF in comment";
        BEGIN(comment_caller);
        return (ERROR);
    }
-   
+
    "*)"    {
        yylval.error_msg = "Unmatched *)";
        return (ERROR);
    }
-   
+
    %%
    ```
 
@@ -323,11 +312,11 @@ f(?i:lase)  {
 
    与上面类似，但在这部分我们的任务多了一些：
 
-   1. 我们需要检测字符常量的长度是否超出最大长度限制 `MAX_STR_CONST` 
+   1. 我们需要检测字符常量的长度是否超出最大长度限制 `MAX_STR_CONST`
 
    2. 我们需要对换行做出限制：
 
-      ​	![image-20230302200317352](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/image-20230302200317352.png)
+      ​ ![image-20230302200317352](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/image-20230302200317352.png)
 
    3. 字符常量中不能出现 `EOF` ，否则报错
 
@@ -335,22 +324,22 @@ f(?i:lase)  {
 
       ![image-20230302200524131](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/image-20230302200524131.png)
 
-   5. 最终返回的字符串不能带 `""` 
+   5. 最终返回的字符串不能带 `""`
 
-   6. 若遇到 `null`  需要报错（这点我似乎好像没实现）
+   6. 若遇到 `null` 需要报错（这点我似乎好像没实现）
 
    简而言之，和 `C` 系字符常量限制类似，那么我们可以直接修改官网中的示范：
 
    ```c
    %x str
-   
+
    %%
-   
+
    \"  {
        string_buf_ptr = string_buf;
        BEGIN(str);
    }
-   
+
    <str>\" {
        BEGIN(INITIAL);
        *string_buf_ptr = '\0';
@@ -363,14 +352,14 @@ f(?i:lase)  {
            return (STR_CONST);
        }
    }
-   
+
    <str>\n {
        yylval.error_msg = "Unterminated string constant";
        ++curr_lineno;
        BEGIN(INITIAL);
        return (ERROR);
    }
-   
+
    <str>\\[0-7]{1,3}  {
        int result;
        (void) sscanf(yytext + 1, "%o", &result);
@@ -381,33 +370,33 @@ f(?i:lase)  {
        }
        *string_buf_ptr++ = result;
    }
-   
+
    <str>\\[0-9]+   {
        yylval.error_msg = "Unterminated string constant";
        BEGIN(INITIAL);
        return (ERROR);
    }
-   
+
    <str>\\n  *string_buf_ptr++ = '\n';
    <str>\\t  *string_buf_ptr++ = '\t';
    <str>\\r  *string_buf_ptr++ = '\r';
    <str>\\b  *string_buf_ptr++ = '\b';
    <str>\\f  *string_buf_ptr++ = '\f';
-   
+
    <str>\\(.|\n)  *string_buf_ptr++ = yytext[1];
-   
+
    <str>[^\\\n\"]+ {
        char *yptr = yytext;
-   
+
        while ( *yptr )
                *string_buf_ptr++ = *yptr++;
    }
-     
-   
+
+
    %%
    ```
 
-最后，我们还有非法字符与一般不知道什么字符（例如`()` ）的匹配没有实现，通读 `Cool` 文档后（实际上只需要阅读关键字和那个图）就知道有几个字符是不会在 `Cool`  中出现的：
+最后，我们还有非法字符与一般不知道什么字符（例如`()` ）的匹配没有实现，通读 `Cool` 文档后（实际上只需要阅读关键字和那个图）就知道有几个字符是不会在 `Cool` 中出现的：
 
 `[]'>`，其他的都是正常的字符，直接返回即可：
 
@@ -602,11 +591,8 @@ diff myans.txt stdout.txt
 
 # 实验总结
 
-一个做之前不知道怎么动手但是做完之后觉得真tm简单的实验（bushi，甚至最难的地方，人家官网都给你把饭嚼碎了，等着你去吃 = =
+一个做之前不知道怎么动手但是做完之后觉得真 tm 简单的实验（bushi，甚至最难的地方，人家官网都给你把饭嚼碎了，等着你去吃 = =
 
 感觉比较考验的不是代码能力，纯粹是英文水平
 
 > 做之前觉得写这个博客一定很困难，做完之后觉得这有什么好写的，不好评价
-
-
-

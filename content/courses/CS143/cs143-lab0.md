@@ -5,12 +5,13 @@ tags:
   - Compiler
   - Stanford
 date: 2022-07-16
-lastmod: 2024-12-10
+lastmod: 2024-12-11
 draft: false
 ---
 
-
-**针对Windows系统**
+> [!important]
+>
+> 针对 Windows 系统
 
 # 下载并安装 docker
 
@@ -71,9 +72,6 @@ test:	compile
 
 那么说明实验环境已经成功配置。
 
->在 `VS Code` 中，我们还可以下载一个 `language-cool` 的拓展，来让 `.cl` 文件有高亮显示
+> 在 `VS Code` 中，我们还可以下载一个 `language-cool` 的拓展，来让 `.cl` 文件有高亮显示
 >
->还有一个 `yash` 的插件（在 `lab1` 中有作用）
-
-
-
+> 还有一个 `yash` 的插件（在 `lab1` 中有作用）

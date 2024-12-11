@@ -5,11 +5,11 @@ tags:
   - Compiler
   - MLSys
 date: 2023-06-16
-lastmod: 2024-12-10
+lastmod: 2024-12-11
 draft: false
 ---
 
-`SparTA` 解读（[论文](https://dl.acm.org/doi/pdf/10.1145/3582016.3582047)、[源码](https://github.com/uwsampl/SparseTIR) ）
+`SparseTIR` 解读（[论文](https://dl.acm.org/doi/pdf/10.1145/3582016.3582047)、[源码](https://github.com/uwsampl/SparseTIR) ）
 
 # `Introduction`
 
@@ -44,8 +44,6 @@ draft: false
 
 ![image-20230609133345768](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/image-20230609133345768.png)
 
-
-
 `SparseTIR` 整个的编译流程可以总结为上图。
 
 `SparseTIR` 分为了三个阶段：`Stage I`(坐标空间计算)→ `Stage II`(位置空间计算)→ `Stage III`(`TensorIR`)，并设计了两个`lowering`(递降)算法，分别表示`I`到`II`阶段，`II`到`III`阶段的转换。
@@ -57,15 +55,13 @@ draft: false
 1. 在第一阶段中，我们可以进行稀疏格式感知的优化(例如`DecomposeFormat`)。
 2. 在第二和第三阶段中，我们的`IR`更接近与底层，可以进行硬件感知的优化(例如使用硬件加速指令等等)。
 
-其中不同的阶段的调度选择，以及格式分解的选择，构成了`SparseTIR`的整体搜索空间，因此可以进行(格式*调度的整体优化)
+其中不同的阶段的调度选择，以及格式分解的选择，构成了`SparseTIR`的整体搜索空间，因此可以进行(格式\*调度的整体优化)
 
 `SparseTIR`没有像`TACO`一样提出具体的搜索算法，而是提出了一个框架让用户自己指定搜索空间。
 
 > 需要注意的是 `SparseTIR` 暂时未支持 `Auto Scheduling`，也没有任何默认的算法
 
 # `SparseTIR` 的抽象设计
-
-
 
 首先明确， `SparseTIR` 是依赖于 `TVM` 与 `TensorIR` 的，因此，这个实际上是以 `TensorIR` 为基础的一个处理稀疏数据拓展版本。
 
@@ -81,11 +77,9 @@ draft: false
 
 ![image-20230609124310519](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/image-20230609124310519.png)
 
-
-
 ## 可组合的程序变换
 
-把程序变换分解到IR的各个层级，多级调度，使得我们可以在同一个框架下完成数据感知的高语义层级优化和偏硬件层级的优化。
+把程序变换分解到 IR 的各个层级，多级调度，使得我们可以在同一个框架下完成数据感知的高语义层级优化和偏硬件层级的优化。
 
 ## 格式抽象与矩阵存储
 
@@ -136,7 +130,7 @@ A = T.match_sparse_buffer(a, (I, J), dtype="float32", scope="global")
 
 ![image-20230609131953909](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/image-20230609131953909.png)
 
-这里的 $\mathbf{A}$ 就是一个 `CSR` 形式表示的矩阵，上图例子可以表示 $C = AB$ 
+这里的 $\mathbf{A}$ 就是一个 `CSR` 形式表示的矩阵，上图例子可以表示 $C = AB$
 
 采用迭代器的存储设计，使得描述更易于拓展，可以定制更加复杂的矩阵结构，也方便描述一些具有特定分布的稀疏矩阵。
 
@@ -165,7 +159,7 @@ with T.sp_iter([I, J, K], "SSR", "sddmm") as [i, j, k]:
 
 用户需要提供一组`FormatRewriteRule`(使用`TVMScript`)来指定新的子矩阵格式，作为参数传给`DecomposeFormat`这个`pass`，随后这个`pass`将会生成新的子矩阵所需要的`axis`和`sparse buffer`，并把原来在原有稀疏迭代空间中的矩阵运算改写成在新的结构化稀疏迭代空间上的运算
 
-如下图例子所示，将`CSR`格式的计算分解为`BSR`格式的计算后生成的稀疏矩阵-矩阵乘法（`SpMM`）的`IR`，块大小为2，每行有2个非零列的ELL格式。除了对新格式的稀疏计算外，还产生了另外两个将数据从原始格式复制到新格式的稀疏迭代。当要分解的稀疏矩阵是静止的，我们可以在预处理步骤中进行数据复制，以避免运行时格式转换的开销。
+如下图例子所示，将`CSR`格式的计算分解为`BSR`格式的计算后生成的稀疏矩阵-矩阵乘法（`SpMM`）的`IR`，块大小为 2，每行有 2 个非零列的 ELL 格式。除了对新格式的稀疏计算外，还产生了另外两个将数据从原始格式复制到新格式的稀疏迭代。当要分解的稀疏矩阵是静止的，我们可以在预处理步骤中进行数据复制，以避免运行时格式转换的开销。
 
 ![image-20230618195530349](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/image-20230618195530349.png)
 
@@ -284,7 +278,7 @@ class Axis: ...
 
 def dense_fixed(length: PrimExpr, idtype: str = "int32"): ...
 def dense_variable(
-    parent_axis: Axis, 
+    parent_axis: Axis,
     sizes: Tuple[Union[PrimExpr, int], Union[PrimExpr, int]],
     data: Var,
     idtype: str = "int32",
@@ -339,7 +333,7 @@ class Axis(Object):
 
 ```
 
-这里向 `tvm` 框架中注册了一个 `Object` 类，其名称为 `Axis` 
+这里向 `tvm` 框架中注册了一个 `Object` 类，其名称为 `Axis`
 
 注意这里的 `PrimExpr` 实际上是一个 `Node` 类，称为源语表达式，用于调度时的分析等，而 `Node` 的定义如下：
 
@@ -370,7 +364,7 @@ class Var(PrimExprWithOp):
 3. ` length` : 当前 `Axis` 的长度上界
 4. `nnz` : 从根节点（最初的 `Axis` ）到当前 `Axis` 的非零元素的累计数量
 5. `nnz_cols` : 当前行非零列数，仅对固定轴有效
-6. `indptr` : 索引指针    
+6. `indptr` : 索引指针
 7. `indices` : 非零元素的索引
 8. `idtype` : 索引的数据类型（可以是 `int32` ， `float16` 等）
 9. `sorted` : 索引是否能被排序
@@ -405,7 +399,7 @@ class Var(PrimExprWithOp):
    @register
    class DenseFixed(SpecialStmt):
        """Special Stmt for creating dense fixed axis."""
-   
+
        def __init__(self):
            def dense_fixed(length: PrimExpr, idtype: str = "int32", span: Optional[Span] = None):
                names = [x.id.name for x in self.node.lhs]
@@ -413,11 +407,11 @@ class Var(PrimExprWithOp):
                    self.context.report_error(
                        f"`dense_fixed` expected assign to only one var, but got {names}", span
                    )
-   
+
                axis = dense_fixed_axis(names[0], length, idtype)
                self.context.func_sp_axes.append(axis)
                self.context.update_symbol(names[0], axis, self.node)
-   
+
            super().__init__(dense_fixed, def_symbol=True)
    ```
 
@@ -436,7 +430,7 @@ class Var(PrimExprWithOp):
    J2 = T.dense_variable(I, n, indptr_2, idtype="int32")
    ```
 
-   这里 `(I, J2)`构成了第一维连续，第二维也连续但是不定长的迭代空间，第一维的长度为 `n` ，第二位的最大长度也为 `n` 
+   这里 `(I, J2)`构成了第一维连续，第二维也连续但是不定长的迭代空间，第一维的长度为 `n` ，第二位的最大长度也为 `n`
 
    同样，映射的类实现如下：
 
@@ -444,7 +438,7 @@ class Var(PrimExprWithOp):
    @register
    class DenseVariable(SpecialStmt):
        """Special Stmt for creating dense variable axis."""
-   
+
        def __init__(self):
            def dense_variable(
                parent_axis: Axis,
@@ -458,12 +452,12 @@ class Var(PrimExprWithOp):
                    self.context.report_error(
                        f"`dense_variable` expected assign to only one var, but got {names}", span
                    )
-   
+
                length, nnz = shape
                axis = dense_variable_axis(names[0], parent_axis, length, nnz, indptr_var, idtype)
                self.context.func_sp_axes.append(axis)
                self.context.update_symbol(names[0], axis, self.node)
-   
+
            super().__init__(dense_variable, def_symbol=True)
    ```
 
@@ -484,12 +478,12 @@ class Var(PrimExprWithOp):
        return Axis(
            name, parent, length, parent.nnz * nnz_cols, nnz_cols, None, indices, idtype, sorted
        )
-       
-   
+
+
    @register
    class SparseFixed(SpecialStmt):
        """Special Stmt for creating sparse fixed axis."""
-   
+
        def __init__(self):
            def sparse_fixed(
                parent_axis: Axis,
@@ -504,14 +498,14 @@ class Var(PrimExprWithOp):
                    self.context.report_error(
                        f"`sparse_fixed` expected assign to only one var, but got {names}", span
                    )
-   
+
                length, nnz_cols = shape
                axis = sparse_fixed_axis(
                    names[0], parent_axis, length, nnz_cols, indices_var, idtype, sorted=sorted
                )
                self.context.func_sp_axes.append(axis)
                self.context.update_symbol(names[0], axis, self.node)
-   
+
            super().__init__(sparse_fixed, def_symbol=True)
    ```
 
@@ -537,10 +531,10 @@ class Var(PrimExprWithOp):
        sorted: bool = True,
    ) -> Axis:
        return Axis(name, parent, length, nnz, None, indptr, indices, idtype, sorted)
-   
+
    @register
    class SparseVariable(SpecialStmt):
-   
+
        def __init__(self):
            def sparse_variable(
                parent_axis: Axis,
@@ -555,7 +549,7 @@ class Var(PrimExprWithOp):
                    self.context.report_error(
                        f"`sparse_variable` expected assign to only one var, but got {names}", span
                    )
-   
+
                length, nnz = shape
                indptr_var, indices_var = data
                axis = sparse_variable_axis(
@@ -563,7 +557,7 @@ class Var(PrimExprWithOp):
                )
                self.context.func_sp_axes.append(axis)
                self.context.update_symbol(names[0], axis, self.node)
-   
+
            super().__init__(sparse_variable, def_symbol=True)
    ```
 
@@ -575,7 +569,7 @@ class Var(PrimExprWithOp):
 
    在这里我们还指定了 `indices` 的值
 
-以上就是基础的数据结构的定义，需要注意的是，这里实际上还是抽象，真正底层的实现是使用 `tvm` 中的 `Array` 
+以上就是基础的数据结构的定义，需要注意的是，这里实际上还是抽象，真正底层的实现是使用 `tvm` 中的 `Array`
 
 > 对于 `Buffer` 部分 `python` 部分只有定义，完整的实现在 `cpp` 中 `src/tir/transforms/lower_sparse_buffer.cc`，在此实现中，会将声明和 `match_sparse_buffer `降低到 `match_buffers`，然后通过 `lower_match_buffer.cc` 中的实现，将指针与 `buffer` 绑定在一起
 >
@@ -705,7 +699,7 @@ def format_decompose(
     return SparseFormatDecompose(composable_formats, include_format_rewrite_blks)(mod)
 ```
 
-实际上就是返回生成的 `IR` ，这里我们考虑 `lambda` 函数 `pass_func` 中的  `SparseFormatDecompose`  :
+实际上就是返回生成的 `IR` ，这里我们考虑 `lambda` 函数 `pass_func` 中的 `SparseFormatDecompose` :
 
 ```cpp
 PrimFunc SparseFormxatDecompose(Array<FormatRewriteRule> composable_formats, PrimFunc f,
@@ -775,7 +769,7 @@ PrimFunc SparseFormxatDecompose(Array<FormatRewriteRule> composable_formats, Pri
 ```python
 def RemovePreprocess():
     # Remove the preprocess blocks/sparse iterations in the module.
-    
+
     return _ffi_api.RemovePreprocess()  # type: ignore
 ```
 
@@ -902,7 +896,7 @@ SparseIteration SparseFuse(ScheduleState self, const SparseIteration& sp_iterati
 def lower_sparse_iter(mod: IRModule, check_invalid_binary_search: bool = False):
     """Lower sparse iterators in Sparse TIR.
     """
-    
+
     if not isinstance(mod, IRModule):
         raise TypeError("Expected IRModule, but got {}".format(type(mod)))
     return LowerSparseIter(check_invalid_binary_search)(mod)
@@ -983,7 +977,7 @@ sch.bind(io, "blockIdx.x")
 
 ### `Stage III`
 
-在这一步，所做的就是把 `buffer` 与 `axis`  `lowering` 到 `TIR` 的级别上，我们具体的使用如下：
+在这一步，所做的就是把 `buffer` 与 `axis` `lowering` 到 `TIR` 的级别上，我们具体的使用如下：
 
 ```python
 mod = lower_sparse_buffer(sch.mod)
@@ -1031,7 +1025,7 @@ Pass LowerSparseBuffer() {
 
 注意到这里的 `SparseTIRlevel` 已经降为 `1` ，这是因为在 `Stage II` 中，我们降低了其调度这一级别到 `TIR` 抽象
 
-所以在这里，我们需要做的就是把 `Sparse Buffer` 与 `Axis` 抽象全都删去，将矩阵乘转变为通过 `offset` 完成的向量乘（也就是说通过偏移量来计算最后的结果），因此这一步实际上就是在计算 `offset` 
+所以在这里，我们需要做的就是把 `Sparse Buffer` 与 `Axis` 抽象全都删去，将矩阵乘转变为通过 `offset` 完成的向量乘（也就是说通过偏移量来计算最后的结果），因此这一步实际上就是在计算 `offset`
 
 完成这一步后，我们就到了 `TIR` 级别的抽象，相当于我们已经进入了 `TVM` ，直接使用 `TVM` 的 `build` 即可：
 
@@ -1047,7 +1041,7 @@ evaluator = f.time_evaluator(f.entry_name, tvm.cuda(0), number=100)
 
 # 复现
 
-> 经作者指出，AE 的所有代码与实验（baseline等）均在已 [开源](https://github.com/uwsampl/sparsetir-artifact) 中。
+> 经作者指出，AE 的所有代码与实验（baseline 等）均在已 [开源](https://github.com/uwsampl/sparsetir-artifact) 中。
 > 此部分在论文的附录 `B.3 Description` 中提及
 
 在 `example` 中给出了如何使用 `SparseTIR` 的示例，如 `spmm` :

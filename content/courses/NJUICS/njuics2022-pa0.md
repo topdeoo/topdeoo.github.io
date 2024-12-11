@@ -5,7 +5,7 @@ tags:
   - NJU
   - ICS
 date: 2023-07-16
-lastmod: 2024-12-10
+lastmod: 2024-12-11
 draft: false
 ---
 
@@ -15,7 +15,9 @@ draft: false
 
 由于本人的系统为 `Manjaro`，因此并不需要安装双系统，这里直接开始搭建软件环境。
 
-> 更新，如果你不想安装双系统，这里有一种更合适的方式，使用 `docker`
+> [!note]
+>
+> 更新，如果你不想安装双系统，这里有一种更合适的方式，使用 [[docker-example|docker]]
 
 ## Docker 版本的环境
 
@@ -57,7 +59,7 @@ RUN apt-get update && \
 	locale-gen zh_CN.utf8 && \
 	apt-get install -y ttf-wqy-microhei ttf-wqy-zenhei xfonts-wqy
 WORKDIR /root
-ENV LANG zh_CN.UTF-8  
+ENV LANG zh_CN.UTF-8
 ENV LANGUAGE zh_CN.UTF-8
 ENV LC_ALL zh_CN.UTF-8
 ```
@@ -78,7 +80,6 @@ docker run -ti --rm -e DISPLAY=host.docker.internal:0.0 -v ICS:/root/ICS njupa
 ```
 
 接着我们就可以在 windows 下编写代码，然后通过 `docker run` 这条命令进入 `ubuntu` 进行执行
-
 
 # 模拟器构建
 
@@ -132,7 +133,7 @@ cd $AM_HOME
 git checkout -b pa0
 ```
 
-> 修改 `Makefile` 中的 
+> 修改 `Makefile` 中的
 >
 > 1. STUID
 > 2. STUDENT

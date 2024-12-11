@@ -5,10 +5,9 @@ tags:
   - Compiler
   - MLSys
 date: 2023-06-12
-lastmod: 2024-12-10
+lastmod: 2024-12-11
 draft: false
 ---
-
 
 # 环境搭建
 
@@ -304,6 +303,8 @@ cd ..
 
 注意，在复现时还需要很多依赖包，需要自己去添加
 
+> [!important]
+>
 > 其中 `dgl` 的包版本需要 `<=1.0`，否则会出错，其他包似乎没有版本要求，最新版均可
 >
 > 安装 `dgl` 的命令如下：
@@ -341,6 +342,8 @@ cd figure8 && bash run.sh
 
 注意，可能报错：`ModuleNotFoundError: No module named 'tqdm'` 安装一下即可
 
+> [!important]
+>
 > 还需要安装 `nni` ：
 >
 > ```bash
@@ -732,12 +735,6 @@ if __name__ == "__main__":
         time_log[dataset] = [decomposition_time[i][1] / nodecomposition_time[i][1] for i in range(5)]
 
     print(time_log)
-```
-
-绘图代码如下：
-
-```python
-
 ```
 
 > 关于 `taco` 的安装

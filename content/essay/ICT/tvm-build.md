@@ -169,6 +169,8 @@ export PYTHONPATH=$TVM_HOME/python:${PYTHONPATH}
 cd python; python3 setup.py install --user; cd ..
 ```
 
+> [!bug]
+> 
 > 在安装 `scipy` 时会报错，要求 `python` 版本大于等于 `3.9`，所以有些包需要我们手动安装：
 >
 > ```bash

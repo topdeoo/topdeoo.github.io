@@ -5,7 +5,7 @@ tags:
   - NENU
   - OS
 date: 2024-04-14
-lastmod: 2024-12-10
+lastmod: 2024-12-11
 draft: true
 ---
 本人的一些毕业设计，没有什么能比自己写一个操作系统更有意思了！
@@ -15,10 +15,6 @@ draft: true
 由于我很喜欢 `xv6` 的设计，但是有很想写 `Rust`，但是又有点不太喜欢 `rCore` 的一些步骤设计（虽然确实很符合发展历程，但总觉得不适合自底向上的迭代开发……）
 
 于是，开了这么一个专栏，用来记录自己的 `OS` 开发生涯。
-
-项目地址为:
-
-{{< link-card name="SparrOS" link="https://github.com/topdeoo/SparrOS-RISCV" img="" >}}
 
 # 开发环境
 

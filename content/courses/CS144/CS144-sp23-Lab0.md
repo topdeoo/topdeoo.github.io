@@ -5,13 +5,13 @@ tags:
   - Stanford
   - Network
 date: 2023-10-05
-lastmod: 2024-12-10
+lastmod: 2024-12-11
 draft: false
 ---
 
 # 前言
 
-关于为什么选修这门课，为什么突然弃坑又为什么突然醒悟重新写这部分内容，请看 [关于上个版本的CS144](https://topdeoo.github.io/posts/Stanford%20CS144/) 中的几篇文章
+关于为什么选修这门课，为什么突然弃坑又为什么突然醒悟重新写这部分内容，请看 [[CS144-Env|关于上个版本的 CS144]] 中的几篇文章
 
 # Envrionment Setting Up
 
@@ -32,7 +32,6 @@ draft: false
 - Python: Python 3.11.5
 - Java: openjdk 21 2023-09-19
 - Go: version go1.21.1 linux/amd64
-
 
 不错，现在我可以用之前用不了的方案二了 :joy:
 
@@ -80,20 +79,21 @@ git clone git@github.com:<username>/<repo-name>.git
 
 需要注意的点实际上就是 `program` 部分要写对，每个测试对应的可执行文件的名称叫什么能知道就行。如果需要多配置，在 `configurations` 中添加类似的配置即可。
 
->  你需要知道的一些预定义变量
->    - **${workspaceFolder}** - 当前工作目录(根目录)
->    - **${workspaceFolderBasename}** - 当前文件的父目录
->    - **${file}** - 当前打开的文件名(完整路径)
->    - **${relativeFile}** - 当前根目录到当前打开文件的相对路径(包括文件名)
->    - **${relativeFileDirname}** - 当前根目录到当前打开文件的相对路径(不包括文件名)
->    - **${fileBasename}** - 当前打开的文件名(包括扩展名)
->    - **${fileBasenameNoExtension}** - 当前打开的文件名(不包括扩展名)
->    - **${fileDirname}** - 当前打开文件的目录
->    - **${fileExtname}** - 当前打开文件的扩展名
->    - **${cwd}** - 启动时task工作的目录
->    - **${lineNumber}** - 当前激活文件所选行
->    - **${selectedText}** - 当前激活文件中所选择的文本
->    - **${execPath}** - vscode执行文件所在的目录
+> 你需要知道的一些预定义变量
+>
+> - **${workspaceFolder}** - 当前工作目录(根目录)
+> - **${workspaceFolderBasename}** - 当前文件的父目录
+> - **${file}** - 当前打开的文件名(完整路径)
+> - **${relativeFile}** - 当前根目录到当前打开文件的相对路径(包括文件名)
+> - **${relativeFileDirname}** - 当前根目录到当前打开文件的相对路径(不包括文件名)
+> - **${fileBasename}** - 当前打开的文件名(包括扩展名)
+> - **${fileBasenameNoExtension}** - 当前打开的文件名(不包括扩展名)
+> - **${fileDirname}** - 当前打开文件的目录
+> - **${fileExtname}** - 当前打开文件的扩展名
+> - **${cwd}** - 启动时 task 工作的目录
+> - **${lineNumber}** - 当前激活文件所选行
+> - **${selectedText}** - 当前激活文件中所选择的文本
+> - **${execPath}** - vscode 执行文件所在的目录
 
 # Lab0
 
@@ -139,7 +139,7 @@ PackConstructorInitializers: NextLine
 
 > Please read over the public interfaces (the part that comes after “public:” in the files util/socket.hh and util/file_descriptor.hh. (Please note that a Socket is a type of FileDescriptor, and a TCPSocket is a type of Socket.)
 
-这里我们需要阅读 `libsponge/uitl/socket.hh` `libsponge/uitl/address.hh`  中对于 `TCPSocket`，`Socket` 与 `Address` 的定义及用法。
+这里我们需要阅读 `libsponge/uitl/socket.hh` `libsponge/uitl/address.hh` 中对于 `TCPSocket`，`Socket` 与 `Address` 的定义及用法。
 
 实际上的要求并不复杂，我们需要建立一个 `TCP` 连接，然后发送一段预设好的消息，等到回复后，将其打印出来。
 
@@ -161,14 +161,14 @@ void get_URL( const string& host, const string& path ) {
 
 注意这里的 `read` 函数和之前不一样了，需要传入一个引用，而不是接收一个返回值。
 
->  如果你使用的编译器为 `clang`，注意在 `src/byte_stream.hh` 中需要添加头文件 `#include <cstdint>` 否则会导致 `uint64_t` 报错。
+> 如果你使用的编译器为 `clang`，注意在 `src/byte_stream.hh` 中需要添加头文件 `#include <cstdint>` 否则会导致 `uint64_t` 报错。
 
 随后，进行检查，我们可以使用两种方法
 
 如果你是命令行偏爱者，请输入：
 
 ```bash
-cd build 
+cd build
 make -j`nproc`
 ./apps/webget cs144.keithw.org /hello
 ```
@@ -189,7 +189,7 @@ cmake --build build --target check_webget
 
 ![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20231005173538.png)
 
-> 如果嫌弃 vsc 的日志输出没有高亮的话，可以下载一个插件 `Build Output Colorizer` 
+> 如果嫌弃 vsc 的日志输出没有高亮的话，可以下载一个插件 `Build Output Colorizer`
 >
 > 虽然这个好像也没什么太大的用处……
 
@@ -211,11 +211,12 @@ cmake --build build --target check_webget
 
 显然，我们需要添加容器，我们可以选择 `STL` 中提供的 `deque` ，但我选择自己从头构建一个循环队列（就当复习数据结构了），我们通过一个数组和两个指针来模拟循环队列：
 
-> 注意，`CS144` 的标准不能使用 `C` 中的数组，只能使用 `STL` 封装的 `vector` 
+> 注意，`CS144` 的标准不能使用 `C` 中的数组，只能使用 `STL` 封装的 `vector`
 
 ### Init Version
 
 我们从成员变量开始，由于我们考虑使用 `vector` 和双指针来模拟循环队列，并且考虑到接口中存在：
+
 1. `set_error() / has_error()`
 2. `is_closed() / is_finished()`
 3. `bytes_pushed() / bytes_poped()`
@@ -247,8 +248,7 @@ ByteStream::ByteStream( uint64_t capacity ) : capacity_( capacity ){
 
 > 这里使用了 `resize` 而非 `reserve`，是因为 `reserve` 只会设置 `capacity`，当你第一次放元素进去的时候还是需要 `push_back / emplace_back`，并不适合我们这里的双指针。
 >
-> 至于用 `vector` 的原因，就是我们并不知道 `std::array<typename Tp, size_t Nm>` 中的 `Nm` 值，其为`RunTime`的。 
-
+> 至于用 `vector` 的原因，就是我们并不知道 `std::array<typename Tp, size_t Nm>` 中的 `Nm` 值，其为`RunTime`的。
 
 简单的接口如下：
 

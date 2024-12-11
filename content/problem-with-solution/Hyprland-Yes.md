@@ -1,16 +1,12 @@
 ---
-author: virgil
-email: mailto:virgiling7@gmail.com
 title: Hyprland Yes!
 description: 如何从 X11 转向 Wayland 下的配置
 tags:
   - Linux
   - Manjaro
 date: 2024-01-27
-lastmod: 2024-12-10
+lastmod: 2024-12-11
 draft: false
-create time: 星期二, 十二月 10日 2024, 11:27:24 晚上
-modify time: 星期三, 十二月 11日 2024, 3:26:54 下午
 ---
 
 # 更新

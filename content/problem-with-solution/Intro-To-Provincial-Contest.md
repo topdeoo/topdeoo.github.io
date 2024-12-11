@@ -1,15 +1,11 @@
 ---
-author: virgil
-email: mailto:virgiling7@gmail.com
 title: 2023 吉林省赛环境配置
 description: "省赛配置流程，当做遗产留下来   "
 tags:
   - NENU
 date: 2023-04-19
-lastmod: 2024-12-10
+lastmod: 2024-12-11
 draft: false
-create time: 星期二, 十二月 10日 2024, 11:27:24 晚上
-modify time: 星期三, 十二月 11日 2024, 3:39:00 下午
 ---
 
 简单划分为几个部分：

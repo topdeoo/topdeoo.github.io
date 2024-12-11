@@ -5,7 +5,7 @@ tags:
   - Stanford
   - Network
 date: 2023-02-26
-lastmod: 2024-12-10
+lastmod: 2024-12-11
 draft: false
 ---
 
@@ -23,7 +23,9 @@ draft: false
 
 `StreamReassembler` 的工作原理在 `handout` 中描述的不算很详细，在这里解释一下它的原理：
 
-> TCP发送方将其字节流划分为多个短段 (每个不超过1460字节的子字符串)，以便每个短段都能装入数据报中。
+> [!info]
+>
+> TCP 发送方将其字节流划分为多个短段 (每个不超过 1460 字节的子字符串)，以便每个短段都能装入数据报中。
 >
 > 但是网络可能会**重新排序**这些数据报，或者**丢弃**它们，或者**不止一次**地发送它们。接收端必须将这些段重新组装成它们开始时的连续字节流。
 >
@@ -164,7 +166,7 @@ if(node.data.length() > 0)
     this->_sequence.insert(node);
 ```
 
-其中 `_rectifying` 将 `b` 合并至 `a` 中，并更新其 `idx`，如下： 
+其中 `_rectifying` 将 `b` 合并至 `a` 中，并更新其 `idx`，如下：
 
 ```cpp
 int StreamReassembler::_rectifying(StreamReassembler::Node &a, const StreamReassembler::Node &b) {
@@ -240,6 +242,3 @@ bool StreamReassembler::empty() const { return this->_unassembled_bytes == 0; }
 ![image-20230311145134157](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/image-20230311145134157.png)
 
 最后一个错误仍然是因为我不是真实的 `Linux` 系统（WSL1），所以会导致这个
-
-
-

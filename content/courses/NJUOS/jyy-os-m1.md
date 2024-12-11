@@ -16,14 +16,18 @@ draft: false
 简而言之，下载完代码，进入 `pstree` 文件夹后，就可以开始愉快的实验了
 
 > 由于是校外人士写实验，没办法知道自己做的对不对（但感觉是会有地方不对的，比如没有考虑 `crash` 的情况等），并且校外人士并不需要频繁的记录实验过程，所以建议在 `Makefile` 中添加：
+
 ```makefile
 test:
 	gcc -m64 -O -std=gnu11 -ggdb -Wall -Werror ./pstree.c -o a.out
 ```
+
 > 然后，输入 `./a.out [OPTIONS]...` 即可测试，也可使用 `gdb` 调试
 
 # Lab Procedure
+
 与文档中的指南一致，步骤分为：
+
 1. 得到命令行的参数，根据要求设置标志变量的数值；
 2. 得到系统中所有进程的编号 (每个进程都会有唯一的编号) 保存到列表里；
 3. 对列表里的每个编号，得到它的的父亲是谁；
@@ -40,9 +44,10 @@ test:
 ## Parsing CMD Parameter
 
 要求为：
-- `-p` 或 `--show-pids`: 打印每个进程的进程号。
-- `-n` 或 `--numeric-sort`: 按照pid的数值从小到大顺序输出一个进程的直接孩子。
-- `-V` 或 `--version`: 打印版本信息。
+
+- `-p`  或  `--show-pids`: 打印每个进程的进程号。
+- `-n`  或  `--numeric-sort`: 按照 pid 的数值从小到大顺序输出一个进程的直接孩子。
+- `-V`  或  `--version`: 打印版本信息。
 
 实际上，我们可以参考真实 `Linux` 下的 `pstree`：
 ![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230729214450.png)
@@ -90,10 +95,12 @@ int main(int argc, char *argv[]) {
 }
 
 ```
+
 注意
+
 1. 这里我们使用了 `fprintf` 而不是 `printf`，在参数输入错误或无法处理时，我们需要将信息写入标准错误输出而非标准输出，`printf` 是输出到标准输出中的。
 2. 我们遍历参数的循环从 `1` 开始而非 `0`，这是因为第一个参数是程序本身，例如 `./a.out -V`，其 `argv[0]` 为 `<abs-path of a.out>`
-3. 记得在处理参数时加入断言，保证处理的不错，断言的作用请看jyy的课程（大约是调试理论那节课）
+3. 记得在处理参数时加入断言，保证处理的不错，断言的作用请看 jyy 的课程（大约是调试理论那节课）
 
 ## EVAL
 
@@ -106,7 +113,7 @@ void eval() {
     fprintf(stderr, "pstree 1.0\nCopyright © 2023 Virgil\n");
     return;
   }
-  
+
   get_all_procs();
   print_tree(get_proc(1), 0);
 }
@@ -116,18 +123,20 @@ void eval() {
 注意，这里打印的版本信息应该为 `stderr` 而非 `stdout`，考虑文档上的提示：
 
 > **在 Hard Test 上 Wrong Answer？**
-> 试一试 `pstree -V > /dev/null`，你会发现输出并没有到 `/dev/null`。我们希望你的行为和系统中的 `pstree -V` 基本一致：输出到正确的输出流、包含 `pstree` 的基本信息，但版本描述可以不同。
+> 试一试  `pstree -V > /dev/null`，你会发现输出并没有到  `/dev/null`。我们希望你的行为和系统中的  `pstree -V`  基本一致：输出到正确的输出流、包含  `pstree`  的基本信息，但版本描述可以不同。
 
 我们知道 `>` 是将标准输出重定向，`2>` 是重定向标准错误输出，因此这里应该为 `stderr`
 
 ## Get All Processes
 
 我们需要从文件系统中（实际上就是 `procfs`）中取得我们需要的进程数据，包括：
+
 1. `pid`
 2. `ppid`
 3. `name[]`
 
 然而，考虑后续的 `dfs` 打印的过程，我们希望父进程能够知道子进程的 `pid`，这样才方便我们进行递归，因此，我们在这里加入两个字段： ^762ea1
+
 1. `cpid[]`
 2. `cpid_num`
 
@@ -148,6 +157,7 @@ struct my_proc {
 ![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230729220912.png)
 可以发现，读取的文件为 `/proc/$pid/stat`，读取的字段的含义可以询问 `GPT` 或 `RTFM`，下面给出解释：
 `/proc/$pid/stat` 文件包含了一个长字符串，其中包含了许多字段，它们以空格分隔。下面是各个字段的含义：
+
 1. 进程 ID（PID）：进程的唯一标识符。
 2. 进程名称（comm）：进程的名称，通常是可执行文件的名称。
 3. 进程状态（state）：进程的状态，包括 R（运行）、S（睡眠）、D（不可中断的睡眠，通常是在等待硬件设备响应时）、T（停止或跟踪）等。
@@ -170,8 +180,7 @@ struct my_proc {
 20. 软限制（rlim）：进程的软资源限制。
 21. 硬限制（rlim）：进程的硬资源限制。
 
-显然，我们只需要1, 2, 4三个字段。根据文档中的框架，代码如下：
-
+显然，我们只需要 1, 2, 4 三个字段。根据文档中的框架，代码如下：
 
 ```c
 void get_all_procs() {
@@ -202,7 +211,6 @@ void get_all_procs() {
 读取完所需要的信息后，接下来需要考虑的就是如何将信息存储起来，方便后续递归打印或是建树的时候使用。
 
 正如之前所说 [[#^762ea1]]，我们需要在这里记录子进程，并且在`dfs`时需要快速查找到子进程，这种数据结构显然是哈希表，因此，我们构建一个 `hash_table` 来帮助我们进行存储：
-
 
 ```c
 struct my_proc *hash_table[MAX_PROC] = {NULL};
@@ -245,7 +253,7 @@ if (proc->ppid != 0) {
 }
 ```
 
-注意，这里 `cpid` 中记录的实际上是子进程在 `hash_table` 中的索引，而非子进程的 `pid` 
+注意，这里 `cpid` 中记录的实际上是子进程在 `hash_table` 中的索引，而非子进程的 `pid`
 
 ## Print Processes Tree
 
@@ -275,7 +283,6 @@ void print_tree(struct my_proc *proc, int depth) {
 ```
 
 考虑是 `dfs` 所以加入了 `vis`，但感觉实际上不加也不会有错误，毕竟每个进程一定只会被遍历一次。
-
 
 最后，我们只需要从 `pid = 1` 的 `init` 开始遍历即可。
 

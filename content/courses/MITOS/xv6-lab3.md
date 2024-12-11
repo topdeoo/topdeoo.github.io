@@ -5,18 +5,17 @@ tags:
   - OS
   - MIT
 date: 2022-04-18
-lastmod: 2024-12-10
+lastmod: 2024-12-11
 draft: false
 ---
 
-
 实验难度 `easy`, `easy`, `hard`。
 
-结果第一题差点把我送走了……MIT，你坏事做尽😭
+结果第一题差点把我送走了……MIT，你坏事做尽 😭
 
 ## 实验准备
 
-把第三章看懂（条件很简单，也很tm难，第三章应该是我目前为止没有把英文原本读完的一章了，实在是看不下去啊😭），可以读中文版，也可以阅读*《现代操作系统：原理与实现》*（处理器架构有所不同但无伤大雅）。
+把第三章看懂（条件很简单，也很 tm 难，第三章应该是我目前为止没有把英文原本读完的一章了，实在是看不下去啊 😭），可以读中文版，也可以阅读*《现代操作系统：原理与实现》*（处理器架构有所不同但无伤大雅）。
 
 其实把网站上橙色部分都做完就行。
 
@@ -47,7 +46,7 @@ ugetpid(void)
 
 会发现这是灰的，但是没事！注意到第一行有一个 `LIB_PGTBL`，也就是当你在做 `PGTBL`这个实验的时候，这个函数是可以被使用的，否则就不行。
 
-分析这个函数，可以发现用了一个 `struct usyscall` ，还好MIT告诉我们在哪里可以找到这个： `kernel/memlayout.h`，我们可以在里面找到一起出现的一个常量 `USYSCALL`。
+分析这个函数，可以发现用了一个 `struct usyscall` ，还好 MIT 告诉我们在哪里可以找到这个： `kernel/memlayout.h`，我们可以在里面找到一起出现的一个常量 `USYSCALL`。
 
 我们可以发现，这个 `u` 指向的位置就是 `USYSCALL` 的地址，也就是说 `USYSCALL` 处应当存储一个 `struct usyscall` 才可以，根据对 `ugetpid()` 的描述，我们知道 `USYSCALL` 就存在需要我们创建的只读页表之中。
 
@@ -145,7 +144,7 @@ freeproc(struct proc* p) {
   if (p->trapframe)
     kfree((void*)p->trapframe);
   p->trapframe = 0;
-  
+
   //Add
   if (p->usyscall)
     kfree((void*)p->usyscall);
@@ -203,7 +202,7 @@ vmprint(pagetable_t pagetable, int level) {
 
 显然，我们还需要在 `kernel/defs.h` 中注册这个函数。
 
-最后，在 `kernel/exec.c` 中 `return argc` 之前调用即可。(这个难度确实是easy，没骗人)
+最后，在 `kernel/exec.c` 中 `return argc` 之前调用即可。(这个难度确实是 easy，没骗人)
 
 > Explain the output of `vmprint` in terms of Fig 3-4 from the text. What does page 0 contain? What is in page 2? When running in user mode, could the process read/write the memory mapped by page 1? What does the third to last page contain?
 >
@@ -220,8 +219,6 @@ vmprint(pagetable_t pagetable, int level) {
 ![Explanation](https://s2.loli.net/2022/04/18/qJWuE1htn3lKvZ4.png)
 
 `0x0000000021fda00f` 分析后十位：`0000001111`，可以发现是可读可写，且可被用户访问的。
-
-
 
 ## Detecting which pages have been accessed
 
@@ -276,7 +273,4 @@ sys_pgaccess(void) {
 
 最后记得 `git add . && git commit -m "finish"`
 
-其实我觉得这部分 `xv6`的教材讲的比较简略，可以看 *《现代操作系统：原理与实现》*做进一步了解（不知道`CSAPP`行不行，我还没看到那）
-
-
-
+其实我觉得这部分 `xv6`的教材讲的比较简略，可以看 _《现代操作系统：原理与实现》_ 做进一步了解（不知道`CSAPP`行不行，我还没看到那）

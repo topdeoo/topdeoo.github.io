@@ -4,7 +4,7 @@ description: 二分答案（不是二分搜索）（蓝旭算法课）
 tags:
   - Algorithm
 date: 2022-07-10
-lastmod: 2024-12-10
+lastmod: 2024-12-11
 draft: false
 ---
 
@@ -14,6 +14,8 @@ draft: false
 
 **题目描述**
 
+> [!example]
+> 
 > 对于给定的一个长度为N的正整数数列 $A_{1\sim N}$，现要将其分成 $M$（$M\leq N$）段，并要求每段连续，且每段和的最大值最小。
 >
 > 关于最大值最小：
@@ -42,7 +44,7 @@ draft: false
 $$
 ans = \mathop{\arg\min}(\max(\sum^{i_1}_{i=1}A_i, \sum^{i_2}_{i=i_1+1}A_i, \dots, \sum^{i_M}_{i=i_{M-1}+1}A_i))
 $$
-可以发现，$ans$ 的取值范围是一个确定的区间：
+可以发现，ans 的取值范围是一个确定的区间：
 $$
 \max(A_{1\sim N}) \leq ans \leq \sum^N_{i=1}A_i
 $$

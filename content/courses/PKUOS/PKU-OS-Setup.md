@@ -31,16 +31,18 @@ docker run -it pkuflyingpig/pintos bash
 git clone git@github.com:PKU-OS/pintos.git
 docker run -it --rm --name pintos --mount type=bind,source=$pwd,target=/home/PKUOS/pintos pkuflyingpig/pintos bash
 ```
+
 由于下面这个命令可能会频繁使用，所以在 `.zshrc` 里写个 `alias`：
 
 ```bash
 alias pintos-up="docker run -it --rm --name pintos --mount type=bind,source=$pwd,target=/home/PKUOS/pintos pkuflyingpig/pintos"
 ```
+
 进入容器后，输入以下命令：
 
 ```bash
 cd pintos/src/threads
-make 
+make
 cd build
 pintos --
 ```
@@ -49,7 +51,7 @@ pintos --
 
 ![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230810233232.png)
 
-可以按 ` < Ctrl A > ` + ` X `，表示先按下 ` Ctrl ` + ` A `，再按下 ` X ` 来退出 `QEMU`
+可以按 `< Ctrl A >` + `X`，表示先按下 `Ctrl` + `A`，再按下 `X` 来退出 `QEMU`
 
 # Improve
 
@@ -60,10 +62,10 @@ pintos --
 ```bash
 docker run -it virgil7/pintos bash
 ```
+
 下载后，通过 `VS Code` 中的 `ssh remote` 连接到容器中（如果不会用这个功能，请 STFW），如下所示：
 
 ![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20230811145121.png)
-
 
 > 如果显示了 `container is not started` 类似错误，运行 `docker start <container-id>` 启动容器即可
 
@@ -94,7 +96,7 @@ docker run -it virgil7/pintos bash
 运行命令：
 
 ```bash
-pintos --gdb -- 
+pintos --gdb --
 ```
 
 然后打开另外一个终端，输入：
@@ -108,6 +110,3 @@ pintos-gdb kernel.o
 ```bash
 echo 'alias pgdb="pintos-gdb" \n alias osstart="pintos --" \n alias osgdb="pintos --gdb --" ' >> ~/.bashrc
 ```
-
-
-

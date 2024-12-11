@@ -19,7 +19,7 @@ draft: false
 for x in 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16
     make test$x >> tsh.out
 
-wait 
+wait
 ```
 
 > 可以仔细看 `tshref.out` 的输出，一些错误处理应该输出的语句就是 `test14`
@@ -136,6 +136,7 @@ void do_bgfg(char **argv) {
 ```
 
 这里，注意我们不需要加锁（或者说阻塞信号）来同步，需要关注的就是：
+
 1. 错误处理
 2. 我们使用 `kill` 函数来发送信号 `SIGCONT`，在这里，如果 `kill` 的第一个参数是负数，那么表示发给整个进程组，关于这点，可以输入 `man 3 kill` 来查看
 
@@ -194,7 +195,6 @@ void sigtstp_handler(int sig) {
 
 > 不要对 `errno` 有任何处理，例如判断其等不等于某个信号，不等于就 `error`，这可能会导致你的程序出错
 
-
 对于最后的 `sigchld_handler` 函数，其蓝本在课本上也有写，但我们需要注意，不能使用 `while ((pid = waitpid(-1, &status, 0)) > 0)` 的条件来进行回收僵死子进程了，我们需要立即返回而不是等待子进程结束才返回。
 
 并且，我们还需要修改全局数据 `jobs`，因此需要加锁进行保护。
@@ -232,9 +232,8 @@ void sigchld_handler(int sig) {
 ```
 
 > 如果你对 `waitpid` 有任何疑问，请打开终端，输入 `man 2 waitpid`，自行 `RTFM`
-> 
+>
 > ![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20231003192950.png)
-
 
 # Result
 

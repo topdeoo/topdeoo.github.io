@@ -3,18 +3,17 @@ title: cache-lab
 description: 这个实验倒是比较简单，没什么可说的
 tags: [CMU]
 date: 2023-10-03
-lastmod: 2024-12-10
+lastmod: 2024-12-11
 draft: false
 ---
-
 
 # 实验准备
 
 这里有几份资料可以学习 `cache` 的工作原理：
 
-1. [CMU 课程slide](http://www.cs.cmu.edu/afs/cs/academic/class/15213-f15/www/recitations/rec07.pdf)
+1. [CMU 课程 slide](http://www.cs.cmu.edu/afs/cs/academic/class/15213-f15/www/recitations/rec07.pdf)
 2. [现代操作系统--原理与实现](https://ipads.se.sjtu.edu.cn/ospi/) page 18
-3. CS: APP  page 424
+3. CS: APP page 424
 
 对于实验来说，请仔细阅读 `Write up` 文档，如果需要，请安装下载 `Valgrind`(安装方式请自行 `STFW`)
 
@@ -50,7 +49,6 @@ struct cache_line {
 ```
 
 > 注意到这里的 `block` 我用了数组，实际上甚至可以不需要用这个成员，因为模拟器并不会存储任何数据，只是模拟 `hit`, `missing`, `evict` 而已。
-
 
 ## Control Flow
 
@@ -187,18 +185,19 @@ void eval() {
   }
 }
 ```
+
 注意，这里的 `M` 代表修改，所以我们需要先 `L` 一次，然后 `S` 一次，这样就需要更新（或者是 `get`）两次 `page`
 
 而对于 `get_page`，逻辑也是显然的：
 
 1. 通过地址获取 `set_index`, `tag`, `offset` 三个值
-2. 查询是否为 `cold miss`，即 `cache[set_index] == NULL`（cache中一条数据都没有）
+2. 查询是否为 `cold miss`，即 `cache[set_index] == NULL`（cache 中一条数据都没有）
 3. 如果是，则直接从 `disk` 中调入页面，在这里，我们只是把 `cache[set_index]` 中的一行的 `tag` 设置为该地址的 `tag`，并将其设置为有效
 4. 如果不是，那么我们查看是否已经被调入到 `cache` 中来了
 5. 如果是，则已经找到，将时间戳设置为最新后，更新所有条目的时间戳，然后返回
 6. 否则，我们需要从 `disk` 中调入页面
 
-而在调入页面时，我们需要判断此时的 `cache` 中是否已经满了（检查是否所有有效位均为1即可），如果是，那么我们必须驱除出去一页，才能进行调入。
+而在调入页面时，我们需要判断此时的 `cache` 中是否已经满了（检查是否所有有效位均为 1 即可），如果是，那么我们必须驱除出去一页，才能进行调入。
 
 代码如下：
 
@@ -290,11 +289,9 @@ void evict_page(u_int32_t set_index, u_int32_t tag, u_int32_t offset) {
 >
 > 我们在 `evict_page` 的最后，直接将 `tag` 修改为需要调入页面的 `tag`，这样省去了再次 `get_page` 的痛苦。
 
-
 ## 结果
 
 ![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20231003150014.png)
-
 
 # Part B
 
@@ -332,9 +329,8 @@ void transpose_submit(int M, int N, int A[N][M], int B[M][N]) {
 }
 ```
 
-当然，这份代码是没办法达到最好效果的，`32×32` 矩阵的理论miss值为 $256$，而我们的结果为 $288$
+当然，这份代码是没办法达到最好效果的，`32×32` 矩阵的理论 miss 值为 $256$，而我们的结果为 $288$
 
 如果用这个代码去考虑 `64×64` 的矩阵，那么 miss 会达到惊人的 $4612$，显然是无法接受的，这里的做法可以是减少分块的大小，例如我们用 `4×4` 的分块，那么就可以减少 miss 的值：
 
 ![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20231003150721.png)
-

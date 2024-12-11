@@ -5,13 +5,13 @@ tags:
   - Stanford
   - Network
 date: 2023-02-20
-lastmod: 2024-12-10
+lastmod: 2024-12-11
 draft: false
 ---
 
 前面的简单实践跳过，主要是需要熟悉 `HTTP` 报文的结构即可
 
-**注意，在编写代码的过程中需要遵循 cs144的标准**
+**注意，在编写代码的过程中需要遵循 cs144 的标准**
 
 ![image-20230220220916776](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/image-20230220220916776.png)
 
@@ -31,7 +31,7 @@ draft: false
 
 完成 `app/webget.cc` 中的 `get_URL` 函数
 
-这里我们需要阅读 `libsponge/uitl/socket.hh` `libsponge/uitl/address.hh`  中对于 `TCPSocket`，`Socket` 与 `Address` 的定义及用法（也可以阅读官方文档[Sponge: Main Page (cs144.github.io)](https://cs144.github.io/doc/lab0/)）。
+这里我们需要阅读 `libsponge/uitl/socket.hh` `libsponge/uitl/address.hh` 中对于 `TCPSocket`，`Socket` 与 `Address` 的定义及用法（也可以阅读官方文档[Sponge: Main Page (cs144.github.io)](https://cs144.github.io/doc/lab0/)）。
 
 阅读完后，在文档中有着一个小型示例：
 
@@ -92,7 +92,7 @@ for(auto received = socket.read(); !socket.eof(); received = socket.read()){
 
 显然，我们需要添加容器，我们可以选择 `STL` 中提供的 `deque` ，但我选择自己从头构建一个循环队列（就当复习数据结构了），我们通过一个数组和两个指针来模拟循环队列：
 
-> 注意，`CS144` 的标准不能使用 `C` 中的数组，只能使用 `STL` 封装的 `vector` 
+> 注意，`CS144` 的标准不能使用 `C` 中的数组，只能使用 `STL` 封装的 `vector`
 
 ![image-20230223114514657](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/image-20230223114514657.png)
 
@@ -215,6 +215,3 @@ bool ByteStream::eof() const { return this->_end_input && buffer_empty(); }
 ![image-20230223123332209](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/image-20230223123332209.png)
 
 前面 6 个正确就可以了，最后一个错误是因为我是在 `WSL1` 上运行的而不是一个正宗的 `Linux` 机器，可能在 `docker` 上结果会有所不同。
-
-
-

@@ -30,33 +30,39 @@ draft: false
 这里我们需要一些数学知识：多元函数的泰勒展开。
 
 我们将 $L(\theta)$ 在 $\theta = \theta^{\prime}$ 这一点展开：
+
 $$
 L(\theta) = L(\theta^{\prime}) + (\theta - \theta^{\prime})^T\mathop{g} + \frac{1}{2}(\theta -\theta^{\prime})^T\mathop{H}(\theta - \theta^{\prime}) + o(\theta^T\theta)
 $$
-其中，$\mathop{g} = \nabla L(\theta^{\prime})$  为 $L(\theta)$ 在 $\theta = \theta^{\prime}$ 处的梯度，$\mathop{H}$ 称为海森矩阵(`Hessian Matrix`)，$H_{ij} = \frac{\partial^2}{\partial\theta_i\partial\theta_j}L(\theta^{\prime})$
+
+其中，$\mathop{g} = \nabla L(\theta^{\prime})$ 为 $L(\theta)$ 在 $\theta = \theta^{\prime}$ 处的梯度，$\mathop{H}$ 称为海森矩阵(`Hessian Matrix`)，$H_{ij} = \frac{\partial^2}{\partial\theta_i\partial\theta_j}L(\theta^{\prime})$
 
 那么由于我们现在到了一个驻点，于是 $g = \nabla L(\theta^{\prime}) = 0$
 
 那么我们就有
+
 $$
 L(\theta) = L(\theta^{\prime}) + \frac{1}{2}(\theta -\theta^{\prime})^T\mathop{H}(\theta - \theta^{\prime}) + o(\theta^T\theta)
 $$
+
 因此，我们只能借助 $\frac{1}{2}(\theta -\theta^{\prime})^T\mathop{H}(\theta - \theta^{\prime})$ 这个二次型来判断 $\theta^{\prime}$ 是什么类型的点了。
 
 我们移项后，分三种情况考虑：：
+
 $$
-L(\theta) - L(\theta^{\prime}) = \frac{1}{2}(\theta -\theta^{\prime})^T\mathop{H}(\theta - \theta^{\prime}) = 
+L(\theta) - L(\theta^{\prime}) = \frac{1}{2}(\theta -\theta^{\prime})^T\mathop{H}(\theta - \theta^{\prime}) =
 \begin{cases}
 > 0\\
-< 0\\ 
+< 0\\
 Sometimes > 0, sometimes < 0
 \end{cases}
 $$
+
 于是，可以得出结论：
 
 1. 当 $H > 0$ 时，$\theta^{\prime}$ 为极小值点
 2. 当 $H < 0$ 时，$\theta^{\prime}$ 为极大值点
-3. 若 $H$ 至少有一个特征值大于0，且至少有一个特征值小于0，则 $\theta^{\prime}$ 为鞍点
+3. 若 $H$ 至少有一个特征值大于 0，且至少有一个特征值小于 0，则 $\theta^{\prime}$ 为鞍点
 
 当我们判定，一个点是鞍点时，不需要害怕，因为你完全可以跑出鞍点：
 
@@ -94,14 +100,14 @@ $$
 在讲 `SGD` 之前，我们需要补充一下 `Batch Gradient Descent`，批量梯度下降的定义。
 
 批量梯度下降，名头看起来很大，其实本质上就是最朴素的梯度下降。在前面一篇中我们提到，我们每次更新参数的公式为：
+
 $$
 \begin{aligned}
-(w^{(i+1)}, b^{(i+1)}) &= (w^{(i)}, b^{(i)}) - \alpha\nabla Loss(w^{(i)}, b^{(i)}) \\ 
-&= (w^{(i)}, b^{(i)}) - \alpha(\frac{\partial Loss}{\partial w}, \frac{\partial Loss}{\partial b})\\ 
+(w^{(i+1)}, b^{(i+1)}) &= (w^{(i)}, b^{(i)}) - \alpha\nabla Loss(w^{(i)}, b^{(i)}) \\
+&= (w^{(i)}, b^{(i)}) - \alpha(\frac{\partial Loss}{\partial w}, \frac{\partial Loss}{\partial b})\\
 &= (w^{(i)}, b^{(i)}) - \alpha(\frac{1}{N}\sum^N_{j=1}x_j(b^{(i)} + w^{(i)T}x_j - y_j), \frac{1}{N}\sum^N_{j=1}(b^{(i)}+w^{(i)T}x_j - y_j))
 \end{aligned}
 $$
-
 
 我们将整个样本当做一个批次(`batch`)，每完成一次参数更新（即完成一次训练），我们成为完成了一次 `epoch`。
 
@@ -118,14 +124,18 @@ $$
 **随机梯度下降的做法是在每次迭代时随机选取一个样本来对参数进行更新**，具体而言：
 
 我们假设损失函数还是 `MSE` ，于是我们计算 $\nabla Loss$ （注意，我们每次只选取了一个样本，比如我们这里选择样本 $j$ ）
+
 $$
 \nabla Loss_j = (x_j(b^{(i)} + w^{(i)T}x_j - y_j), (b^{(i)}+w^{(i)T}x_j - y_j))
 $$
+
 于是我们的参数更新公式为：
+
 $$
 (w^{(i+1)}, b^{(i+1)}) \leftarrow (w^{(i)}, b^{(i)}) - \alpha \nabla Loss_j
 $$
-这样做的优点是很显然的，我们每次只随机看了一个数据的梯度，然后根据这个梯度来更新参数，这样我们每一轮训练的速度都大大加快，从 $O(m)$ 直降为 $O(1)$ ，并且使用 `SGD` 是有几率跳出局部最小这个坑的，可以这样理解，每次针对单个数据样例进行摸索前进时，本质上是在一个样例形成的误差曲面上摸索前进，而每个样例的曲面大体类似，又不尽相同，当你掉入一个坑里时，往往能被别的曲面拽出来。   
+
+这样做的优点是很显然的，我们每次只随机看了一个数据的梯度，然后根据这个梯度来更新参数，这样我们每一轮训练的速度都大大加快，从 $O(m)$ 直降为 $O(1)$ ，并且使用 `SGD` 是有几率跳出局部最小这个坑的，可以这样理解，每次针对单个数据样例进行摸索前进时，本质上是在一个样例形成的误差曲面上摸索前进，而每个样例的曲面大体类似，又不尽相同，当你掉入一个坑里时，往往能被别的曲面拽出来。
 
 但缺点同样明显，随机嘛，你也不知道你这个梯度会不会收敛，他可能在最小值附加波动，也可能你训练了一万轮都没找到最小值，因此`SGD` 需要的迭代次数较多，并且如果我们查看 `SGD` 的解空间的话（就是把每次的参数 $w, b$ 列出来画个图），我们 `SGD` 的搜索过程大多数比较盲目，如果说批量梯度下降是一条贪吃蛇，那 `SGD` 就是一条打了许多结的麻绳（
 
@@ -170,6 +180,7 @@ $$
 ![Momentum](https://s2.loli.net/2022/08/03/1epiun5lDWq3mN4.png)
 
 事实上，我们的做法是将参数更新的公式进行了更改：
+
 $$
 \theta^{(0)}, m^{(0)} = 0
 $$
@@ -181,6 +192,7 @@ $$
 $$
 \theta^{(i+1)} = \theta^{(i)} + m^{(i+1)}
 $$
+
 这样而言，我们每次计算的 $m$ 事实上都是前面我们走过的梯度的合成，也就是我们的初速度（），这样即使我们当前的梯度是个负值（梯度为负的话就说明梯度在把你往后拉），但我们的动量是个正值，这样我们就不会轻易被梯度给拉回去（拉回一个局部最小）
 
 > 这个想法我第一次看见的时候确实比较震撼，因为我觉得可能批次梯度下降已经够好了，虽然还是不太能完全解决局部最小的问题。但这个算法在很大程度上确实能够逃出局部最小（虽然也存在逃不出去的情况，这也很常见）
@@ -212,12 +224,15 @@ $$
 这是最早被提出的方法，它的想法是说：如果在某一个方向上函数的梯度很小（也就是说在这个方向上函数很平坦），那么我们期望有较大的学习率，否则我们需要一个较小的学习率。
 
 那么我们的参数更新就写为：
+
 $$
 \theta^{(i+1)} = \theta^{(i)} - \frac{\alpha}{\sigma^{(i)}}\nabla Loss(\theta^{(i)})
 $$
+
 也就是说我们在原来 $\alpha$ 的基础上增加了一个随着迭代次数变化的分母 $\sigma^{(i)}$，那么这个 $\sigma^{(i)}$ 应该如何变化呢？
 
 如下所示：
+
 $$
 \theta^{(1)} = \theta^{(0)} - \frac{\alpha}{\sigma^{(0)}}\nabla Loss(\theta^{(0)})\quad \sigma^{(0)} = \sqrt{(\nabla Loss(\theta^{(0)}))^2} = ||\nabla Loss(\theta^{(0)})||_2
 $$
@@ -233,19 +248,21 @@ $$
 $$
 \theta^{(i+1)} = \theta^{(i)} - \frac{\alpha}{\sigma^{(i)}}\nabla Loss(\theta^{(i)})\quad \sigma^{(i)} = \sqrt{\frac{1}{i+1}\sum^i_{j=1}\nabla Loss(\theta^{(j)})^2}
 $$
+
 也就是说，我们的这个 $\sigma$ 事实上是一个梯度的均方根。
 
 那么这样的作用到底是什么呢？
 
 `Adagrad` 起到的效果是在参数空间更为平缓的方向，会取得更大的进步（因为平缓，所以历史梯度平方和较小，对应学习下降的幅度较小），并且能够使得陡峭的方向变得平缓，从而加快训练速度。
 
-但缺点十分明显，由于我们会记录历史中所有梯度的平方和，因此，学习越深入，更新的幅度就会越小。换个说法就是，当训练的次数增多的时候，我们的学习率会衰减的非常快，甚至变成0。
+但缺点十分明显，由于我们会记录历史中所有梯度的平方和，因此，学习越深入，更新的幅度就会越小。换个说法就是，当训练的次数增多的时候，我们的学习率会衰减的非常快，甚至变成 0。
 
 为了改善这个问题，提出了 `RMSProp` 算法。
 
 ## RMSProp
 
 `RMSProp` 对 `Adagrad` 的算法进行了一些修改，让我们的学习率不至于衰减的如此之快。如下所示：
+
 $$
 \theta^{(1)} = \theta^{(0)} - \frac{\alpha}{\sigma^{(0)}}\nabla Loss(\theta^{(0)})\quad \sigma^{(0)} = \sqrt{(\nabla Loss(\theta^{(0)}))^2} = ||\nabla Loss(\theta^{(0)})||_2
 $$
@@ -261,11 +278,12 @@ $$
 $$
 \theta^{(i+1)} = \theta^{(i)} - \frac{\alpha}{\sigma^{(i)}}\nabla Loss(\theta^{(i)})\quad \sigma^{(i)} = \sqrt{\beta(\sigma^{(i-1)})^2 + (1-\beta)(\nabla Loss(\theta^{(i)}))^2}
 $$
+
 其中 $0<\beta<1$ 。
 
 那么这样为什么就可以延缓学习率衰减的过快呢？
 
-你可以发现，每一个 $\sigma$ 都是由历史所有的梯度与这次的梯度算的加权和，也就是说，我们可以通过调整 $\beta$ 来让最近的梯度有着更高的影响力，让很早之前的梯度影响降低甚至为 $0$ 
+你可以发现，每一个 $\sigma$ 都是由历史所有的梯度与这次的梯度算的加权和，也就是说，我们可以通过调整 $\beta$ 来让最近的梯度有着更高的影响力，让很早之前的梯度影响降低甚至为 $0$
 
 就像这样：
 
@@ -277,9 +295,10 @@ $$
 
 ## Adam
 
-`Adam` 就是 `RMSProp + Momentum` 
+`Adam` 就是 `RMSProp + Momentum`
 
 具体而言，我们的参数更新就变成了：
+
 $$
 g^{(i+1)} = \nabla Loss(\theta^{(i)}_j)
 $$
@@ -303,6 +322,7 @@ $$
 $$
 \theta^{(i+1)} = \theta^{(i)} - \frac{\alpha\hat{m}^{(i+1)}}{\sqrt{\hat{\sigma}^{(i+1)}} + \epsilon}
 $$
+
 其中， $\alpha, \beta_1, \beta_2, \epsilon$ 都是超参数，一般选择 $0.001, 0.9, 0.999, 10^{-8}$（原始论文中是这么选择的）
 
 那 `Adam` 好在什么地方呢？
@@ -318,6 +338,3 @@ $$
 ![Adam](https://s2.loli.net/2022/08/03/3LNjbzhZCT851aF.png)
 
 > 完美
-
-
-

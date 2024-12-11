@@ -5,11 +5,11 @@ tags:
   - OS
   - MIT
 date: 2022-04-01
-lastmod: 2024-12-10
+lastmod: 2024-12-11
 draft: false
 ---
 
-这个实验有一些小坑😤
+这个实验有一些小坑 😤
 
 ## 实验准备
 
@@ -29,7 +29,7 @@ make clean
 
 ## System call tracing
 
-要求实现一个跟踪命令的系统调用，在之后或许可以使用这个系统调用来debug（bushi。
+要求实现一个跟踪命令的系统调用，在之后或许可以使用这个系统调用来 debug（bushi。
 
 官方的文档已经把要求说的很清楚了，接下来我们跟着 `Hint` 一步一步做。
 
@@ -42,9 +42,9 @@ make clean
 3. 在 `kernel/proc.h` 的 `proc` 中添加成员变量 `mask`
 4. 在 `kernel/sysproc.c` 中添加 `sys_trace` 函数的实现
 5. 修改 `kernel/proc.c` 中的 `fork` 函数
-6. 修改 `kernel/syscall.c`  中的 `syscall` 函数
+6. 修改 `kernel/syscall.c` 中的 `syscall` 函数
 
-当我们完成1,2步后，我们运行 `make qemu` 可以发现已经能通过编译了，这是因为我们已经在用户层注册了系统调用 `trace` ，但当我们运行 `trace 32 grep hello README`时会发现调用失败。
+当我们完成 1,2 步后，我们运行 `make qemu` 可以发现已经能通过编译了，这是因为我们已经在用户层注册了系统调用 `trace` ，但当我们运行 `trace 32 grep hello README`时会发现调用失败。
 
 因为我们没有在内核层实现 `trace` 的具体实现，使得用户层无法传递到内核层。
 
@@ -124,7 +124,7 @@ syscall(void) {
 
 跟随 `Hint` 一步一步完成。在用户层注册的部分与 `trace` 部分相同，在此略过。
 
-我们需要在 `kernel/sysproc.c`  中实现 `sys_sysinfo` 函数，要求是需要使用 `copyout` 函数将 `struct sysinfo` 从内核层传递到用户层。函数的用法可以参照`filestat()` (`kernel/file.c`)。
+我们需要在 `kernel/sysproc.c` 中实现 `sys_sysinfo` 函数，要求是需要使用 `copyout` 函数将 `struct sysinfo` 从内核层传递到用户层。函数的用法可以参照`filestat()` (`kernel/file.c`)。
 
 需要注意的是，我们还需要添加一行 `#include "sysinfo.h"` 把 `struct sysinfo` 链接进来。
 
@@ -181,7 +181,7 @@ nproc(void) {
 
 > 以为这样就可以了吗?
 
-不，现在`make qemu` 的话，会报错，意思是 `freemem()` 与 `nproc()` 函数都未声明。大冤种对比头文件对比了半天发现，我们除了在 `sysproc.c` 里添加函数外，其他新添加的函数都应该在 `defs.h` 里面声明（能不能再`Hint`里面写一下啊😒）
+不，现在`make qemu` 的话，会报错，意思是 `freemem()` 与 `nproc()` 函数都未声明。大冤种对比头文件对比了半天发现，我们除了在 `sysproc.c` 里添加函数外，其他新添加的函数都应该在 `defs.h` 里面声明（能不能再`Hint`里面写一下啊 😒）
 
 添加完后，就会发现编译可以通过了。
 
@@ -206,6 +206,3 @@ nproc(void) {
 至于为什么需要这么复杂，而不是直接调用函数。
 
 或许认真看一遍 `xv6` 教材的第一章，这个问题就能迎刃而解。
-
-
-
