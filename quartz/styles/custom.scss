@@ -22,7 +22,7 @@
     font-style: normal;
     font-weight: normal;
     font-display: swap;
-    src: url("/static/fonts/Biro_Script_reduced.ttf");
+    src: url("/static/fonts/Biro_Script.woff2") format("woff2");
 }
 
 @font-face {
@@ -32,4 +32,8 @@
     font-display: swap;
     src: url("/static/fonts/Bookerly Light.ttf");
     unicode-range: U+00-7F;
+}
+
+.content-meta {
+    font-family: 'Biro';
 }

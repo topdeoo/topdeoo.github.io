@@ -7,15 +7,12 @@ tags:
 date: 2022-03-29
 lastmod: 2024-12-10
 draft: false
-comments: true
-create time: 星期二, 十二月 10日 2024, 8:47:08 晚上
-modify time: 星期二, 十二月 10日 2024, 8:58:32 晚上
 ---
 
 <div style="padding: 1rem; font-family: 'Biro';">
     <span style="font-size: 2rem; color: gray;"> Not all those who wander are lost. </span>
     <br />
-    <span> Welcome! </span>
+    <span style="font-size: 1.5rem;"> Welcome! </span>
 </div>
 
 > 这个网站从 `Hexo`, `Vuepress`, `Hugo` 到现在的 `Quartz`，感觉已经迁移了太多次，希望这是最后一次迁移。
