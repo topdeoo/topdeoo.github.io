@@ -3,9 +3,9 @@ title: Lab0 字节传输流
 description: 实现一个 best effort 的字节传输流
 tags:
   - Stanford
-  - Network
+  - 计算机网络
 date: 2023-02-20
-lastmod: 2024-12-11
+lastmod: 2024-12-15
 draft: false
 ---
 

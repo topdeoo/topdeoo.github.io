@@ -2,11 +2,11 @@
 title: 编译原理复习
 description: 编译原理的一些简单复习
 tags:
-  - InNight
   - NENU
-  - Compiler
+  - 一些随笔
+  - 编译器
 date: 2023-07-03
-lastmod: 2024-12-11
+lastmod: 2024-12-15
 draft: false
 ---
 

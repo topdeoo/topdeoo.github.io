@@ -2,12 +2,13 @@
 title: 外包项目问题记录与解决
 description: 
 tags:
-  - Issue
   - Linux
+  - 疑难杂症
 date: 2024-11-13
-lastmod: 2024-12-10
+lastmod: 2024-12-15
 draft: false
 ---
+
 # 安装系统问题
 
 服务器是 `VMware vSphere` 的一个虚拟机，开始本质上是一个 `bare metal`，我们需要通过 `VMware` 提供的工具（需要注册才能够下载）[Remote Console](https://knowledge.broadcom.com/external/article/368995/) 的文档进行下载（没有文档甚至根本不知道下载地址在哪里，太夸张了）
@@ -17,7 +18,9 @@ draft: false
 在页面中挂载 `CD/DVD` 文件后，最重要的一步是：
 
 **在进入安装页面的时候会卡很久，一般可能是因为需要网络将 iso 文件传输过去，所以会导致很慢，尤其 20.04 会扫描一遍硬盘，基本上没有两个小时无法进入正常的安装页面**
+
 # docker-compose 构建后导致无法 ssh
+
 ## 问题记录
 
 访问的服务器网段为 `175.159.xxx.xxx`（eduhk 的一个虚拟机），当我使用命令：
@@ -26,7 +29,7 @@ draft: false
 docker-compose up -d --build
 ```
 
-后，提示创建了一个名为 `xxxx` 的 `bridge` 设备，接着 `ssh` 卡死，退出后重连，显示 `Connection Timeout` 
+后，提示创建了一个名为 `xxxx` 的 `bridge` 设备，接着 `ssh` 卡死，退出后重连，显示 `Connection Timeout`
 
 ## 问题排查与解决
 
@@ -55,8 +58,8 @@ sudo vim /etc/docker/daemon.json
 写入如下：
 
 ```json
-{  
-  "default-address-pools": [{"base":"10.10.0.0/16","size":24}]  
+{
+  "default-address-pools": [{"base":"10.10.0.0/16","size":24}]
 }
 ```
 

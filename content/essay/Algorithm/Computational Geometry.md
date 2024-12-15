@@ -2,9 +2,9 @@
 title: 基础计算几何
 description: 基础计算几何与碰撞检测算法（蓝旭算法课）
 tags:
-  - Algorithm
+  - 算法讲义
 date: 2022-08-01
-lastmod: 2024-12-11
+lastmod: 2024-12-15
 draft: false
 ---
 
@@ -23,31 +23,31 @@ struct Point{
     Point(double _x=0, double _y = 0){
         x = _x, y = _y;
     }
-    
+
     Point operator + (const Point& a){
         return Point(x + a.x, y + a.y);
     }
-    
+
     Point operator - (const Point& a){
         return Point(x - a.x, y - a.y);
     }
-    
+
     double operator * (const Point& a){
         return x * a.x + y * a.y;
     }
-    
+
     Point operator * (const double& a){
         return Point(a * x, a * y);
     }
-    
+
     Point operator / (const double& a){
         return Point(a / x, a / y);
     }
-    
+
     double operator ^ (const Point& a){
         return a.y * x - a.x * y;
     }
-    
+
 }
 
 typedef Point Vector;
@@ -61,13 +61,13 @@ typedef Point Vector;
 2. 若 $\vec{a} \times \vec{b} < 0$， 则 $\vec{a}$ 在 $\vec{b}$ 的逆时针方向
 3. 若 $\vec{a} \times \vec{b} = 0$， 则 $\vec{a}$ 与 $\vec{b}$ 共线
 
-如此，我们便可以定义直线 `Line` 
+如此，我们便可以定义直线 `Line`
 
 ```cpp
 struct Line{
     Point x, Point y;
     double a, b, c;
-    
+
     Line(Point _x, Point _y){
         x = _x, y = _y;
         a = _x.y - _y.y;
@@ -90,10 +90,12 @@ bool judge(Line p, Line q){
 ```
 
 也就是说
+
 $$
 \vec{ab} \times \vec{ac} \text{与} \vec{ab} \times \vec{ad} \text{异号，即} d, c \text{两点在线段} p \text{的两侧}\\
 \vec{dc} \times \vec{ac} \text{与} \vec{dc} \times \vec{bc} \text{异号，即}a,b\text{两点在线段} q \text{的两侧}\\
 $$
+
 画图表示为：
 
 ![Case](https://s2.loli.net/2022/08/01/XZq9Y8REgso3aGI.png)
@@ -116,7 +118,7 @@ vector<Point> p;
 
 ![Case](https://s2.loli.net/2022/08/01/8uVUxrL3CPeFb69.png)
 
-在图(a)中，L和多边形的顶点相交，这时候交点只能计算一个；在图(b)中，L和多边形顶点的交点不应被计算；在图(c)和(d) 中，L和多边形的一条边重合，这条边应该被忽略不计。
+在图(a)中，L 和多边形的顶点相交，这时候交点只能计算一个；在图(b)中，L 和多边形顶点的交点不应被计算；在图(c)和(d) 中，L 和多边形的一条边重合，这条边应该被忽略不计。
 
 ## 凸包
 
@@ -134,10 +136,10 @@ vector<Point> p;
 2. 令栈 $S = \emptyset$，其中 $S[i]$ 表示栈中的第 $i+1$ 个元素，用 $k$ 表示栈中的元素个数；若栈中有 $k$ 个元素，则 $S[k−1]$ 即为栈顶元素；每一次`push`，栈元素个数 $k + 1$ ；每次`pop`，栈元素个数 $k - 1$
 3. $push(S, p_0)$
 4. $push(S, p_1)$
-5. 遍历集合 $\{p_2, p_3, \dots, p_n\}$， 遍历栈，如果 $k \geq 2$ 并且由向量 $\overrightarrow{S[k-2]p_i}$  与向量 $\overrightarrow{S[k-2]S[k-1]}$ 构成的夹角 $\theta \geq 180$，$pop(S)$
+5. 遍历集合 $\{p_2, p_3, \dots, p_n\}$， 遍历栈，如果 $k \geq 2$ 并且由向量 $\overrightarrow{S[k-2]p_i}$ 与向量 $\overrightarrow{S[k-2]S[k-1]}$ 构成的夹角 $\theta \geq 180$，$pop(S)$
 6. 否则 $push(S,p_i)$
 
-最后，如果 $S$ 的大小小于3，那么我们无法生成一个凸包，否则 $S$ 就构成了一个凸包的顶点集合。
+最后，如果 $S$ 的大小小于 3，那么我们无法生成一个凸包，否则 $S$ 就构成了一个凸包的顶点集合。
 
 ### 算法复杂度
 
@@ -229,8 +231,6 @@ vector<Point> p;
 
 ![Step-1](https://s2.loli.net/2022/08/02/zG2dZDSCIQTglyP.png)
 
-
-
 可以发现，我们得到了两个向量，一个朝向原点，一个背离原点。由于前面的教训，我们知道方向的选择是有讲究的，论文中都选择了指向原点的向量作为下一次迭代时的方向向量（因为这样更有可能构成包含原点的单纯形）。
 
 下一次迭代后，我们得到单纯形的第三个顶点为 $(1, -2)$ ，于是构建单纯形为：
@@ -245,8 +245,6 @@ vector<Point> p;
 
 察觉到没有碰撞的时候就会推出迭代，那么是如何进行判断的呢？
 
-我们知道，在第三次迭代时，会计算一个单纯形的顶点，我们记为 `support` 点，若这个点与迭代方向的内积小于0，说明这个迭代方向上已经无法找到一个能够跨越原点的 `support` 点了，也就是说无法组成一个包含原点的单纯形，也就是说两个多边形不相交，那么就可以结束迭代了。
+我们知道，在第三次迭代时，会计算一个单纯形的顶点，我们记为 `support` 点，若这个点与迭代方向的内积小于 0，说明这个迭代方向上已经无法找到一个能够跨越原点的 `support` 点了，也就是说无法组成一个包含原点的单纯形，也就是说两个多边形不相交，那么就可以结束迭代了。
 
-> 内积小于0，表示两个向量不同方向
-
- 
+> 内积小于 0，表示两个向量不同方向

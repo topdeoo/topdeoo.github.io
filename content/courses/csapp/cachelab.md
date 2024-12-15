@@ -1,9 +1,11 @@
 ---
 title: cache-lab
 description: 这个实验倒是比较简单，没什么可说的
-tags: [CMU]
+tags:
+  - CMU
+  - 计算机系统
 date: 2023-10-03
-lastmod: 2024-12-11
+lastmod: 2024-12-15
 draft: false
 ---
 

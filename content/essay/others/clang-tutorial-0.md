@@ -2,10 +2,10 @@
 title: clang Tutorial#0
 description: clang 源码阅读
 tags:
-  - InNight
-  - Compiler
+  - 编译器
+  - 一些随笔
 date: 2023-05-30
-lastmod: 2024-12-10
+lastmod: 2024-12-15
 draft: false
 ---
 
@@ -75,13 +75,13 @@ git clone https://github.com/llvm/llvm-project.git --depth=1
 > clang++ -### main.cc |& vi -
 > ```
 >
-> （由于输出重定向到了 `stderr` 中，所以这里需要加上`&` 从jyy老师的课上学到的linux知识）
+> （由于输出重定向到了 `stderr` 中，所以这里需要加上`&` 从 jyy 老师的课上学到的 linux 知识）
 >
 > 在 `vim` 中，选择最后两行，输入 `gqq` 即可根据空格拆分，如下图所示：
 >
 > ![image-20230530221916345](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/image-20230530221916345.png)
 
-## clang driver 流程简介 
+## clang driver 流程简介
 
 `clang Driver` 负责拼接编译器命令和 `ld` 命令。
 
@@ -133,6 +133,3 @@ git clone https://github.com/llvm/llvm-project.git --depth=1
 ![image-20230530224449183](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/image-20230530224449183.png)
 
 > 图片来源于 [文章](https://cloud.tencent.com/developer/article/1803206)
-
-
-

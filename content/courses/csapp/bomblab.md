@@ -1,9 +1,11 @@
 ---
 title: bomb-lab
 description: 很有意思的实验，至少在我做过的里面这个带来的正反馈是最多的
-tags: [CMU]
+tags:
+  - CMU
+  - 计算机系统
 date: 2022-03-29
-lastmod: 2024-12-10
+lastmod: 2024-12-15
 draft: false
 ---
 

@@ -2,10 +2,11 @@
 title: Lab0 Tools
 description: 实验所需要安装的环境😶
 tags:
-  - OS
   - MIT
+  - 操作系统
+  - 环境配置
 date: 2022-04-01
-lastmod: 2024-12-11
+lastmod: 2024-12-15
 draft: false
 ---
 

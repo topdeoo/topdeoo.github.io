@@ -1,9 +1,11 @@
 ---
 title: attack-lab
 description: 一个一开始完全不知道怎么做的实验
-tags: [CMU]
+tags:
+  - CMU
+  - 计算机系统
 date: 2022-04-06
-lastmod: 2024-12-10
+lastmod: 2024-12-15
 draft: false
 ---
 

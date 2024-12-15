@@ -2,10 +2,10 @@
 title: Lab1 词法分析
 description: Assignment 1 实现词法分析器
 tags:
-  - Compiler
   - Stanford
+  - 编译器
 date: 2022-11-20
-lastmod: 2024-12-11
+lastmod: 2024-12-15
 draft: false
 ---
 

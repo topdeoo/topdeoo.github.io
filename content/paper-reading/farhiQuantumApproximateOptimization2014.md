@@ -1,10 +1,11 @@
 ---
-title: QAOA 算法（原始论文）
+title: QAOA 算法
 description: 
 tags:
-  - Reading
+  - 论文阅读
+  - 量子算法
 date: 2024-12-12
-lastmod: 2024-12-14
+lastmod: 2024-12-15
 draft: false
 zotero-key: E58SF83N
 zt-attachments:
@@ -18,23 +19,9 @@ citekey: farhiQuantumApproximateOptimization2014
 
 # A Quantum Approximate Optimization Algorithm
 
-> [!summary]
+> [!summary]-
 >
 > We introduce a quantum algorithm that produces approximate solutions for combinatorial optimization problems. The algorithm depends on a positive integer p and the quality of the approximation improves as p is increased. The quantum circuit that implements the algorithm consists of unitary gates whose locality is at most the locality of the objective function whose optimum is sought. The depth of the circuit grows linearly with p times (at worst) the number of constraints. If p is fixed, that is, independent of the input size, the algorithm makes use of efficient classical preprocessing. If p grows with the input size a different strategy is proposed. We study the algorithm as applied to MaxCut on regular graphs and analyze its performance on 2-regular and 3-regular graphs for fixed p. For p = 1, on 3-regular graphs the quantum algorithm always finds a cut that is at least 0.6924 times the size of the optimal cut.
-
-# 量子算法的预备知识
-
-## 构建量子电路的理论原理
-
-我们假定，问题的哈密顿量为 $H_P$，如果求得优化问题的最小值，实际上就是求得一个参数 $\theta$ 使得：
-
-$$
-\theta^* = \arg\min_{\theta} \bra{\psi(\theta)}H\ket{\psi(\theta)}
-$$
-
-此时，我们拿到的 $\ket{\psi}$ 即为优化问题的答案
-
-而 $\ket{\psi(\theta)} = U(\theta)\ket{\psi_0}$ 得到
 
 # 绝热量子计算
 

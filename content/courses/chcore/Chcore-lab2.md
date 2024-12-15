@@ -1,12 +1,13 @@
 ---
 title: 内存管理
 description: 内存管理，伙伴系统（Buddy System）与页表配置（Page Table） 重回中文写作
-tags: [OS, IPADS]
+tags:
+  - IPADS
+  - 操作系统
 date: 2023-09-01
-lastmod: 2024-12-10
+lastmod: 2024-12-15
 draft: false
 ---
-
 
 # Before Lab
 
@@ -21,7 +22,6 @@ git merge lab1
 > 注意一定要合并 `lab1`，否则会导致机器无法启动
 
 # 配置内核启动页表
-
 
 在 `kernel/arch/aarch64/boot/raspi3/init/mmu.c` 中配置内核的地址映射，想法是很朴素的，与 `xv6` 的做法相似，将 `va = 0xffff_ff00_0000_0000 + addr` 映射到了 `pa = addr` 的位置，可以引申 `xv6` 的映射方式：
 
@@ -72,7 +72,6 @@ for (vaddr = PERIPHERAL_BASE; vaddr < PHYSMEM_END; vaddr += SIZE_2M) {
 当然，还有实现上的很多细节没有说明，但有这个思路后已经不难了。我们首先来实现第一个功能
 
 ## buddy_get_pages
-
 
 ```c
 struct page *page = NULL;
@@ -214,10 +213,10 @@ void buddy_free_pages(struct phys_mem_pool *pool, struct page *page)
         /* LAB 2 TODO 2 END */
 }
 ```
-> 注意这一步： `page = page < buddy ? page : buddy`
-> 
-> 我们并不知道找到的伙伴哪个的地址更低，但我们需要保证，我们合并进链表时，一定是低地址在前，换而言之，我们总是把高地址放在低地址后面（这是很显然的事情）
 
+> 注意这一步： `page = page < buddy ? page : buddy`
+>
+> 我们并不知道找到的伙伴哪个的地址更低，但我们需要保证，我们合并进链表时，一定是低地址在前，换而言之，我们总是把高地址放在低地址后面（这是很显然的事情）
 
 做完这一步后，我们可以输入 `make qemu`，如果没有出现 `BUG` 停顿的话，说明 `kmalloc` 已经正常工作了（也就是你的伙伴系统已经正确了）
 
@@ -290,7 +289,6 @@ int query_in_pgtbl(void *pgtbl, vaddr_t va, paddr_t *pa, pte_t **entry)
 > 请注意高亮位置（可能并不是很亮），这里使用了 `return` 而非 `break`，但注意如果你使用了 `break`，它甚至不会报错（除非你做到了最后一个测试点才会报错），我的建议是在这里使用 `goto`，就像我在下面做的一样。
 
 ## (un)map_range_in_pgtbl
-
 
 以 `map_range_in_pgtbl` 为例，我们的做法是显然的：
 
@@ -492,10 +490,9 @@ back:
 
 ![lab2-pte-1.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/lab2-pte-1.png)
 
-> 
+>
 
 > 参考此图 `block` 中的 `output address` 位置即可, 我们用的还是 4KB 的粒度
-
 
 # 实验结果
 

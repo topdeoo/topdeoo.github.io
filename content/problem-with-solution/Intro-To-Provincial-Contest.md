@@ -3,8 +3,10 @@ title: 2023 吉林省赛环境配置
 description: "省赛配置流程，当做遗产留下来   "
 tags:
   - NENU
+  - XCPC
+  - 环境配置
 date: 2023-04-19
-lastmod: 2024-12-11
+lastmod: 2024-12-15
 draft: false
 ---
 

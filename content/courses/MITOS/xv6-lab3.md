@@ -2,10 +2,10 @@
 title: Lab3 Page Tables
 description: 你说的 easy 不是 easy，我说的 hard 是什么 hard😭
 tags:
-  - OS
   - MIT
+  - 操作系统
 date: 2022-04-18
-lastmod: 2024-12-11
+lastmod: 2024-12-15
 draft: false
 ---
 

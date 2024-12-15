@@ -1,9 +1,11 @@
 ---
 title: 线性回归第二讲
 description: 这部分是一个拓展，文中的图片来源于李宏毅老师的ppt
-tags: [InNight]
-date: 2022-08-01 
-lastmod: 2024-12-10
+tags:
+  - 机器学习
+  - 一些随笔
+date: 2022-08-01
+lastmod: 2024-12-15
 draft: false
 ---
 

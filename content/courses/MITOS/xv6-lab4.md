@@ -3,9 +3,9 @@ title: Lab4 Trap
 description: 2020年的课和这个不太兼容（需要看完中断之后才能做这个实验）
 tags:
   - MIT
-  - OS
+  - 操作系统
 date: 2022-04-19
-lastmod: 2024-12-11
+lastmod: 2024-12-15
 draft: false
 ---
 

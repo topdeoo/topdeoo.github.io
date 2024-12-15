@@ -2,9 +2,9 @@
 title: 尾递归
 description: 尾递归（还是递归）（蓝旭算法课）
 tags:
-  - Algorithm
+  - 算法讲义
 date: 2022-07-10
-lastmod: 2024-12-10
+lastmod: 2024-12-15
 draft: false
 ---
 

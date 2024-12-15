@@ -1,9 +1,12 @@
 ---
 title: 实验环境搭建
 description: 一些搭建环境的远古方法
-tags: [CMU]
-date: 2022-03-29 
-lastmod: 2024-12-10
+tags:
+  - CMU
+  - 计算机系统
+  - 环境配置
+date: 2022-03-29
+lastmod: 2024-12-15
 draft: false
 ---
 

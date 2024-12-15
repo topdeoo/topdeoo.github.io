@@ -3,20 +3,21 @@ title: Linux-0.11 RTFSC 环境配置
 description: 
 tags:
   - Linux
-  - OS
   - dodola
+  - 操作系统
+  - 环境配置
 date: 2023-11-17
-lastmod: 2024-12-11
+lastmod: 2024-12-15
 draft: false
 ---
 
 # 环境搭建
 
-建议在 `docker` 环境下搭建，构建的 `Dockerfile` 如下，如果对这部分有疑问，可以参考 [[docker-example|Docker 搭建实验环境]] 
+建议在 `docker` 环境下搭建，构建的 `Dockerfile` 如下，如果对这部分有疑问，可以参考 [[docker-example|Docker 搭建实验环境]]
 
 > [!bug]
-> 
-> 如果你的位置在南方（例如香港，深圳，广州等），也就是局域网的 IP 地址为 `172` 或者 `175` 开头的，可以参考 [[eduhk-web-server#docker-compose 构建后导致无法 ssh|Docker 构建后无法 ssh 登录服务器或容器]] 进行解决。 
+>
+> 如果你的位置在南方（例如香港，深圳，广州等），也就是局域网的 IP 地址为 `172` 或者 `175` 开头的，可以参考 [[eduhk-web-server#docker-compose 构建后导致无法 ssh|Docker 构建后无法 ssh 登录服务器或容器]] 进行解决。
 
 ```dockerfile
 from ubuntu:20.04
@@ -66,7 +67,7 @@ docker run --network=host -it linux0.11:latest /bin/bash
 
 然后在此终端中输入 `make && make start` 即可运行。
 
-# 如何查看qemu的窗口
+# 如何查看 qemu 的窗口
 
 由于我们在 `docker` 中没有开启 `GUI`，所以这里 `qemu` 的窗口我们是无法直接看见的，但可以发现，`make satrt` 会开启一个 `vnc server`，在端口 `5900`，我们只需要在本机安装一个 `vnc client` 即可查看此远程桌面。
 
@@ -97,7 +98,7 @@ gdb tools/system
 进入 `gdb`，然后输入：
 
 ```
-target remote:1234 
+target remote:1234
 ```
 
 即可连接到 `gdb server`，然后输入：

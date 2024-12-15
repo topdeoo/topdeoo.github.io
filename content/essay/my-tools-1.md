@@ -2,9 +2,10 @@
 title: 差生文具店（第一集）
 description: 科研&学习工具分享
 tags:
-  - InNight
+  - 一些随笔
+  - 环境配置
 date: 2024-10-27
-lastmod: 2024-12-11
+lastmod: 2024-12-15
 draft: false
 ---
 
@@ -118,7 +119,7 @@ CCF-Rank，一个浏览器插件，可以在 Google 的浏览器商店里找到�
 具体的操作可以参考坚果云官方的文章 [坚果云使用 Zotero 配置过程详解](https://help.jianguoyun.com/?p=4190)
 
 > [!note]
-> 
+>
 > 可以不用安装坚果云的客户端，感觉其实很鸡肋，不如直接用 `WebDAV`
 >
 > 不过 `WebDAV` 也有一个缺点，就是坚果云会限制这个的使用次数，比如很短的时间内发送了巨量的请求，同步了一千个文件之类的，这样的话这个应用的 `Token` 就会被 ban 掉，需要重新生成一个 `Token`
@@ -130,8 +131,8 @@ CCF-Rank，一个浏览器插件，可以在 Google 的浏览器商店里找到�
 ## 关于博客
 
 > [!important]
->  
->  在 2024-12-10 的时候更换了主题，使用 obsidian 与 quartz 进行构建，还是发布在 github pages 上
+>
+> 在 2024-12-10 的时候更换了主题，使用 obsidian 与 quartz 进行构建，还是发布在 github pages 上
 
 和网上大多数静态博客系统一样，我使用 **Markdown** 写博客，使用 **Hugo** 生成静态的 `html` 文件，然后通过 **Github Pages** 进行部署。
 
@@ -256,11 +257,11 @@ CCF-Rank，一个浏览器插件，可以在 Google 的浏览器商店里找到�
 ## VS Code
 
 > [!important]
-> 
+>
 > 在有 LLM 之后，更推荐使用 [cursor](https://www.cursor.com/)，它可以兼容 `vscode` 的所有插件，且自带强大的 AI 补全
 
 > [!note]
-> 
+>
 > 在刚上大学的时候其实觉得 `VS Code` 并不是很好用，主要是配置起来很麻烦，感觉不如 `CLion` 这种 `IDE`，但自从知道了 `Remote SSH` 插件之后，突然就香了
 
 我们这里推荐的 `VS Code` 及其插件的配置如下

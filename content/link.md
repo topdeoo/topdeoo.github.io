@@ -1,11 +1,9 @@
 ---
-author: virgil
-email: mailto:virgiling7@gmail.com
 title: 友链
 description: 
 tags: 
 date: 2022-03-29
-lastmod: 2024-12-10
+lastmod: 2024-12-15
 draft: false
 comments: true
 ---
@@ -13,7 +11,6 @@ comments: true
 > [!NOTE]
 > 由于 obsidian 没有类似卡片的友链样式，我也比较懒，不想自己写，所以暂时以列表的形式给出
 
-
 - [Windlinxy's blog](https://www.windlinxy.top/)
 
-- [Doごみ箱](https://dodolalorc.cn/)
+- [Do ごみ箱](https://dodolalorc.cn/)

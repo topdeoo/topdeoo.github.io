@@ -2,10 +2,10 @@
 title: Lab7 Networking
 description: 使用 E1000 网卡写一个驱动程序
 tags:
-  - OS
   - MIT
+  - 操作系统
 date: 2022-09-08
-lastmod: 2024-12-11
+lastmod: 2024-12-15
 draft: false
 ---
 

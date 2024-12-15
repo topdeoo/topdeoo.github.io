@@ -4,8 +4,9 @@ description: 如何从 X11 转向 Wayland 下的配置
 tags:
   - Linux
   - Manjaro
+  - 环境配置
 date: 2024-01-27
-lastmod: 2024-12-11
+lastmod: 2024-12-15
 draft: false
 ---
 
@@ -104,7 +105,7 @@ ssh -o ProxyCommand='ncat --proxy-type socks5 --proxy 127.0.0.1:7080 virgil@<hos
 ## 遇到的问题
 
 > [!warning]
-> 
+>
 > 应该遇到了很多问题，但由于时间跨度太大，导致我写这篇文章的时候已经记不起太多了，后面一定及时补充
 
 ### Picgo 上传问题

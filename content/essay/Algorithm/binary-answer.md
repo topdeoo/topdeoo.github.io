@@ -2,9 +2,9 @@
 title: 二分答案
 description: 二分答案（不是二分搜索）（蓝旭算法课）
 tags:
-  - Algorithm
+  - 算法讲义
 date: 2022-07-10
-lastmod: 2024-12-11
+lastmod: 2024-12-15
 draft: false
 ---
 
@@ -15,8 +15,8 @@ draft: false
 **题目描述**
 
 > [!example]
-> 
-> 对于给定的一个长度为N的正整数数列 $A_{1\sim N}$，现要将其分成 $M$（$M\leq N$）段，并要求每段连续，且每段和的最大值最小。
+>
+> 对于给定的一个长度为 N 的正整数数列 $A_{1\sim N}$，现要将其分成 $M$（$M\leq N$）段，并要求每段连续，且每段和的最大值最小。
 >
 > 关于最大值最小：
 >
@@ -41,13 +41,17 @@ draft: false
 > 要求输出每段和最大值最小为多少。
 
 不妨假设每段的长度为 $i_1, i_2, \dots, i_M$， 于是，我们可以如下描述所求答案：
+
 $$
 ans = \mathop{\arg\min}(\max(\sum^{i_1}_{i=1}A_i, \sum^{i_2}_{i=i_1+1}A_i, \dots, \sum^{i_M}_{i=i_{M-1}+1}A_i))
 $$
+
 可以发现，ans 的取值范围是一个确定的区间：
+
 $$
 \max(A_{1\sim N}) \leq ans \leq \sum^N_{i=1}A_i
 $$
+
 既然有着一个确定的区间，那么一个朴素的想法就是从最小向最大枚举这个区间内的所有值（因为是整数，所以是可数的），直到找到一个合法值。
 
 但如何判断这个值是否合法？
@@ -95,7 +99,7 @@ int binary_answer(vector<int>& a, int m){
         int mid = (l + r) >> 1;
         if(judge(a, m, mid))
             l = mid + 1;
-        else 
+        else
             r = mid - 1;
     }
     return l;
@@ -106,15 +110,9 @@ int binary_answer(vector<int>& a, int m){
 
 # 总结
 
-
-
 二分答案可以概括为：在答案合法的条件下**不断逼近最优**， 最后一个合法的答案就是最优解。
 
-
-
 这种方法事实上可以解决普通枚举无法解决的事情：在实数域内枚举值。我们无法通过常规的枚举来枚举实数域内的值，但是通过二分的方式，我们确实能够做到在一个区间内找到这个实数。
-
-
 
 这里提供一套板子
 
@@ -125,7 +123,7 @@ while(l <= r){
     mid = (l + r) >> 1;
     if(judge(mid))
         ans = mid, l = mid + 1;
-    else 
+    else
         r = mid - 1;
 }
 ```
@@ -137,7 +135,7 @@ while(abs(r - l) > eps){
     mid = (l + r) / 2;
     if(judge(mid))
         l = mid;
-    else 
+    else
         r = mid;
 }
 //eps根据题目要求的精度来取，一般比精度多取3位即可
@@ -146,8 +144,3 @@ while(abs(r - l) > eps){
 # 题外话
 
 [Problem - 1216E2 - Codeforces](https://codeforces.com/problemset/problem/1216/E2) 一个稍难一些的二分答案
-
-
-
-
-

@@ -3,9 +3,10 @@ title: TVM 运行环境搭建
 description: 介绍如何在一台只有 docker 的环境的服务器下配置 tvm 运行环境
 tags:
   - MLSys
-  - Compiler
+  - 编译器
+  - 环境配置
 date: 2023-06-06
-lastmod: 2024-12-10
+lastmod: 2024-12-15
 draft: false
 ---
 

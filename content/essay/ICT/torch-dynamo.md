@@ -2,10 +2,10 @@
 title: Dynamo & Triton 解析
 description: 关于 PyTorch2.0 中对 Dynamo 的解析
 tags:
-  - Compilers
   - MLSys
+  - 编译器
 date: 2023-06-24
-lastmod: 2024-12-11
+lastmod: 2024-12-15
 draft: false
 ---
 

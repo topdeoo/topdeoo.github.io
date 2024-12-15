@@ -2,10 +2,10 @@
 title: M1 打印进程树 (pstree) 实验指北
 description: 实现一个 pstree 的 shell 小工具（实际是 pstree 的一个阉割版本）
 tags:
-  - OS
   - NJU
+  - 操作系统
 date: 2023-07-27
-lastmod: 2024-12-10
+lastmod: 2024-12-15
 draft: false
 ---
 

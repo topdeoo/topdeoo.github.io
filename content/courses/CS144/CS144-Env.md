@@ -3,9 +3,10 @@ title: 环境配置
 description: CS144 的一些准备工作
 tags:
   - Stanford
-  - Network
+  - 计算机网络
+  - 环境配置
 date: 2023-02-20
-lastmod: 2024-12-11
+lastmod: 2024-12-15
 draft: false
 ---
 

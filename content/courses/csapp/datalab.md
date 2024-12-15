@@ -1,9 +1,11 @@
 ---
 title: data-lab
-description: "一个做了很久，做完之后其实还挺有收获的实验（我愿称之为最难\U0001F97A）"
-tags: [CMU]
-date: 2022-03-29 
-lastmod: 2024-12-10
+description: 一个做了很久，做完之后其实还挺有收获的实验（我愿称之为最难🥺）
+tags:
+  - CMU
+  - 计算机系统
+date: 2022-03-29
+lastmod: 2024-12-15
 draft: false
 ---
 

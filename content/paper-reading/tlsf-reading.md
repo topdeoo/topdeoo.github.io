@@ -1,16 +1,12 @@
 ---
-author: virgil
-email: mailto:virgiling7@gmail.com
 title: Two-Level Segregated Fit 阅读
 description: 
 tags:
-  - OS
-  - Reading
+  - 论文阅读
+  - 操作系统
 date: 2024-04-15
-lastmod: 2024-12-10
+lastmod: 2024-12-15
 draft: false
-create time: 星期二, 十二月 10日 2024, 11:27:24 晚上
-modify time: 星期三, 十二月 11日 2024, 3:50:58 下午
 ---
 
 > [论文的地址](https://ieeexplore.ieee.org/document/1311009)及其 [实现](https://github.com/yvt/rlsf) ，此文的参考解读为：[TLSF 解读](https://zhuanlan.zhihu.com/p/651465121)

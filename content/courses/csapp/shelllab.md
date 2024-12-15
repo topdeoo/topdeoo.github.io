@@ -1,9 +1,11 @@
 ---
 title: shell-lab
 description: ​不如我自己写的 `shell` 难度大（不过关于信号处理的部分还是很有意思的）
-tags: [CMU]
+tags:
+  - CMU
+  - 计算机系统
 date: 2022-11-03
-lastmod: 2024-12-10
+lastmod: 2024-12-15
 draft: false
 ---
 

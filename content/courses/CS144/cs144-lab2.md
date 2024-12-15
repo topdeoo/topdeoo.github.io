@@ -3,9 +3,9 @@ title: Lab2 TCP Receiver
 description: 写出完整的 TCP Receiver
 tags:
   - Stanford
-  - Network
+  - 计算机网络
 date: 2023-03-16
-lastmod: 2024-12-11
+lastmod: 2024-12-15
 draft: false
 ---
 

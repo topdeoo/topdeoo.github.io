@@ -3,9 +3,9 @@ title: SparTA 解读
 description: 
 tags:
   - MLSys
-  - Compiler
+  - 编译器
 date: 2023-06-16
-lastmod: 2024-12-11
+lastmod: 2024-12-15
 draft: false
 ---
 

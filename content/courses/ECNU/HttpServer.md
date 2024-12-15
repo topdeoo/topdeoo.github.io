@@ -3,21 +3,21 @@ title: 2020 计网项目作业
 description: HttpServer
 tags:
   - ECNU
-  - Network
+  - 计算机网络
 date: 2022-06-23
-lastmod: 2024-12-10
+lastmod: 2024-12-15
 draft: false
 ---
 
-> 本项目源代码已上传至Github: [topdeoo/Computer-Net-Project (github.com)](https://github.com/topdeoo/Computer-Net-Project)
+> 本项目源代码已上传至 Github: [topdeoo/Computer-Net-Project (github.com)](https://github.com/topdeoo/Computer-Net-Project)
 
-# 题目一： 实现一个简易的Web服务器
+# 题目一： 实现一个简易的 Web 服务器
 
 > 要求为：
 >
 > 1. 请使用`ServerSocket`和`Socket`进行代码实现
 > 2. 请使用多线程接管连接
-> 3. 在浏览器中输入`localhost:8081/index.html`能显示自己的学号信息（请自行编写`index.html`) 
+> 3. 在浏览器中输入`localhost:8081/index.html`能显示自己的学号信息（请自行编写`index.html`)
 > 4. 在浏览器中输入`localhost:8081`下其他无效路径，浏览器显示`404 not found`
 > 5. 在浏览器中输入`localhost:8081/shutdown`能使服务器关闭
 
@@ -87,8 +87,6 @@ class Handler implements Runnable{
 
 下面，我们集中精力来完成第二件事：解析，处理，回复报文
 
-
-
 ## 解析请求报文，作出响应
 
 首先我们知道，`http` 的请求报文分为三个部分：
@@ -111,14 +109,12 @@ class Handler implements Runnable{
 - 请求头中的各类信息 `headMap` ， 并着重提取了 `Host` , `Content-Type` 与 `Content-Length` 三条字段
 - 请求体中的信息 `data`
 
- `ResponseHeader` 继承了 `RequestHeader` 的大多数字段，并可根据 `RequestHeader` 来创建对象，在 `ResponseHeader` 中，我们增加了：
+`ResponseHeader` 继承了 `RequestHeader` 的大多数字段，并可根据 `RequestHeader` 来创建对象，在 `ResponseHeader` 中，我们增加了：
 
 - 状态码与状态码含义 `code`, `code_meaning`
 - 服务器名称 `server`
 
 这样，通过这两个类，我们便可以很好的解析并构造出一份 `HTTP` 报文。
-
-
 
 ### 解析报文
 
@@ -205,8 +201,6 @@ public static @NotNull RequestHeader requestParseString( @NotNull String temp){
 
 ### 对请求作出响应
 
-
-
 首先我们需要知道，响应报文的结构是怎样的
 
 ![回复报文](https://s2.loli.net/2022/06/23/BkFOzWKl93PvwDQ.webp)
@@ -285,12 +279,12 @@ class Handler implements Runnable{
     }
 
     private @NotNull String getMsg( @NotNull BufferedReader br) throws IOException {
-        StringBuilder ret = new StringBuilder(); 
+        StringBuilder ret = new StringBuilder();
         char[] chars = new char[Utils.SIZE];
         do{
             br.read(chars);
             ret.append(chars);
-            Arrays.fill(chars, '\0'); 
+            Arrays.fill(chars, '\0');
         } while (br.ready());
         return ret.toString();
     }
@@ -331,7 +325,7 @@ class Handler implements Runnable{
 
 随后，我们进入 `handle200` 做进一步处理：
 
-​	获取请求方法 `method`， 对请求方法做 `swicth`， 将其引导到对应的方法中去
+​ 获取请求方法 `method`， 对请求方法做 `swicth`， 将其引导到对应的方法中去
 
 - 若为 `GET`
   1. 获取请求的 `url`
@@ -413,7 +407,7 @@ private static void handle200( Socket socket ) throws IOException {
                 responseHeader.setContent_type("");
                 responseHeader.setContent_length(0);
                 String data = requestHeader.getData(); //获取post的内容
-                Utils.NIOWriteFile("db/data.txt", data, requestHeader.getContent_length()); 
+                Utils.NIOWriteFile("db/data.txt", data, requestHeader.getContent_length());
                 //将data写入数据库db（伪）
                 socket.getOutputStream().write(responseHeader.toString().getBytes(StandardCharsets.UTF_8));
                 break;
@@ -447,17 +441,15 @@ private static void handleError( @NotNull Socket socket ,int code ) throws IOExc
 }
 ```
 
-至此，一个简易的HTTP Server就完成了，其UML图如下：
+至此，一个简易的 HTTP Server 就完成了，其 UML 图如下：
 
 ![Server](https://s2.loli.net/2022/06/23/F79y52gIpdbA18M.png)
-
-
 
 ## 测试结果
 
 #### 浏览器：
 
-- GET index.html页面：
+- GET index.html 页面：
 
 ![Test index.html](https://s2.loli.net/2022/06/23/PNbY7otmnrjC46H.png)
 
@@ -471,11 +463,9 @@ private static void handleError( @NotNull Socket socket ,int code ) throws IOExc
 
 ![Test shutdown](https://s2.loli.net/2022/06/23/o6PXW8EpCylwOcL.png)
 
-
-
 ### postman：
 
-- GET index.html页面：
+- GET index.html 页面：
 
 ![Test index.html](https://s2.loli.net/2022/06/23/XeOHGmIKa13JVAb.png)
 
@@ -483,17 +473,17 @@ private static void handleError( @NotNull Socket socket ,int code ) throws IOExc
 
 ![Test 404](https://s2.loli.net/2022/06/21/bNkTiWIvSjn9fUP.png)
 
-- HEAD index.html页面：
+- HEAD index.html 页面：
 
 ![Test index.html](https://s2.loli.net/2022/06/23/vT57HfEhyqViLWR.png)
 
-- POST index.html页面：
+- POST index.html 页面：
 
 ![Post test](https://s2.loli.net/2022/06/23/ve8YHjcBKEawQkA.png)
 
 ![Post test](https://s2.loli.net/2022/06/23/syaYcAdZvn5URCk.png)
 
-- PUT md文件
+- PUT md 文件
 
 ![Put test](https://s2.loli.net/2022/06/23/cdZRnybI8XH2vgC.png)
 
@@ -503,7 +493,7 @@ private static void handleError( @NotNull Socket socket ,int code ) throws IOExc
 
 ![Test shutdown](https://s2.loli.net/2022/06/23/o6PXW8EpCylwOcL.png)
 
-### jmter压测：
+### jmter 压测：
 
 ![1000并发数](https://s2.loli.net/2022/06/23/iDJK9CO7dtXTqYI.png)
 
@@ -519,7 +509,7 @@ private static void handleError( @NotNull Socket socket ,int code ) throws IOExc
 
 事实上出现这样的结果是因为顺势并发量太大，而导致有部分线程并未运行到 `handle200()` 就被输出了，因此我们在代码中检查了这一情况，并将其状态码设置为 `500` 。
 
-------
+---
 
 # 题目二：实现一个简易的多线程代理服务器
 
@@ -527,8 +517,8 @@ private static void handleError( @NotNull Socket socket ,int code ) throws IOExc
 
 首先明确，题目中要求完成的代理是什么。
 
-1. 当你的代理服务器从一个浏览器接收到对某个对象的HTTP请求时，它生成对相同对象的一个新的HTTP请求并向初始服务器发送。
-2. 当该代理从初始服务器接收到具有该对象的HTTP相应时，它生成一个包括该对象的新的HTTP响应，并发送给该客户。
+1. 当你的代理服务器从一个浏览器接收到对某个对象的 HTTP 请求时，它生成对相同对象的一个新的 HTTP 请求并向初始服务器发送。
+2. 当该代理从初始服务器接收到具有该对象的 HTTP 相应时，它生成一个包括该对象的新的 HTTP 响应，并发送给该客户。
 3. 这个代理将是多线程的，使其在相同能够处理多个请求。
 
 理解是需要完成的代理是一个类似于中转站的服务器，它把请求报文和响应报文原封不动的传送给服务器与客户端，如下图所示：
@@ -626,7 +616,7 @@ private @NotNull String getMsg( @NotNull BufferedReader reader) throws IOExcepti
         reader.read(chars);
         ret.append(chars);
     } while (reader.ready());
-    return ret.toString(); 
+    return ret.toString();
 }
 
 @Override
@@ -634,9 +624,9 @@ public void run(){
 
     try {
 
-        String temp = getMsg(new BufferedReader(new InputStreamReader(client.getInputStream()))); 
+        String temp = getMsg(new BufferedReader(new InputStreamReader(client.getInputStream())));
         RequestHeader requestHeader = Utils.requestParseString(temp);
-        String host = requestHeader.getHost(); 
+        String host = requestHeader.getHost();
         int idx = host.indexOf(":");
         if(idx != -1) {
             port = Integer.parseInt(host.substring(idx + 1)); //截取(localhost:8081)目的端口号，若无则为80
@@ -659,7 +649,7 @@ public void run(){
 这里需要注意
 
 - 代理服务器读到的 `url` 与服务器读到的 `url` 是不相同的，例如，客户端请求 `http://localhost:8081/index.html`，代理得到的 `url` 是 `http://localhost:8081/index.html` ，而服务器读到的是 `/index.html`，因此，我们需要通过一些操作截取出 `index.html` 部分，并包装成新的 `url`。
-- `Host`字段可能会出现 `localhost:8081` 这种域名+端口的形式，于是我们需要将端口与域名分割，而若不存在这种情况的话，那么我们默认端口为80
+- `Host`字段可能会出现 `localhost:8081` 这种域名+端口的形式，于是我们需要将端口与域名分割，而若不存在这种情况的话，那么我们默认端口为 80
 
 接下来，我们就可以建立新的 `Socket` 向源服务器建立连接，发送消息并接受服务器的响应报文：
 
@@ -669,9 +659,9 @@ public void run(){
 
     try {
 
-        String temp = getMsg(new BufferedReader(new InputStreamReader(client.getInputStream()))); 
-        RequestHeader requestHeader = Utils.requestParseString(temp); 
-        String host = requestHeader.getHost(); 
+        String temp = getMsg(new BufferedReader(new InputStreamReader(client.getInputStream())));
+        RequestHeader requestHeader = Utils.requestParseString(temp);
+        String host = requestHeader.getHost();
         int idx = host.indexOf(":");
         if(idx != -1) {
             port = Integer.parseInt(host.substring(idx + 1)); //截取(localhost:8081)目的端口号，若无则为80
@@ -684,7 +674,7 @@ public void run(){
 
         temp = getMsg(new BufferedReader(new InputStreamReader(server.getInputStream()))); //获取服务器响应报文
         ResponseHeader responseHeader = Utils.responseParseString(temp);
-        
+
         // 向客户端发送数据
 
         server.close();
@@ -720,8 +710,8 @@ public void run(){
     try {
 
         String temp = getMsg(new BufferedReader(new InputStreamReader(client.getInputStream())));
-        RequestHeader requestHeader = Utils.requestParseString(temp); 
-        String host = requestHeader.getHost(); 
+        RequestHeader requestHeader = Utils.requestParseString(temp);
+        String host = requestHeader.getHost();
         int idx = host.indexOf(":");
         if(idx != -1) {
             port = Integer.parseInt(host.substring(idx + 1)); //截取(localhost:8081)目的端口号，若无则为80
@@ -757,9 +747,9 @@ public void run(){
 
 ## 测试结果
 
-浏览器与postman的测试结果同题1图
+浏览器与 postman 的测试结果同题 1 图
 
-### jmter压测：
+### jmter 压测：
 
 ![1000并发数](https://s2.loli.net/2022/06/23/iDJK9CO7dtXTqYI.png)
 
@@ -775,7 +765,7 @@ public void run(){
 
 > 注：如何测试代理服务器
 >
-> 1. 浏览器（以msedge为例）
+> 1. 浏览器（以 msedge 为例）
 >
 >    1. 打开浏览器的设置页面（右上角三点，设置）
 >
@@ -783,7 +773,7 @@ public void run(){
 >
 >       ![操作步骤](https://s2.loli.net/2022/06/01/JKFrfQDoTjMkdcY.png)
 >
->    3. 打开后，手动开启代理，设置端口号为代理服务器的端口号，这里为8080
+>    3. 打开后，手动开启代理，设置端口号为代理服务器的端口号，这里为 8080
 >
 >       ![代理设置](https://s2.loli.net/2022/06/01/a12X3f5lD6LeSbm.png)
 >
@@ -797,23 +787,23 @@ public void run(){
 >
 >    ![代理设置](https://s2.loli.net/2022/06/01/lKHCTN8YIsrSteM.png)
 
-------
+---
 
-# 附加：NIO服务器与NIO代理服务器
+# 附加：NIO 服务器与 NIO 代理服务器
 
-## NIO服务器
+## NIO 服务器
 
-### NIO简介
+### NIO 简介
 
 1. **ByteBuffer**：
 
-   NIO的传输基本单位，任何`String`类型都必须转化为`ByteBuffer`来传输
+   NIO 的传输基本单位，任何`String`类型都必须转化为`ByteBuffer`来传输
 
    `String` 与 `ByteBuffer` 的转换为：
 
    ```java
    String str = StandardCharsets.UTF_8.decode(byteBuffer).toString();
-   
+
    ByteBuffer bb = StandardCharsets.UTF_8.encode(str);
    // or
    ByteBuffer bb2 = ByteBuffer.wrap(str.getBytes(StandardCharsets.UTF_8));
@@ -823,39 +813,39 @@ public void run(){
 
    ```java
    channel.read(byteBuffer); //读完数据
-   
+
    byteBuffer.flip();
-   
+
    String str = StandardCharsets.UTF_8.decode(byteBuffer).toString();
    ```
 
 2. **Channel**:
 
-   NIO中，读写不再使用`OutputStream`这种流传输，转为使用传输 `ByteBuffer` 来传输数据，可以用 
+   NIO 中，读写不再使用`OutputStream`这种流传输，转为使用传输 `ByteBuffer` 来传输数据，可以用
 
    ```java
    ByteBuffer bb = ByteBuffer.alloc(1024); //申请大小为1024字节的缓冲区
-   
+
    channel.read(bb);
-   
+
    bb.flip();
-   
-   channel.write(bb);    
+
+   channel.write(bb);
    ```
 
-   这样的方式，来向管道中读写数据，我们可以将此管道视为`BIO`（传统IO）中的 `Socket.getInputStream` 与 `Socket.getOutputStream`。
+   这样的方式，来向管道中读写数据，我们可以将此管道视为`BIO`（传统 IO）中的 `Socket.getInputStream` 与 `Socket.getOutputStream`。
 
    但是需要注意的，这里的 `channel` 支持双向读写，也就是说我们不需要区分`Input`与`Output`了。
 
 3. **Selector**
 
-   这是NIO中最重要的部分，我们可以通过下图来解释`Selector`可以用来做什么。
+   这是 NIO 中最重要的部分，我们可以通过下图来解释`Selector`可以用来做什么。
 
    ![Selector](https://s2.loli.net/2022/06/01/yQY4wKC5xt7h2AG.png)
 
    我们可以发现，一个 `Selector` 可以管理多个 `Channel`。
 
-   不如把 `Selector` 视为一个服务器，下面的 `Channel` 视为客户端，那么这个图就会很清晰，而在NIO，这种想法恰好可以实现：
+   不如把 `Selector` 视为一个服务器，下面的 `Channel` 视为客户端，那么这个图就会很清晰，而在 NIO，这种想法恰好可以实现：
 
    我们运行一个线程，在这个线程中创建一个 `Selector` ，让这个线程去监听一个固定的端口，每当有客户端尝试连接这个端口时，我们就接受这个连接，并开启一个 `Channel` ，注册到这个 `Selector` 下面，让 `Selector` 来管理这个 `Channel`。
 
@@ -866,28 +856,28 @@ public void run(){
                Thread.currentThread().setName("master"); //启动一个主线程
                server.bind(new InetSocketAddress(PORT)); //监听固定端口
                server.configureBlocking(false); //将该通道设置为非阻塞（不设置则仍为BIO）
-   
+
                Selector master = Selector.open(); //创建一个Selector
                server.register(master, SelectionKey.OP_ACCEPT);
                //将当前这个 server 注册到 Selector 下面, 后面的OP_ACCEPT表示这个server只管接受连接，其他什么都不做
-   
+
                Handler[] handlers = new Handler[4];
                for (int i = 0 ; i< handlers.length; i++)
                    handlers[i] = new Handler(String.valueOf(i));
-   
+
                AtomicInteger idx = new AtomicInteger();
-   
-   
+
+
                while(true) {
-   
+
                    master.select();
-   
+
                    Iterator<SelectionKey> iter = master.selectedKeys().iterator();
                    while (iter.hasNext()) { //遍历Selector中监听到的事件
-   
+
                        SelectionKey key = iter.next();
                        iter.remove();
-   
+
                        if(key.isAcceptable()) {
                            //事件：有客户端已建立连接（类似的事件还有 isReadable, isWriteable, isConnected）
                            SocketChannel channel = server.accept(); //获取建立的通道
@@ -908,11 +898,9 @@ public void run(){
 
 ### 服务器的设计
 
-需要用到的NIO知识大概就这么多，下面可以来设计服务器了
+需要用到的 NIO 知识大概就这么多，下面可以来设计服务器了
 
 想法如图：
-
-
 
 ![服务器架构](https://s2.loli.net/2022/06/01/nVMgXLfQOB6C7ts.png)
 
@@ -920,7 +908,7 @@ public void run(){
 
 当有一个客户端连接时，我们通过上面的代码，生成一个 `SocketChannel` 并将其传递给一个 `Handler` 线程
 
-由于 `Selector` 是可以管理多个通道的，那么我们其实没必要每次接收到一个连接就新建一个线程（线程会自带 `Selector` ），我们可以创建 `n` 个 `Handler` （这个 `n` 取决于电脑CPU是几核的）
+由于 `Selector` 是可以管理多个通道的，那么我们其实没必要每次接收到一个连接就新建一个线程（线程会自带 `Selector` ），我们可以创建 `n` 个 `Handler` （这个 `n` 取决于电脑 CPU 是几核的）
 
 ![Server](https://s2.loli.net/2022/06/20/wZi5nhpNeV4Dtf8.png)
 
@@ -928,11 +916,11 @@ public void run(){
 
 首先，我们需要一个 `register` 方法，将连接的任务加入到 `Handler` 的任务队列中
 
-事实上，我们可以把一个 `Handler` 当做一个流水线上的工人，他有一个任务列表，不断的做TODO-List中的事项（当然这部分也可以视为模板编程，因为这个大家写的都差不多）
+事实上，我们可以把一个 `Handler` 当做一个流水线上的工人，他有一个任务列表，不断的做 TODO-List 中的事项（当然这部分也可以视为模板编程，因为这个大家写的都差不多）
 
 重点是在处理数据的部分：
 
-1. 新建一个 `Method` 对象，这个对象包涵的方法其实就是第一题中 `Server` 中 `Handler` 的方法，但在NIO中，每次遍历的 `key` 只会存在一个关心的事件，这就要求我们在更改其关注的事件时，需要将解析的请求头通过通道的 `attchment` 传递出去
+1. 新建一个 `Method` 对象，这个对象包涵的方法其实就是第一题中 `Server` 中 `Handler` 的方法，但在 NIO 中，每次遍历的 `key` 只会存在一个关心的事件，这就要求我们在更改其关注的事件时，需要将解析的请求头通过通道的 `attchment` 传递出去
 
 2. 于是，在 `Method` 中解析请求报文完成后，我们将其包装好并传递到此 `Channel` 中的 `attchment` 中，并更改 `key` 关注的事件为 `write` 事件
 
@@ -1008,7 +996,7 @@ class Handler implements Runnable{
 }
 ```
 
- `Method` 代码如下：
+`Method` 代码如下：
 
 ```java
 public class Method {
@@ -1203,9 +1191,9 @@ class NIOFileHandler{
 
 ## NIO Proxy
 
-NIO的代理，难写的点在于，NIO处理读写的代码结构与 `Socket` 那种完全不同，因此，在对NIO仅仅只是了解了皮毛的基础上，我只能写出一个能跑，但是效率不怎么高的代理服务器...
+NIO 的代理，难写的点在于，NIO 处理读写的代码结构与 `Socket` 那种完全不同，因此，在对 NIO 仅仅只是了解了皮毛的基础上，我只能写出一个能跑，但是效率不怎么高的代理服务器...
 
-代理的想法还是很简单，只需要转送报文即可。于是，我们采用与NIO Server相同的结构，来完成这一代理：
+代理的想法还是很简单，只需要转送报文即可。于是，我们采用与 NIO Server 相同的结构，来完成这一代理：
 
 ```java
 public class Proxy {
@@ -1379,13 +1367,13 @@ try {
    // IN RequestHeader
    public String trans(){
        StringBuilder sb = new StringBuilder();
-   
+
        sb.append(String.format("%s %s %s\r\n", getMethod(), getUrl(), getVersion()));
        for(String K : headMap.keySet())
            sb.append(String.format("%s:%s\r\n", K, headMap.get(K)));
        sb.append("\r\n");
        sb.append(data.toString());
-   
+
        return sb.toString();
    }
    ```
@@ -1394,29 +1382,27 @@ try {
    // IN ResopnseHeader
    public String trans(){
        this.setContent_length(data.toString().getBytes(StandardCharsets.UTF_8).length);
-   
+
        StringBuilder ret = new StringBuilder();
        ret.append(String.format("%s %d %s\r\n", getVersion(), code, code_meaning));
        ret.append(String.format("Server: %s\r\n", getServer()));
        ret.append(String.format("Content-Type: %s\r\n", getContent_type()));
        ret.append(String.format("Content-Length: %d\r\n", getContent_length()));
        ret.append("Date:").append(new Date()).append("\r\n\r\n");
-   
+
        ret.append(data.toString());
-   
+
        return ret.toString();
    }
    ```
 
    这两个函数用来写转运时的报文头与报文体
 
-至此，我们的工作已经做完了，NIO部分的代理与服务器的结构如下图所示
+至此，我们的工作已经做完了，NIO 部分的代理与服务器的结构如下图所示
 
 ![Design](https://s2.loli.net/2022/06/20/DSXmPVMRKnT7eYa.png)
 
-### jmter压测：
-
-
+### jmter 压测：
 
 打开代理后：
 
@@ -1428,7 +1414,7 @@ try {
 
 ![Result](https://s2.loli.net/2022/06/23/S8AqoMaHQmsPFiO.png)
 
-若不使用代理，则NIO服务器的压测为：
+若不使用代理，则 NIO 服务器的压测为：
 
 ![Result-1](https://s2.loli.net/2022/06/21/FlKnq8fycdbW2eH.png)
 
@@ -1436,7 +1422,7 @@ try {
 
 ![Result-3](https://s2.loli.net/2022/06/23/gP1iOYurbIZQWhJ.png)
 
-------
+---
 
 # 困难与问题
 
@@ -1447,13 +1433,8 @@ try {
 
 以上问题大多数都已解决，但对于`Java`如何合理管理内存依然存在疑问，由于 `Java` 的自动 `gc` 机制导致不能像使用 `C/C++` 那样直接对内存进行操作，因此在 `NIO` 中，若并发数太多，便会抛出内存不够的异常。此问题日后会尽力去解决，并完善自己的 `NIO` 服务器。
 
-------
-
-
+---
 
 # 总结
 
-本次实验中使用Java语言开发了一个简单的Web服务器，了解并熟悉了套接字的使用以及多线程接管连接的实现；同时，开发了一个简单的多线程Web代理服务器，了解并熟悉了代理的运行机制以及线程池的工作；最后，使用NIO实现服务器支持连接的并发功能，了解了NIO的定义以及优势。在这个过程中，我学习了浏览器和`postman`的代理测试，以及压测的一定知识等等，收获颇丰。
-
-
-
+本次实验中使用 Java 语言开发了一个简单的 Web 服务器，了解并熟悉了套接字的使用以及多线程接管连接的实现；同时，开发了一个简单的多线程 Web 代理服务器，了解并熟悉了代理的运行机制以及线程池的工作；最后，使用 NIO 实现服务器支持连接的并发功能，了解了 NIO 的定义以及优势。在这个过程中，我学习了浏览器和`postman`的代理测试，以及压测的一定知识等等，收获颇丰。

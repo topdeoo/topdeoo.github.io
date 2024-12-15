@@ -4,8 +4,9 @@ description: 由于在 Windows 下开WSL和IDE导致电脑内存已经吃不消�
 tags:
   - Linux
   - Manjaro
+  - 环境配置
 date: 2023-05-12
-lastmod: 2024-12-11
+lastmod: 2024-12-15
 draft: false
 ---
 > [!info]

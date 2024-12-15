@@ -2,9 +2,9 @@
 title: 基础网络流
 description: 介绍一些基础的网络流算法（蓝旭算法课）
 tags:
-  - Algorithm
+  - 算法讲义
 date: 2022-07-29
-lastmod: 2024-12-11
+lastmod: 2024-12-15
 draft: false
 ---
 

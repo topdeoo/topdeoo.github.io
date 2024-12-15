@@ -3,9 +3,9 @@ title: gprof 的一些使用指北
 description: 
 tags:
   - Linux
-  - Issue
+  - 疑难杂症
 date: 2024-07-09
-lastmod: 2024-12-10
+lastmod: 2024-12-15
 draft: false
 ---
 
@@ -55,7 +55,7 @@ auto dur = process_time() - _start;
 
 ## `gprof` 简介
 
-[Gprof](https://sourceware.org/binutils/docs/gprof/) 是 GNU binutils 工具之一。可以分析出代码中每个函数的调用次数、每个函数消耗的处理器时间等，我们通过在编译选项中加上 `-pg` 即可开启。
+[Gprof](https://sourceware.org/binutils/docs/gprof/)  是 GNU binutils 工具之一。可以分析出代码中每个函数的调用次数、每个函数消耗的处理器时间等，我们通过在编译选项中加上 `-pg` 即可开启。
 
 例如：
 

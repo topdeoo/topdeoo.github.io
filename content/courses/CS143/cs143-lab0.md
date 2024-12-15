@@ -2,10 +2,11 @@
 title: 环境配置
 description: Stanford CS143 实验环境安装与配置
 tags:
-  - Compiler
   - Stanford
+  - 编译器
+  - 环境配置
 date: 2022-07-16
-lastmod: 2024-12-11
+lastmod: 2024-12-15
 draft: false
 ---
 

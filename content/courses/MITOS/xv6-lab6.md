@@ -2,10 +2,10 @@
 title: Lab6 Multithreading
 description: 
 tags:
-  - OS
   - MIT
+  - 操作系统
 date: 2022-09-06
-lastmod: 2024-12-11
+lastmod: 2024-12-15
 draft: false
 ---
 

@@ -3,9 +3,9 @@ title: NJU ICS PA-1
 description: ICS PA1 sdb
 tags:
   - NJU
-  - ICS
+  - 计算机系统
 date: 2023-07-16
-lastmod: 2024-12-10
+lastmod: 2024-12-15
 draft: false
 ---
 
@@ -15,7 +15,7 @@ draft: false
 
 就算你是二周目来思考这个问题, 你也有可能是第一次听到"编程模型"这个概念. 不过如果一周目的时候你已经仔细地阅读过 ISA 手册, 你会记得确实有这么个概念. 所以, 如果想知道什么是编程模型, RTFM 吧.
 
-> [!example]
+> [!example]-
 >
 > 可以没有寄存器，通过对 cache 中每个单元进行命名，实际上也能达到寄存器的效果
 >
@@ -51,7 +51,7 @@ draft: false
 
 在`cmd_c()`函数中, 调用`cpu_exec()`的时候传入了参数`-1`, 你知道这是什么意思吗?
 
-> [!example]
+> [!example]-
 >
 > 表示一次 `yield`，具体可查看 `cpu_exec()` 中对参数 `n` 的调用：
 >
@@ -74,7 +74,7 @@ draft: false
 
 "调用`cpu_exec()`的时候传入了参数`-1`", 这一做法属于未定义行为吗? 请查阅 C99 手册确认你的想法.
 
-> [!example]
+> [!example]-
 >
 > 根据 `GPT` 的解释：
 >

@@ -3,8 +3,9 @@ title: Lab1 Utils
 description: Lab1简单的熟悉xv6操作系统和怎么做实验
 tags:
   - MIT
+  - 操作系统
 date: 2022-04-01
-lastmod: 2024-12-11
+lastmod: 2024-12-15
 draft: false
 ---
 

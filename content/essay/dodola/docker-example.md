@@ -3,8 +3,9 @@ title: docker 配置各类实验环境
 description: 
 tags:
   - dodola
+  - 环境配置
 date: 2024-06-03
-lastmod: 2024-12-10
+lastmod: 2024-12-15
 draft: false
 ---
 
@@ -38,7 +39,7 @@ docker run -it --name tinyriscv --network=host -e http_proxy=http://127.0.0.1:78
 
 ![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/202406032009763.png)
 
-> 如果下载速度较慢的话可以选择挂梯子走系统代理，或者通过镜像加速，方法见[此处](https://blog.csdn.net/Lyon_Nee/article/details/124169099) 
+> 如果下载速度较慢的话可以选择挂梯子走系统代理，或者通过镜像加速，方法见[此处](https://blog.csdn.net/Lyon_Nee/article/details/124169099)
 
 完成后，会进入一个 `bash` 的交互页面，如下图所示：
 ![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/202406032032732.png)
@@ -65,14 +66,14 @@ cd
 docker run -it --name tinyriscv --network=host -v tinyriscv:/root/tinyrisv ubuntu:latest /bin/bash
 ```
 
-> 关于工具链的下载，可以采用官网的方式 `https://github.com/riscv-collab/riscv-gnu-toolchain` 
+> 关于工具链的下载，可以采用官网的方式 `https://github.com/riscv-collab/riscv-gnu-toolchain`
 > 如果一定要使用百度云下载，那么可以下载到本地后，使用 `docker cp` 命令复制到容器中，命令为：
 
 ```bash
 docker cp [source] [container]:[path]
 ```
 
-例如，把本地的 `example` 文件夹复制到容器ID为 `65` 开头的那个容器中，其命令为：
+例如，把本地的 `example` 文件夹复制到容器 ID 为 `65` 开头的那个容器中，其命令为：
 
 `docker cp example 65:/root/example`
 
@@ -144,7 +145,7 @@ docker run -it --name=tinyriscv --network=host -e http_proxy=127.0.0.1:7890 tiny
 
 # 如何在容器中写代码
 
-这里介绍一种最简单的方式：`VS Code` 
+这里介绍一种最简单的方式：`VS Code`
 
 我们在 `VS Code` 中安装插件：
 

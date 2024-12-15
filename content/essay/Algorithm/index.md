@@ -1,9 +1,9 @@
 ---
-title: 一些算法
+title: 一些算法讲义
 description: 
-tags:
+tags: 
 date: 2022-07-10
-lastmod: 2024-12-10
+lastmod: 2024-12-15
 draft: false
 comments: false
 ---

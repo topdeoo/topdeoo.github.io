@@ -2,10 +2,10 @@
 title: Lab8 Locks
 description: 优化 xv6 中的锁结构
 tags:
-  - OS
   - MIT
+  - 操作系统
 date: 2022-09-12
-lastmod: 2024-12-10
+lastmod: 2024-12-15
 draft: false
 ---
 

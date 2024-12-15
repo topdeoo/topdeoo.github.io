@@ -3,9 +3,9 @@ title: NJU ICS PA-0
 description: ICS PA 的实验环境准备
 tags:
   - NJU
-  - ICS
+  - 计算机系统
 date: 2023-07-16
-lastmod: 2024-12-11
+lastmod: 2024-12-15
 draft: false
 ---
 

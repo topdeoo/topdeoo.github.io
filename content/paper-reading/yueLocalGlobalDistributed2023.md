@@ -2,9 +2,11 @@
 title: 伪布尔优化中的分布式 QAOA 算法
 description: 
 tags:
-  - Reading
+  - 论文阅读
+  - 量子算法
+  - 组合优化
 date: 2024-12-12
-lastmod: 2024-12-13
+lastmod: 2024-12-15
 draft: false
 zotero-key: FS3KXWKE
 zt-attachments:
@@ -20,9 +22,11 @@ citekey: yueLocalGlobalDistributed2023
 > 1.  将 PBO 问题编码为 QAOA 的形式
 > 2.  将 QAOA 分割为子问题进行分布式求解
 
-# Local to Global: A Distributed Quantum Approximate Optimization Algorithm for Pseudo-Boolean Optimization Problems
+# 论文标题与摘要
 
-> [!abstract]
+**Local to Global: A Distributed Quantum Approximate Optimization Algorithm for Pseudo-Boolean Optimization Problems**
+
+> [!abstract]-
 >
 > With the rapid advancement of quantum computing, Quantum Approximate Optimization Algorithm (QAOA) is considered as a promising candidate to demonstrate quantum supremacy, which exponentially solves a class of Quadratic Unconstrained Binary Optimization (QUBO) problems. However, limited qubit availability and restricted coherence time challenge QAOA to solve large-scale pseudo-Boolean problems on currently available Near-term Intermediate Scale Quantum (NISQ) devices. In this paper, we propose a distributed QAOA which can solve a general pseudo-Boolean problem by converting it to a simplified Ising model. Different from existing distributed QAOAs' assuming that local solutions are part of a global one, which is not often the case, we introduce community detection using Louvian algorithm to partition the graph where subgraphs are further compressed by community representation and merged into a higher level subgraph. Recursively and backwards, local solutions of lower level subgraphs are updated by heuristics from solutions of higher level subgraphs. Compared with existing methods, our algorithm incorporates global heuristics into local solutions such that our algorithm is proven to achieve a higher approximation ratio and outperforms across different graph configurations. Also, ablation studies validate the effectiveness of each component in our method.
 
@@ -50,7 +54,7 @@ $$
 
 于是 $\mathcal{S}_0^l$ 表示幂集中的元素，其中 $l$ 为子集的标签（也就是函数中的某一项），$c_l  \in \mathbb{R}$ 表示项的系数
 
-> [!example]
+> [!example]-
 >
 > 例如：
 >
@@ -134,7 +138,7 @@ $$
 > 这里的有影响定义为 $f(1, \dots, x_i=1, \dots, 1) -f(1, \dots, x_i=0, \dots, 1) = 1$
 > 注意，$f$ 中所有项的系数已经被设置为 $1$ 了
 
-> [!example]
+> [!example]-
 >
 > 例如 $x_1x_4 - 2x_2x_3 + 4x_1x_2x_4$ ，这里，只有 $x_3$ 为解耦变量，在这个条件下，我们可以进一步推导出：
 >
@@ -210,7 +214,7 @@ $$
 
 换而言之，这类变量的决策与否，对最小化目标函数并没有实质的贡献，因此我们可以延迟决策这些变量。
 
-> [!example]
+> [!example]-
 >
 > 考虑 $v(z_1, \dots, z_5) = z_1z_2 + z_2z_3 + z_3z_1 + z_3z_4 + z_4z_5 + z_2$， 显然 $z_5$ 存在唯一依赖关系，在延迟决策 $z_5$ 后，我们发现 $z_4$ 也成为了唯一依赖关系
 > 于是，我们的做法是，将 $z_4, z_5$ 从优化函数中去除：$\min v(z_1, \dots, z_5) = \min \tilde{v}(z_1, \dots, z_3)$，且 $z_4 = \arg\min z_3z_4, z_5 = \arg\min z_4z_5$
@@ -236,4 +240,3 @@ $$
 $$
 
 这里的 $\sigma^z = \begin{bmatrix} 1 & 0\\ 0 & -1 \end{bmatrix}$ , $I_l = \begin{bmatrix} 1 & 0\\ 0 & 1 \end{bmatrix}$ （$\sigma^z$ 本质上是一个泡利 Z 门，作用效果是绕 Bloch 球  Z  轴旋转角度$\pi$）
-

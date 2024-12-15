@@ -3,14 +3,16 @@ title: "SparrOS: A Toy OS 0x00"
 description: 
 tags:
   - NENU
-  - OS
+  - 编译器
+  - 一些随笔
 date: 2024-04-14
-lastmod: 2024-12-11
+lastmod: 2024-12-15
 draft: true
 ---
+
 本人的一些毕业设计，没有什么能比自己写一个操作系统更有意思了！
 
-> 一个退役ACMer的叛变
+> 一个退役 ACMer 的叛变
 
 由于我很喜欢 `xv6` 的设计，但是有很想写 `Rust`，但是又有点不太喜欢 `rCore` 的一些步骤设计（虽然确实很符合发展历程，但总觉得不适合自底向上的迭代开发……）
 
@@ -42,7 +44,7 @@ target = "riscv64gc-unknown-none-elf"
 可能并不是很需要升级，如果使用的系统是 `Arch` 系的话，当然对于 `Ubuntu` 这种大众系统，升级方式如下：
 
 1. 对于 `qemu` ，请手动安装，因为 `apt` 源中的版本确实很低
-	手动安装的意思就是从源码编译安装，文档的地址为：[QEMU Source Install](https://www.qemu.org/download/#source)
+   手动安装的意思就是从源码编译安装，文档的地址为：[QEMU Source Install](https://www.qemu.org/download/#source)
 2. 对于 `Rust`，简单的直接输入 `rustup update` 即可升级
 
 # 调试环境
@@ -76,7 +78,8 @@ target = "riscv64gc-unknown-none-elf"
 └── target
 ```
 
-如上所示，其中 
+如上所示，其中
+
 - `arch` 为 `lib`，不同平台的实现在不同的文件夹内
 - `modules` 中的每一个实现均为一个 `lib`，我们会在这里实现内核的各类模块，例如内存分配器，页帧分配器等
 - `kernel` 为内核的主函数实现

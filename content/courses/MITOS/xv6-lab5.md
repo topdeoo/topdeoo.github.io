@@ -2,10 +2,10 @@
 title: Lab5 CoW Fork
 description: 实验早就做好了但是…… 思路借鉴了课程中 `Prof. Robert Morris` 的思路
 tags:
-  - OS
   - MIT
+  - 操作系统
 date: 2022-09-04
-lastmod: 2024-12-11
+lastmod: 2024-12-15
 draft: false
 ---
 

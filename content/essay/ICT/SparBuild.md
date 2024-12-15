@@ -2,10 +2,11 @@
 title: SparseTIR & SparTA 环境搭建与实现复现
 description: SparseTIR 与 SparTA 的实验复现
 tags:
-  - Compiler
   - MLSys
+  - 编译器
+  - 环境配置
 date: 2023-06-12
-lastmod: 2024-12-11
+lastmod: 2024-12-15
 draft: false
 ---
 
