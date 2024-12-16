@@ -5,7 +5,7 @@ tags:
   - 论文阅读
   - 量子算法
 date: 2024-12-12
-lastmod: 2024-12-15
+lastmod: 2024-12-16
 draft: false
 zotero-key: E58SF83N
 zt-attachments:
@@ -16,12 +16,43 @@ citekey: farhiQuantumApproximateOptimization2014
 > [!tldr]
 >
 > [文章链接](http://arxiv.org/abs/1411.4028)
+> 通过绝热定理，我们可以写出哈密顿量的一个形式：
+>
+> $$
+> H = \sum_{i = 1}^NH_i
+> $$
+>
+> 又根据含时哈密顿量在薛定谔方程中的解，我们可以得出 $U(H, t) = \exp{(\frac{-iHt}{\hbar})}$
+> 根据 [Trotter-Suzuki decomposition](https://en.wikipedia.org/wiki/Lie_product_formula) $e^{A +B} \simeq (e^{\frac{A}{n}}e^{\frac{B}{n}})^n$
+> 我们可以将系统最终演化酉变换写为：
+>
+> $$
+> U(H, t, p) = \prod^n_{j=1}\prod_ke^{\frac{-iH_kt}{n}}, H = \sum_k H_k
+> $$
+>
+> 而 QAOA 就是在这个基础上，让哈密顿量在基态与问题哈密顿量之间切换，通过优化时间的参数，来达到优化最终损失函数的目的
 
 # A Quantum Approximate Optimization Algorithm
 
 > [!summary]-
 >
 > We introduce a quantum algorithm that produces approximate solutions for combinatorial optimization problems. The algorithm depends on a positive integer p and the quality of the approximation improves as p is increased. The quantum circuit that implements the algorithm consists of unitary gates whose locality is at most the locality of the objective function whose optimum is sought. The depth of the circuit grows linearly with p times (at worst) the number of constraints. If p is fixed, that is, independent of the input size, the algorithm makes use of efficient classical preprocessing. If p grows with the input size a different strategy is proposed. We study the algorithm as applied to MaxCut on regular graphs and analyze its performance on 2-regular and 3-regular graphs for fixed p. For p = 1, on 3-regular graphs the quantum algorithm always finds a cut that is at least 0.6924 times the size of the optimal cut.
+
+# 组合优化问题的编码
+
+任意一个组合优化问题都可以被编码为 MAX-SAT 的形式（$n$ 个变量，$m$ 条子句），并使用这 $n$ 个 0-1 变量定义一个目标函数：
+
+$$
+C(z) = \sum^m_{\alpha=1}C_{\alpha}(z)
+$$
+
+其中，$z = z_1z_2\dots z_n$，为一个比特串，$C_{\alpha}(z)$ 表示第 $\alpha$ 条子句是否满足
+
+对于一个量子计算机，其运行在一个 $2^n$ 维的希尔伯特空间内，我们需要求得的比特串为 $\ket{z}$，使得 $C(z)$ 最大
+
+我们通过 [[Quantum Algorithm Preparation#量子计算原理|量子计算原理]] 中的内容，将目标改写为通过构造一个参数 $\theta$，是我们能够求得哈密顿量的基态 $\ket{z}$，也就是使得损失函数最小的量子态
+
+在介绍如何构造哈密顿量之前，我们引入一个理论基础
 
 # 绝热量子计算
 
@@ -31,25 +62,32 @@ citekey: farhiQuantumApproximateOptimization2014
 >
 > 对于一个含时但演化足够慢($T \to \infty$)的物理系统，若系统的初始时刻处于一能量本征态 $\ket{\psi(0)}$，那么在 $t$ 时刻将处于 $H(t)$ 相应的瞬时本征态 $\ket{\psi(t)}$ 上
 
-那么，我们构建一个含时的哈密顿量连接 $H_B \rightarrow H_P$ 如下，其中 $H_B = - \sum_i \sigma^x_i$，其对应的本征态为 $\ket{\psi_0} = \prod_i \ket{+}$
+那么，我们构建一个 [[Quantum Algorithm Preparation#状态的演化|含时的哈密顿量演化过程]] $H_B \rightarrow H_P$ 如下，其中 $H_B = - \sum_i \sigma^x_i$，其对应的本征态为 $\ket{\psi_0} = \prod_i \ket{+}$，注意这里的 $\prod_i \ket{+}$ 表示张量积 $\ket{+} \otimes \ket{+} \dots$
 
 $$
 \hat{H}(t) = (1 - s(t))H_B + s(t)H_P
 $$
 
-其中，$s(0) = 1, s(T) = 1$，我们期望演化足够缓慢，于是 $T \to \infty$ ，换而言之，我们对 $[0, 1]$ 这个区间进行细分，得到：
+其中，$s(0) = 1, s(T) = 1$
+
+> [!tldr]-
+>
+> 通过薛定谔方程，我们可以直接求得
+>
+> $$
+> \begin{aligned}
+> \ket{\psi} &= \mathcal{T}\exp{(\frac{-i}{\hbar}\int^{t}_{0}\hat{H}(t)dt)\ket{\psi_0}}\\
+> &= U(t)\ket{\psi_0}
+> \end{aligned}
+> $$
+
+我们期望演化足够缓慢，于是 $T \to \infty$ ，换而言之，我们对 $[0, 1]$ 这个区间进行细分，得到：
 
 $$
 \hat{H}(t) = \prod_j^p \bigg((1 - s(j\Delta t))H_B + s(j\Delta t)H_P \bigg)\Delta t
 $$
 
-本质上，我们相当于演化了 $p$ 次，每次的时间为 $\Delta t$
-
-> [!question]
->
-> 哈密顿量如何将其转化为量子电路呢？
-
-我们可以通过以下等式求得经过 $p$ 次演化的本征态 $\ket{\psi}$ ：
+本质上，我们相当于演化了 $p$ 次，每次的时间为 $\Delta t$，我们可以通过以下等式求得经过 $p$ 次演化的本征态 $\ket{\psi}$ ：
 
 $$
 \ket{\psi} = \prod_i U_i\ket{\psi_0}
@@ -90,12 +128,20 @@ $$
 
 其中，$\theta = (\gamma_1, \beta_1, \dots, \gamma_p, \beta_p)$
 
-根据 [[#构建量子电路的理论原理|上文的内容]] 可以知道，我们现在就得到了一个可以使用经典优化器优化的模型：
+根据 [[Quantum Algorithm Preparation#测量|量子计算理论基础]] 可以知道，我们现在就得到了一个可以使用经典优化器优化的模型：
 
 $$
-C(\theta) = \bra{\psi(\theta)}U^\dagger(\theta) H_PU(\theta) \ket{\psi(\theta)}
+C(\theta) = \bra{\psi(\theta)}H\ket{\psi(\theta)}
 $$
 
-通过测量这个电路，得到$\ket{\psi(\theta)}$ 后，调用传统优化器更新 $\theta$（通常为梯度下降），然后进一步生成量子电路，不断重复这个过程，如下图所示：
+通过测量得到 $C(\theta)$ 后，调用传统优化器更新 $\theta$（梯度下降等），不断重复这个过程，如下图所示：
 
 ![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/202412140041518.png)
+
+最后，我们在基态中测量 $\ket{\psi(\theta)}$，测得概率最大的一个作为问题的解
+
+> [!important]
+>
+> 根据我们之前所说，这里的酉变换 $U_i$ 本质上都是量子门，但我们期望所有量子门都通过基础的门来生成（泡利门等），于是这要求我们需要将问题的哈密顿量编码为能够写为泡利门组合的形式
+
+# 最大割示例

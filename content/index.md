@@ -3,7 +3,7 @@ title: 思想犯
 description: 
 tags: 
 date: 2022-03-29
-lastmod: 2024-12-15
+lastmod: 2024-12-16
 draft: false
 ---
 
@@ -30,6 +30,10 @@ Virgil, 一个活的相对失败的 `CSer`，会的东西很多但没有一样�
 - 如果你对可能（大概率）鸽子的公开课教程感兴趣，可以参考 [[courses/index|公开课实验教程]] 中提及的所有课程（如果我没有上过的话），在 [csdiy](https://csdiy.wiki)上想必会有更好的博客教程。
 - 如果你对一些组合优化/约束求解 的论文（当然可能也不止这一个主题）感兴趣，我偶尔会在 [[paper-reading/index|论文阅读笔记]] 中写一些内容（这个不是因为懒得写，只是因为在做 slides 时，我都是用的`typst`，但目前 `quartz` 的数学模式还不支持 `typst`，详见 [issue1605](https://github.com/jackyzha0/quartz/issues/1605)）
 - 如果是想寻找一些教程（主要是环境的配置问题），可以在 [[problem-with-solution/index|遇到的环境问题wiki]] 中搜索
+
+> [!note]
+>
+> 关于本人所使用的工具和工作流等，会在[[tools/index|单一的专栏]]进行更新
 
 # 关于友链
 

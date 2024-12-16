@@ -1,9 +1,9 @@
 ---
-title: 一些杂货堆
+title: 杂七杂八的学习
 description: 
-tags:
+tags: 
 date: 2023-06-06
-lastmod: 2024-12-10
+lastmod: 2024-12-16
 draft: false
 comments: false
 ---
