@@ -5,7 +5,7 @@ tags:
   - 论文阅读
   - 量子算法
 date: 2024-12-12
-lastmod: 2024-12-16
+lastmod: 2024-12-17
 draft: false
 zotero-key: E58SF83N
 zt-attachments:
@@ -23,7 +23,9 @@ citekey: farhiQuantumApproximateOptimization2014
 > $$
 >
 > 又根据含时哈密顿量在薛定谔方程中的解，我们可以得出 $U(H, t) = \exp{(\frac{-iHt}{\hbar})}$
+>
 > 根据 [Trotter-Suzuki decomposition](https://en.wikipedia.org/wiki/Lie_product_formula) $e^{A +B} \simeq (e^{\frac{A}{n}}e^{\frac{B}{n}})^n$
+>
 > 我们可以将系统最终演化酉变换写为：
 >
 > $$
@@ -144,4 +146,36 @@ $$
 >
 > 根据我们之前所说，这里的酉变换 $U_i$ 本质上都是量子门，但我们期望所有量子门都通过基础的门来生成（泡利门等），于是这要求我们需要将问题的哈密顿量编码为能够写为泡利门组合的形式
 
-# 最大割示例
+# 最小顶点覆盖示例
+
+考虑 $G = <V, E>$ 上的 MVC 问题，我们的目标是选取最少的顶点，使得所有的边均覆盖，其哈密顿量为：
+
+$$
+H_C \ = \ 3 \sum_{(i, j) \in E(G)} (\sigma^i_z \sigma^j_z \ + \ \sigma^i_z \ + \ \sigma^j_z) \ - \
+
+                  \displaystyle\sum_{i \in V(G)} \sigma^i_z
+$$
+
+其中 $\sigma_z \in \{-1, 1\}$
+
+考虑一个简单的图，如下所示，显然其最小顶点覆盖的解为：{2, 1}，需要求得的量子比特位 $\ket{\psi} = 01100$（当然也有其他解）
+
+![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/202412170047570.png)
+
+我们考虑两层的 QAOA 算法，线路如下所示：
+
+![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/202412170044579.png)
+
+随后，我们使用梯度下降优化器来优化参数 $\theta = (\overrightarrow{\gamma}, \overrightarrow{\beta})$，使得 $\braket{H_C(\theta)}$ 取得最小值，我们运行 70 轮：
+
+![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/202412170045329.png)
+
+最终，我们测量出现概率最高的基态：
+
+![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/202412170046477.png)
+
+概率最高的也同样是 $\ket{\psi} = 01100$
+
+> [!info]
+>
+> QAOA 中的近似，本质上是在绝热过程中的近似，因为绝热演变要求时间缓慢（也就是趋向于无穷），那么也就要求 $p \to \infty$，因此近似的 gap 有很大一部分在这里

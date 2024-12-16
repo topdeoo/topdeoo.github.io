@@ -6,7 +6,7 @@ tags:
   - 量子算法
   - 组合优化
 date: 2024-12-12
-lastmod: 2024-12-16
+lastmod: 2024-12-17
 draft: false
 zotero-key: FS3KXWKE
 zt-attachments:
@@ -225,7 +225,7 @@ $$
 \min \tilde{v}(z_{q1}, \dots, z_{qD}) = \sum_{1 \leq i \lt j \leq D}w_{ij}z_{qi}z_{qj} + \sum_{1 \leq k \leq D}w_kz_{qk}
 $$
 
-# QAOA 算法
+# [[farhiQuantumApproximateOptimization2014|QAOA 算法]]
 
 得到了 $\tilde{v}$ 的表示后，我们可以很轻松的将其转变为哈密顿量 $H$：
 
@@ -239,4 +239,4 @@ $$
 \sigma^z_{qi} = I_1 \otimes \dots \otimes I_{i-1} \otimes \sigma^z \otimes I_{i+1} \otimes \dots \otimes I_D
 $$
 
-这里的 $\sigma^z = \begin{bmatrix} 1 & 0\\ 0 & -1 \end{bmatrix}$ , $I_l = \begin{bmatrix} 1 & 0\\ 0 & 1 \end{bmatrix}$ （$\sigma^z$ 本质上是一个泡利 Z 门，作用效果是绕 Bloch 球  Z  轴旋转角度$\pi$）
+这里的 $\sigma^z = \begin{bmatrix} 1 & 0\\ 0 & -1 \end{bmatrix}$ , $I_l = \begin{bmatrix} 1 & 0\\ 0 & 1 \end{bmatrix}$ 
