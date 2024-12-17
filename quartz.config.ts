@@ -13,9 +13,8 @@ const config: QuartzConfig = {
     enableSPA: true,
     enablePopovers: true,
     analytics: {
-      provider: "umami",
-      websiteId: "6236c683-9328-4a48-af3a-6c8c65e90919",
-      host: "https://cloud.umami.is/script.js"
+      provider: "clarity",
+      projectId: "pfddmzzkif"
     },
     locale: "zh-CN",
     baseUrl: "topdeoo.github.io",
