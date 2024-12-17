@@ -166,6 +166,8 @@ export default (() => {
           </>
         )}
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        {/* Google website verify */}
+        <meta name="google-site-verification" content="A9RpROkHVgBC0iCqJXFDHxn9QLKpupoNO3uFd5Kh5ek" />
         {/* OG/Twitter meta tags */}
         <meta name="og:site_name" content={cfg.pageTitle}></meta>
         <meta property="og:title" content={title} />
