@@ -5,7 +5,7 @@ tags:
   - 论文阅读
   - 量子算法
 date: 2024-12-12
-lastmod: 2024-12-18
+lastmod: 2024-12-19
 draft: false
 zotero-key: E58SF83N
 zt-attachments:
@@ -53,7 +53,7 @@ $$
 
 对于一个量子计算机，其运行在一个 $2^n$ 维的希尔伯特空间内，我们需要求得的比特串为 $\ket{z}$，使得 $C(z)$ 最大
 
-我们通过 [[Quantum Algorithm Preparation#量子计算原理|量子计算原理]] 中的内容，将目标改写为通过构造一个参数 $\theta$，是我们能够求得哈密顿量的基态 $\ket{z}$，也就是使得损失函数最小的量子态
+我们通过 [[Quantum Algorithm Preparation#量子计算原理|量子计算原理]] 中的内容，将目标改写为通过构造一个参数 $\theta$，使我们能够求得哈密顿量的基态 $\ket{z}$，也就是使得损失函数最小的量子态
 
 在介绍如何构造哈密顿量之前，我们引入一个理论基础
 
@@ -144,7 +144,7 @@ $$
 C(\theta) = \bra{\psi(\theta)}H\ket{\psi(\theta)}
 $$
 
-通过测量得到 $C(\theta)$ 后，调用传统优化器更新 $\theta$（梯度下降，牛顿法，单纯型法等），不断重复这个过程，如下图所示：
+通过测量得到 $C(\theta)$ 后，调用传统优化器更新 $\theta$（梯度下降，牛顿法，单纯形法等），不断重复这个过程，如下图所示：
 
 ![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/202412140041518.png)
 
