@@ -5,7 +5,7 @@ tags:
   - 论文阅读
   - 量子算法
 date: 2024-12-12
-lastmod: 2024-12-17
+lastmod: 2024-12-18
 draft: false
 zotero-key: E58SF83N
 zt-attachments:
@@ -16,6 +16,7 @@ citekey: farhiQuantumApproximateOptimization2014
 > [!tldr]
 >
 > [文章链接](http://arxiv.org/abs/1411.4028)
+>
 > 通过绝热定理，我们可以写出哈密顿量的一个形式：
 >
 > $$
@@ -29,14 +30,14 @@ citekey: farhiQuantumApproximateOptimization2014
 > 我们可以将系统最终演化酉变换写为：
 >
 > $$
-> U(H, t, p) = \prod^n_{j=1}\prod_ke^{\frac{-iH_kt}{n}}, H = \sum_k H_k
+> U(H, t, p) = \prod^p_{j=1}\prod_ke^{\frac{-iH_kt}{n}}, H = \sum_k H_k
 > $$
 >
 > 而 QAOA 就是在这个基础上，让哈密顿量在基态与问题哈密顿量之间切换，通过优化时间的参数，来达到优化最终损失函数的目的
 
 # A Quantum Approximate Optimization Algorithm
 
-> [!summary]-
+> [!abstract]-
 >
 > We introduce a quantum algorithm that produces approximate solutions for combinatorial optimization problems. The algorithm depends on a positive integer p and the quality of the approximation improves as p is increased. The quantum circuit that implements the algorithm consists of unitary gates whose locality is at most the locality of the objective function whose optimum is sought. The depth of the circuit grows linearly with p times (at worst) the number of constraints. If p is fixed, that is, independent of the input size, the algorithm makes use of efficient classical preprocessing. If p grows with the input size a different strategy is proposed. We study the algorithm as applied to MaxCut on regular graphs and analyze its performance on 2-regular and 3-regular graphs for fixed p. For p = 1, on 3-regular graphs the quantum algorithm always finds a cut that is at least 0.6924 times the size of the optimal cut.
 
@@ -122,6 +123,13 @@ $$
 \end{aligned}
 $$
 
+> [!question]
+>
+> 乍看这种交替作用的演化并不是一条连续的演化路径（绝热定理要求是连续的，因为我们需要对其做积分），
+> 甚至路径两端并不是从 $H_B \to H_P$，不符合绝热定理的要求
+>
+> 但实际上，这相当于在某一条连续的路径上进一步做了 Trotter 分解:
+
 我们令 $\theta = (\overrightarrow{\gamma}, \overrightarrow{\beta})$，即可得到：
 
 $$
@@ -136,7 +144,7 @@ $$
 C(\theta) = \bra{\psi(\theta)}H\ket{\psi(\theta)}
 $$
 
-通过测量得到 $C(\theta)$ 后，调用传统优化器更新 $\theta$（梯度下降等），不断重复这个过程，如下图所示：
+通过测量得到 $C(\theta)$ 后，调用传统优化器更新 $\theta$（梯度下降，牛顿法，单纯型法等），不断重复这个过程，如下图所示：
 
 ![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/202412140041518.png)
 
