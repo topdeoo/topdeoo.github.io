@@ -76,29 +76,6 @@
     }
 }
 
-//移除 collapse 插件的marker伪元素
-.expressive-code .ec-section summary {
-    display: flex;
-    align-items: center;
-    list-style: none;
-    /* 移除默认的 marker */
-}
-
-.expressive-code .ec-section summary::marker {
-    display: none;
-    /* 完全移除默认 marker */
-}
-
-.expressive-code .ec-section summary .ec-line {
-    display: flex;
-    align-items: center;
-    width: 100%;
-}
-
-.expressive-code .ec-section summary svg {
-    margin-right: 0.5em;
-}
-
 //标题栏底部边框
 .expressive-code .frame.has-title:not(.is-terminal) .header::before {
     //same as terminal frame title bottom border

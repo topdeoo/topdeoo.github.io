@@ -181,7 +181,7 @@ CCF-Rank，一个浏览器插件，可以在 Google 的浏览器商店里找到�
   - `dataview`
   - `Day Planner`
     进行使用，最简单的用法就是 `TODO List` ，今日待办之类的
-- `Codeblock Customizer`：客制化代码块的显示
+- `obsidian-shiki-plugin`：客制化代码块的显示
 - `Excalidraw`：排名第一的画图插件（虽然我平时用的也不是很多）
 - `Image auto upload Plugin`：和 picgo 一块使用的插件，在复制图片时可以直接上传到图床上，然后替换图片的 url
 - `Lazy Plugin Loader`：插件的懒加载插件，快速启动 obsidian，防止加载插件卡住

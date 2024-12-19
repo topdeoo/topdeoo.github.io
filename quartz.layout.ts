@@ -32,7 +32,7 @@ export const defaultContentPageLayout: PageLayout = {
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),
     Component.Search(),
-    Component.RecentNotes({ limit: 2, showTags: false }),
+    Component.DesktopOnly(Component.RecentNotes({ limit: 2, showTags: false })),
     Component.DesktopOnly(Component.Explorer({
       mapFn: (node) => {
         if (node.depth > 0) {
