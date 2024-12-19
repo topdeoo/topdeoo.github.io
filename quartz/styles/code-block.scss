@@ -1,0 +1,132 @@
+.expressive-code {
+    position: relative;
+    margin: 1rem 0;
+
+    // 框架样式
+    &.frame {
+        background: var(--bg);
+        border: 1px solid var(--lightgray);
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    figure.frame {
+        pre[data-language] {
+            &::before {
+                content: attr(data-language);
+                position: absolute;
+                top: 0.5em;
+                right: 2em;
+                text-transform: capitalize;
+                z-index: 1;
+                color: var(--secondary);
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+
+    // 代码区域
+    pre {
+        margin: 0 !important;
+        padding: 1rem !important;
+        background: var(--code-background) !important;
+        overflow-x: hidden;
+
+        code {
+            background: none !important;
+            padding: 0 !important;
+        }
+    }
+
+    // 提示样式
+    .copy-tooltip {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 0.4em 1em;
+        background: var(--secondary);
+        color: var(--lightgray);
+        border-radius: 4px;
+        font-size: 0.9em;
+        white-space: nowrap;
+        opacity: 0;
+        transition: all 0.2s ease-in-out;
+        pointer-events: none;
+        z-index: 10;
+
+        // 显示动画
+        &.show {
+            opacity: 1;
+        }
+    }
+
+    // 处理 expressive-code 的复制按钮
+    .copy {
+        button {
+            position: relative;
+
+            &::after {
+                //复制按钮图标
+                mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.75'%3E%3Cpath d='M3 19a2 2 0 0 1-1-2V2a2 2 0 0 1 1-1h13a2 2 0 0 1 2 1'/%3E%3Crect x='6' y='5' width='16' height='18' rx='1.5' ry='1.5'/%3E%3C/svg%3E") !important;
+                -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.75'%3E%3Cpath d='M3 19a2 2 0 0 1-1-2V2a2 2 0 0 1 1-1h13a2 2 0 0 1 2 1'/%3E%3Crect x='6' y='5' width='16' height='18' rx='1.5' ry='1.5'/%3E%3C/svg%3E") !important;
+            }
+        }
+    }
+}
+
+//移除 collapse 插件的marker伪元素
+.expressive-code .ec-section summary {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    /* 移除默认的 marker */
+}
+
+.expressive-code .ec-section summary::marker {
+    display: none;
+    /* 完全移除默认 marker */
+}
+
+.expressive-code .ec-section summary .ec-line {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.expressive-code .ec-section summary svg {
+    margin-right: 0.5em;
+}
+
+//标题栏底部边框
+.expressive-code .frame.has-title:not(.is-terminal) .header::before {
+    //same as terminal frame title bottom border
+    border-bottom: var(--ec-brdWd) solid var(--ec-frm-trmTtbBrdBtmCol) !important;
+}
+
+//标题背景移除圆角
+.expressive-code .frame.has-title:not(.is-terminal) .title {
+    border-radius: 0 !important;
+}
+
+//terminal类型的左上角三个点图标
+.expressive-code .frame.is-terminal .header::before {
+    background: linear-gradient(to right,
+            #ff6666 0%, // 红色
+            #ff6666 26%, // 红色结束
+            transparent 26%,
+            transparent 37%,
+            #ffdb4d 37%, // 黄色
+            #ffdb4d 63%, // 黄色结束
+            transparent 63%,
+            transparent 74%,
+            #84a59d 74%, // 绿色
+            #84a59d 100% // 绿色结束
+        );
+
+    opacity: 1 !important;
+    // expressive-code 官网三个灰色点
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 16' preserveAspectRatio='xMidYMid meet'%3E%3Ccircle cx='8' cy='8' r='8'/%3E%3Ccircle cx='30' cy='8' r='8'/%3E%3Ccircle cx='52' cy='8' r='8'/%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 16' preserveAspectRatio='xMidYMid meet'%3E%3Ccircle cx='8' cy='8' r='8'/%3E%3Ccircle cx='30' cy='8' r='8'/%3E%3Ccircle cx='52' cy='8' r='8'/%3E%3C/svg%3E");
+}

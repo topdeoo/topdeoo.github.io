@@ -283,7 +283,7 @@ CCF-Rank，一个浏览器插件，可以在 Google 的浏览器商店里找到�
 
 首先，我们需要编辑这个文件，然后把常用的服务器都保存进去，写成如下形式：
 
-```config
+```ssh-config
 Host NAME
     HostName <ip>
     Port 22

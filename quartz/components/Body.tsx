@@ -1,13 +1,12 @@
-// @ts-ignore
-import clipboardScript from "./scripts/clipboard.inline"
-import clipboardStyle from "./styles/clipboard.scss"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
+// @ts-ignore
+import expressiveClipboardScript from "./scripts/expressive-clipboard.inline"
 
 const Body: QuartzComponent = ({ children }: QuartzComponentProps) => {
   return <div id="quartz-body">{children}</div>
 }
 
-Body.afterDOMLoaded = clipboardScript
-Body.css = clipboardStyle
+// 添加新的复制脚本
+Body.afterDOMLoaded = expressiveClipboardScript
 
 export default (() => Body) satisfies QuartzComponentConstructor

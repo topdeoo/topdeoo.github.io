@@ -1,0 +1,208 @@
+.floating-buttons {
+    position: fixed;
+    bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+
+    &.floating-right {
+        right: 1.5rem;
+    }
+
+    &.floating-left {
+        left: 1.5rem;
+    }
+
+    .button-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .floating-button {
+        width: 36px;
+        height: 36px;
+        background: var(--light);
+        border: 1px solid var(--lightgray);
+        color: var(--dark);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        padding: 0;
+        position: relative;
+
+        &:hover {
+            background: var(--lightgray);
+            color: var(--secondary);
+        }
+
+        svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .floating-button-tooltip {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--dark);
+            color: var(--light);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            pointer-events: none;
+
+            right: calc(100% + 10px);
+
+            &::after {
+                content: '';
+                position: absolute;
+                right: -4px;
+                top: 50%;
+                transform: translateY(-50%);
+                border-left: 4px solid var(--dark);
+                border-top: 4px solid transparent;
+                border-bottom: 4px solid transparent;
+            }
+        }
+
+        &:hover .floating-button-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+// 左侧按钮组的提示显示在右侧
+.floating-left {
+    .floating-button .floating-button-tooltip {
+        right: auto;
+        left: calc(100% + 10px);
+
+        &::after {
+            right: auto;
+            left: -4px;
+            border-right: 4px solid var(--dark);
+            border-left: none;
+        }
+    }
+}
+
+// 快捷键弹窗样式
+.shortcut-sheet-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+
+    .shortcut-sheet-content {
+        background: var(--light);
+        border-radius: 8px;
+        padding: 2rem;
+        position: relative;
+        max-width: 500px;
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+
+        h3 {
+            margin: 0 0 1.5rem;
+            font-size: 1.2rem;
+            color: var(--dark);
+        }
+
+        .shortcut-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .shortcut-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+
+            &:hover {
+                background: var(--lightgray);
+                transform: translateX(2px);
+            }
+
+            &:active {
+                transform: translateX(4px);
+            }
+
+            .shortcut-keys {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+            }
+
+            .shortcut-desc {
+                color: var(--gray);
+            }
+        }
+
+        .shortcut-sheet-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+
+            &:hover {
+                background: var(--lightgray);
+                color: var(--dark);
+            }
+        }
+    }
+}
+
+// 响应式调整
+@media (max-width: 600px) {
+    .floating-buttons {
+        bottom: 1rem;
+
+        &.floating-right {
+            right: 1rem;
+        }
+
+        &.floating-left {
+            left: 1rem;
+        }
+
+        .floating-button {
+            width: 36px;
+            height: 36px;
+
+            svg {
+                width: 18px;
+                height: 18px;
+            }
+        }
+    }
+}

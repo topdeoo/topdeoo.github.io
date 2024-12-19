@@ -1,4 +1,8 @@
 @use "./base.scss";
+@use "./variables.scss";
+@use "./external.scss";
+@use "./keyboard.scss";
+@use "./code-block.scss";
 
 // put your custom CSS here!
 @font-face {
@@ -34,6 +38,164 @@
     unicode-range: U+00-7F;
 }
 
+:root {
+    --gird-width: 30px;
+    --gird-height: 30px;
+    --line-color: #e5e3e3;
+    --dot-color: #ccc;
+    --dot-size: 2px;
+    --point-gap-width: calc(var(--gird-width) * 4);
+    --point-gap-height: calc(var(--gird-height) * 4);
+    // 顶部滚动通知高度
+    --top-scroll-height: 30px;
+    //有通知栏
+    --body-height-min: calc(100vh - var(--top-scroll-height));
+    //无通知栏
+    --body-height-max: 100vh;
+    //加粗字体、代码块高亮色
+    --custom-highlight: #ee7009;
+    // 损坏链接的颜色
+    --broken-link-color: #DA5959;
+
+    --border-radius: 4px;
+
+}
+
+button#explorer {
+    color: var(--secondary);
+}
+
+//本文目录
+#toc-content>ul.overflow {
+    max-height: 30vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+
+button#toc {
+    color: var(--secondary);
+}
+
+//搜索结果弹窗，左侧标题滚动条
+#results-container {
+    scrollbar-width: none;
+}
+
+//搜索结果弹窗，右侧内容预览滚动条
+#preview-container {
+    scrollbar-width: none;
+}
+
+// 表格内的链接 popover 样式
+table {
+    // position: relative;
+
+    // position: static; // 让 popover 相对于表格定位
+
+    .internal {
+        // position: relative;
+
+        .popover {
+            position: fixed; // 改用固定定位
+            isolation: isolate;
+            z-index: var(--z-content) + 1; // 确保显示在最上层
+        }
+    }
+}
+
+a.internal {
+    padding: 0 .3rem;
+}
+
+[saved-theme="dark"] {
+    // Code block
+    --code-bg: #0d1117;
+    --code-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --code-title-bg: #161b22;
+    --code-title-text: #c9d1d9;
+    --code-border: #30363d;
+    // Code block title
+    --code-language-bg: #2d333b;
+    --code-language-text: #adbac7;
+}
+
+// 损坏的内部链接样式
+a.internal.broken-link {
+    //text-decoration: underline;
+    //text-decoration-style: wavy;
+    //text-decoration-color: var(--broken-link-color);
+    border-bottom: 2px dashed var(--broken-link-color);
+    opacity: 0.7;
+    position: relative;
+    padding-right: 1.2em;
+    pointer-events: none;
+    cursor: not-allowed;
+    //text-decoration: line-through;
+
+    &::after {
+        content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%232c5875' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M13.181 8.68a4.503 4.503 0 0 1 1.903 6.405m-9.768-2.782L3.56 14.06a4.5 4.5 0 0 0 6.364 6.365l3.129-3.129m5.614-5.615l1.757-1.757a4.5 4.5 0 0 0-6.364-6.365l-4.5 4.5q-.388.39-.661.84m1.903 6.405a4.5 4.5 0 0 1-1.242-.88a4.5 4.5 0 0 1-1.062-1.683m6.587 2.345l5.907 5.907m-5.907-5.907L8.898 8.898M2.991 2.99L8.898 8.9'/%3E%3C/svg%3E");
+        display: inline-block;
+        position: absolute;
+        right: 0;
+        font-size: 1em;
+        top: 15%;
+    }
+}
+
+//外部链接样式调整
+a.external {
+    text-decoration: none;
+    color: var(--dark);
+    //font-size: 1.2rem;
+    position: relative;
+    padding: 0 4px;
+    transition: color 0.3s;
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+        width: 100%;
+        height: 2px;
+        background: var(--dark);
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.3s;
+        border-radius: 50%;
+    }
+
+    &:hover {
+        color: var(--secondary);
+
+        &::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+    }
+}
+
+// 优化行内代码样式
+:not(pre)>code {
+    background-color: var(--lightgray);
+    border-radius: var(--border-radius);
+    padding: 0 .3rem;
+    margin: 0 0.2em;
+    border: 1px solid var(--gray);
+    color: var(--custom-highlight);
+    font-weight: 500;
+}
+
 .content-meta {
     font-family: 'Biro';
+}
+
+#toc-content>ul.overflow {
+    max-height: 30vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+
+button#toc {
+    color: var(--secondary);
 }

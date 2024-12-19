@@ -13,6 +13,7 @@ export const sharedPageComponents: SharedLayout = {
       repoId: "R_kgDONbWvng",
       category: "Announcements",
       categoryId: "DIC_kwDONbWvns4ClFkN",
+      lightTheme: "light"
     }
   })
 }
@@ -31,7 +32,7 @@ export const defaultContentPageLayout: PageLayout = {
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),
     Component.Search(),
-    Component.Darkmode(),
+    Component.RecentNotes({ limit: 2, showTags: false }),
     Component.DesktopOnly(Component.Explorer({
       mapFn: (node) => {
         if (node.depth > 0) {
@@ -42,6 +43,9 @@ export const defaultContentPageLayout: PageLayout = {
           }
         }
       },
+    })),
+    Component.DesktopOnly(Component.FloatingButtons({
+      position: 'right'
     })),
   ],
   right: [
@@ -64,8 +68,9 @@ export const defaultListPageLayout: PageLayout = {
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),
     Component.Search(),
-    Component.Darkmode(),
-    // Component.DesktopOnly(Component.Explorer()),
+    Component.DesktopOnly(Component.FloatingButtons({
+      position: 'right'
+    })),
   ],
   right: [],
 }

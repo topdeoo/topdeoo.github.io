@@ -61,19 +61,13 @@ const config: QuartzConfig = {
       Plugin.CreatedModifiedDate({
         priority: ["frontmatter", "git", "filesystem"],
       }),
-      Plugin.SyntaxHighlighting({
-        theme: {
-          light: "catppuccin-latte",
-          dark: "aurora-x",
-        },
-        keepBackground: false,
-      }),
+      Plugin.Latex({ renderEngine: "katex" }),
+      Plugin.SyntaxHighlighting(),
       Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
       Plugin.GitHubFlavoredMarkdown(),
       Plugin.TableOfContents(),
       Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
       Plugin.Description({ descriptionLength: 60 }),
-      Plugin.Latex({ renderEngine: "katex" }),
       Plugin.LightBox(),
     ],
     filters: [Plugin.RemoveDrafts()],

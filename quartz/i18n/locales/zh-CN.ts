@@ -36,7 +36,7 @@ export default {
       createdWith: "Created with",
     },
     graph: {
-      title: "关系图谱",
+      title: "🕸️ 关系图谱",
     },
     recentNotes: {
       title: "最近的笔记",

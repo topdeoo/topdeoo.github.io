@@ -36,6 +36,9 @@
   },
   "dependencies": {
     "@clack/prompts": "^0.8.2",
+    "@expressive-code/plugin-collapsible-sections": "^0.38.3",
+    "@expressive-code/plugin-frames": "^0.38.3",
+    "@expressive-code/plugin-line-numbers": "^0.38.3",
     "@floating-ui/dom": "^1.6.12",
     "@myriaddreamin/rehype-typst": "^0.5.0-rc9",
     "@napi-rs/simple-git": "0.1.19",
@@ -69,6 +72,7 @@
     "reading-time": "^1.5.0",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-citation": "^2.2.2",
+    "rehype-expressive-code": "^0.38.3",
     "rehype-katex": "^7.0.1",
     "rehype-mathjax": "^6.0.0",
     "rehype-pretty-code": "^0.14.0",

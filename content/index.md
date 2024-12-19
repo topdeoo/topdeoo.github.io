@@ -23,6 +23,14 @@ Virgil, 一个活的相对失败的 `CSer`，会的东西很多但没有一样�
 
 可以在 [[about | 关于]] 里找到更详细的信息
 
+# 联系我
+
+- [RSS](https://topdeoo.github.io/index.xml)
+
+- [GitHub](https://github.com/topdeoo)
+
+- [Mail](mailto:virgiling7@gmail.com)
+
 # 关于博客
 
 这个博客记录了很多杂七杂八的东西，相比于别人条理清晰的博客，这个可能更像是一个杂货铺，连载的文章时常鸽子，又时常开了新坑（
@@ -43,4 +51,4 @@ Virgil, 一个活的相对失败的 `CSer`，会的东西很多但没有一样�
 
 # 致谢
 
-感谢 [Quartz](https://github.com/jackyzha0/quartz/) 与 [Obsidian](https://obsidian.md)
+感谢 [Quartz](https://quartz.jzhao.xyz/) 与 [Obsidian](https://obsidian.md)

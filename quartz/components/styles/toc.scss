@@ -1,17 +1,15 @@
 @use "../../styles/variables.scss" as *;
 
-.toc {
-  display: flex;
-  flex-direction: column;
+#toc {
+  position: relative;
+  padding-left: 20px; // 为手指图标预留空间
 
-  &.desktop-only {
-    max-height: 40%;
+  &>h3 {
+    margin: 0;
   }
-}
 
-@media all and not ($mobile) {
-  .toc {
-    display: flex;
+  &>p {
+    margin: 0;
   }
 }
 
@@ -44,45 +42,73 @@ button#toc {
 
 #toc-content {
   list-style: none;
-  overflow: hidden;
   overflow-y: auto;
-  max-height: 100%;
-  transition:
-    max-height 0.35s ease,
-    visibility 0s linear 0s;
+  overflow-x: hidden;
+  max-height: calc(50vh - 10rem); // 设置最大高度，留出顶部和底部空间
   position: relative;
   visibility: visible;
+  scrollbar-width: thin; // Firefox
+  scrollbar-color: var(--lightgray) transparent; // Firefox
 
-  &.collapsed {
-    max-height: 0;
-    transition:
-      max-height 0.35s ease,
-      visibility 0s linear 0.35s;
-    visibility: hidden;
+  // Webkit滚动条样式
+  &::-webkit-scrollbar {
+    width: 5px;
   }
 
-  &.collapsed > .overflow::after {
-    opacity: 0;
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--lightgray);
+    border-radius: 3px;
+  }
+
+  &.collapsed {
+    visibility: hidden;
+    max-height: 0;
   }
 
   & ul {
     list-style: none;
     margin: 0.5rem 0;
     padding: 0;
-    & > li > a {
+
+    &>li>a {
       color: var(--dark);
-      opacity: 0.35;
-      transition:
-        0.5s ease opacity,
-        0.3s ease color;
+      display: block;
+      position: relative;
+      padding: 2px 8px;
+      margin: 2px 0;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+      overflow-wrap: break-word;
+      word-break: break-word;
+      hyphens: auto;
+      line-height: 1.4;
+      width: 100%;
+      box-sizing: border-box;
+      font-weight: $normalWeight;
+
       &.in-view {
-        opacity: 0.75;
+        color: var(--secondary);
+        background: var(--highlight);
+        font-weight: $semiBoldWeight;
+        transform: translateX(2px);
       }
+
+      &.read {
+        color: var(--dark);
+        opacity: .75;
+        transition: all 0.3s ease;
+      }
+
+      // &:hover {
+      //   color: var(--secondary);
+      //   background: var(--highlight);
+      //   transform: translateX(2px);
+      // }
     }
-  }
-  > ul.overflow {
-    max-height: none;
-    width: 100%;
   }
 
   @for $i from 0 through 6 {
@@ -90,4 +116,42 @@ button#toc {
       padding-left: calc(1rem * #{$i});
     }
   }
+
+  // 移除遮罩
+  & .overflow {
+    max-height: none !important;
+    overflow: visible !important;
+
+    &::after {
+      display: none !important;
+    }
+  }
+}
+
+// 修改标题高亮动画样式
+@keyframes target-fade {
+  0% {
+    background-color: var(--highlight);
+  }
+
+  100% {
+    background-color: transparent;
+  }
+}
+
+.target-animation {
+  animation: target-fade 2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// 为所有标题添加滚动边距和过渡效果
+h1[id],
+h2[id],
+h3[id],
+h4[id],
+h5[id],
+h6[id] {
+  scroll-margin-top: 100px;
+  padding: 0.5rem 0.5rem 0.5rem 0;
+  // margin: -0.5rem;
+  border-radius: 4px;
 }

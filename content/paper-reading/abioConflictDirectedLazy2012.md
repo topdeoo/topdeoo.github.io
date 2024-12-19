@@ -14,7 +14,9 @@ zt-attachments:
 citekey: abioConflictDirectedLazy2012
 ---
 
-> [!tldr] > [文章链接](http://link.springer.com/10.1007/978-3-642-33558-7_8)
+> [!tldr]
+>
+> [文章链接](http://link.springer.com/10.1007/978-3-642-33558-7_8)
 >
 > 在 SAT 问题的全局约束中，如果将约束编码为 SAT，会导致变量与子句的急速膨胀，造成求解困难。但有时候，编码的辅助变量又属于 nogood 类型的变量，能够指导搜索的过程。
 >
@@ -22,20 +24,23 @@ citekey: abioConflictDirectedLazy2012
 
 # Conflict Directed Lazy Decomposition
 
-> [!summary]
+> [!summary]-
 >
 > Two competing approaches to handling complex constraints in satisfaction and optimization problems using SAT and LCG/SMT technology are: decompose the complex constraint into a set of clauses; or (theory) propagate the complex constraint using a standalone algorithm and explain the propagation. Each approach has its beneﬁts. The decomposition approach is prone to an explosion in size to represent the problem, while the propagation approach may require exponentially more search since it does not have access to intermediate literals for explanation. In this paper we show how we can obtain the best of both worlds by lazily decomposing a complex constraint propagator using conﬂicts to direct it. If intermediate literals are not helpful for conﬂicts then it will act like the propagation approach, but if they are helpful it will act like the decomposition approach. Experimental results show that it is never much worse than the better of the decomposition and propagation approaches, and sometimes better than both.
 
-# 全局约束
+# Global Constraints
 
 我们首先介绍两种约束类型：
 
 1. 基数约束
    考虑变量集合 $X = \{ x_1, x_2 \dots, x_n\}$，我们有如下约束：
+
    $$
    x_1 + x_2 +\dots+x_n \# K
    $$
+
    其中，$K \in \mathbb{R}, x_i \in \{0, 1\}, \#  \in \{\leq, \geq =\}$
+
 2. 伪布尔约束
    考虑变量集合 $X = \{ x_1, x_2 \dots, x_n\}$，我们有如下约束：
    $$
@@ -47,7 +52,7 @@ citekey: abioConflictDirectedLazy2012
 
 对于这两类常见的全局约束，我们常用的有两种方法：
 
-1. encoding or decomposition：编码为 SAT，使用 SAT 求解器进行求解
+1. decomposition(或称为 encoding)：编码为 SAT，使用 SAT 求解器进行求解
 2. [[#Lazy Clause Generation]]：使用 SMT 方法进行求解，这里我们简称为约束传播
 
 我们以基数约束为例，解释这两种方法
@@ -103,7 +108,7 @@ $$
 
 # Lazy Clause Generation
 
-我们首先介绍什么是 [[Lazy Clause Generation]]
+我们首先介绍什么是 [[stuckeyLazyClauseGeneration2010|Lazy Clause Generation]]
 
 > [!tldr]
 >
