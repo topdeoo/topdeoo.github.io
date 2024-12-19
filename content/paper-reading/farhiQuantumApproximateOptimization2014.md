@@ -5,7 +5,7 @@ tags:
   - 论文阅读
   - 量子算法
 date: 2024-12-12
-lastmod: 2024-12-18
+lastmod: 2024-12-19
 draft: false
 zotero-key: E58SF83N
 zt-attachments:
@@ -128,7 +128,7 @@ $$
 > 乍看这种交替作用的演化并不是一条连续的演化路径（绝热定理要求是连续的，因为我们需要对其做积分），
 > 甚至路径两端并不是从 $H_B \to H_P$，不符合绝热定理的要求
 >
-> 但实际上，这相当于在某一条连续的路径上进一步做了 Trotter 分解:
+> 但实际上，这相当于在某一条连续的路径上进一步做了 Trotter 分解
 
 我们令 $\theta = (\overrightarrow{\gamma}, \overrightarrow{\beta})$，即可得到：
 
@@ -190,9 +190,13 @@ $$
 
 最终，我们测量出现概率最高的基态：
 
-![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/202412170046477.png)
+![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20241219100407.png)
 
-概率最高的也同样是 $\ket{z} = 01100$
+概率最高的也同样是 $\ket{z} = 01100$，但我们发现其实还有错误的解 $11010$，如果我们扩大 $p \to 12$，那么可以测量得到如下结果：
+
+![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20241219100459.png)
+
+可以发现现在概率高的都已经是正确解了
 
 > [!info]
 >

@@ -5,7 +5,7 @@ tags:
   - 环境配置
   - 开发工具
 date: 2024-10-27
-lastmod: 2024-12-16
+lastmod: 2024-12-19
 draft: false
 ---
 
@@ -106,6 +106,10 @@ CCF-Rank，一个浏览器插件，可以在 Google 的浏览器商店里找到�
 
 **可以在 [Zotero 中文社区](https://zotero-chinese.com/plugins/) 查看推荐的插件以及安装方法**
 
+> [!important]
+>
+> 新增了一个插件：[zotero-obsidian-note-.xpi](https://github.com/aidenlx/obsidian-zotero/releases/download/zt1.0.1/zotero-obsidian-note-1.0.1.xpi) ，与 Obsidian 联动
+
 这里推荐我使用的插件：
 
 ![image.png](https://virgil-civil-1311056353.cos.ap-shanghai.myqcloud.com/img/20241120155228.png)
@@ -187,6 +191,7 @@ CCF-Rank，一个浏览器插件，可以在 Google 的浏览器商店里找到�
 - `Style Setting`： 上文所说的，客制化主题必备插件
 - `Tasks`：更好的显示 `TODO List`
 - `Image Toolkit` ：更好的显示图片（主要是想放大和缩小）
+- [zotlit](https://zotlit.aidenlx.top/zh-CN/getting-started/install/obsidian): 与 Zotero 联动，更好的写论文阅读笔记
 
 # 组会 Slides 制作
 
