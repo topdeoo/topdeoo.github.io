@@ -51,4 +51,6 @@ Virgil, 一个活的相对失败的 `CSer`，会的东西很多但没有一样�
 
 # 致谢
 
-感谢 [Quartz](https://quartz.jzhao.xyz/) 与 [Obsidian](https://obsidian.md)
+- 感谢 [Quartz](https://quartz.jzhao.xyz/) 与 [Obsidian](https://obsidian.md)
+
+- 感谢 [8Cats & Me](https://8cat.life/) 中开发的一些组件和样式

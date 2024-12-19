@@ -13,7 +13,8 @@ export const sharedPageComponents: SharedLayout = {
       repoId: "R_kgDONbWvng",
       category: "Announcements",
       categoryId: "DIC_kwDONbWvns4ClFkN",
-      lightTheme: "light"
+      themeUrl: "https://giscus.app/themes/",
+      lightTheme: "noborder_light"
     }
   })
 }

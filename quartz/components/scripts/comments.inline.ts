@@ -79,8 +79,10 @@ document.addEventListener("nav", () => {
   giscusScript.setAttribute("data-reactions-enabled", giscusContainer.dataset.reactionsEnabled)
   giscusScript.setAttribute("data-input-position", giscusContainer.dataset.inputPosition)
 
-  const theme = document.documentElement.getAttribute("saved-theme")
-  if (theme) {
+  if(giscusContainer.dataset.lightTheme !== "light"){
+    giscusScript.setAttribute("data-theme", getThemeUrl(getThemeName(giscusContainer.dataset.lightTheme)))
+  } else {
+    const theme = document.documentElement.getAttribute("saved-theme") ?? "light"
     giscusScript.setAttribute("data-theme", getThemeUrl(getThemeName(theme)))
   }
 
