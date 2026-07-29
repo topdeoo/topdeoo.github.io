@@ -50,11 +50,16 @@ export function trieFromAllFiles(allFiles: QuartzPluginData[]): FileTrieNode<Bui
   const trie = new FileTrieNode<BuildTimeTrieData>([])
   allFiles.forEach((file) => {
     if (file.frontmatter) {
+      // Virtual pages do not have a source filePath. Use their synthetic
+      // relativePath for trie display hints without mutating the original data.
+      const filePath = file.filePath ?? file.relativePath
+      if (!filePath) return
+
       trie.add({
         ...file,
         slug: file.slug!,
         title: file.frontmatter.title,
-        filePath: file.filePath!,
+        filePath,
       })
     }
   })

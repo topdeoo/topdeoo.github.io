@@ -1,3 +1,167 @@
 @use "./variables.scss" as *;
+@use "./external.scss";
 
-// put your custom CSS here!
+@import url("https://cdnjs.cloudflare.com/ajax/libs/lxgw-wenkai-screen-webfont/1.7.0/lxgwwenkaiscreenr.css");
+@import url("https://fonts.cdnfonts.com/css/monaco");
+
+// Site-specific styles carried forward from the Quartz v4 blog.
+@font-face {
+  font-family: "Shokaki Sarari";
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+  src: url("/static/fonts/Shokaki_Sarari.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Biro";
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+  src: url("/static/fonts/biro-script-plus.woff2") format("woff2");
+}
+
+:root {
+  --custom-highlight: #8b2e2e;
+  --border-radius: 4px;
+}
+
+button#explorer,
+button#toc {
+  color: var(--secondary);
+}
+
+#toc-content > ul.overflow {
+  max-height: 30vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+#results-container,
+#preview-container {
+  scrollbar-width: none;
+}
+
+article:has(p:not(:empty)) {
+  border-radius: var(--border-radius);
+  padding: 0 1rem 1rem;
+}
+
+h1[id],
+h2[id],
+h3[id],
+h4[id],
+h5[id],
+h6[id] {
+  scroll-margin-top: 2rem;
+}
+
+a.internal {
+  padding: 0 0.3rem;
+}
+
+a.external {
+  position: relative;
+  padding: 0 4px;
+  color: var(--secondary);
+  text-decoration: none;
+  transition: color 0.3s;
+
+  &::before {
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    border-radius: 50%;
+    background: var(--custom-highlight);
+    content: "";
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s;
+  }
+
+  &:hover {
+    color: var(--tertiary);
+
+    &::before {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+  }
+}
+
+// Inline code keeps the v4 bordered treatment.
+:not(pre) > code {
+  margin: 0 0.2em;
+  padding: 0 0.3rem;
+  border: 1px solid var(--gray);
+  border-radius: var(--border-radius);
+  background-color: var(--lightgray);
+  color: var(--custom-highlight);
+  font-weight: 500;
+}
+
+// Poetry fences are rendered as escaped text by the site-local v5 transformer.
+pre.poetry {
+  position: unset;
+  padding-top: 0.5rem;
+  padding-bottom: 0.8rem;
+  border: none;
+  background-color: var(--lightgray);
+  box-shadow:
+    0 4px 6px -1px rgb(0 0 0 / 10%),
+    0 2px 4px -2px rgb(0 0 0 / 10%);
+  color: #025399;
+  font-family: "Shokaki Sarari";
+  font-size: 1.2rem;
+}
+
+.meta,
+.content-meta {
+  color: var(--gray);
+  font-family: "Biro";
+}
+
+.recent-notes {
+  & > h3 {
+    margin-top: 0.3rem;
+  }
+
+  & > ul.recent-ul {
+    margin-top: 0.8rem;
+
+    & > li {
+      margin: 0.6rem 0;
+    }
+  }
+}
+
+article figure:not([data-rehype-pretty-code-figure]) {
+  margin: 0;
+}
+
+article figure:not([data-rehype-pretty-code-figure]) > figcaption {
+  margin-top: 0.35em;
+  text-align: center;
+  font-size: 0.9em;
+  opacity: 0.8;
+}
+
+article figure:not([data-rehype-pretty-code-figure]) > img {
+  margin: 0;
+}
+
+// Match the old ViewImage affordance while using the maintained v5 lightbox.
+article img.lightbox-image,
+.content img.lightbox-image {
+  border: 2px dashed #284b63;
+  border-radius: 0;
+  box-shadow: none;
+  cursor: zoom-in;
+}
+
+article img.lightbox-image:hover,
+.content img.lightbox-image:hover {
+  box-shadow: none;
+}

@@ -22,6 +22,7 @@ import {
 import { Features, transform } from "lightningcss"
 import { transform as transpile } from "esbuild"
 import { write } from "./helpers"
+import { hoistCssImports } from "../../util/css"
 
 function hashContent(content: string | Buffer): string {
   return createHash("sha256").update(content).digest("hex").slice(0, 8)
@@ -344,7 +345,8 @@ export const ComponentResources: QuartzEmitterPlugin = () => {
         ...globalCss,
         baseStyles,
       )
-      const stylesheet = `@layer quartz-base {\n${quartzBase}\n}\n${customStyles}`
+      const { imports, styles } = hoistCssImports(customStyles)
+      const stylesheet = `${imports}\n@layer quartz-base {\n${quartzBase}\n}\n${styles}`
 
       const prescript = await joinScripts(componentResources.beforeDOMLoaded)
 

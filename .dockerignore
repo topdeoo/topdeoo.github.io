@@ -1,0 +1,8 @@
+# The image packages an already-built site. Never send Markdown or framework
+# sources—including ExplicitPublish-filtered drafts—to Docker or its cache.
+*
+!public/
+!public/**
+!scripts/
+!scripts/serve-static.js
+!Dockerfile

@@ -1,3 +1,8 @@
 public
 node_modules
 .quartz-cache
+content
+.quartz
+# Unmodified upstream v5 tests that are not clean under its current Prettier.
+quartz/plugins/loader/config-loader.test.ts
+quartz/plugins/pageTypes/dispatcher.test.ts

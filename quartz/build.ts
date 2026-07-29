@@ -22,6 +22,7 @@ import { getStaticResourcesFromPlugins } from "./plugins"
 import { randomIdNonSecure } from "./util/random"
 import { ChangeEvent } from "./plugins/types"
 import { minimatch } from "minimatch"
+import { contentForEmitter } from "./util/emitter"
 
 function reportSlugCollisions(content: ProcessedContent[]): void {
   const collisions = detectSlugCollisions(content)
@@ -325,7 +326,12 @@ async function rebuild(changes: ChangeEvent[], clientRefresh: () => void, buildD
       if (emitter.name === "PageTypeDispatcher") continue
       // Try to use partialEmit if available, otherwise assume the output is static
       const emitFn = emitter.partialEmit ?? emitter.emit
-      const emitted = await emitFn(ctx, contentWithVirtual, staticResources, changeEvents)
+      const emitted = await emitFn(
+        ctx,
+        contentForEmitter(emitter.name, processedFiles, contentWithVirtual),
+        staticResources,
+        changeEvents,
+      )
       if (emitted === null) {
         continue
       }

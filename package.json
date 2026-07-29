@@ -11,19 +11,28 @@
     "type": "git",
     "url": "https://github.com/jackyzha0/quartz.git"
   },
+  "packageManager": "bun@1.3.14",
+  "workspaces": [
+    "plugins/*"
+  ],
+  "trustedDependencies": [
+    "@parcel/watcher"
+  ],
   "scripts": {
-    "quartz": "./quartz/bootstrap-cli.mjs",
-    "docs": "npx quartz build --serve -d docs",
-    "check": "tsc --noEmit && npx prettier . --check",
-    "format": "npx prettier . --write",
-    "test": "tsx --test",
-    "profile": "0x -D prof ./quartz/bootstrap-cli.mjs build --concurrency=1",
-    "install-plugins": "npx tsx ./quartz/plugins/loader/install-plugins.ts",
-    "prebuild": "npm run install-plugins"
+    "quartz": "bun ./quartz/bootstrap-cli.mjs",
+    "dev": "bun ./quartz/bootstrap-cli.mjs build --serve",
+    "build": "bun ./quartz/bootstrap-cli.mjs build",
+    "docs": "bun ./quartz/bootstrap-cli.mjs build --serve -d docs",
+    "check": "bunx --bun tsc --noEmit && bunx --bun prettier . --check",
+    "format": "bunx --bun prettier . --write",
+    "test": "bun test",
+    "profile": "bunx --bun 0x -D prof ./quartz/bootstrap-cli.mjs build --concurrency=1",
+    "plugins:prepare": "bun ./quartz/plugins/loader/install-plugins.ts --index-only",
+    "plugins:install": "bun ./quartz/plugins/loader/install-plugins.ts --purge-locked && bun ./quartz/bootstrap-cli.mjs plugin install && bun run plugins:prepare",
+    "prebuild": "bun run plugins:prepare"
   },
   "engines": {
-    "npm": ">=10.9.2",
-    "node": ">=22"
+    "bun": ">=1.3.14"
   },
   "keywords": [
     "site generator",
@@ -86,6 +95,8 @@
     "@quartz-community/tag-list": "^0.1.0",
     "@quartz-community/tag-page": "^0.1.0",
     "@quartz-community/unlisted-pages": "^0.1.0",
+    "@virgiling/markdown-extensions": "workspace:*",
+    "@virgiling/out-of-date": "workspace:*",
     "ansi-truncate": "^1.4.0",
     "async-mutex": "^0.5.0",
     "chokidar": "^5.0.0",
@@ -121,6 +132,7 @@
     "@quartz-community/types": "^0.3.0",
     "@quartz-community/utils": "^0.1.0",
     "@types/hast": "^3.0.4",
+    "@types/mdast": "^4.0.4",
     "@types/node": "^25.0.10",
     "@types/pretty-time": "^1.1.5",
     "@types/source-map-support": "^0.5.10",

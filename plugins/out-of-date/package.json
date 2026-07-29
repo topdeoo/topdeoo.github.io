@@ -1,0 +1,82 @@
+{
+  "name": "@virgiling/out-of-date",
+  "version": "1.0.0",
+  "description": "Site-local stale content notice for virgiling.wiki",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./index.ts"
+    },
+    "./components": "./components.ts",
+    "./package.json": "./package.json"
+  },
+  "main": "./index.ts",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "dependencies": {
+    "@quartz-community/types": "^0.3.0",
+    "minimatch": "^10.1.1"
+  },
+  "peerDependencies": {
+    "preact": "^10.0.0"
+  },
+  "quartz": {
+    "name": "out-of-date",
+    "displayName": "Out Of Date",
+    "description": "Shows a warning when selected notes have passed their review window.",
+    "category": "component",
+    "version": "1.0.0",
+    "quartzVersion": ">=5.0.0",
+    "dependencies": [],
+    "defaultEnabled": true,
+    "defaultOptions": {
+      "checkPaths": [
+        "01-courses/**",
+        "03-tools/**"
+      ],
+      "staleThreshold": 365,
+      "title": "时效性提示",
+      "staleMessage": "本文最后复核或更新于 {date}，距今已超过 {days} 天，内容可能已经过时。",
+      "reviewMessage": "本文的计划复核日期为 {date}，现已逾期 {days} 天，请确认内容仍然有效。"
+    },
+    "components": {
+      "OutOfDate": {
+        "name": "out-of-date",
+        "displayName": "Out Of Date",
+        "description": "Stale content warning callout",
+        "version": "1.0.0",
+        "quartzVersion": ">=5.0.0",
+        "defaultPosition": "beforeBody",
+        "defaultPriority": 40
+      }
+    },
+    "configSchema": {
+      "type": "object",
+      "properties": {
+        "checkPaths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "staleThreshold": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "title": {
+          "type": "string"
+        },
+        "staleMessage": {
+          "type": "string"
+        },
+        "reviewMessage": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

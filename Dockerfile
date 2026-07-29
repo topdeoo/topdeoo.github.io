@@ -1,18 +1,10 @@
-FROM node:22-slim AS builder
+FROM oven/bun:1.3.14-slim@sha256:d56a2534ffd262e92c12fd3249d3924d296d97086da773f821d7d0477435ea04
 
-# install git to install plugins
-RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
+WORKDIR /app
 
-WORKDIR /usr/src/app
-COPY package.json .
-COPY package-lock.json* .
-COPY .npmrc* .
-COPY quartz/ ./quartz/
-COPY quartz.lock.json* .
-RUN npm install; npx quartz plugin install
+COPY --chown=bun:bun public ./public
+COPY --chown=bun:bun scripts/serve-static.js ./scripts/serve-static.js
 
-FROM node:22-slim
-WORKDIR /usr/src/app
-COPY --from=builder /usr/src/app/ /usr/src/app/
-COPY . .
-CMD ["npx", "quartz", "build", "--serve"]
+USER bun
+EXPOSE 8080
+CMD ["bun", "./scripts/serve-static.js"]

@@ -7,6 +7,7 @@ import { trace } from "../util/trace"
 import { BuildCtx } from "../util/ctx"
 import { StaticResources } from "../util/resources"
 import { styleText } from "util"
+import { contentForEmitter } from "../util/emitter"
 
 async function runEmitter(
   emitter: QuartzEmitterPluginInstance,
@@ -71,8 +72,6 @@ export async function emitContent(ctx: BuildCtx, content: ProcessedContent[]) {
   }
 
   // Phase 2: Run all other emitters with content extended by virtual pages.
-  // This ensures emitters like ContentIndex include virtual pages in their output
-  // (e.g. sitemap, RSS, contentIndex.json used by the explorer sidebar).
   const contentWithVirtual =
     ctx.virtualPages.length > 0 ? [...content, ...ctx.virtualPages] : content
   const otherEmitters = cfg.plugins.emitters.filter(
@@ -81,7 +80,13 @@ export async function emitContent(ctx: BuildCtx, content: ProcessedContent[]) {
   let emitErrors = 0
   const counts = await Promise.all(
     otherEmitters.map((emitter) =>
-      runEmitter(emitter, ctx, contentWithVirtual, staticResources, log).catch((err) => {
+      runEmitter(
+        emitter,
+        ctx,
+        contentForEmitter(emitter.name, content, contentWithVirtual),
+        staticResources,
+        log,
+      ).catch((err) => {
         emitErrors++
         console.error(`Emitter "${emitter.name}" failed:`, err.message ?? err)
         return 0

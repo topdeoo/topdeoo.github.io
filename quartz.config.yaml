@@ -1,0 +1,365 @@
+# yaml-language-server: $schema=./quartz/plugins/quartz-plugins.schema.json
+#
+# Quartz v5 site configuration for virgiling.wiki.
+# The Markdown frontmatter contract remains unchanged; see MIGRATION_V5.md.
+
+configuration:
+  pageTitle: 忘れてください
+  pageTitleSuffix: " | 思想犯"
+  enableSPA: true
+  enablePopovers: true
+  analytics:
+    provider: umami
+    websiteId: b25a1826-6c9f-4a59-8306-e2425efa4781
+  locale: zh-CN
+  baseUrl: virgiling.wiki
+  ignorePatterns:
+    # Hard privacy boundary: unlike publish/unlisted, these rules exclude both
+    # Markdown and colocated assets before parsing or emission.
+    - "private/**"
+    - "**/private/**"
+    - "templates/**"
+    - "**/templates/**"
+    - ".obsidian/**"
+    - "**/.obsidian/**"
+    - "10-daily/**"
+    - "05-project/**"
+    - "30-tasks/**"
+    - "00-copilot/**"
+    - "Excalidraw/**"
+    - "**/Excalidraw/**"
+    # Unsupported structured files must not leak as downloadable raw assets.
+    - "**/*.base"
+    - "**/*.canvas"
+    # Citations reads this file directly at build time; Assets need not emit it.
+    - ref.bib
+    - 82e5861b5fef463896ed873ce913f299.txt
+    # v5's Assets emitter slugifies extensionless files to lowercase. Let the
+    # dedicated emitter generate the case-sensitive GitHub Pages filename.
+    - CNAME
+  theme:
+    fontOrigin: local
+    cdnCaching: true
+    typography:
+      header: LXGW WenKai Screen R
+      body: LXGW WenKai Screen R
+      code: Monaco
+    colors:
+      lightMode:
+        light: "#faf8f8"
+        lightgray: "#ebe6e0"
+        gray: "#c0b8b0"
+        darkgray: "#111111"
+        dark: "#2b2b2b"
+        secondary: "#943BB3"
+        tertiary: "#8fb5ac"
+        highlight: "#c4d7c472"
+        textHighlight: "#d6b0b1"
+      darkMode:
+        light: "#161618"
+        lightgray: "#393639"
+        gray: "#646464"
+        darkgray: "#d4d4d4"
+        dark: "#ebebec"
+        secondary: "#7b97aa"
+        tertiary: "#84a59d"
+        highlight: "rgba(228, 231, 233, 0.15)"
+        textHighlight: "#b3aa0288"
+
+plugins:
+  # Frontmatter parsing: deliberately mirrors the v4 JSON-schema YAML rules.
+  - source: "@quartz-community/note-properties"
+    enabled: true
+    options:
+      delimiters: "---"
+      language: yaml
+      includeAll: false
+      includedProperties:
+        - description
+        - tags
+        - aliases
+      excludedProperties: []
+      hidePropertiesView: true
+    order: 5
+
+  - source: "@quartz-community/created-modified-date"
+    enabled: true
+    options:
+      defaultDateType: created
+      priority:
+        - frontmatter
+        - git
+        - filesystem
+    order: 10
+
+  - source: "@virgiling/markdown-extensions"
+    enabled: true
+    options:
+      poetryLanguages:
+        - poetry
+      poetryClassName: poetry
+      # Keep the v4 behavior: standalone images are also wrapped in <figure>.
+      wrapImagesWithoutCaptions: true
+    order: 15
+
+  - source: "@quartz-community/syntax-highlighting"
+    enabled: true
+    options:
+      theme:
+        light: catppuccin-latte
+        dark: catppuccin-mocha
+      keepBackground: false
+    order: 20
+
+  - source: "@quartz-community/obsidian-flavored-markdown"
+    enabled: true
+    options:
+      enableInHtmlEmbed: false
+      enableCheckbox: true
+    order: 30
+
+  - source: "@quartz-community/github-flavored-markdown"
+    enabled: true
+    order: 40
+
+  - source: "@quartz-community/unlisted-pages"
+    enabled: true
+    order: 45
+
+  - source: "@quartz-community/table-of-contents"
+    enabled: true
+    order: 50
+    layout:
+      position: right
+      priority: 30
+      display: desktop-only
+
+  - source: github:vazome/quartz-image-zoom
+    enabled: true
+    order: 55
+
+  - source: "@quartz-community/crawl-links"
+    enabled: true
+    options:
+      markdownLinkResolution: shortest
+      lazyLoad: true
+    order: 60
+
+  - source: "@quartz-community/description"
+    enabled: true
+    options:
+      descriptionLength: 60
+    order: 70
+
+  - source: "@quartz-community/latex"
+    enabled: true
+    options:
+      renderEngine: katex
+    order: 80
+
+  - source: "@quartz-community/citations"
+    enabled: true
+    options:
+      bibliographyFile: ./content/ref.bib
+      csl: chicago
+    order: 85
+
+  - source: "@quartz-community/quartz-fonts"
+    enabled: true
+    options:
+      useThemeFonts: false
+      fontOrigin: local
+      header: LXGW WenKai Screen R
+      body: LXGW WenKai Screen R
+      code: Monaco
+
+  # Publication is opt-in. Do not replace this with remove-draft: one existing
+  # published note intentionally also carries draft: true.
+  - source: "@quartz-community/remove-draft"
+    enabled: false
+
+  - source: "@quartz-community/explicit-publish"
+    enabled: true
+
+  - source: "@quartz-community/alias-redirects"
+    enabled: true
+    options:
+      enableCaseRedirects: true
+
+  - source: "@quartz-community/content-index"
+    enabled: true
+    options:
+      enableSiteMap: true
+      enableRSS: true
+
+  - source: "@quartz-community/favicon"
+    enabled: true
+
+  - source: "@quartz-community/cname"
+    enabled: true
+
+  - source: "@quartz-community/content-page"
+    enabled: true
+
+  - source: "@quartz-community/folder-page"
+    enabled: true
+
+  - source: "@quartz-community/tag-page"
+    enabled: true
+
+  - source: "@quartz-community/page-title"
+    enabled: true
+    layout:
+      position: left
+      priority: 10
+
+  - source: "@quartz-community/recent-notes"
+    enabled: true
+    options:
+      limit: 2
+      showTags: false
+      hideTagPages: true
+      hideFolderPages: true
+    layout:
+      position: left
+      priority: 15
+      display: desktop-only
+
+  - source: "@quartz-community/search"
+    enabled: true
+    layout:
+      position: left
+      priority: 20
+      group: toolbar
+      groupOptions:
+        grow: true
+
+  - source: "@quartz-community/spacer"
+    enabled: true
+    options: {}
+    layout:
+      position: left
+      priority: 25
+      display: mobile-only
+
+  - source: "@quartz-community/darkmode"
+    enabled: true
+    layout:
+      position: left
+      priority: 30
+      group: toolbar
+
+  - source: "@quartz-community/reader-mode"
+    enabled: true
+    layout:
+      position: left
+      priority: 35
+      group: toolbar
+
+  - source: "@quartz-community/explorer"
+    enabled: true
+    layout:
+      position: left
+      priority: 50
+
+  - source: "@quartz-community/graph"
+    enabled: true
+    layout:
+      position: right
+      priority: 10
+
+  - source: "@quartz-community/backlinks"
+    enabled: true
+    layout:
+      position: right
+      priority: 50
+
+  - source: "@quartz-community/breadcrumbs"
+    enabled: true
+    options:
+      rootName: 主页
+    layout:
+      position: beforeBody
+      priority: 5
+      condition: not-index
+
+  - source: "@quartz-community/article-title"
+    enabled: true
+    layout:
+      position: beforeBody
+      priority: 10
+
+  - source: "@quartz-community/content-meta"
+    enabled: true
+    options:
+      showReadingTime: true
+      showComma: true
+    layout:
+      position: beforeBody
+      priority: 20
+
+  - source: "@quartz-community/tag-list"
+    enabled: true
+    layout:
+      position: beforeBody
+      priority: 30
+
+  - source: "@virgiling/out-of-date"
+    enabled: true
+    options:
+      checkPaths:
+        - "01-courses/**"
+        - "03-tools/**"
+      staleThreshold: 365
+      title: 时效性提示
+      staleMessage: "本文最后复核或更新于 {date}，距今已超过 {days} 天，内容可能已经过时。"
+      reviewMessage: "本文的计划复核日期为 {date}，现已逾期 {days} 天，请确认内容仍然有效。"
+    layout:
+      position: beforeBody
+      priority: 40
+
+  - source: "@quartz-community/comments"
+    enabled: true
+    options:
+      provider: giscus
+      options:
+        repo: virgiling/virgiling.github.io
+        repoId: R_kgDONbWvng
+        category: Announcements
+        categoryId: DIC_kwDONbWvns4ClFkN
+        lang: zh-CN
+    layout:
+      position: afterBody
+      priority: 10
+
+layout:
+  groups:
+    toolbar:
+      priority: 35
+      direction: row
+      gap: 0.5rem
+  byPageType:
+    "404":
+      positions:
+        beforeBody: []
+        afterBody: []
+        left: []
+        right: []
+        footer: []
+    content: {}
+    folder:
+      exclude:
+        - out-of-date
+        - reader-mode
+        - recent-notes
+        - tag-list
+    tag:
+      exclude:
+        - out-of-date
+        - reader-mode
+        - recent-notes
+        - tag-list
+
+# Deliberate v4-only placeholders (no suitable v5/community plugin found):
+# PageNavigation, Local-tag filtering, and custom FolderContent hiding.
+# FloatingButtons was present in source but not mounted in the v4 layout.

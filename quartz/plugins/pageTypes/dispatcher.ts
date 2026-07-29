@@ -207,6 +207,11 @@ export const PageTypeDispatcher: QuartzEmitterPlugin<Partial<DispatcherOptions>>
       // entries becomes visible to later entries in the same pass.
       const allFilesWithVirtual = [...allFiles, ...virtualEntries.map((ve) => ve.vfile.data)]
 
+      // Breadcrumbs and other hierarchy consumers need virtual pages in the trie.
+      // trieFromAllFiles uses relativePath as a non-mutating fallback for these
+      // source-less entries, so they remain distinguishable from real content.
+      ctx.trie = trieFromAllFiles(allFilesWithVirtual)
+
       // Render Body components to populate htmlAst for transclusion
       populateVirtualPageHtmlAst(virtualEntries, ctx, allFilesWithVirtual, resources)
 
@@ -295,6 +300,10 @@ export const PageTypeDispatcher: QuartzEmitterPlugin<Partial<DispatcherOptions>>
       }
 
       const allFilesWithVirtual = [...allFiles, ...virtualEntries.map((ve) => ve.vfile.data)]
+
+      // Replace the source-only trie so added and removed virtual pages are
+      // reflected during incremental rendering as well.
+      ctx.trie = trieFromAllFiles(allFilesWithVirtual)
 
       // Render Body components to populate htmlAst for transclusion
       populateVirtualPageHtmlAst(virtualEntries, ctx, allFilesWithVirtual, resources)

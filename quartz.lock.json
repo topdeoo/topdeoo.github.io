@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "plugins": {
+    "quartz-image-zoom": {
+      "source": "github:vazome/quartz-image-zoom",
+      "resolved": "https://github.com/vazome/quartz-image-zoom.git",
+      "commit": "eb516f150d95859c31c1fa5507f2fd81b35bbb15",
+      "installedAt": "2026-07-28T16:46:04.830Z"
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "name": "@virgiling/markdown-extensions",
+  "version": "1.0.0",
+  "description": "Site-local Poetry and figure caption transformers for virgiling.wiki",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./index.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./index.ts",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "dependencies": {
+    "@quartz-community/types": "^0.3.0",
+    "rehype-image-caption": "2.1.10",
+    "unist-util-visit": "^5.1.0"
+  },
+  "quartz": {
+    "name": "markdown-extensions",
+    "displayName": "Markdown Extensions",
+    "description": "Renders poetry fences and explicit image captions without forking Quartz.",
+    "category": "transformer",
+    "version": "1.0.0",
+    "quartzVersion": ">=5.0.0",
+    "dependencies": [],
+    "defaultOrder": 15,
+    "defaultEnabled": true,
+    "defaultOptions": {
+      "poetryLanguages": [
+        "poetry"
+      ],
+      "poetryClassName": "poetry",
+      "wrapImagesWithoutCaptions": true
+    },
+    "configSchema": {
+      "type": "object",
+      "properties": {
+        "poetryLanguages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "poetryClassName": {
+          "type": "string"
+        },
+        "wrapImagesWithoutCaptions": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
