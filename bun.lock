@@ -19,7 +19,6 @@
         "@quartz-community/cname": "^0.1.0",
         "@quartz-community/comments": "^0.1.0",
         "@quartz-community/content-index": "^0.1.0",
-        "@quartz-community/content-meta": "^0.1.0",
         "@quartz-community/content-page": "^0.1.0",
         "@quartz-community/crawl-links": "^0.1.0",
         "@quartz-community/created-modified-date": "^0.1.0",
@@ -54,6 +53,7 @@
         "@quartz-community/tag-page": "^0.1.0",
         "@quartz-community/unlisted-pages": "^0.1.0",
         "@quartz-themes/core": "^1.0.0",
+        "@virgiling/content-meta": "workspace:*",
         "@virgiling/markdown-extensions": "workspace:*",
         "@virgiling/out-of-date": "workspace:*",
         "ansi-truncate": "^1.4.0",
@@ -101,6 +101,17 @@
         "prettier": "^3.8.1",
         "tsx": "^4.21.0",
         "typescript": "^5.9.3",
+      },
+    },
+    "plugins/content-meta": {
+      "name": "@virgiling/content-meta",
+      "version": "1.0.0",
+      "dependencies": {
+        "@quartz-community/types": "^0.3.0",
+        "reading-time": "^1.5.0",
+      },
+      "peerDependencies": {
+        "preact": "^10.0.0",
       },
     },
     "plugins/markdown-extensions": {
@@ -354,8 +365,6 @@
 
     "@quartz-community/content-index": ["@quartz-community/content-index@0.1.0", "", { "dependencies": { "@quartz-community/types": "^0.2.1", "@quartz-community/utils": "^0.1.0" }, "peerDependencies": { "vfile": "^6.0.3" }, "optionalPeers": ["vfile"] }, "sha512-zCWwsjQg91x9YRJ4SCzMaQg9N+Tdqj0oI9brGk+WP0bcdCNNci0zT3UGyoUTQ9MVgZOCeTBitNrJQiKi5EQsJw=="],
 
-    "@quartz-community/content-meta": ["@quartz-community/content-meta@0.1.0", "", { "dependencies": { "@quartz-community/types": "^0.2.1", "@quartz-community/utils": "^0.1.0" }, "peerDependencies": { "preact": "^10.0.0" } }, "sha512-975tqafyfdoz6qWeSLMuQIaBVVOQrOC8KfQGSGpf7b5o+3zbqtigMwi+XXC+0b9wUGePrclKwbZC+tXRSbCK3Q=="],
-
     "@quartz-community/content-page": ["@quartz-community/content-page@0.1.0", "", { "dependencies": { "@quartz-community/types": "^0.2.1", "@quartz-community/utils": "^0.1.0" }, "peerDependencies": { "preact": "^10.0.0", "vfile": "^6.0.3" }, "optionalPeers": ["vfile"] }, "sha512-AVP8263THDovkM3LnW6nLjPnzlUdGLZW9Jhv+I7a5B69QwOtym61dVgKSBBDGNTaRrtgSkqeE3GYiWKvxuP6Rg=="],
 
     "@quartz-community/crawl-links": ["@quartz-community/crawl-links@0.1.1", "", { "dependencies": { "@quartz-community/types": "^0.2.1", "@quartz-community/utils": "^0.1.0" }, "peerDependencies": { "preact": "^10.0.0" } }, "sha512-2EpIiAbETJaxYPRdBnoMQlqUaTR8m42ncHZ9tqzDTkeLPV8tfa78zCnO0OSjBol9/X5l8eantHQteszgY5zoKg=="],
@@ -479,6 +488,8 @@
     "@types/yargs-parser": ["@types/yargs-parser@21.0.3", "", {}, "sha512-I4q9QU9MQv4oEOz4tAHJtNz1cwuLxn2F3xcc2iV5WdqLPpUnj30aUuxt1mAxYTG+oe8CZMV/+6rU4S4gRDzqtQ=="],
 
     "@ungap/structured-clone": ["@ungap/structured-clone@1.3.3", "", {}, "sha512-60YRaenCQcVjYEKOcG824+DRGGIQ3VKErcBoAEDJZz5bKIs2ZG+X/H9Nk+Q6EVkwJk5QNApxbrc5QtBSwtrXAg=="],
+
+    "@virgiling/content-meta": ["@virgiling/content-meta@workspace:plugins/content-meta"],
 
     "@virgiling/markdown-extensions": ["@virgiling/markdown-extensions@workspace:plugins/markdown-extensions"],
 
@@ -850,6 +861,8 @@
 
     "readdirp": ["readdirp@5.0.0", "", {}, "sha512-9u/XQ1pvrQtYyMpZe7DXKv2p5CNvyVwzUB6uhLAnQwHMSgKMBR62lc7AHljaeteeHXn11XTAaLLUVZYVZyuRBQ=="],
 
+    "reading-time": ["reading-time@1.5.0", "", {}, "sha512-onYyVhBNr4CmAxFsKS7bz+uTLRakypIe4R+5A824vBSkQy/hB3fZepoVEf8OVAxzLvK+H/jm9TzpI3ETSm64Kg=="],
+
     "regex": ["regex@6.1.0", "", { "dependencies": { "regex-utilities": "^2.3.0" } }, "sha512-6VwtthbV4o/7+OaAF9I5L5V3llLEsoPyq9P1JVXkedTP33c7MfCG0/5NOPcSJn0TzXcG9YUrR0gQSWioew3LDg=="],
 
     "regex-recursion": ["regex-recursion@6.0.2", "", { "dependencies": { "regex-utilities": "^2.3.0" } }, "sha512-0YCaSCq2VRIebiaUviZNs0cBz1kg5kVS2UKUfNIx8YVs1cN3AV7NTctO5FOKBA+UT2BPJIWZauYHPqJODG50cg=="],
@@ -1055,8 +1068,6 @@
     "@quartz-community/comments/@quartz-community/types": ["@quartz-community/types@0.2.1", "", { "dependencies": { "unified": "^11.0.5", "vfile": "^6.0.3" } }, "sha512-IELSoFY8WKoiaMj30JNt8SRVU3TPnYtTZ8Clr4kv0vXXnBsxG6FxhiHbLIEu96RUin4ft4FqHkBjCZyYmzroHA=="],
 
     "@quartz-community/content-index/@quartz-community/types": ["@quartz-community/types@0.2.1", "", { "dependencies": { "unified": "^11.0.5", "vfile": "^6.0.3" } }, "sha512-IELSoFY8WKoiaMj30JNt8SRVU3TPnYtTZ8Clr4kv0vXXnBsxG6FxhiHbLIEu96RUin4ft4FqHkBjCZyYmzroHA=="],
-
-    "@quartz-community/content-meta/@quartz-community/types": ["@quartz-community/types@0.2.1", "", { "dependencies": { "unified": "^11.0.5", "vfile": "^6.0.3" } }, "sha512-IELSoFY8WKoiaMj30JNt8SRVU3TPnYtTZ8Clr4kv0vXXnBsxG6FxhiHbLIEu96RUin4ft4FqHkBjCZyYmzroHA=="],
 
     "@quartz-community/content-page/@quartz-community/types": ["@quartz-community/types@0.2.1", "", { "dependencies": { "unified": "^11.0.5", "vfile": "^6.0.3" } }, "sha512-IELSoFY8WKoiaMj30JNt8SRVU3TPnYtTZ8Clr4kv0vXXnBsxG6FxhiHbLIEu96RUin4ft4FqHkBjCZyYmzroHA=="],
 

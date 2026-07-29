@@ -289,11 +289,14 @@ plugins:
       position: beforeBody
       priority: 10
 
-  - source: "@quartz-community/content-meta"
+  - source: "@virgiling/content-meta"
     enabled: true
     options:
+      showPublishedDate: true
+      showModifiedDate: true
       showReadingTime: true
       showComma: true
+      locale: en-US
     layout:
       position: beforeBody
       priority: 20

@@ -1,0 +1,75 @@
+{
+  "name": "@virgiling/content-meta",
+  "version": "1.0.0",
+  "description": "Site-local English publication metadata for virgiling.wiki",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./index.ts"
+    },
+    "./components": "./components.ts",
+    "./package.json": "./package.json"
+  },
+  "main": "./index.ts",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "dependencies": {
+    "@quartz-community/types": "^0.3.0",
+    "reading-time": "^1.5.0"
+  },
+  "peerDependencies": {
+    "preact": "^10.0.0"
+  },
+  "quartz": {
+    "name": "content-meta",
+    "displayName": "Content Meta",
+    "description": "Shows publication date, modification date, and reading time in English.",
+    "category": "component",
+    "version": "1.0.0",
+    "quartzVersion": ">=5.0.0",
+    "dependencies": [],
+    "defaultEnabled": true,
+    "defaultOptions": {
+      "showPublishedDate": true,
+      "showModifiedDate": true,
+      "showReadingTime": true,
+      "showComma": true,
+      "locale": "en-US"
+    },
+    "components": {
+      "ContentMeta": {
+        "name": "content-meta",
+        "displayName": "Content Meta",
+        "description": "English publication and reading metadata",
+        "version": "1.0.0",
+        "quartzVersion": ">=5.0.0",
+        "defaultPosition": "beforeBody",
+        "defaultPriority": 20
+      }
+    },
+    "configSchema": {
+      "type": "object",
+      "properties": {
+        "showPublishedDate": {
+          "type": "boolean"
+        },
+        "showModifiedDate": {
+          "type": "boolean"
+        },
+        "showReadingTime": {
+          "type": "boolean"
+        },
+        "showComma": {
+          "type": "boolean"
+        },
+        "locale": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

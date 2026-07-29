@@ -106,6 +106,7 @@ Assets 中被忽略，改由 `@quartz-community/cname` 根据 `baseUrl` 生成�
 | FrontMatter                         | `@quartz-community/note-properties`                                                                                       |
 | ExplicitPublish                     | `@quartz-community/explicit-publish`                                                                                      |
 | 日期归一化                          | `@quartz-community/created-modified-date`                                                                                 |
+| ContentMeta                         | 站点本地 `@virgiling/content-meta`；保留双日期、Biro 字体和独立英文 locale                                                |
 | Obsidian/GFM/KaTeX/引用             | 对应 `@quartz-community/*` transformer                                                                                    |
 | Poetry                              | 站点本地 `@virgiling/markdown-extensions`；输出转义后的 `<pre class="poetry">`                                            |
 | FigureCaptions                      | 同一薄插件适配维护中的 [`rehype-image-caption`](https://github.com/Robot-Inventor/rehype-image-caption)                   |
@@ -141,8 +142,8 @@ FolderContent 的“存在正文时隐藏目录列表”行为。
 
 - 恢复 v5 原生 Darkmode 开关，使保留的暗色调色板真正可用。
 - 使用 v5 原生 ReaderMode、callout、SPA 和组件资源生命周期。
-- ContentMeta 使用 v5 的“创建日期 + 阅读时间”，不复制旧组件的双日期内部
-  实现。
+- ContentMeta 使用站点本地 v5 组件显示发布日期、修改日期和阅读时间；它只把
+  元信息固定为 `en-US`，不会改变搜索、Breadcrumbs 等界面的中文 locale。
 - 使用 v5 标准 Folder/Tag 页面；这意味着带正文的 folder index 后仍会显示目录
   列表。
 - 虚拟 tag 页面进入 v5 的层级 trie，因此 74 个 tag 页面继续显示完整中文
