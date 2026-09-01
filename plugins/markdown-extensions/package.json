@@ -17,7 +17,7 @@
   "sideEffects": false,
   "dependencies": {
     "@quartz-community/types": "^0.3.0",
-    "rehype-image-caption": "2.1.10",
+    "rehype-image-caption": "2.1.11",
     "unist-util-visit": "^5.1.0"
   },
   "quartz": {
